@@ -35,7 +35,8 @@ If I think back to the dystopian build process I went through before, the fact t
 ...The effort required to escape that dystopia was significant. I wonder if it was really worth doing at all.<br><br>
 I am not refusing all reports. Typos and patch suggestions, and so on.  
 If you feel like it, feel free to submit them to the issues.  
-Pull requests are disabled, though.
+Pull requests are disabled, though.  
+However, as mentioned earlier, my motivation is low, so I cannot guarantee that I will respond to or even acknowledge them...
 
 ## License
 
