@@ -7,6 +7,7 @@ Also, for convenience, there may be ports that establish network connections dur
 
 ## Info
 
+I have no intention of submitting this upstream. All of the ports are rather roughly made, after all.  
 The Mozc port is for x86_64 only (I do not own any machines other than x86_64, so I cannot test it).
 
 ## How to use
