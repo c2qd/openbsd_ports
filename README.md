@@ -2,7 +2,8 @@
 
 ## WARNING
 
-All ports are provided as-is without warranty and may cause serious damage to your computer.
+All ports are provided as-is without warranty and may cause serious damage to your computer.  
+Also, for convenience, there may be ports that establish network connections during the build process; however, please understand that there is not enough motivation to thoroughly eliminate all network access during builds.
 
 ## Info
 
