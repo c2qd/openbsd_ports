@@ -47,7 +47,7 @@ post-extract:
 	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
 
 pre-build:
-	cd ${WRKSRC}/src && env JAVA_HOME=${LOCALBASE}/jdk-21 bazel fetch \
+	cd ${WRKSRC}/src && bazel fetch \
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--config oss_linux \
 		--compilation_mode=opt \
@@ -55,7 +55,7 @@ pre-build:
 		gui/tool:mozc_tool
 
 do-build:
-	cd ${WRKSRC}/src && env JAVA_HOME=${LOCALBASE}/jdk-21 bazel build \
+	cd ${WRKSRC}/src && bazel build \
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--fetch=false \
 		--config oss_linux \
