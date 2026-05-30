@@ -28,6 +28,11 @@ git clone git@codeberg.org:c2qd/openbsd_ports.git c2qd_ports
 PORTSDIR_PATH=/path/to/c2qd_ports:${PORTSDIR}:${PORTSDIR}/mystuff
 ```
 
+## Nonsense
+
+Taking various points into account, it might be more accurate to say that the Mozc-related parts are not really *ports* at all, but simply automated build processes.  
+If I think back to the dystopian build process I went through before, the fact that this only requires a simple make command already feels somewhat better.
+
 ## License
 
 [The Unlicense](UNLICENSE)
