@@ -55,6 +55,6 @@ do-install:
 	${INSTALL_DATA_DIR} "${PREFIX}/share/icons/hicolor/128x128/apps"
 	${INSTALL_DATA_DIR} "${PREFIX}/share/icons/hicolor/32x32/apps"
 	${INSTALL_DATA_DIR} "${PREFIX}/share/icons/hicolor/48x48/apps"
-	cd ${WRKSRC}/src && bash ../scripts/install_fcitx5_data
+	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bash ../scripts/install_fcitx5_data
 
 .include <bsd.port.mk>
