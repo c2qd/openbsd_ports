@@ -1,0 +1,57 @@
+--- src/BUILD.bazel.orig
++++ src/BUILD.bazel
+@@ -161,6 +161,14 @@ platform(
+     ],
+ )
+ 
++platform(
++    name = "openbsd-x86_64",
++    constraint_values = [
++        "@platforms//cpu:x86_64",
++        "@platforms//os:openbsd",
++    ],
++)
++
+ # Special target so as to define special macros for each platforms.
+ # Don't depend on this directly. Use mozc_cc_(library|binary|test) rule instead.
+ cc_library(
+@@ -304,5 +312,39 @@ selects.config_setting_group(
+         "//bazel/cc_target_os:windows",
+         "//bazel/cc_target_os:oss_windows",
+         "//bazel/cc_target_os:prod_windows",
++    ],
++)
++
++load(":cc_toolchain_config.bzl", "cc_toolchain_config")
++load("@rules_python//python:defs.bzl", "py_runtime", "py_runtime_pair")
++
++cc_toolchain_config(name = "openbsd_x86_64_toolchain_config")
++
++filegroup(name = "empty")
++
++cc_toolchain(
++    name = "openbsd_x86_64_toolchain",
++    toolchain_identifier = "openbsd_x86_64_toolchain",
++    toolchain_config = ":openbsd_x86_64_toolchain_config",
++    all_files = ":empty",
++    compiler_files = ":empty",
++    dwp_files = ":empty",
++    linker_files = ":empty",
++    objcopy_files = ":empty",
++    strip_files = ":empty",
++    supports_param_files = 0,
++)
++
++toolchain(
++    name = "cc_toolchain_for_openbsd_x86_64",
++    toolchain = ":openbsd_x86_64_toolchain",
++    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
++    exec_compatible_with = [
++        "@platforms//cpu:x86_64",
++        "@platforms//os:openbsd",
++    ],
++    target_compatible_with = [
++        "@platforms//cpu:x86_64",
++        "@platforms//os:openbsd",
+     ],
+ )

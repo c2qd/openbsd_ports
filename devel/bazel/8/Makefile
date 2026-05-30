@@ -1,0 +1,15 @@
+VERSION =			8.6.0
+
+BCR_COMMIT_HASH =	8d47d2680bebc7321302877652582533fc80bcd8
+
+MODJAVA_VER =		21
+
+EXTRA_BAZEL_ARGS += --linkopt=-lm --host_linkopt=-lm
+
+post-patch:
+	cd ${WRKDIST}/bazel-central-registry && \
+	cp ${FILESDIR}/*.patch \
+		modules/c-ares/1.15.0/patches && \
+	patch < ${FILESDIR}/patch-modules_c-ares_1.15.0_source_json
+
+.include <bsd.port.mk>

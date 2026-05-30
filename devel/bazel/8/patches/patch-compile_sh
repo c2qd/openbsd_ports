@@ -1,0 +1,8 @@
+--- compile.sh.orig	Sat Feb 28 21:02:55 2026
++++ compile.sh	Sat Feb 28 21:03:11 2026
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/usr/bin/env bash
+ 
+ # Copyright 2014 The Bazel Authors. All rights reserved.
+ #

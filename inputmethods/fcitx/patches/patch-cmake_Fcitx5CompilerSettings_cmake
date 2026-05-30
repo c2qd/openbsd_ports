@@ -1,0 +1,11 @@
+--- cmake/Fcitx5CompilerSettings.cmake.orig	Sat Mar 28 02:13:31 2026
++++ cmake/Fcitx5CompilerSettings.cmake	Sat Mar 28 02:14:42 2026
+@@ -8,7 +8,7 @@
+ set(CMAKE_C_FLAGS "-Wall -Wextra ${CMAKE_C_FLAGS}")
+ set(CMAKE_CXX_FLAGS "-Wall -Wextra ${CMAKE_CXX_FLAGS}")
+ 
+-if(NOT APPLE AND NOT EMSCRIPTEN)
++if(NOT (APPLE OR EMSCRIPTEN OR (CMAKE_SYSTEM_NAME STREQUAL "OpenBSD")))
+     set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined -Wl,--as-needed ${CMAKE_SHARED_LINKER_FLAGS}")
+     set(CMAKE_MODULE_LINKER_FLAGS "-Wl,--no-undefined -Wl,--as-needed ${CMAKE_MODULE_LINKER_FLAGS}")
+ endif()

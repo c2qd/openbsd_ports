@@ -1,0 +1,12 @@
+--- ares_getnameinfo.c
++++ ares_getnameinfo.c
+@@ -49,6 +49,9 @@
+ #include "ares_nowarn.h"
+ #include "ares_private.h"
+
++#undef GETSERVBYPORT_R_ARGS
++#define GETSERVBYPORT_R_ARGS 4
++
+ struct nameinfo_query {
+   ares_nameinfo_callback callback;
+   void *arg;

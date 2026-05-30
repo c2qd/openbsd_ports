@@ -1,0 +1,15 @@
+--- src/main/java/com/google/devtools/build/lib/profiler/SystemNetworkStats.java.orig	Sat Feb 28 20:55:02 2026
++++ src/main/java/com/google/devtools/build/lib/profiler/SystemNetworkStats.java	Sat Feb 28 20:55:43 2026
+@@ -56,11 +56,7 @@
+     Map<String, NetIoCounter> counters = new HashMap<>();
+     switch (OS.getCurrent()) {
+       case LINUX -> getNetIoCountersLinux(counters);
+-      default -> {
+-        if (JniLoader.isJniAvailable()) {
+-          getNetIoCountersNative(counters);
+-        }
+-      }
++      default -> {}
+     }
+     return counters;
+   }

@@ -1,0 +1,20 @@
+--- src/ipc/ipc_path_manager.cc.orig	Fri Mar 27 01:41:25 2026
++++ src/ipc/ipc_path_manager.cc	Fri Mar 27 01:45:18 2026
+@@ -314,6 +314,9 @@
+ 
+ bool IPCPathManager::IsValidServer(uint32_t pid,
+                                    const absl::string_view server_path) {
++#if defined(__OpenBSD__)
++  return true;
++#else
+   absl::MutexLock l(mutex_);
+   if (pid == 0) {
+     // For backward compatibility.
+@@ -423,6 +426,7 @@
+ #endif  // __linux__
+ 
+   return false;
++#endif
+ }
+ 
+ bool IPCPathManager::ShouldReload() const {
