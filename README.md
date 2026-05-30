@@ -25,4 +25,4 @@ PORTSDIR_PATH=/path/to/c2qd_ports:${PORTSDIR}:${PORTSDIR}/mystuff
 
 ## License
 
-[The Unlicense](LICENSE)
+[The Unlicense](UNLICENSE)
