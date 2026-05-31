@@ -59,7 +59,7 @@ CONFIGURE_ARGS =        -DENABLE_WAYLAND=OFF \
 
 COMPILER =				ports-clang
 MODCLANG_VERSION =		22
-MODCLANG_LANGS =    c++
+MODCLANG_LANGS =		c++
 
 CFLAGS +=				-I${LOCALBASE}/include -I${X11BASE}/include
 CXXFLAGS +=				-I${LOCALBASE}/include -I${X11BASE}/include
