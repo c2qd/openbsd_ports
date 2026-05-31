@@ -79,7 +79,7 @@ def _impl(ctx):
         toolchain_identifier = "openbsd_toolchain",
         host_system_name = "openbsd",
         target_system_name = "openbsd",
-        target_cpu = "x86_64",
+        target_cpu = "unknown",
         target_libc = "unknown",
         compiler = "clang",
         abi_version = "unknown",

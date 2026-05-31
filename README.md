@@ -8,12 +8,11 @@ Also, for convenience, there may be ports that establish network connections dur
 ## Info
 
 I have no intention of submitting this upstream. All of the ports are rather roughly made, after all.  
-Not a fan of the network access during builds? Want Mozc support on architectures other than amd64? Think the Makefiles are way too sloppy? Believe this should be contributed upstream?  
+Not a fan of the network access during builds? Think the Makefiles are way too sloppy? Believe this should be contributed upstream?  
 Feel free to fork it. It's under The Unlicense after all, so go ahead, take it over as if it were yours, hack on it, and send it to ports@ if you want.  
 That's about how little motivation I have to do any of that myself.<br><br>
 
-The Mozc port is for x86_64 only (I do not own any machines other than x86_64, so I cannot test it).  
-Currently, it is set up by specifying `--platforms=//:openbsd-x86_64` in the Bazel platforms argument, so if you want to support multiple architectures, things may get a bit more complicated.
+None of the ports have been tested on anything other than x86_64.
 
 ## How to use
 

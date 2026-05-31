@@ -35,14 +35,14 @@ pre-build:
 	cd ${WRKSRC}/src && bazel fetch \
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--config oss_linux \
-		--platforms=//:openbsd-x86_64 \
+		--platforms=//:openbsd-ex \
 		unix/fcitx5:fcitx5-mozc.so
 
 do-build:
 	cd ${WRKSRC}/src && bazel build \
 		--fetch=false \
 		--config oss_linux \
-		--platforms=//:openbsd-x86_64 \
+		--platforms=//:openbsd-ex \
 		unix/fcitx5:fcitx5-mozc.so
 
 do-install:

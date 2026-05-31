@@ -32,7 +32,7 @@ pre-build:
 	cd ${WRKSRC}/src && bazel fetch \
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--config oss_linux \
-		--platforms=//:openbsd-x86_64 \
+		--platforms=//:openbsd-ex \
 		server:mozc_server
 
 do-build:
@@ -40,7 +40,7 @@ do-build:
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--fetch=false \
 		--config oss_linux \
-		--platforms=//:openbsd-x86_64 \
+		--platforms=//:openbsd-ex \
 		--linkopt=-L/usr/local/lib \
 		--host_linkopt=-L/usr/local/lib \
 		server:mozc_server

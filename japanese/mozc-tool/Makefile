@@ -51,7 +51,7 @@ pre-build:
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--config oss_linux \
 		--compilation_mode=opt \
-		--platforms=//:openbsd-x86_64 \
+		--platforms=//:openbsd-ex \
 		gui/tool:mozc_tool
 
 do-build:
@@ -60,7 +60,7 @@ do-build:
 		--fetch=false \
 		--config oss_linux \
 		--compilation_mode=opt \
-		--platforms=//:openbsd-x86_64 \
+		--platforms=//:openbsd-ex \
 		--copt=-I/usr/X11R6/include \
 		--linkopt=-L${LOCALBASE}/lib \
 		--host_linkopt=-L${LOCALBASE}/lib \

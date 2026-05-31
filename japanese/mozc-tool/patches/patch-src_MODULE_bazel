@@ -17,7 +17,7 @@
      url = "https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/33524763837473258e7ba2f14b17fc3a70519831/ken_all.zip",
  )
 +
-+register_toolchains("//:cc_toolchain_for_openbsd_x86_64")
++register_toolchains("//:cc_toolchain_for_openbsd_ex")
 +
 +local_runtime_repo = use_repo_rule(
 +    "@rules_python//python/local_toolchains:repos.bzl",
