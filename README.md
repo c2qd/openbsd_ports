@@ -1,5 +1,7 @@
 # openbsd_ports
 
+It probably won't work right now.
+
 ## WARNING
 
 All ports are provided as-is without warranty and may cause serious damage to your computer.  
