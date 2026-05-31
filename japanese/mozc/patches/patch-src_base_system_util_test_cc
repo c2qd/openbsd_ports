@@ -1,6 +1,7 @@
---- src/base/system_util_test.cc.orig	Fri Mar 27 02:42:48 2026
-+++ src/base/system_util_test.cc	Fri Mar 27 02:43:18 2026
-@@ -55,7 +55,7 @@
+Index: src/base/system_util_test.cc
+--- src/base/system_util_test.cc.orig
++++ src/base/system_util_test.cc
+@@ -55,7 +55,7 @@ TEST_F(SystemUtilTest, GetUserProfileDirectory) {
  #elif defined(__APPLE__)
    // TODO(komatsu): write a test.
  

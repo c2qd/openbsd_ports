@@ -1,6 +1,7 @@
---- src/base/port_test.cc.orig	Fri Mar 27 07:45:28 2026
-+++ src/base/port_test.cc	Fri Mar 27 07:45:56 2026
-@@ -63,7 +63,7 @@
+Index: src/base/port_test.cc
+--- src/base/port_test.cc.orig
++++ src/base/port_test.cc
+@@ -63,7 +63,7 @@ static_assert(TargetIsIPhone());
  #endif  // TARGET_OS_IPHONE
  #endif  // __APPLE__
  

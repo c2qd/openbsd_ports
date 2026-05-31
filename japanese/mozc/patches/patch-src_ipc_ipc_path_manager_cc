@@ -1,6 +1,7 @@
---- src/ipc/ipc_path_manager.cc.orig	Fri Mar 27 01:41:25 2026
-+++ src/ipc/ipc_path_manager.cc	Fri Mar 27 01:45:18 2026
-@@ -314,6 +314,9 @@
+Index: src/ipc/ipc_path_manager.cc
+--- src/ipc/ipc_path_manager.cc.orig
++++ src/ipc/ipc_path_manager.cc
+@@ -314,6 +314,9 @@ void IPCPathManager::Clear() {
  
  bool IPCPathManager::IsValidServer(uint32_t pid,
                                     const absl::string_view server_path) {
@@ -10,7 +11,7 @@
    absl::MutexLock l(mutex_);
    if (pid == 0) {
      // For backward compatibility.
-@@ -423,6 +426,7 @@
+@@ -423,6 +426,7 @@ bool IPCPathManager::IsValidServer(uint32_t pid,
  #endif  // __linux__
  
    return false;

@@ -1,6 +1,7 @@
---- src/config/stats_config_util_test.cc.orig	Fri Mar 27 02:40:39 2026
-+++ src/config/stats_config_util_test.cc	Fri Mar 27 02:41:27 2026
-@@ -686,7 +686,7 @@
+Index: src/config/stats_config_util_test.cc
+--- src/config/stats_config_util_test.cc.orig
++++ src/config/stats_config_util_test.cc
+@@ -686,7 +686,7 @@ TEST(StatsConfigUtilTestAndroid, DefaultValueTest) {
    EXPECT_FALSE(StatsConfigUtil::IsEnabled());
  #endif  // CHANNEL_DEV
  }
