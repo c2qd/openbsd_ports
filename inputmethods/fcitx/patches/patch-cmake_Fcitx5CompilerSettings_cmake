@@ -1,6 +1,7 @@
---- cmake/Fcitx5CompilerSettings.cmake.orig	Sat Mar 28 02:13:31 2026
-+++ cmake/Fcitx5CompilerSettings.cmake	Sat Mar 28 02:14:42 2026
-@@ -8,7 +8,7 @@
+Index: cmake/Fcitx5CompilerSettings.cmake
+--- cmake/Fcitx5CompilerSettings.cmake.orig
++++ cmake/Fcitx5CompilerSettings.cmake
+@@ -8,7 +8,7 @@ set(CMAKE_C_STANDARD 99)
  set(CMAKE_C_FLAGS "-Wall -Wextra ${CMAKE_C_FLAGS}")
  set(CMAKE_CXX_FLAGS "-Wall -Wextra ${CMAKE_CXX_FLAGS}")
  

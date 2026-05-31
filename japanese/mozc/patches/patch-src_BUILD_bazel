@@ -15,7 +15,7 @@ Index: src/BUILD.bazel
  # Special target so as to define special macros for each platforms.
  # Don't depend on this directly. Use mozc_cc_(library|binary|test) rule instead.
  cc_library(
-@@ -304,5 +311,37 @@ selects.config_setting_group(
+@@ -298,6 +305,38 @@ selects.config_setting_group(
          "//bazel/cc_target_os:windows",
          "//bazel/cc_target_os:oss_windows",
          "//bazel/cc_target_os:prod_windows",
@@ -53,3 +53,4 @@ Index: src/BUILD.bazel
 +        "@platforms//os:openbsd",
      ],
  )
+ 
