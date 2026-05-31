@@ -58,7 +58,7 @@ CONFIGURE_ARGS =        -DENABLE_WAYLAND=OFF \
                         -DCMAKE_INSTALL_SYSCONFDIR=${PREFIX}/share/examples
 
 COMPILER =				ports-clang
-MODCLANG_VERSION =		19
+MODCLANG_VERSION =		22
 MODCLANG_LANGS =    c++
 
 CFLAGS +=				-I${LOCALBASE}/include -I${X11BASE}/include
