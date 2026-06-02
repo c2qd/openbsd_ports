@@ -17,31 +17,31 @@ def _impl(ctx):
     tool_paths = [
         tool_path(
             name = "gcc",
-            path = "/usr/bin/clang"
+            path = "clang"
         ),
         tool_path(
             name = "cpp",
-            path = "/usr/bin/cpp"
+            path = "cpp"
         ),
         tool_path(
             name = "ld",
-            path = "/usr/bin/ld"
+            path = "ld"
         ),
         tool_path(
             name = "ar",
-            path = "/usr/bin/ar"
+            path = "ar"
         ),
         tool_path(
             name = "nm",
-            path = "/usr/bin/nm"
+            path = "nm"
         ),
         tool_path(
             name = "objdump",
-            path = "/usr/bin/objdump"
+            path = "objdump"
         ),
         tool_path(
             name = "strip",
-            path = "/usr/bin/strip"
+            path = "strip"
         ),
     ]
 
@@ -56,9 +56,9 @@ def _impl(ctx):
                         flag_group(
                             flags = [
                                 "-L/usr/local/lib",
-                                "-lm",
                                 "-lc++",
                                 "-lc++abi",
+                                "-lm"
                             ],
                         ),
                     ]),
