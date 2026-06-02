@@ -78,13 +78,12 @@ pre-build:
 		mkdir -p ${WRKDIR}/bazel_tmp
 
 do-build:
-	cd ${WRKSRC}/src && LC_ALL=C.UTF-8 ${LOCALBASE}/bin/bazel \
+	cd ${WRKSRC}/src && env LC_ALL=C.UTF-8 ${LOCALBASE}/bin/bazel \
 		--output_base=${WRKDIR}/bazel_tmp build \
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--distdir=${FULLDISTDIR} \
-		--distdir=${BAZEL_DISDIR_ALT} \
+		--distdir=${BAZEL_DISTDIR_ALT} \
 		--config oss_linux \
-		--config stable_channel \
 		--config release_build \
 		--platforms=//:openbsd-ex \
 		--copt=-I/usr/X11R6/include \
