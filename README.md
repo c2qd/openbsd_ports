@@ -35,13 +35,7 @@ If I think back to the dystopian build process I went through before, the fact t
 I am not refusing all reports. Typos and patch suggestions, and so on.  
 If you feel like it, feel free to submit them to the issues.  
 Pull requests are disabled, though.  
-However, as mentioned earlier, my motivation is low, so I cannot guarantee that I will respond to or even acknowledge them...<br><br>
-Now, in one part of the source code it says:
-```
-  // To keep backward compatibility and other operating system
-  // having no support of getting peer's pid, you can set 0 pid.
-```
-But I ended up skipping all of that and just setting it to `return true;`. The end result is the same, so I suppose it's fine.
+However, as mentioned earlier, my motivation is low, so I cannot guarantee that I will respond to or even acknowledge them...
 
 ## License
 
