@@ -40,10 +40,11 @@ pre-build:
 
 do-build:
 	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel \
-		 --output_base=${WRKDIR}/bazel_tmp build \
-		 --registry=file://${WRKDIST}/bazel-central-registry \
-		 --distdir=${FULLDISTDIR} \
-		 --config oss_linux \
+		--output_base=${WRKDIR}/bazel_tmp build \
+		--registry=file://${WRKDIST}/bazel-central-registry \
+		--distdir=${FULLDISTDIR} \
+		--config oss_linux \
+		--config release_build \
 		--platforms=//:openbsd-ex \
 		unix/fcitx5:fcitx5-mozc.so
 
