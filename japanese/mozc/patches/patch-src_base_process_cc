@@ -20,7 +20,7 @@
    // xdg-open which uses kfmclient or gnome-open internally works both on KDE
    // and GNOME environments.
 -#define MOZC_BROWSER_COMMAND "/usr/bin/xdg-open"
-+#define MOZC_BROWSER_COMMAND "/usr/local/bin/xdg-open"
++#define MOZC_BROWSER_COMMAND "${LOCALBASE}/bin/xdg-open"
  #endif  // MOZC_BROWSER_COMMAND
  
    return SpawnProcess(MOZC_BROWSER_COMMAND, url);

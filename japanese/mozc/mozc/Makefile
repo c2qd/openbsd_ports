@@ -69,8 +69,18 @@ FILESDIR =						${.CURDIR}/../files
 
 BAZEL_DISTDIR_ALT =				${WRKDIR}/distdir_alt
 
+SUBST_VARS +=					LOCALBASE X11BASE
+
+SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
+								${WRKSRC}/src/base/system_util.cc \
+								${WRKSRC}/src/base/process.cc \
+								${WRKSRC}/src/cc_toolchain_config.bzl
+
 post-extract:
 	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
+
+post-patch:
+	${SUBST_CMD} ${SUBST_TARGETS}
 
 pre-build:
 	mkdir -p ${BAZEL_DISTDIR_ALT} && \
@@ -95,11 +105,11 @@ post-build:
 	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel shutdown
 
 do-install:
-	${INSTALL_PROGRAM_DIR} ${PREFIX}/lib/mozc
+	${INSTALL_PROGRAM_DIR} ${PREFIX}/bin/mozc
 	${INSTALL_PROGRAM} "${WRKSRC}/src/bazel-bin/server/mozc_server" \
-		"${PREFIX}/lib/mozc/mozc_server"
+		"${PREFIX}/bin/mozc/mozc_server"
 	${INSTALL_PROGRAM} "${WRKSRC}/src/bazel-bin/gui/tool/mozc_tool" \
-		"${PREFIX}/lib/mozc/mozc_tool"
+		"${PREFIX}/bin/mozc/mozc_tool"
 
 .include <bsd.port.mk>
 

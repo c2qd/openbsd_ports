@@ -17,7 +17,7 @@
 +#if defined(__linux__) || defined(__wasm__) || defined(__OpenBSD__)
  #ifndef MOZC_SERVER_DIR
 -#define MOZC_SERVER_DIR "/usr/lib/mozc"
-+#define MOZC_SERVER_DIR "/usr/local/lib/mozc"
++#define MOZC_SERVER_DIR "${LOCALBASE}/bin/mozc"
  #endif  // MOZC_SERVER_DIR
    return MOZC_SERVER_DIR;
  #endif  // __linux__ || __wasm__
@@ -30,7 +30,7 @@
  
  #ifndef MOZC_DOCUMENT_DIR
 -#define MOZC_DOCUMENT_DIR "/usr/lib/mozc/documents"
-+#define MOZC_DOCUMENT_DIR "/usr/local/lib/mozc/documents"
++#define MOZC_DOCUMENT_DIR "${LOCALBASE}/share/mozc/documents"
  #endif  // MOZC_DOCUMENT_DIR
    return MOZC_DOCUMENT_DIR;
  

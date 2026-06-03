@@ -55,7 +55,7 @@ def _impl(ctx):
                     flag_groups = ([
                         flag_group(
                             flags = [
-                                "-L/usr/local/lib",
+                                "-L${LOCALBASE}/lib",
                                 "-lc++",
                                 "-lc++abi",
                                 "-lm"
@@ -72,9 +72,9 @@ def _impl(ctx):
         features = features,
         cxx_builtin_include_directories = [
             "/usr/lib/clang/22/include",
-            "/usr/local/include",
+            "${LOCALBASE}/include",
             "/usr/include",
-            "/usr/X11R6/include",
+            "${X11BASE}/include",
         ],
         toolchain_identifier = "openbsd_toolchain",
         host_system_name = "openbsd",
