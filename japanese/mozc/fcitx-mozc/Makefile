@@ -39,7 +39,7 @@ pre-build:
 	mkdir -p ${WRKDIR}/bazel_tmp
 
 do-build:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel \
+	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel8 \
 		--output_base=${WRKDIR}/bazel_tmp build \
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--distdir=${FULLDISTDIR} \
@@ -49,7 +49,7 @@ do-build:
 		unix/fcitx5:fcitx5-mozc.so
 
 post-build:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel shutdown
+	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel8 shutdown
 
 do-install:
 	${INSTALL_PROGRAM_DIR} "${PREFIX}/lib/fcitx5"

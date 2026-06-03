@@ -12,4 +12,10 @@ post-patch:
 		modules/c-ares/1.15.0/patches && \
 	patch < ${FILESDIR}/patch-modules_c-ares_1.15.0_source_json
 
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/output/bazel ${PREFIX}/bin/bazel8
+	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/bazel/
+	${INSTALL_DATA} ${WRKSRC}/scripts/packages/bazel.bazelrc \
+		${PREFIX}/share/examples/bazel/bazel.bazelrc
+
 .include <bsd.port.mk>

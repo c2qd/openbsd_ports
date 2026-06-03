@@ -8,4 +8,10 @@ EXTRA_BAZEL_ARGS += --linkopt=-lm --linkopt=-lc++ --linkopt=-lc++abi
 EXTRA_BAZEL_ARGS += --linkopt=-pthread --host_linkopt=-lm --host_linkopt=-lc++
 EXTRA_BAZEL_ARGS += --host_linkopt=-lc++abi --host_linkopt=-pthread
 
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/output/bazel ${PREFIX}/bin/bazel9
+	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/bazel/
+	${INSTALL_DATA} ${WRKSRC}/scripts/packages/bazel.bazelrc \
+		${PREFIX}/share/examples/bazel/bazel.bazelrc
+
 .include <bsd.port.mk>

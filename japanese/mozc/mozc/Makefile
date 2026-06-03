@@ -88,7 +88,7 @@ pre-build:
 		mkdir -p ${WRKDIR}/bazel_tmp
 
 do-build:
-	cd ${WRKSRC}/src && env LC_ALL=C.UTF-8 ${LOCALBASE}/bin/bazel \
+	cd ${WRKSRC}/src && env LC_ALL=C.UTF-8 ${LOCALBASE}/bin/bazel8 \
 		--output_base=${WRKDIR}/bazel_tmp build \
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--distdir=${FULLDISTDIR} \
@@ -102,7 +102,7 @@ do-build:
 		server:mozc_server gui/tool:mozc_tool
 
 post-build:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel shutdown
+	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel8 shutdown
 
 do-install:
 	${INSTALL_PROGRAM_DIR} ${PREFIX}/bin/mozc

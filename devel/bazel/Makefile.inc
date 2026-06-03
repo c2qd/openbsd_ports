@@ -44,9 +44,3 @@ do-build:
 		SOURCE_DATE_EPOCH="0" \
 		${LOCALBASE}/bin/bash ./compile.sh
 	chmod -R u+w ${WRKDIR}/tmp
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/output/bazel ${PREFIX}/bin
-	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/bazel/
-	${INSTALL_DATA} ${WRKSRC}/scripts/packages/bazel.bazelrc \
-		${PREFIX}/share/examples/bazel/bazel.bazelrc
