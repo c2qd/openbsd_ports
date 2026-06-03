@@ -32,10 +32,8 @@ PORTSDIR_PATH=/path/to/c2qd_ports:${PORTSDIR}:${PORTSDIR}/mystuff
 Taking various points into account, it might be more accurate to say that the Mozc-related parts are not really *ports* at all, but simply automated build processes.  
 If I think back to the dystopian build process I went through before, the fact that this only requires a simple make command already feels somewhat better.  
 ...The effort required to escape that dystopia was significant. I wonder if it was really worth doing at all.<br><br>
-I am not refusing all reports. Typos and patch suggestions, and so on.  
-If you feel like it, feel free to submit them to the issues.  
-Pull requests are disabled, though.  
-However, as mentioned earlier, my motivation is low, so I cannot guarantee that I will respond to or even acknowledge them...
+If the content is not merely critical, please feel free to post bug reports, improvement requests, etc., to the issue tracker.  
+Please understand that there is no guarantee of a response.
 
 ## License
 
