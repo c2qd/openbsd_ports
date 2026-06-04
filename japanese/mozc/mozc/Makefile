@@ -61,7 +61,7 @@ COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
 # BSD-3-Clause + NAIST-2003(IPADic) + Public Domain(Okinawa dictionary) +
-# BSD-2-Claude(Japanese usage dictionary) + Copyright non-assertion(Zip code data)
+# BSD-2-Clause(Japanese usage dictionary) + Copyright non-assertion(Zip code data)
 PERMIT_PACKAGE =				Yes
 
 PATCHDIR =						${.CURDIR}/../patches
