@@ -1,5 +1,6 @@
 COMMENT ?=		    polyglot build tool
 DISTNAME =		    bazel-${VERSION}
+PKGSTEM =			bazel
 CATEGORIES =	    devel
 SITES =			    https://github.com/bazelbuild/bazel/releases/download/${VERSION}/
 
