@@ -1,4 +1,5 @@
-VERSION =			9.1.0
+VERSION =			9.1.1
+PKGNAME =			${DISTNAME:S/bazel/bazel9/}
 
 BCR_COMMIT_HASH =	8d47d2680bebc7321302877652582533fc80bcd8
 
@@ -10,8 +11,8 @@ EXTRA_BAZEL_ARGS += --host_linkopt=-lc++abi --host_linkopt=-pthread
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/output/bazel ${PREFIX}/bin/bazel9
-	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/bazel/
+	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/bazel9/
 	${INSTALL_DATA} ${WRKSRC}/scripts/packages/bazel.bazelrc \
-		${PREFIX}/share/examples/bazel/bazel.bazelrc
+		${PREFIX}/share/examples/bazel9/bazel.bazelrc
 
 .include <bsd.port.mk>
