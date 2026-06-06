@@ -32,8 +32,18 @@ PERMIT_PACKAGE =				Yes
 PATCHDIR =						${.CURDIR}/../patches
 FILESDIR =						${.CURDIR}/../files
 
+SUBST_VARS +=					LOCALBASE X11BASE
+
+SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
+								${WRKSRC}/src/base/system_util.cc \
+								${WRKSRC}/src/base/process.cc \
+								${WRKSRC}/src/cc_toolchain_config.bzl
+
 post-extract:
 	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
+
+post-patch:
+	${SUBST_CMD} ${SUBST_TARGETS}
 
 pre-build:
 	mkdir -p ${WRKDIR}/bazel_tmp
