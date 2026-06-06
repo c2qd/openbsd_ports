@@ -105,10 +105,11 @@ post-build:
 	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel8 shutdown
 
 do-install:
+	${INSTALL_PROGRAM_DIR} ${PREFIX}/bin/mozc
 	${INSTALL_PROGRAM} "${WRKSRC}/src/bazel-bin/server/mozc_server" \
-		"${PREFIX}/bin/mozc_server"
+		"${PREFIX}/bin/mozc/mozc_server"
 	${INSTALL_PROGRAM} "${WRKSRC}/src/bazel-bin/gui/tool/mozc_tool" \
-		"${PREFIX}/bin/mozc_tool"
+		"${PREFIX}/bin/mozc/mozc_tool"
 
 .include <bsd.port.mk>
 
