@@ -43,6 +43,13 @@ Because there are complicated circumstances in the IPC of the mozc port, if you 
 I did use AI for that debugging, but in the end I identified the root cause myself (even AI would not likely connect the issue back to IsPeerValid’s *pid = peer_cred.pid;).  
 In the end, it was a rather trivial cause. The approximate cause was due to [6b989cfbe9a53043a97570f8fe0071e3b476212c](https://codeberg.org/c2qd/openbsd_ports/commit/6b989cfbe9a53043a97570f8fe0071e3b476212c). It did result in a light refactoring, so that is acceptable, though.
 
+## Credit
+ref:  
+[kdeguchi/mozc-ports: Latest version mozc ports for FreeBSD](https://github.com/kdeguchi/mozc-ports)  
+[OpenBSD 7.5でBazelをビルドする #OpenBSD7.0 - Qiita](https://qiita.com/asuka1975/items/c162ef0295dea6cef639)  
+`man bsd.port.mk`  
+and many documents~
+
 ## License
 
 [The Unlicense](UNLICENSE)
