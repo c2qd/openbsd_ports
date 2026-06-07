@@ -81,7 +81,7 @@ do-build:
 		--platforms=//:openbsd-ex \
 		--copt=-I/usr/X11R6/include \
 		--linkopt=-L/usr/local/lib \
-		--host_linkopt=-L/usr/local/lib --build_event_text_file=~/events.log\
+		--host_linkopt=-L/usr/local/lib \
 		server:mozc_server gui/tool:mozc_tool
 
 do-install:
