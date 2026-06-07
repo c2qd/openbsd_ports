@@ -10,7 +10,10 @@ Also, for convenience, there may be ports that establish network connections dur
 I have no intention of submitting this upstream. All of the ports are rather roughly made, after all.  
 Not a fan of the network access during builds? Think the Makefiles are way too sloppy? Believe this should be contributed upstream?  
 Feel free to fork it. It's under The Unlicense after all, so go ahead, take it over as if it were yours, hack on it, and send it to ports@ if you want.  
-That's about how little motivation I have to do any of that myself.<br><br>
+That's about how little motivation I have to do any of that myself.  
+...That said, Issues are open for submissions, so if you feel like it, please send either bug reports or feature suggestions (as long as it is not something like requesting inclusion in ports@). I do check Issues, but I may not necessarily respond.
+
+---
 
 None of the ports have been tested on anything other than x86_64.
 
@@ -32,12 +35,13 @@ PORTSDIR_PATH=/path/to/c2qd_ports:${PORTSDIR}:${PORTSDIR}/mystuff
 Taking various points into account, it might be more accurate to say that the Mozc-related parts are not really *ports* at all, but simply automated build processes.  
 If I think back to the dystopian build process I went through before, the fact that this only requires a simple make command already feels somewhat better.  
 ...The effort required to escape that dystopia was significant. I wonder if it was really worth doing at all.<br><br>
-If the content is not personal attacks or unproductive criticism of the project, please feel free to post bug reports, improvement requests, etc., to the issue tracker.  
-Please understand that there is no guarantee of a response.  
-Wait a second, I just said "if you don’t like it, feel free to fork it", didn’t I? Yes, I did.  
-Well, the intention behind that is, if you don't like my style—in other words, if you have complaints like "you're not strictly prohibiting network access," "the Makefile is too sloppy or doesn't follow best practices," or "the patches are haphazard"—then please feel free to fork it. It might be a roundabout way of saying it, though.  
-Oh, and by the way, I don't "strictly" prohibit network access, but I do try to keep it to a minimum as much as possible.  
-I just don't have the energy to verify whether there is absolutely zero network access, which is why I say I don't "strictly" prohibit it.
+
+I don't "strictly" prohibit network access, but I do try to keep it to a minimum as much as possible.  
+I just don't have the energy to verify whether there is absolutely zero network access, which is why I say I don't "strictly" prohibit it.<br><br>
+
+Because there are complicated circumstances in the IPC of the mozc port, if you are considering forking it to make improvements, or if you are simply interested, please refer to the upper part of the file [japanese/mozc/patches/patch-src_ipc_unix_ipc_cc](japanese/mozc/patches/patch-src_ipc_unix_ipc_cc).  
+I did use AI for that debugging, but in the end I identified the root cause myself (even AI would not likely connect the issue back to IsPeerValid’s *pid = peer_cred.pid;).  
+In the end, it was a rather trivial cause. The approximate cause was due to [6b989cfbe9a53043a97570f8fe0071e3b476212c](https://codeberg.org/c2qd/openbsd_ports/commit/6b989cfbe9a53043a97570f8fe0071e3b476212c). It did result in a light refactoring, so that is acceptable, though.
 
 ## License
 

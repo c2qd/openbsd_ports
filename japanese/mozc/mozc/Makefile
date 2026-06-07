@@ -6,18 +6,15 @@ PKGNAME =						mozc-${VERSION}
 
 GH_ACCOUNT =					google
 GH_PROJECT =					mozc
-GH_TAGNAME =					${VERSION}
-
-BCR_COMMIT_HASH =				a480ea6e068ef24a3deb7fd56243b1a7e4aa8259
-DIST_TUPLE +=					github bazelbuild bazel-central-registry ${BCR_COMMIT_HASH} \
-								bazel-central-registry
+GH_COMMIT =						b18e5de65659cfa5a4f92066bcbb6bfa4d94dfe5
+#GH_TAGNAME =					${VERSION}
 
 CATEGORIES=						japanese
 
 MAINTAINER =					c2qd (https://codeberg.org/c2qd/openbsd_ports/issues)
 
 JA_USAGE_DICT_VERSION =			2025-01-25
-ZIP_CODE_COMMIT_HASH =			33524763837473258e7ba2f14b17fc3a70519831
+ZIP_CODE_COMMIT_HASH =			621d059fbcbfae17bfca15b439692bae934268c3
 
 DISTFILES.dictionary_png =		outline_chrome_reader_mode_black_48dp.png
 SITES.dictionary_png =			https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/chrome_reader_mode/materialiconsoutlined/48dp/1x/
@@ -34,9 +31,9 @@ SITES.zip_code_jigyosyo =		https://github.com/hiroyuki-komatsu/japanpost_zipcode
 DISTFILES.zip_code_ken_all =	ken_all.zip
 SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT_HASH}/
 
-EXTRACT_ONLY =					mozc-${VERSION}.tar.gz bazelbuild-bazel-central-registry-${BCR_COMMIT_HASH}.tar.gz
+EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz bazelbuild-bazel-central-registry-${BCR_COMMIT_HASH}.tar.gz
 
-BUILD_DEPENDS +=				devel/bazel/8
+BUILD_DEPENDS +=				devel/bazel/9
 
 MODULES +=						x11/qt6
 
@@ -62,34 +59,20 @@ COMPILER =						base-clang
 
 # BSD-3-Clause + NAIST-2003(IPADic) + Public Domain(Okinawa dictionary) +
 # BSD-2-Clause(Japanese usage dictionary) + Copyright non-assertion(Zip code data)
-PERMIT_PACKAGE =				Yes
-
-PATCHDIR =						${.CURDIR}/../patches
-FILESDIR =						${.CURDIR}/../files
+# Warning: I don't know anything about licenses~
+#          Please determine whether to set PERMIT_PACKAGE to Y/n.
+PERMIT_PACKAGE =				No
 
 BAZEL_DISTDIR_ALT =				${WRKDIR}/distdir_alt
-
-SUBST_VARS +=					LOCALBASE X11BASE
-
-SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
-								${WRKSRC}/src/base/system_util.cc \
-								${WRKSRC}/src/base/process.cc \
-								${WRKSRC}/src/cc_toolchain_config.bzl
-
-post-extract:
-	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
-
-post-patch:
-	${SUBST_CMD} ${SUBST_TARGETS}
 
 pre-build:
 	mkdir -p ${BAZEL_DISTDIR_ALT} && \
 		cp ${FULLDISTDIR}/material_icon_tool_svg.svg ${BAZEL_DISTDIR_ALT}/24px.svg && \
-		mkdir -p ${WRKDIR}/bazel_tmp
+		mkdir -p ${WRKOBJDIR}/_bazel_tmp
 
 do-build:
-	cd ${WRKSRC}/src && env LC_ALL=C.UTF-8 ${LOCALBASE}/bin/bazel8 \
-		--output_base=${WRKDIR}/bazel_tmp build \
+	cd ${WRKSRC}/src && env LC_ALL=C.UTF-8 ${LOCALBASE}/bin/bazel9 \
+		--output_user_root=${WRKOBJDIR}/_bazel_tmp build \
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--distdir=${FULLDISTDIR} \
 		--distdir=${BAZEL_DISTDIR_ALT} \
@@ -98,18 +81,15 @@ do-build:
 		--platforms=//:openbsd-ex \
 		--copt=-I/usr/X11R6/include \
 		--linkopt=-L/usr/local/lib \
-		--host_linkopt=-L/usr/local/lib \
+		--host_linkopt=-L/usr/local/lib --build_event_text_file=~/events.log\
 		server:mozc_server gui/tool:mozc_tool
 
-post-build:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel8 shutdown
-
 do-install:
-	${INSTALL_PROGRAM_DIR} ${PREFIX}/bin/mozc
+	${INSTALL_PROGRAM_DIR} "${PREFIX}/lib/mozc"
 	${INSTALL_PROGRAM} "${WRKSRC}/src/bazel-bin/server/mozc_server" \
-		"${PREFIX}/bin/mozc/mozc_server"
+		"${PREFIX}/lib/mozc/mozc_server"
 	${INSTALL_PROGRAM} "${WRKSRC}/src/bazel-bin/gui/tool/mozc_tool" \
-		"${PREFIX}/bin/mozc/mozc_tool"
+		"${PREFIX}/lib/mozc/mozc_tool"
 
 .include <bsd.port.mk>
 

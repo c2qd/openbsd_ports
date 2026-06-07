@@ -1,6 +1,7 @@
+Index: src/client/client.cc
 --- src/client/client.cc.orig
 +++ src/client/client.cc
-@@ -888,7 +888,7 @@ bool Client::LaunchTool(const std::string &mode,
+@@ -888,7 +888,7 @@ bool Client::LaunchTool(absl::string_view mode,
      return false;
    }
  

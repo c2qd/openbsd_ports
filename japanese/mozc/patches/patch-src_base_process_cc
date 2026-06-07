@@ -1,3 +1,4 @@
+Index: src/base/process.cc
 --- src/base/process.cc.orig
 +++ src/base/process.cc
 @@ -63,7 +63,7 @@
@@ -9,7 +10,7 @@
  #include <sys/types.h>
  #endif  // __linux__
  
-@@ -101,12 +101,12 @@ bool Process::OpenBrowser(zstring_view url) {
+@@ -100,12 +100,12 @@ bool Process::OpenBrowser(absl::string_view url) {
        L"open", win32::Utf8ToWide(url).c_str(), nullptr);
  #endif  // _WIN32
  
@@ -24,7 +25,7 @@
  #endif  // MOZC_BROWSER_COMMAND
  
    return SpawnProcess(MOZC_BROWSER_COMMAND, url);
-@@ -189,7 +189,7 @@ bool Process::SpawnProcess(zstring_view path, zstring_
+@@ -189,7 +189,7 @@ bool Process::SpawnProcess(absl::string_view path, abs
    }
  #endif  // __APPLE__
  
@@ -33,7 +34,7 @@
    // Do not call posix_spawn() for obviously bad path.
    if (!S_ISREG(statbuf.st_mode)) {
      LOG(ERROR) << "Not a regular file: " << path;
-@@ -389,7 +389,7 @@ bool Process::LaunchErrorMessageDialog(zstring_view er
+@@ -389,7 +389,7 @@ bool Process::LaunchErrorMessageDialog(absl::string_vi
    }
  #endif  // _WIN32
  

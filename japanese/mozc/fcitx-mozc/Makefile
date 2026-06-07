@@ -6,18 +6,15 @@ PKGNAME =						fcitx-mozc-${VERSION}
 
 GH_ACCOUNT =					fcitx
 GH_PROJECT =					mozc
-GH_COMMIT =						a8652b9253b77b7e9039801d8814dbb5f3f4b274
-
-BCR_COMMIT_HASH =				a480ea6e068ef24a3deb7fd56243b1a7e4aa8259
-DIST_TUPLE +=					github bazelbuild bazel-central-registry ${BCR_COMMIT_HASH} \
-								bazel-central-registry
+GH_COMMIT =						045e5d9b38f6629b258f8f931533e5fe17f68a1d
 
 CATEGORIES=						japanese
 
 MAINTAINER =					c2qd (https://codeberg.org/c2qd/openbsd_ports/issues)
 
-BUILD_DEPENDS +=				devel/bazel/8 inputmethods/fcitx devel/gettext,-tools \
-								shells/bash
+EXTRACT_ONLY =					fcitx-mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz bazelbuild-bazel-central-registry-${BCR_COMMIT_HASH}.tar.gz
+
+BUILD_DEPENDS +=				devel/bazel/9 devel/gettext,-tools shells/bash
 LIB_DEPENDS +=					inputmethods/fcitx
 RUN_DEPENDS +=					japanese/mozc/mozc
 
@@ -26,40 +23,23 @@ WANTLIB +=						c m pthread
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
-# BSD-3-Clause
-PERMIT_PACKAGE =				Yes
-
-PATCHDIR =						${.CURDIR}/../patches
-FILESDIR =						${.CURDIR}/../files
-
-SUBST_VARS +=					LOCALBASE X11BASE
-
-SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
-								${WRKSRC}/src/base/system_util.cc \
-								${WRKSRC}/src/base/process.cc \
-								${WRKSRC}/src/cc_toolchain_config.bzl
-
-post-extract:
-	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
-
-post-patch:
-	${SUBST_CMD} ${SUBST_TARGETS}
+# BSD-3-Clause + LGPL-2.1 or later(Part of the code in src/unix/fcitx5)
+# Warning: I don't know anything about licenses~
+#          Please determine whether to set PERMIT_PACKAGE to Y/n.
+PERMIT_PACKAGE =				No
 
 pre-build:
-	mkdir -p ${WRKDIR}/bazel_tmp
+	mkdir -p ${WRKOBJDIR}/_bazel_tmp
 
 do-build:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel8 \
-		--output_base=${WRKDIR}/bazel_tmp build \
+	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 \
+		--output_user_root=${WRKOBJDIR}/_bazel_tmp build \
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--distdir=${FULLDISTDIR} \
 		--config oss_linux \
 		--config release_build \
 		--platforms=//:openbsd-ex \
 		unix/fcitx5:fcitx5-mozc.so
-
-post-build:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel8 shutdown
 
 do-install:
 	${INSTALL_PROGRAM_DIR} "${PREFIX}/lib/fcitx5"

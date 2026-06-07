@@ -1,7 +1,7 @@
 Index: src/config/stats_config_util_test.cc
 --- src/config/stats_config_util_test.cc.orig
 +++ src/config/stats_config_util_test.cc
-@@ -686,7 +686,7 @@ TEST(StatsConfigUtilTestAndroid, DefaultValueTest) {
+@@ -754,7 +754,7 @@ TEST(StatsConfigUtilTestAndroid, DefaultValueTest) {
    EXPECT_FALSE(StatsConfigUtil::IsEnabled());
  #endif  // CHANNEL_DEV
  }

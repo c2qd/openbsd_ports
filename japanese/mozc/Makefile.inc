@@ -1,47 +1,73 @@
-ABSEIL_VERSION =				20250814.0
-BAZEL_SKYLIB_VERSION =			1.8.1
-BAZEL_FEATURES_VERSION =		1.30.0
+ABSEIL_VERSION =				20260107.1
+APPLE_SUPPORT_VERSION =			2.4.0
+BATS_CORE_VERSION =				1.10.0
+BAZEL_LIB_VERSION_V2 =			2.22.5
+BAZEL_LIB_VERSION_V3 =			3.0.0
+BAZEL_SKYLIB_VERSION =			1.9.0
+BAZEL_FEATURES_VERSION =		1.42.1
+GAZELLE_VERSION =				0.48.0
 GOOGLETEST_VERSION =			1.17.0
 JSONCPP_VERSION =				1.9.6
 PLATFORMS_VERSION =				1.0.0
-PROTOBUF_VERSION =				32.0
+PROTOBUF_VERSION =				34.1
 PYBIND11_VERSION =				2.12.0
 RE2_VERSION =					2024-07-02
-RULES_ANDROID_VERSION =			0.1.1
-RULES_CC_VERSION =				0.2.2
-RULES_JAVA_VERSION =			8.14.0
+RULES_ANDROID_VERSION =			0.7.1
+RULES_ANDROID_NDK_VERSION =		0.1.5
+RULES_APPLE_VERSION =			4.5.2
+RULES_CC_VERSION =				0.2.17
+RULES_GO_VERSION =				0.60.0
+RULES_JAVA_VERSION =			9.3.0
 RULES_JVM_VERSION =				6.7
-RULES_KOTLIN_VERSION =			1.9.6
+RULES_KOTLIN_VERSION =			2.2.2
 RULES_LICENSE_VERSION =			1.0.0
-RULES_PKG_VERSION =				1.1.0
+RULES_PKG_VERSION =				1.2.0
 RULES_PROTO_VERSION =			7.1.0
-RULES_PYTHON_VERSION =			1.5.4
-RULES_SHELL_VERSION =			0.3.0
+RULES_PYTHON_VERSION =			1.9.0
+RULES_SHELL_VERSION =			0.6.1
+RULES_SWIFT_VERSION =			3.5.0
 STARDOC_VERSION =				0.7.2
+TAR_BZL_VERSION =				0.5.1
 ZLIB_VERSION =					1.3.1
 
 DISTFILES.abseil =				abseil-cpp-${ABSEIL_VERSION}.tar.gz
 SITES.abseil =					https://github.com/abseil/abseil-cpp/releases/download/${ABSEIL_VERSION}/
+DISTFILES.apple_support =		apple_support.${APPLE_SUPPORT_VERSION}.tar.gz
+SITES.apple_support =			https://github.com/bazelbuild/apple_support/releases/download/${APPLE_SUPPORT_VERSION}/
+DISTFILES.bats_core =			v${BATS_CORE_VERSION}.tar.gz
+SITES.bats_core =				https://github.com/bats-core/bats-core/archive/
+DISTFILES.bazel_lib_v2 =		bazel-lib-v${BAZEL_LIB_VERSION_V2}.tar.gz
+SITES.bazel_lib_v2 =			https://github.com/bazel-contrib/bazel-lib/releases/download/v${BAZEL_LIB_VERSION_V2}/
+DISTFILES.bazel_lib_v3 =		bazel-lib-v${BAZEL_LIB_VERSION_V3}.tar.gz
+SITES.bazel_lib_v3 =			https://github.com/bazel-contrib/bazel-lib/releases/download/v${BAZEL_LIB_VERSION_V3}/
 DISTFILES.bazel_skylib =		bazel-skylib-${BAZEL_SKYLIB_VERSION}.tar.gz
 SITES.bazel_skylib =			https://github.com/bazelbuild/bazel-skylib/releases/download/${BAZEL_SKYLIB_VERSION}/
 DISTFILES.bazel_features =		bazel_features-v${BAZEL_FEATURES_VERSION}.tar.gz
 SITES.bazel_features =			https://github.com/bazel-contrib/bazel_features/releases/download/v${BAZEL_FEATURES_VERSION}/
+DISTFILES.gazelle =				bazel-gazelle-v${GAZELLE_VERSION}.tar.gz
+SITES.gazelle =					https://github.com/bazel-contrib/bazel-gazelle/releases/download/v${GAZELLE_VERSION}/
 DISTFILES.googletest =			googletest-${GOOGLETEST_VERSION}.tar.gz
 SITES.googletest =				https://github.com/google/googletest/releases/download/v${GOOGLETEST_VERSION}/
 DISTFILES.jsoncpp =				${JSONCPP_VERSION}.tar.gz
 SITES.jsoncpp =					https://github.com/open-source-parsers/jsoncpp/archive/refs/tags/
 DISTFILES.platforms =			platforms-${PLATFORMS_VERSION}.tar.gz
 SITES.platforms =				https://github.com/bazelbuild/platforms/releases/download/${PLATFORMS_VERSION}/
-DISTFILES.protobuf =			protobuf-${PROTOBUF_VERSION}.zip
+DISTFILES.protobuf =			protobuf-${PROTOBUF_VERSION}.bazel.tar.gz
 SITES.protobuf =				https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/
 DISTFILES.pybind11_bazel =		pybind11_bazel-${PYBIND11_VERSION}.zip
 SITES.pybind11_bazel =			https://github.com/pybind/pybind11_bazel/releases/download/v${PYBIND11_VERSION}/
 DISTFILES.re2 =					re2-${RE2_VERSION}.zip
 SITES.re2 =						https://github.com/google/re2/releases/download/${RE2_VERSION}/
-DISTFILES.rules_android =		v${RULES_ANDROID_VERSION}.tar.gz
-SITES.rules_android =			https://github.com/bazelbuild/rules_android/archive/refs/tags/
+DISTFILES.rules_android =		rules_android-v${RULES_ANDROID_VERSION}.tar.gz
+SITES.rules_android =			https://github.com/bazelbuild/rules_android/releases/download/v${RULES_ANDROID_VERSION}/
+DISTFILES.rules_android_ndk =	rules_android_ndk-v${RULES_ANDROID_NDK_VERSION}.tar.gz
+SITES.rules_android_ndk =		https://github.com/bazelbuild/rules_android_ndk/releases/download/v${RULES_ANDROID_NDK_VERSION}/
+DISTFILES.rules_apple =			rules_apple.${RULES_APPLE_VERSION}.tar.gz
+SITES.rules_apple =				https://github.com/bazelbuild/rules_apple/releases/download/${RULES_APPLE_VERSION}/
 DISTFILES.rules_cc =			rules_cc-${RULES_CC_VERSION}.tar.gz
 SITES.rules_cc =				https://github.com/bazelbuild/rules_cc/releases/download/${RULES_CC_VERSION}/
+DISTFILES.rules_go =			rules_go-v${RULES_GO_VERSION}.zip
+SITES.rules_go =				https://github.com/bazel-contrib/rules_go/releases/download/v${RULES_GO_VERSION}/
 DISTFILES.rules_java =			rules_java-${RULES_JAVA_VERSION}.tar.gz
 SITES.rules_java =				https://github.com/bazelbuild/rules_java/releases/download/${RULES_JAVA_VERSION}/
 DISTFILES.rules_jvm =			rules_jvm_external-${RULES_JVM_VERSION}.tar.gz
@@ -58,7 +84,34 @@ DISTFILES.rules_python =		rules_python-${RULES_PYTHON_VERSION}.tar.gz
 SITES.rules_python =			https://github.com/bazel-contrib/rules_python/releases/download/${RULES_PYTHON_VERSION}/
 DISTFILES.rules_shell =			rules_shell-v${RULES_SHELL_VERSION}.tar.gz
 SITES.rules_shell =				https://github.com/bazelbuild/rules_shell/releases/download/v${RULES_SHELL_VERSION}/
+DISTFILES.rules_swift =			rules_swift.${RULES_SWIFT_VERSION}.tar.gz
+SITES.rules_swift =				https://github.com/bazelbuild/rules_swift/releases/download/${RULES_SWIFT_VERSION}/
 DISTFILES.stardoc =			    stardoc-${STARDOC_VERSION}.tar.gz
 SITES.stardoc =					https://github.com/bazelbuild/stardoc/releases/download/${STARDOC_VERSION}/
+DISTFILES.tar_bzl =				tar.bzl-v${TAR_BZL_VERSION}.tar.gz
+SITES.tar_bzl =					https://github.com/bazel-contrib/tar.bzl/releases/download/v${TAR_BZL_VERSION}/
 DISTFILES.zlib =	            zlib-${ZLIB_VERSION}.tar.gz
 SITES.zlib =					https://github.com/madler/zlib/releases/download/v${ZLIB_VERSION}/
+
+BCR_COMMIT_HASH =				2459648091f2c5b8e21a46613cf39bffb6fba298
+DIST_TUPLE +=					github bazelbuild bazel-central-registry ${BCR_COMMIT_HASH} \
+								bazel-central-registry
+
+SUBST_VARS +=					LOCALBASE X11BASE PREFIX
+
+SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
+								${WRKSRC}/src/base/system_util.cc \
+								${WRKSRC}/src/base/process.cc \
+								${WRKSRC}/src/cc_toolchain_config.bzl
+
+PATCHDIR =						${.CURDIR}/../patches
+FILESDIR =						${.CURDIR}/../files
+
+post-extract:
+	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
+
+post-patch:
+	${SUBST_CMD} ${SUBST_TARGETS}
+
+post-build:
+	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 shutdown
