@@ -39,20 +39,7 @@ MODULES +=						x11/qt6
 
 WANTLIB +=						${COMPILER_LIBCXX} Qt6Core Qt6Gui Qt6Widgets
 WANTLIB +=						c m pthread execinfo z X11
-LIB_DEPENDS +=					x11/qt6/qtbase \
-								x11/xkbcommon \
-								x11/dbus\
-								textproc/icu4c \
-								converters/libiconv \
-								archivers/zstd \
-								math/double-conversion \
-								security/libb2 \
-								devel/pcre2 \
-								devel/glib2 \
-								devel/harfbuzz \
-								devel/gettext \
-								graphics/png \
-								sysutils/syslog-ng
+LIB_DEPENDS +=					x11/qt6/qtbase
 
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
@@ -85,11 +72,11 @@ do-build:
 		server:mozc_server gui/tool:mozc_tool
 
 do-install:
-	${INSTALL_PROGRAM_DIR} "${PREFIX}/lib/mozc"
+	${INSTALL_PROGRAM_DIR} "${PREFIX}/libexec/mozc"
 	${INSTALL_PROGRAM} "${WRKSRC}/src/bazel-bin/server/mozc_server" \
-		"${PREFIX}/lib/mozc/mozc_server"
+		"${PREFIX}/libexec/mozc/mozc_server"
 	${INSTALL_PROGRAM} "${WRKSRC}/src/bazel-bin/gui/tool/mozc_tool" \
-		"${PREFIX}/lib/mozc/mozc_tool"
+		"${PREFIX}/libexec/mozc/mozc_tool"
 
 .include <bsd.port.mk>
 

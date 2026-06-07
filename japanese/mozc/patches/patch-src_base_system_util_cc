@@ -6,14 +6,14 @@ Index: src/base/system_util.cc
  constexpr absl::string_view kMozcServerDir = MOZC_SERVER_DIR;
  #else  // MOZC_SERVER_DIR
 -constexpr absl::string_view kMozcServerDir = "/usr/lib/mozc";
-+constexpr absl::string_view kMozcServerDir = "${PREFIX}/lib/mozc";
++constexpr absl::string_view kMozcServerDir = "${PREFIX}/libexec/mozc";
  #endif  // MOZC_SERVER_DIR
  
  #if defined(MOZC_DOCUMENT_DIR)
  constexpr absl::string_view kMozcDocumentDir = MOZC_DOCUMENT_DIR;
  #else  // MOZC_DOCUMENT_DIR
 -constexpr absl::string_view kMozcDocumentDir = "/usr/lib/mozc/documents";
-+constexpr absl::string_view kMozcDocumentDir = "${PREFIX}/lib/mozc/documents";
++constexpr absl::string_view kMozcDocumentDir = "${PREFIX}/share/mozc/documents";
  #endif  // MOZC_DOCUMENT_DIR
  
  class ProgramInvocationNameHolder final {
