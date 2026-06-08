@@ -17,6 +17,20 @@ That's about how little motivation I have to do any of that myself.
 
 None of the ports have been tested on anything other than x86_64.
 
+## What
+devel  
+- bazel  
+  - v8  
+  - v9  
+
+inputmethods  
+- fcitx*(newer than official ports)  
+
+japanese  
+- mozc  
+  - fcitx-mozc  
+  - mozc  
+
 ## How to use
 
 ```sh
