@@ -11,9 +11,7 @@ I have no intention of submitting this upstream. All of the ports are rather rou
 Not a fan of the network access during builds? Think the Makefiles are way too sloppy? Believe this should be contributed upstream?  
 Feel free to fork it. It's under The Unlicense after all, so go ahead, take it over as if it were yours, hack on it, and send it to ports@ if you want.  
 That's about how little motivation I have to do any of that myself.  
-...That said, Issues are open for submissions, so if you feel like it, please send either bug reports or feature suggestions (as long as it is not something like requesting inclusion in ports@). I do check Issues, but I may not necessarily respond.
-
----
+...That said, Issues are open for submissions, so if you feel like it, please send either bug reports or feature suggestions (as long as it is not something like requesting inclusion in ports@). I do check Issues, but I may not necessarily respond.<br><br>
 
 None of the ports have been tested on anything other than x86_64.
 
@@ -53,11 +51,10 @@ If I think back to the dystopian build process I went through before, the fact t
 I don't "strictly" prohibit network access, but I do try to keep it to a minimum as much as possible.  
 I just don't have the energy to verify whether there is absolutely zero network access, which is why I say I don't "strictly" prohibit it.<br><br>
 
-Because there are complicated circumstances in the IPC of the mozc port, if you are considering forking it to make improvements, or if you are simply interested, please refer to the upper part of the file [japanese/mozc/patches/patch-src_ipc_unix_ipc_cc](japanese/mozc/patches/patch-src_ipc_unix_ipc_cc).  
-I did use AI for that debugging, but in the end I identified the root cause myself (even AI would not likely connect the issue back to IsPeerValid’s *pid = peer_cred.pid;).  
-In the end, it was a rather trivial cause. The approximate cause was due to [6b989cfbe9a53043a97570f8fe0071e3b476212c](https://codeberg.org/c2qd/openbsd_ports/commit/6b989cfbe9a53043a97570f8fe0071e3b476212c). It did result in a light refactoring, so that is acceptable, though.
+Because there are complicated circumstances in the IPC of the mozc port, if you are considering forking it to make improvements, or if you are simply interested, please refer to the upper part of the file [japanese/mozc/patches/patch-src_ipc_unix_ipc_cc](japanese/mozc/patches/patch-src_ipc_unix_ipc_cc).
 
 ## Credit
+
 ref:  
 [kdeguchi/mozc-ports: Latest version mozc ports for FreeBSD](https://github.com/kdeguchi/mozc-ports)  
 [OpenBSD 7.5でBazelをビルドする #OpenBSD7.0 - Qiita](https://qiita.com/asuka1975/items/c162ef0295dea6cef639)  
