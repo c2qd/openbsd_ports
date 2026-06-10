@@ -6,7 +6,7 @@ PKGNAME =						fcitx-mozc-${VERSION}
 
 GH_ACCOUNT =					fcitx
 GH_PROJECT =					mozc
-GH_COMMIT =						045e5d9b38f6629b258f8f931533e5fe17f68a1d
+GH_COMMIT =						379a0cd1383b30d5bd30649940ebb040dbf0ae90
 
 CATEGORIES=						japanese
 
