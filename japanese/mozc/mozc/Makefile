@@ -6,7 +6,7 @@ PKGNAME =						mozc-${VERSION}
 
 GH_ACCOUNT =					google
 GH_PROJECT =					mozc
-GH_COMMIT =						9afbd9860f30da42ef830b73bac4731739e05ca9
+GH_COMMIT =						c0ebdf08e7684016cf04ffabbcee716e2b92ffbe
 #GH_TAGNAME =					${VERSION}
 
 CATEGORIES=						japanese
