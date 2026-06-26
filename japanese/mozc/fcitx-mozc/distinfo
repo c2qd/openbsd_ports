@@ -7,7 +7,7 @@ SHA256 (bazel-lib-v3.0.0.tar.gz) = b9Ox4aOMp0T5ZkvkYnztgIlcfS7jU4kcFy8athMJyTM=
 SHA256 (bazel-skylib-1.9.0.tar.gz) = O1tJAGGB9fj/Ym743c6qlem7itKU97XXsR6p992vjFk=
 SHA256 (bazel_features-v1.42.1.tar.gz) = gYm6yaa/nMFVqFTEy+v+v1i5ynotCmdkX30MH4PFI6w=
 SHA256 (bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = yAoyDhvnhUzMm5G9KIma+AfGPX87+eDRUjCzoeaqttE=
-SHA256 (fcitx-mozc-3.33.6133-780dbd48.tar.gz) = 7VEaiznc1olVrwmGJNMmKc/uv8wRrAy5HjkT4DhwDg4=
+SHA256 (fcitx-mozc-3.34.6239.35898ee6c4f7424ae73000bbd754510d7ab772d0-35898ee6.tar.gz) = 4+hN/P7zasNdIN4qHA4rTT3ua9iVMMQcO5PYAlp/lpU=
 SHA256 (googletest-1.17.0.tar.gz) = Zfq3AdmCnTjLd8FKzcQx0hCL/b+JeeQOuK5Wft8Qsnw=
 SHA256 (platforms-1.0.0.tar.gz) = M4TrHDB2JwT7445EAgThFBVAhsj8iowuPihEECjAGag=
 SHA256 (protobuf-34.1.bazel.tar.gz) = nwkzrRKrsKiVeztkrvw0d0zL5X93+JDGbLQGdRm7g8E=
@@ -40,7 +40,7 @@ SIZE (bazel-lib-v3.0.0.tar.gz) = 112873
 SIZE (bazel-skylib-1.9.0.tar.gz) = 44790
 SIZE (bazel_features-v1.42.1.tar.gz) = 18078
 SIZE (bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = 9417311
-SIZE (fcitx-mozc-3.33.6133-780dbd48.tar.gz) = 29155706
+SIZE (fcitx-mozc-3.34.6239.35898ee6c4f7424ae73000bbd754510d7ab772d0-35898ee6.tar.gz) = 29155825
 SIZE (googletest-1.17.0.tar.gz) = 885595
 SIZE (platforms-1.0.0.tar.gz) = 7879
 SIZE (protobuf-34.1.bazel.tar.gz) = 7038508

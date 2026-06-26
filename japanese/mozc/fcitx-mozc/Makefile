@@ -1,12 +1,12 @@
 COMMENT =						Fcitx5 input method module for Mozc
 
-VERSION =						3.33.6133
-DISTNAME =						fcitx-mozc-${VERSION}
-PKGNAME =						fcitx-mozc-${VERSION}
-
 GH_ACCOUNT =					fcitx
 GH_PROJECT =					mozc
-GH_COMMIT =						780dbd48e2e2fa392c3500035f1d56a34f105718
+GH_COMMIT =						35898ee6c4f7424ae73000bbd754510d7ab772d0
+
+VERSION =						3.34.6239.${GH_COMMIT}
+DISTNAME =						fcitx-mozc-${VERSION}
+PKGNAME =						fcitx-mozc-${VERSION}
 
 CATEGORIES=						japanese
 
