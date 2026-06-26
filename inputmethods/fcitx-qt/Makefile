@@ -1,6 +1,6 @@
 COMMENT =			Qt library and IM module for fcitx5
 
-DISTNAME =			fcitx5-qt-5.1.13
+DISTNAME =			fcitx5-qt-5.1.14
 PKGNAME =			${DISTNAME:S/fcitx5/fcitx/}
 
 SHARED_LIBS +=		Fcitx5Qt5WidgetsAddons		1.0 # 0.0
