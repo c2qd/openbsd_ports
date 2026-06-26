@@ -13,7 +13,7 @@ SHA256 (googletest-1.17.0.tar.gz) = Zfq3AdmCnTjLd8FKzcQx0hCL/b+JeeQOuK5Wft8Qsnw=
 SHA256 (jigyosyo.zip) = FL4QMPYHxfgZ8vRaSF6JURkHvdHWLn+xkxtuSKNDHDo=
 SHA256 (ken_all.zip) = OtyX2OGeEWimzcsvznWdDp5hOpo7YwzBgK7P1WroHq8=
 SHA256 (material_icon_tool_svg.svg) = mwGxM74cr/xoDxMtOF0OWUJi1s/Sl1mmPEKAULg/5ig=
-SHA256 (mozc-3.33.6133-c0ebdf08.tar.gz) = rUAuTW3HsXkcNREad9Wd+C4EnZv6RyVtIfzhhyTurWs=
+SHA256 (mozc-3.34.6239.76887c679e1e4f156102e4bc62ea9cf9174678a3-76887c67.tar.gz) = A4ZvCr9aljsHWmi3oKyOlwgtU8Tjgl/ZJKl9yTKACbw=
 SHA256 (outline_chrome_reader_mode_black_48dp.png) = bSrHvvoDjU8y4HE2KTrK9dhkWk2uy20GPzS+L/6lm1U=
 SHA256 (platforms-1.0.0.tar.gz) = M4TrHDB2JwT7445EAgThFBVAhsj8iowuPihEECjAGag=
 SHA256 (protobuf-34.1.bazel.tar.gz) = nwkzrRKrsKiVeztkrvw0d0zL5X93+JDGbLQGdRm7g8E=
@@ -53,7 +53,7 @@ SIZE (googletest-1.17.0.tar.gz) = 885595
 SIZE (jigyosyo.zip) = 774660
 SIZE (ken_all.zip) = 1694719
 SIZE (material_icon_tool_svg.svg) = 812
-SIZE (mozc-3.33.6133-c0ebdf08.tar.gz) = 29073925
+SIZE (mozc-3.34.6239.76887c679e1e4f156102e4bc62ea9cf9174678a3-76887c67.tar.gz) = 29072900
 SIZE (outline_chrome_reader_mode_black_48dp.png) = 205
 SIZE (platforms-1.0.0.tar.gz) = 7879
 SIZE (protobuf-34.1.bazel.tar.gz) = 7038508

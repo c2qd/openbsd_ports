@@ -1,13 +1,12 @@
 COMMENT =						Japanese Input Method Editor
 
-VERSION =						3.33.6133
-DISTNAME =						mozc-${VERSION}
-PKGNAME =						mozc-${VERSION}
-
 GH_ACCOUNT =					google
 GH_PROJECT =					mozc
-GH_COMMIT =						c0ebdf08e7684016cf04ffabbcee716e2b92ffbe
-#GH_TAGNAME =					${VERSION}
+GH_COMMIT =						76887c679e1e4f156102e4bc62ea9cf9174678a3
+
+VERSION =						3.34.6239.${GH_COMMIT}
+DISTNAME =						mozc-${VERSION}
+PKGNAME =						mozc-${VERSION}
 
 CATEGORIES=						japanese
 
@@ -33,7 +32,7 @@ SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/
 
 EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz bazelbuild-bazel-central-registry-${BCR_COMMIT_HASH}.tar.gz
 
-BUILD_DEPENDS +=				devel/bazel/9
+BUILD_DEPENDS +=				devel/bazel/9>=9
 
 MODULES +=						x11/qt6
 
