@@ -5,6 +5,7 @@ GH_PROJECT =					mozc
 GH_COMMIT =						76887c679e1e4f156102e4bc62ea9cf9174678a3
 
 VERSION =						3.34.6239.${GH_COMMIT}
+REVISION =						0
 DISTNAME =						mozc-${VERSION}
 PKGNAME =						mozc-${VERSION}
 
@@ -15,6 +16,7 @@ MAINTAINER =					c2qd (https://codeberg.org/c2qd/openbsd_ports/issues)
 UT_JAWIKI_COMMIT =				b50cabaecaf32c03d102db55fc5d0b98e334ec9e
 UT_PERSONAL_NAMES_COMMIT =		5896ebef5f39d5772f4575fa05eb24436ce5a5f1
 UT_PLACE_NAMES_COMMIT =			6f9d9bda14f0bd2c10c1563d2aed9150ea95095c
+UT_NEOLOGD_COMMIT =				e33ac4ce808fa4253c6c97bf5178e229a4bfb50f
 UT_SUDACHIDICT_COMMIT =			7def3da408b1854801bd5b559273f9fb8001ef5b
 JAWIKI_DATE =					20260601
 
@@ -26,6 +28,8 @@ DISTFILES.place_names =			mozcdic-ut-place-names.txt.bz2
 SITES.place_names =				https://github.com/utuhiro78/mozcdic-ut-place-names/raw/${UT_PLACE_NAMES_COMMIT}/
 DISTFILES.sudachidict =			mozcdic-ut-sudachidict.txt.bz2
 SITES.sudachidict =				https://github.com/utuhiro78/mozcdic-ut-sudachidict/raw/${UT_SUDACHIDICT_COMMIT}/
+DISTFILES.neologd =				mozcdic-ut-neologd.txt.bz2
+SITES.neologd =					https://github.com/utuhiro78/mozcdic-ut-neologd/raw/${UT_NEOLOGD_COMMIT}/
 DISTFILES.jawiki_index =		jawiki-${JAWIKI_DATE}-pages-articles-multistream-index.txt.bz2
 SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_DATE}/
 
@@ -64,7 +68,7 @@ COMPILER =						base-clang
 # BSD-3-Clause + NAIST-2003(IPADic) + Public Domain(Okinawa dictionary) +
 # BSD-2-Clause(Japanese usage dictionary) +
 # Copyright non-assertion(Zip code data / place-names) +
-# CC BY-SA(jawiki) + Apache 2.0(personal-names / SudachiDict)
+# CC BY-SA(jawiki) + Apache 2.0(personal-names / Neologd / SudachiDict)
 # Warning: I don't know anything about licenses~
 #          Please determine whether to set PERMIT_PACKAGE to Y/n.
 PERMIT_PACKAGE =				No
@@ -75,7 +79,7 @@ pre-patch:
 	cd ${FULLDISTDIR} && \
 		cp ${DISTFILES.jawiki} ${DISTFILES.personal_names} \
 		${DISTFILES.place_names} ${DISTFILES.sudachidict} \
-		${DISTFILES.jawiki_index} ${WRKSRC} && \
+		${DISTFILES.neologd} ${DISTFILES.jawiki_index} ${WRKSRC} && \
 		cd ${WRKSRC} && bzip2 -d mozcdic-*.txt.bz2 && \
 		cp ${FILESDIR}/mergedic.pl . && perl mergedic.pl ${JAWIKI_DATE} && \
 		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt
