@@ -6,6 +6,7 @@ use open qw(:std :encoding(UTF-8));
 
 use Unicode::Normalize qw(NFKC);
 use IO::Uncompress::Bunzip2 qw($Bunzip2Error);
+use HTML::Entities qw(decode_entities);
 
 my $srcroot = '.';
 my $dict_dir = "$srcroot/src/data/dictionary_oss";
@@ -129,13 +130,7 @@ sub generate_jawiki_hit_dict {
         my (undef, undef, $entry) = split(/:/, $line, 3);
         next unless defined $entry;
 
-        $entry =~ s/&amp;/&/g;
-        $entry =~ s/&lt;/</g;
-        $entry =~ s/&gt;/>/g;
-        $entry =~ s/&quot;/"/g;
-        $entry =~ s/&#39;/'/g;
-        $entry =~ s/&#(\d+);/chr($1)/eg;
-        $entry =~ s/&#x([0-9A-Fa-f]+);/chr(hex($1))/eg;
+        $entry = decode_entities($entry);
 
         $entry = (split / \(/, $entry)[-1];
 
