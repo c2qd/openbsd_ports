@@ -72,7 +72,7 @@ PERMIT_PACKAGE =				No
 BAZEL_DISTDIR_ALT =				${WRKDIR}/distdir_alt
 
 pre-patch:
-	cd ${DISTDIR} && \
+	cd ${FULLDISTDIR} && \
 		cp ${DISTFILES.jawiki} ${DISTFILES.personal_names} \
 		${DISTFILES.place_names} ${DISTFILES.sudachidict} \
 		${DISTFILES.jawiki_index} ${WRKSRC} && \
