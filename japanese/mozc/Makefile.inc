@@ -107,6 +107,21 @@ SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
 PATCHDIR =						${.CURDIR}/../patches
 FILESDIR =						${.CURDIR}/../files
 
+BUILD_DEPENDS +=				devel/bazel/9>=9
+
+MODULES +=						java
+MODJAVA_VER =					21
+
+BAZEL_STARTUP_FLAGS =			--output_base=${WRKOBJDIR}/_bazel_output_base \
+								--output_user_root=${WRKOBJDIR}/_bazel_output_user_root \
+								--server_javabase=${JAVA_HOME}
+
+BAZEL_BUILD_FLAGS =				--registry=file://${WRKDIST}/bazel-central-registry \
+								--distdir=${FULLDISTDIR} \
+								--config oss_linux \
+								--config release_build \
+								--platforms=//:openbsd-ex
+
 post-extract:
 	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
 
@@ -114,4 +129,4 @@ post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS}
 
 post-build:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 shutdown
+	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} shutdown

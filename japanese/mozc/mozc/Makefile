@@ -54,7 +54,7 @@ SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/
 EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 								bazelbuild-bazel-central-registry-${BCR_COMMIT}.tar.gz
 
-BUILD_DEPENDS +=				devel/bazel/9>=9 archivers/bzip2 www/p5-HTML-Parser
+BUILD_DEPENDS +=				archivers/bzip2 www/p5-HTML-Parser
 
 MODULES +=						x11/qt6
 
@@ -86,18 +86,12 @@ pre-patch:
 
 pre-build:
 	mkdir -p ${BAZEL_DISTDIR_ALT} && \
-		cp ${FULLDISTDIR}/material_icon_tool_svg.svg ${BAZEL_DISTDIR_ALT}/24px.svg && \
-		mkdir -p ${WRKOBJDIR}/_bazel_tmp
+		cp ${FULLDISTDIR}/material_icon_tool_svg.svg ${BAZEL_DISTDIR_ALT}/24px.svg
 
 do-build:
 	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 \
-		--output_user_root=${WRKOBJDIR}/_bazel_tmp build \
-		--registry=file://${WRKDIST}/bazel-central-registry \
-		--distdir=${FULLDISTDIR} \
+		${BAZEL_STARTUP_FLAGS} build ${BAZEL_BUILD_FLAGS} \
 		--distdir=${BAZEL_DISTDIR_ALT} \
-		--config oss_linux \
-		--config release_build \
-		--platforms=//:openbsd-ex \
 		--copt=-I/usr/X11R6/include \
 		--linkopt=-L/usr/local/lib \
 		--host_linkopt=-L/usr/local/lib \

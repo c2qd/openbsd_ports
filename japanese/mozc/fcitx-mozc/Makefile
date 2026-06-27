@@ -14,7 +14,7 @@ MAINTAINER =					c2qd (https://codeberg.org/c2qd/openbsd_ports/issues)
 
 EXTRACT_ONLY =					fcitx-mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz bazelbuild-bazel-central-registry-${BCR_COMMIT_HASH}.tar.gz
 
-BUILD_DEPENDS +=				devel/bazel/9 devel/gettext,-tools shells/bash
+BUILD_DEPENDS +=				devel/gettext,-tools shells/bash
 LIB_DEPENDS +=					inputmethods/fcitx
 RUN_DEPENDS +=					japanese/mozc/mozc
 
@@ -32,14 +32,8 @@ pre-build:
 	mkdir -p ${WRKOBJDIR}/_bazel_tmp
 
 do-build:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 \
-		--output_user_root=${WRKOBJDIR}/_bazel_tmp build \
-		--registry=file://${WRKDIST}/bazel-central-registry \
-		--distdir=${FULLDISTDIR} \
-		--config oss_linux \
-		--config release_build \
-		--platforms=//:openbsd-ex \
-		unix/fcitx5:fcitx5-mozc.so
+	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} build \
+		${BAZEL_BUILD_FLAGS} unix/fcitx5:fcitx5-mozc.so
 
 do-install:
 	${INSTALL_PROGRAM_DIR} "${PREFIX}/lib/fcitx5"
