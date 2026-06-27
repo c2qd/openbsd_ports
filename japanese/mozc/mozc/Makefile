@@ -79,7 +79,7 @@ pre-build:
 		mkdir -p ${WRKOBJDIR}/_bazel_tmp
 
 do-build:
-	cd ${WRKSRC}/src && env LC_ALL=C.UTF-8 ${LOCALBASE}/bin/bazel9 \
+	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 \
 		--output_user_root=${WRKOBJDIR}/_bazel_tmp build \
 		--registry=file://${WRKDIST}/bazel-central-registry \
 		--distdir=${FULLDISTDIR} \
@@ -90,6 +90,7 @@ do-build:
 		--copt=-I/usr/X11R6/include \
 		--linkopt=-L/usr/local/lib \
 		--host_linkopt=-L/usr/local/lib \
+		--action_env=LC_ALL=C.UTF-8 \
 		server:mozc_server gui/tool:mozc_tool
 
 do-install:
