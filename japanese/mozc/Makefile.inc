@@ -93,7 +93,7 @@ SITES.tar_bzl =					https://github.com/bazel-contrib/tar.bzl/releases/download/v
 DISTFILES.zlib =	            zlib-${ZLIB_VERSION}.tar.gz
 SITES.zlib =					https://github.com/madler/zlib/releases/download/v${ZLIB_VERSION}/
 
-BCR_COMMIT =				2459648091f2c5b8e21a46613cf39bffb6fba298
+BCR_COMMIT =					2459648091f2c5b8e21a46613cf39bffb6fba298
 DIST_TUPLE +=					github bazelbuild bazel-central-registry ${BCR_COMMIT} \
 								bazel-central-registry
 

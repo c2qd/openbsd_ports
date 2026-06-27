@@ -30,7 +30,7 @@ DISTFILES.jawiki_index =		jawiki-${JAWIKI_DATE}-pages-articles-multistream-index
 SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_DATE}/
 
 JA_USAGE_DICT_VERSION =			2025-01-25
-ZIP_CODE_COMMIT =			621d059fbcbfae17bfca15b439692bae934268c3
+ZIP_CODE_COMMIT =				621d059fbcbfae17bfca15b439692bae934268c3
 
 DISTFILES.dictionary_png =		outline_chrome_reader_mode_black_48dp.png
 SITES.dictionary_png =			https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/chrome_reader_mode/materialiconsoutlined/48dp/1x/
