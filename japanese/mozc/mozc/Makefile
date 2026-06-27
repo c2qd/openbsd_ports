@@ -68,15 +68,13 @@ PERMIT_PACKAGE =				No
 
 BAZEL_DISTDIR_ALT =				${WRKDIR}/distdir_alt
 
-pre-patch:
+pre-build:
 	cd ${DISTDIR} && \
 		cp ${DISTFILES.jawiki} ${DISTFILES.personal_names} \
 		${DISTFILES.place_names} ${DISTFILES.sudachidict} ${WRKSRC} && \
 		cd ${WRKSRC} && bzip2 -d mozcdic-*.txt.bz2 && \
-		cat mozcdic-*.txt >> src/data/dictionary_oss/dictionary00.txt
-
-pre-build:
-	mkdir -p ${BAZEL_DISTDIR_ALT} && \
+		cat mozcdic-*.txt >> src/data/dictionary_oss/dictionary00.txt && \
+		mkdir -p ${BAZEL_DISTDIR_ALT} && \
 		cp ${FULLDISTDIR}/material_icon_tool_svg.svg ${BAZEL_DISTDIR_ALT}/24px.svg && \
 		mkdir -p ${WRKOBJDIR}/_bazel_tmp
 
