@@ -30,7 +30,7 @@ DISTFILES.jawiki_index =		jawiki-${JAWIKI_DATE}-pages-articles-multistream-index
 SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_DATE}/
 
 JA_USAGE_DICT_VERSION =			2025-01-25
-ZIP_CODE_COMMIT_HASH =			621d059fbcbfae17bfca15b439692bae934268c3
+ZIP_CODE_COMMIT =			621d059fbcbfae17bfca15b439692bae934268c3
 
 DISTFILES.dictionary_png =		outline_chrome_reader_mode_black_48dp.png
 SITES.dictionary_png =			https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/chrome_reader_mode/materialiconsoutlined/48dp/1x/
@@ -43,12 +43,12 @@ SITES.property_svg =			https://raw.githubusercontent.com/google/material-design-
 DISTFILES.ja_usage_dict =		${JA_USAGE_DICT_VERSION}.zip
 SITES.ja_usage_dict =			https://github.com/hiroyuki-komatsu/japanese-usage-dictionary/archive/refs/tags/
 DISTFILES.zip_code_jigyosyo =	jigyosyo.zip
-SITES.zip_code_jigyosyo =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT_HASH}/
+SITES.zip_code_jigyosyo =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT}/
 DISTFILES.zip_code_ken_all =	ken_all.zip
-SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT_HASH}/
+SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT}/
 
 EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
-								bazelbuild-bazel-central-registry-${BCR_COMMIT_HASH}.tar.gz
+								bazelbuild-bazel-central-registry-${BCR_COMMIT}.tar.gz
 
 BUILD_DEPENDS +=				devel/bazel/9>=9 archivers/bzip2
 
