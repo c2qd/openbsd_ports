@@ -16,6 +16,7 @@ UT_JAWIKI_COMMIT =				b50cabaecaf32c03d102db55fc5d0b98e334ec9e
 UT_PERSONAL_NAMES_COMMIT =		5896ebef5f39d5772f4575fa05eb24436ce5a5f1
 UT_PLACE_NAMES_COMMIT =			6f9d9bda14f0bd2c10c1563d2aed9150ea95095c
 UT_SUDACHIDICT_COMMIT =			7def3da408b1854801bd5b559273f9fb8001ef5b
+JAWIKI_DATE =					20260601
 
 DISTFILES.jawiki =				mozcdic-ut-jawiki.txt.bz2
 SITES.jawiki =					https://github.com/utuhiro78/mozcdic-ut-jawiki/raw/${UT_JAWIKI_COMMIT}/
@@ -25,6 +26,8 @@ DISTFILES.place_names =			mozcdic-ut-place-names.txt.bz2
 SITES.place_names =				https://github.com/utuhiro78/mozcdic-ut-place-names/raw/${UT_PLACE_NAMES_COMMIT}/
 DISTFILES.sudachidict =			mozcdic-ut-sudachidict.txt.bz2
 SITES.sudachidict =				https://github.com/utuhiro78/mozcdic-ut-sudachidict/raw/${UT_SUDACHIDICT_COMMIT}/
+DISTFILES.jawiki_index =		jawiki-${JAWIKI_DATE}-pages-articles-multistream-index.txt.bz2
+SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_DATE}/
 
 JA_USAGE_DICT_VERSION =			2025-01-25
 ZIP_CODE_COMMIT_HASH =			621d059fbcbfae17bfca15b439692bae934268c3
@@ -71,9 +74,11 @@ BAZEL_DISTDIR_ALT =				${WRKDIR}/distdir_alt
 pre-build:
 	cd ${DISTDIR} && \
 		cp ${DISTFILES.jawiki} ${DISTFILES.personal_names} \
-		${DISTFILES.place_names} ${DISTFILES.sudachidict} ${WRKSRC} && \
+		${DISTFILES.place_names} ${DISTFILES.sudachidict} \
+		${DISTFILES.jawiki_index} ${WRKSRC} && \
 		cd ${WRKSRC} && bzip2 -d mozcdic-*.txt.bz2 && \
-		cat mozcdic-*.txt >> src/data/dictionary_oss/dictionary00.txt && \
+		cp ${FILESDIR}/mergedic.pl . && perl mergedic.pl ${JAWIKI_DATE} && \
+		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt && \
 		mkdir -p ${BAZEL_DISTDIR_ALT} && \
 		cp ${FULLDISTDIR}/material_icon_tool_svg.svg ${BAZEL_DISTDIR_ALT}/24px.svg && \
 		mkdir -p ${WRKOBJDIR}/_bazel_tmp

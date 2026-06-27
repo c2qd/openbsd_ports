@@ -10,6 +10,7 @@ SHA256 (bazel-skylib-1.9.0.tar.gz) = O1tJAGGB9fj/Ym743c6qlem7itKU97XXsR6p992vjFk
 SHA256 (bazel_features-v1.42.1.tar.gz) = gYm6yaa/nMFVqFTEy+v+v1i5ynotCmdkX30MH4PFI6w=
 SHA256 (bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = yAoyDhvnhUzMm5G9KIma+AfGPX87+eDRUjCzoeaqttE=
 SHA256 (googletest-1.17.0.tar.gz) = Zfq3AdmCnTjLd8FKzcQx0hCL/b+JeeQOuK5Wft8Qsnw=
+SHA256 (jawiki-20260601-pages-articles-multistream-index.txt.bz2) = Q7EQAEQfRCxZgApvwwtIfw0Hk4+bFaoKRq/3mDDT3pY=
 SHA256 (jigyosyo.zip) = FL4QMPYHxfgZ8vRaSF6JURkHvdHWLn+xkxtuSKNDHDo=
 SHA256 (ken_all.zip) = OtyX2OGeEWimzcsvznWdDp5hOpo7YwzBgK7P1WroHq8=
 SHA256 (material_icon_tool_svg.svg) = mwGxM74cr/xoDxMtOF0OWUJi1s/Sl1mmPEKAULg/5ig=
@@ -54,6 +55,7 @@ SIZE (bazel-skylib-1.9.0.tar.gz) = 44790
 SIZE (bazel_features-v1.42.1.tar.gz) = 18078
 SIZE (bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = 9417311
 SIZE (googletest-1.17.0.tar.gz) = 885595
+SIZE (jawiki-20260601-pages-articles-multistream-index.txt.bz2) = 31096507
 SIZE (jigyosyo.zip) = 774660
 SIZE (ken_all.zip) = 1694719
 SIZE (material_icon_tool_svg.svg) = 812
