@@ -71,15 +71,17 @@ PERMIT_PACKAGE =				No
 
 BAZEL_DISTDIR_ALT =				${WRKDIR}/distdir_alt
 
-pre-build:
+pre-patch:
 	cd ${DISTDIR} && \
 		cp ${DISTFILES.jawiki} ${DISTFILES.personal_names} \
 		${DISTFILES.place_names} ${DISTFILES.sudachidict} \
 		${DISTFILES.jawiki_index} ${WRKSRC} && \
 		cd ${WRKSRC} && bzip2 -d mozcdic-*.txt.bz2 && \
 		cp ${FILESDIR}/mergedic.pl . && perl mergedic.pl ${JAWIKI_DATE} && \
-		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt && \
-		mkdir -p ${BAZEL_DISTDIR_ALT} && \
+		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt
+
+pre-build:
+	mkdir -p ${BAZEL_DISTDIR_ALT} && \
 		cp ${FULLDISTDIR}/material_icon_tool_svg.svg ${BAZEL_DISTDIR_ALT}/24px.svg && \
 		mkdir -p ${WRKOBJDIR}/_bazel_tmp
 
