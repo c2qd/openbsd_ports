@@ -41,8 +41,7 @@ PORTSDIR_PATH=/path/to/c2qd_ports:${PORTSDIR}:${PORTSDIR}/mystuff
 I have no intention of submitting this upstream. All of the ports are rather roughly made, after all.  
 Not a fan of the network access during builds? Think the Makefiles are way too sloppy? Believe this should be contributed upstream?  
 Feel free to fork it. It's under The Unlicense after all, so go ahead, take it over as if it were yours, hack on it, and send it to ports@ if you want.  
-That's about how little motivation I have to do any of that myself.  
-...That said, Issues are open for submissions, so if you feel like it, please send either bug reports or feature suggestions (as long as it is not something like requesting inclusion in ports@). I do check Issues, but I may not necessarily respond.<br><br>
+That's about how little motivation I have to do any of that myself.<br><br>
 
 ~~Taking various points into account, it might be more accurate to say that the Mozc-related parts are not really *ports* at all, but simply automated build processes.~~  
 ~~If I think back to the dystopian build process I went through before, the fact that this only requires a simple make command already feels somewhat better.~~<br><br>
