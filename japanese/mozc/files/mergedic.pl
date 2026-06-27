@@ -15,6 +15,17 @@ my $jawiki_version = shift @ARGV
     or die "usage: $0 <jawiki-version>\n";
 my $jawiki_file = "./jawiki-${jawiki_version}-pages-articles-multistream-index.txt.bz2";
 
+my $out_file = "mozcdic-ut.txt";
+
+if (-f $out_file) {
+    my $size = -s $out_file;
+
+    if ($size > 1_000_000) {
+        print STDERR "skip: cached mozcdic-ut.txt ($size bytes)\n";
+        exit 0;
+    }
+}
+
 my $id_mozc = load_general_noun_id($id_file);
 my %mozc_key = load_mozc_keys($dict_dir);
 
@@ -33,7 +44,7 @@ for my $file (glob("./mozcdic-ut-*.txt")) {
         || $a->[3] <=> $b->[3]
 } @ut_entry;
 
-open my $out, '>:encoding(UTF-8)', 'mozcdic-ut.txt'
+open my $out, '>:encoding(UTF-8)', $out_file
     or die "cannot open output file: $!\n";
 
 for my $e (@ut_entry) {
