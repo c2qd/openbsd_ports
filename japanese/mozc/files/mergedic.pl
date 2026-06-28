@@ -22,10 +22,12 @@ if (-f $out_file) {
     my $size = -s $out_file;
 
     if ($size > 1_000_000) {
-        print STDERR "skip: cached mozcdic-ut.txt ($size bytes)\n";
+        print STDERR "skip: cached $out_file ($size bytes)\n";
         exit 0;
     }
 }
+
+my $needs_nfkc = qr/\P{NFKC_Quick_Check=Yes}/;
 
 my $id_mozc = load_general_noun_id($id_file);
 my %mozc_key = load_mozc_keys($dict_dir);
@@ -69,19 +71,23 @@ sub load_mozc_keys {
     my ($dir) = @_;
     my %key;
 
-    for my $file (glob("$dir/dictionary0*")) {
+    for my $file (sort glob("$dir/dictionary0*")) {
         open my $fh, '<:encoding(UTF-8)', $file or die $!;
 
         while (my $line = <$fh>) {
+            chomp $line;
             next if $line =~ /^\s*$/;
             next if $line =~ /^\s*#/;
 
             my ($yomi, undef, undef, undef, $hyouki) = split /\t/, $line, 5;
             next unless defined $hyouki;
 
-            chomp $hyouki;
-            $hyouki = normalize_entry($hyouki);
+            my $len = length($hyouki);
+            next if $len < 2 || $len > 25;
 
+            if (index($hyouki, '~') >= 0 || $hyouki =~ $needs_nfkc) {
+                $hyouki = normalize_entry($hyouki);
+            }
             $key{$yomi . "\0" . $hyouki} = 1;
         }
     }
@@ -104,10 +110,12 @@ sub load_ut_entries {
 
         chomp $hyouki;
 
-        $hyouki = remove_short_or_long($hyouki);
-        next unless defined $hyouki;
+        my $len = length($hyouki);
+        next if $len < 2 || $len > 25;
 
-        $hyouki = normalize_entry($hyouki);
+        if (index($hyouki, '~') >= 0 || $hyouki =~ $needs_nfkc) {
+            $hyouki = normalize_entry($hyouki);
+        }
 
         my $key = $yomi . "\0" . $hyouki;
         next if $seen->{$key}++;
@@ -127,20 +135,30 @@ sub generate_jawiki_hit_dict {
 
     while (my $line = <$z>) {
         chomp $line;
-        my (undef, undef, $entry) = split(/:/, $line, 3);
-        next unless defined $entry;
 
-        $entry = decode_entities($entry);
+        my $p1 = index($line, ':');
+        my $p2 = index($line, ':', $p1 + 1);
+        next if $p1 < 0 || $p2 < 0;
 
-        $entry = (split / \(/, $entry)[-1];
+        my $entry = substr($line, $p2 + 1);
 
-        $entry = remove_short_or_long($entry);
-        next unless defined $entry;
+        if (index($entry, '&') >= 0) {
+            $entry = decode_entities($entry);
+        }
+
+        my $pos = rindex($entry, " (");
+        if ($pos >= 0) {
+            $entry = substr($entry, $pos + 2);
+        }
+
+        my $len = length($entry);
+        next if $len < 2 || $len > 25;
 
         next if $entry =~ /^(ファイル:|Wikipedia:|Template:|Portal:|Help:|Category:|プロジェクト:|曖昧さ回避)/;
 
-        $entry = normalize_entry($entry);
-
+        if (index($entry, '~') >= 0 || $entry =~ $needs_nfkc) {
+            $entry = normalize_entry($entry);
+        }
         $seen{$entry} = 1;
     }
 
@@ -151,7 +169,7 @@ sub generate_jawiki_hit_dict {
         my $base = $list[$i];
         my $c = 1;
 
-        while ($i + $c < @list && index($list[$i + $c], $base) == 0) {
+        while ($i + $c < @list && $c < 30 && index($list[$i + $c], $base) == 0) {
             $c++;
         }
 
@@ -190,16 +208,19 @@ sub apply_jawiki_hit {
     return @out;
 }
 
-sub remove_short_or_long {
-    my ($s) = @_;
-    return undef if length($s) < 2;
-    return undef if length($s) > 25;
-    return $s;
-}
+my %norm_cache;
 
 sub normalize_entry {
     my ($s) = @_;
+    my $orig = $s;
+
+    return $norm_cache{$orig} if exists $norm_cache{$orig};
+
     $s = NFKC($s);
-    $s =~ tr/~/\x{301C}/;
-    return $s;
+
+    if (index($s, '~') >= 0) {
+        $s =~ tr/~/\x{301C}/;
+    }
+
+    return $norm_cache{$orig} = $s;
 }
