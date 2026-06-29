@@ -11,8 +11,9 @@ PKGNAME =						mozc-${VERSION}
 
 CATEGORIES=						japanese
 
-MAINTAINER =					c2qd (https://codeberg.org/c2qd/openbsd_ports/issues)
+MAINTAINER =					c2qd
 
+UT_COMMIT =						15c1c64502b43e31d328012860376c03c3eaf633
 UT_JAWIKI_COMMIT =				b50cabaecaf32c03d102db55fc5d0b98e334ec9e
 UT_PERSONAL_NAMES_COMMIT =		5896ebef5f39d5772f4575fa05eb24436ce5a5f1
 UT_PLACE_NAMES_COMMIT =			6f9d9bda14f0bd2c10c1563d2aed9150ea95095c
@@ -20,6 +21,8 @@ UT_NEOLOGD_COMMIT =				e33ac4ce808fa4253c6c97bf5178e229a4bfb50f
 UT_SUDACHIDICT_COMMIT =			7def3da408b1854801bd5b559273f9fb8001ef5b
 JAWIKI_DATE =					20260601
 
+DISTFILES.merge_script =		merge_dictionaries.py
+SITES.merge_script =			https://raw.githubusercontent.com/utuhiro78/merge-ut-dictionaries/${UT_COMMIT}/src/merge/
 DISTFILES.jawiki =				mozcdic-ut-jawiki.txt.bz2
 SITES.jawiki =					https://github.com/utuhiro78/mozcdic-ut-jawiki/raw/${UT_JAWIKI_COMMIT}/
 DISTFILES.personal_names =		mozcdic-ut-personal-names.txt.bz2
@@ -56,7 +59,10 @@ EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 
 BUILD_DEPENDS +=				archivers/bzip2 www/p5-HTML-Parser
 
-MODULES +=						x11/qt6
+MODULES +=						x11/qt6 lang/python
+
+MODPY_RUNDEP =                  No
+MODPY_ADJ_FILES +=              ${WRKSRC}/merge_dictionaries.py
 
 WANTLIB +=						${COMPILER_LIBCXX} Qt6Core Qt6Gui Qt6Widgets
 WANTLIB +=						c m pthread execinfo z X11
@@ -75,17 +81,21 @@ PERMIT_PACKAGE =				No
 
 BAZEL_DISTDIR_ALT =				${WRKDIR}/distdir_alt
 
-pre-patch:
-	cd ${FULLDISTDIR} && \
+post-extract:
+	cp ${FULLDISTDIR}/${DISTFILES.merge_script} ${WRKSRC}/ && \
+		cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
+
+post-patch:
+	${SUBST_CMD} ${SUBST_TARGETS} && \
+		cd ${FULLDISTDIR} && \
 		cp ${DISTFILES.jawiki} ${DISTFILES.personal_names} \
 		${DISTFILES.place_names} ${DISTFILES.sudachidict} \
 		${DISTFILES.neologd} ${DISTFILES.jawiki_index} ${WRKSRC} && \
 		cd ${WRKSRC} && bzip2 -d mozcdic-*.txt.bz2 && \
-		cp ${FILESDIR}/mergedic.pl . && perl mergedic.pl ${JAWIKI_DATE} && \
-		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt
-
-pre-build:
-	mkdir -p ${BAZEL_DISTDIR_ALT} && \
+		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
+		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
+		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt && \
+		mkdir -p ${BAZEL_DISTDIR_ALT} && \
 		cp ${FULLDISTDIR}/material_icon_tool_svg.svg ${BAZEL_DISTDIR_ALT}/24px.svg
 
 do-build:

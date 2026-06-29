@@ -122,11 +122,5 @@ BAZEL_BUILD_FLAGS =				--registry=file://${WRKDIST}/bazel-central-registry \
 								--config release_build \
 								--platforms=//:openbsd-ex
 
-post-extract:
-	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
-
-post-patch:
-	${SUBST_CMD} ${SUBST_TARGETS}
-
 post-build:
 	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} shutdown

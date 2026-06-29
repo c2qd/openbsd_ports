@@ -14,6 +14,7 @@ SHA256 (jawiki-20260601-pages-articles-multistream-index.txt.bz2) = Q7EQAEQfRCxZ
 SHA256 (jigyosyo.zip) = FL4QMPYHxfgZ8vRaSF6JURkHvdHWLn+xkxtuSKNDHDo=
 SHA256 (ken_all.zip) = OtyX2OGeEWimzcsvznWdDp5hOpo7YwzBgK7P1WroHq8=
 SHA256 (material_icon_tool_svg.svg) = mwGxM74cr/xoDxMtOF0OWUJi1s/Sl1mmPEKAULg/5ig=
+SHA256 (merge_dictionaries.py) = ALDz2KtQR5e5cK0Qjfgt+TseqSKIKcxsz1wq+tssN4k=
 SHA256 (mozc-3.34.6239.76887c679e1e4f156102e4bc62ea9cf9174678a3-76887c67.tar.gz) = A4ZvCr9aljsHWmi3oKyOlwgtU8Tjgl/ZJKl9yTKACbw=
 SHA256 (mozcdic-ut-jawiki.txt.bz2) = QxG5Ba+cqaImqD2dwAFPpIEW8lHnuEMkSOGSREsxw9c=
 SHA256 (mozcdic-ut-neologd.txt.bz2) = IxubXkrRa6o/eWgPTkYV9wYFEaQdpKrCFJeJ6s4/JBE=
@@ -60,6 +61,7 @@ SIZE (jawiki-20260601-pages-articles-multistream-index.txt.bz2) = 31096507
 SIZE (jigyosyo.zip) = 774660
 SIZE (ken_all.zip) = 1694719
 SIZE (material_icon_tool_svg.svg) = 812
+SIZE (merge_dictionaries.py) = 9061
 SIZE (mozc-3.34.6239.76887c679e1e4f156102e4bc62ea9cf9174678a3-76887c67.tar.gz) = 29072900
 SIZE (mozcdic-ut-jawiki.txt.bz2) = 12080614
 SIZE (mozcdic-ut-neologd.txt.bz2) = 15715076

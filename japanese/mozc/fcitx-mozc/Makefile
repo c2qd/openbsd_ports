@@ -10,9 +10,10 @@ PKGNAME =						fcitx-mozc-${VERSION}
 
 CATEGORIES=						japanese
 
-MAINTAINER =					c2qd (https://codeberg.org/c2qd/openbsd_ports/issues)
+MAINTAINER =					c2qd
 
-EXTRACT_ONLY =					fcitx-mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz bazelbuild-bazel-central-registry-${BCR_COMMIT_HASH}.tar.gz
+EXTRACT_ONLY =					fcitx-mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
+								bazelbuild-bazel-central-registry-${BCR_COMMIT_HASH}.tar.gz
 
 BUILD_DEPENDS +=				devel/gettext,-tools shells/bash
 LIB_DEPENDS +=					inputmethods/fcitx
@@ -28,8 +29,11 @@ COMPILER =						base-clang
 #          Please determine whether to set PERMIT_PACKAGE to Y/n.
 PERMIT_PACKAGE =				No
 
-pre-build:
-	mkdir -p ${WRKOBJDIR}/_bazel_tmp
+post-extract:
+	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
+
+post-patch:
+	${SUBST_CMD} ${SUBST_TARGETS}
 
 do-build:
 	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} build \
