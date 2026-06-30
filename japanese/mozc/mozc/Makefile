@@ -65,7 +65,7 @@ MODPY_RUNDEP =                  No
 MODPY_ADJ_FILES +=              ${WRKSRC}/merge_dictionaries.py
 
 WANTLIB +=						${COMPILER_LIBCXX} Qt6Core Qt6Gui Qt6Widgets
-WANTLIB +=						c m pthread execinfo z X11
+WANTLIB +=						c m execinfo z X11
 LIB_DEPENDS +=					x11/qt6/qtbase
 
 COMPILER_LANGS =				c++
