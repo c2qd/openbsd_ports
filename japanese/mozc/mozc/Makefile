@@ -57,7 +57,7 @@ SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/
 EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 								bazelbuild-bazel-central-registry-${BCR_COMMIT}.tar.gz
 
-BUILD_DEPENDS +=				archivers/bzip2 www/p5-HTML-Parser
+BUILD_DEPENDS +=				archivers/bzip2
 
 MODULES +=						x11/qt6 lang/python
 
