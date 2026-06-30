@@ -72,7 +72,7 @@ def _impl(ctx):
         ctx = ctx,
         features = features,
         cxx_builtin_include_directories = [
-            ${CC_INCLUDE_LIST},
+            ${CLANG_RESOURCE_DIR},
             "${LOCALBASE}/include",
             "/usr/include",
             "${X11BASE}/include",
@@ -82,7 +82,7 @@ def _impl(ctx):
         target_system_name = "openbsd",
         target_cpu = "unknown",
         target_libc = "unknown",
-        compiler = "${CC_SUBST}",
+        compiler = "clang",
         abi_version = "unknown",
         abi_libc_version = "unknown",
         tool_paths = tool_paths,

@@ -105,12 +105,12 @@ LD_SUBST =						${WRKDIR}/bin/${LD}
 NM =							nm
 OBJDUMP =						objdump
 
-CC_INCLUDE_LIST!=				printf '""%s""' \
+CLANG_RESOURCE_DIR!=			printf '""%s""' \
 								`clang -print-resource-dir`/include
 
 SUBST_VARS +=					LOCALBASE X11BASE PREFIX MODPY_BIN \
 								CC_SUBST LD_SUBST CPP AR STRIP \
-								NM OBJDUMP CC_INCLUDE_LIST
+								NM OBJDUMP CLANG_RESOURCE_DIR
 
 SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
 								${WRKSRC}/src/MODULE.bazel \
