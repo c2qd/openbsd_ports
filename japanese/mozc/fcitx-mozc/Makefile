@@ -22,7 +22,7 @@ RUN_DEPENDS +=					japanese/mozc/mozc
 WANTLIB +=						${COMPILER_LIBCXX} Fcitx5Config Fcitx5Core Fcitx5Utils
 WANTLIB +=						c m
 COMPILER_LANGS =				c++
-COMPILER =						base-clang ports-clang
+COMPILER =						base-clang
 
 # BSD-3-Clause + LGPL-2.1 or later(Part of the code in src/unix/fcitx5)
 # Warning: I don't know anything about licenses~

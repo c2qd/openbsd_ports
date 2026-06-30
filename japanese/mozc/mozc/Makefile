@@ -69,7 +69,7 @@ WANTLIB +=						c m pthread execinfo z X11
 LIB_DEPENDS +=					x11/qt6/qtbase
 
 COMPILER_LANGS =				c++
-COMPILER =						base-clang ports-clang
+COMPILER =						base-clang
 
 # BSD-3-Clause + NAIST-2003(IPADic) + Public Domain(Okinawa dictionary) +
 # BSD-2-Clause(Japanese usage dictionary) +
