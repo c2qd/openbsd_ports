@@ -1,12 +1,12 @@
 COMMENT ?=		    polyglot build tool
 DISTNAME =		    bazel-${VERSION}
-PKGSTEM =			bazel
+PKGNAME	=			bazel${VERSION:C/\..*//}-${VERSION}
 CATEGORIES =	    devel
 SITES =			    https://github.com/bazelbuild/bazel/releases/download/${VERSION}/
 
 HOMEPAGE ?=		    https://bazel.build/
 
-MAINTAINER =		c2qd (https://codeberg.org/c2qd/openbsd_ports/issues)
+MAINTAINER =		c2qd
 
 SUFFIX ?=		    -${VERSION}
 SUBST_VARS +=		SUFFIX

@@ -1,5 +1,3 @@
-@option no-default-conflict
-@option is-branch
 @bin bin/bazel8
 share/examples/bazel8/
 share/examples/bazel8/bazel.bazelrc

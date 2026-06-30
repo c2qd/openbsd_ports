@@ -121,7 +121,7 @@ SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
 PATCHDIR =						${.CURDIR}/../patches
 FILESDIR =						${.CURDIR}/../files
 
-BUILD_DEPENDS +=				devel/bazel/9>=9
+BUILD_DEPENDS +=				devel/bazel/9
 
 MODULES +=						java
 MODJAVA_VER =					21
