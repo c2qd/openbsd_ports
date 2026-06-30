@@ -14,7 +14,7 @@ SUBST_VARS +=		SUFFIX
 EXTRACT_SUFX ?=		-dist.zip
 EXTRACT_CASES ?=	*.zip) ${UNZIP} -Laq ${FULLDISTDIR}/$$archive -d ${WRKSRC};;
 
-DIST_TUPLE +=		github bazelbuild bazel-central-registry ${BCR_COMMIT_HASH} \
+DIST_TUPLE +=		github bazelbuild bazel-central-registry ${BCR_COMMIT} \
 					bazel-central-registry
 
 EXTRA_BAZEL_ARGS += --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
