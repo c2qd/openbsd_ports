@@ -20,9 +20,9 @@ LIB_DEPENDS +=					inputmethods/fcitx
 RUN_DEPENDS +=					japanese/mozc/mozc
 
 WANTLIB +=						${COMPILER_LIBCXX} Fcitx5Config Fcitx5Core Fcitx5Utils
-WANTLIB +=						c m pthread
+WANTLIB +=						c m
 COMPILER_LANGS =				c++
-COMPILER =						base-clang
+COMPILER =						base-clang ports-clang
 
 # BSD-3-Clause + LGPL-2.1 or later(Part of the code in src/unix/fcitx5)
 # Warning: I don't know anything about licenses~
@@ -33,7 +33,11 @@ post-extract:
 	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
 
 post-patch:
-	${SUBST_CMD} ${SUBST_TARGETS}
+	${SUBST_CMD} ${SUBST_TARGETS} && \
+		cd ${WRKDIST}/bazel-central-registry && \
+		mkdir modules/abseil-cpp/20260107.1/patches && \
+		cp ${FILESDIR}/enolink.patch \
+		modules/abseil-cpp/20260107.1/patches/
 
 do-build:
 	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} build \

@@ -32,7 +32,7 @@ Index: src/MODULE.bazel
 +
 +local_runtime_repo(
 +    name = "openbsd_python3",
-+    interpreter_path = "python3",
++    interpreter_path = "${MODPY_BIN}",
 +    on_failure = "fail",
 +    dev_dependency = True
 +)

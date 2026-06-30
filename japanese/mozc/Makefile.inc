@@ -97,9 +97,23 @@ BCR_COMMIT =					2459648091f2c5b8e21a46613cf39bffb6fba298
 DIST_TUPLE +=					github bazelbuild bazel-central-registry ${BCR_COMMIT} \
 								bazel-central-registry
 
-SUBST_VARS +=					LOCALBASE X11BASE PREFIX
+# links ${WRKDIR}/bin/ld
+USE_WXNEEDED =					Yes
+
+CC_SUBST =						${WRKDIR}/bin/${CC}
+LD_SUBST =						${WRKDIR}/bin/${LD}
+NM =							nm
+OBJDUMP =						objdump
+
+CC_INCLUDE_LIST!=				printf '""%s""' \
+								`clang -print-resource-dir`/include
+
+SUBST_VARS +=					LOCALBASE X11BASE PREFIX MODPY_BIN \
+								CC_SUBST LD_SUBST CPP AR STRIP \
+								NM OBJDUMP CC_INCLUDE_LIST
 
 SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
+								${WRKSRC}/src/MODULE.bazel \
 								${WRKSRC}/src/base/system_util.cc \
 								${WRKSRC}/src/base/process.cc \
 								${WRKSRC}/src/cc_toolchain_config.bzl
@@ -116,11 +130,15 @@ BAZEL_STARTUP_FLAGS =			--output_base=${WRKOBJDIR}/_bazel_output_base \
 								--output_user_root=${WRKOBJDIR}/_bazel_output_user_root \
 								--server_javabase=${JAVA_HOME}
 
-BAZEL_BUILD_FLAGS =				--registry=file://${WRKDIST}/bazel-central-registry \
+BAZEL_BUILD_FLAGS +=			--registry=file://${WRKDIST}/bazel-central-registry \
 								--distdir=${FULLDISTDIR} \
 								--config oss_linux \
 								--config release_build \
-								--platforms=//:openbsd-ex
+								--platforms=//:openbsd-ex \
+								--copt=-B${WRKDIR}/bin \
+								--host_copt=-B${WRKDIR}/bin \
+								--cxxopt=-B${WRKDIR}/bin \
+								--host_cxxopt=-B${WRKDIR}/bin
 
 post-build:
 	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} shutdown

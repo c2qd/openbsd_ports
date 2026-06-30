@@ -18,31 +18,31 @@ def _impl(ctx):
     tool_paths = [
         tool_path(
             name = "gcc",
-            path = "clang"
+            path = "${CC_SUBST}"
         ),
         tool_path(
             name = "cpp",
-            path = "cpp"
+            path = "${CPP}"
         ),
         tool_path(
             name = "ld",
-            path = "ld"
+            path = "${LD_SUBST}"
         ),
         tool_path(
             name = "ar",
-            path = "ar"
+            path = "${AR}"
         ),
         tool_path(
             name = "nm",
-            path = "nm"
+            path = "${NM}"
         ),
         tool_path(
             name = "objdump",
-            path = "objdump"
+            path = "${OBJDUMP}"
         ),
         tool_path(
             name = "strip",
-            path = "strip"
+            path = "${STRIP}"
         ),
     ]
 
@@ -72,7 +72,7 @@ def _impl(ctx):
         ctx = ctx,
         features = features,
         cxx_builtin_include_directories = [
-            "/usr/lib/clang/22/include",
+            ${CC_INCLUDE_LIST},
             "${LOCALBASE}/include",
             "/usr/include",
             "${X11BASE}/include",
@@ -82,7 +82,7 @@ def _impl(ctx):
         target_system_name = "openbsd",
         target_cpu = "unknown",
         target_libc = "unknown",
-        compiler = "clang",
+        compiler = "${CC_SUBST}",
         abi_version = "unknown",
         abi_libc_version = "unknown",
         tool_paths = tool_paths,

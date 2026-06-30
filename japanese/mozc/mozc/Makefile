@@ -69,7 +69,7 @@ WANTLIB +=						c m pthread execinfo z X11
 LIB_DEPENDS +=					x11/qt6/qtbase
 
 COMPILER_LANGS =				c++
-COMPILER =						base-clang
+COMPILER =						base-clang ports-clang
 
 # BSD-3-Clause + NAIST-2003(IPADic) + Public Domain(Okinawa dictionary) +
 # BSD-2-Clause(Japanese usage dictionary) +
@@ -96,7 +96,11 @@ post-patch:
 		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
 		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt && \
 		mkdir -p ${BAZEL_DISTDIR_ALT} && \
-		cp ${FULLDISTDIR}/material_icon_tool_svg.svg ${BAZEL_DISTDIR_ALT}/24px.svg
+		cp ${FULLDISTDIR}/material_icon_tool_svg.svg ${BAZEL_DISTDIR_ALT}/24px.svg && \
+		cd ${WRKDIST}/bazel-central-registry && \
+		mkdir modules/abseil-cpp/20260107.1/patches && \
+		cp ${FILESDIR}/enolink.patch \
+		modules/abseil-cpp/20260107.1/patches
 
 do-build:
 	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 \
