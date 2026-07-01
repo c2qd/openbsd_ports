@@ -18,8 +18,8 @@ PERMIT_PACKAGE=			Yes
 
 WANTLIB +=				${COMPILER_LIBCXX} c cairo dbus-1 enchant-2
 WANTLIB +=				execinfo expat gdk_pixbuf-2.0 gio-2.0 glib-2.0
-WANTLIB +=				gobject-2.0 harfbuzz intl json-c kvm m pango-1.0
-WANTLIB +=				pangocairo-1.0 pthread uuid xcb xcb-ewmh xcb-icccm
+WANTLIB +=				gobject-2.0 harfbuzz intl kvm m pango-1.0
+WANTLIB +=				pangocairo-1.0 uuid xcb xcb-ewmh xcb-icccm
 WANTLIB +=				xcb-imdkit xcb-keysyms xcb-randr xcb-render
 WANTLIB +=				xcb-shape xcb-util xcb-xfixes xcb-xinerama xcb-xkb
 WANTLIB +=				xkbcommon xkbcommon-x11 xkbfile z uv
@@ -30,12 +30,12 @@ DISTFILES.data=			en_dict-20121020.tar.gz
 
 EXTRACT_SUFX =			.tar.zst
 
-MODULES =				devel/kf5
-MODQT5_DEPS =			No
+MODULES =				devel/cmake
 
-BUILD_DEPENDS =         devel/gettext,-tools \
+BUILD_DEPENDS =         devel/kf6/extra-cmake-modules \
+						devel/gettext,-tools \
                         devel/iso-codes \
-                        devel/fmt
+						textproc/nlohmann-json
 
 # bash: for fcitx5-diagnose.sh
 RUN_DEPENDS =           devel/desktop-file-utils \
@@ -44,7 +44,6 @@ RUN_DEPENDS =           devel/desktop-file-utils \
                         x11/gtk+4,-guic
 
 LIB_DEPENDS =           devel/harfbuzz,-main \
-                        devel/json-c \
                         devel/libuv \
                         devel/pango \
                         graphics/gdk-pixbuf2 \
