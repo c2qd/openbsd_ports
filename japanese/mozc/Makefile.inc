@@ -110,13 +110,16 @@ CLANG_RESOURCE_DIR!=			printf '""%s""' \
 
 SUBST_VARS +=					LOCALBASE X11BASE PREFIX MODPY_BIN \
 								CC_SUBST LD_SUBST CPP AR STRIP \
-								NM OBJDUMP CLANG_RESOURCE_DIR
+								NM OBJDUMP CLANG_RESOURCE_DIR PYIF_HASH
 
 SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
 								${WRKSRC}/src/MODULE.bazel \
 								${WRKSRC}/src/base/system_util.cc \
 								${WRKSRC}/src/base/process.cc \
-								${WRKSRC}/src/cc_toolchain_config.bzl
+								${WRKSRC}/src/cc_toolchain_config.bzl \
+								${WRKSRC}/bazel-central-registry/modules/rules_python/1.9.0/patches/pyinterpreter_fallback.patch
+
+SUBST_TARGETS_EX =				${WRKSRC}/bazel-central-registry/modules/rules_python/1.9.0/source.json
 
 PATCHDIR =						${.CURDIR}/../patches
 FILESDIR =						${.CURDIR}/../files

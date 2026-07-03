@@ -59,7 +59,7 @@ EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 
 BUILD_DEPENDS +=				archivers/bzip2
 
-MODULES +=						x11/qt6 lang/python
+MODULES +=						lang/python
 
 MODPY_RUNDEP =                  No
 MODPY_ADJ_FILES +=              ${WRKSRC}/merge_dictionaries.py
@@ -85,8 +85,17 @@ post-extract:
 	cp ${FULLDISTDIR}/${DISTFILES.merge_script} ${WRKSRC}/ && \
 		cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
 
+pre-patch:
+	cp ${FILESDIR}/pyinterpreter_fallback.patch \
+		${WRKDIST}/bazel-central-registry/modules/rules_python/1.9.0/patches
+
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS} && \
+		cd ${WRKSRC} && \
+		PYIF_HASH=$$(sha256 -bq bazel-central-registry/modules/rules_python/1.9.0/patches/pyinterpreter_fallback.patch); \
+		${SUBST_CMD} \
+		-DPYIF_HASH=$${PYIF_HASH} \
+		${SUBST_TARGETS_EX} && \
 		cd ${FULLDISTDIR} && \
 		cp ${DISTFILES.jawiki} ${DISTFILES.personal_names} \
 		${DISTFILES.place_names} ${DISTFILES.sudachidict} \
