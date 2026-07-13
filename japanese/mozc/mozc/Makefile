@@ -2,10 +2,10 @@ COMMENT =						Japanese Input Method Editor
 
 GH_ACCOUNT =					google
 GH_PROJECT =					mozc
-GH_COMMIT =						76887c679e1e4f156102e4bc62ea9cf9174678a3
+GH_COMMIT =						0651fbcae495ff98f6ae17bb59e2bee0e3a79661
 
-VERSION =						3.34.6239.${GH_COMMIT}
-REVISION =						0
+VERSION =						3.34.6239
+REVISION =						1
 DISTNAME =						mozc-${VERSION}
 PKGNAME =						mozc-${VERSION}
 
@@ -39,14 +39,6 @@ SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_DATE}/
 JA_USAGE_DICT_VERSION =			2025-01-25
 ZIP_CODE_COMMIT =				621d059fbcbfae17bfca15b439692bae934268c3
 
-DISTFILES.dictionary_png =		outline_chrome_reader_mode_black_48dp.png
-SITES.dictionary_png =			https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/chrome_reader_mode/materialiconsoutlined/48dp/1x/
-DISTFILES.dictionary_svg =		24px.svg
-SITES.dictionary_svg =			https://raw.githubusercontent.com/google/material-design-icons/4.0.0/src/action/chrome_reader_mode/materialiconsoutlined/
-DISTFILES.property_png =		round_settings_black_48dp.png
-SITES.property_png =			https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/settings/materialiconsround/48dp/1x/
-DISTFILES.property_svg =		material_icon_tool_svg{24px}.svg
-SITES.property_svg =			https://raw.githubusercontent.com/google/material-design-icons/4.0.0/src/action/settings/materialiconsround/
 DISTFILES.ja_usage_dict =		${JA_USAGE_DICT_VERSION}.zip
 SITES.ja_usage_dict =			https://github.com/hiroyuki-komatsu/japanese-usage-dictionary/archive/refs/tags/
 DISTFILES.zip_code_jigyosyo =	jigyosyo.zip
@@ -79,8 +71,6 @@ COMPILER =						base-clang
 #          Please determine whether to set PERMIT_PACKAGE to Y/n.
 PERMIT_PACKAGE =				No
 
-BAZEL_DISTDIR_ALT =				${WRKDIR}/distdir_alt
-
 post-extract:
 	cp ${FULLDISTDIR}/${DISTFILES.merge_script} ${WRKSRC}/ && \
 		cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
@@ -94,8 +84,7 @@ post-patch:
 		cd ${WRKSRC} && \
 		PYIF_HASH=$$(sha256 -bq bazel-central-registry/modules/rules_python/1.9.0/patches/pyinterpreter_fallback.patch); \
 		${SUBST_CMD} \
-		-DPYIF_HASH=$${PYIF_HASH} \
-		${SUBST_TARGETS_EX} && \
+		-DPYIF_HASH=$${PYIF_HASH} ${SUBST_TARGETS_EX} && \
 		cd ${FULLDISTDIR} && \
 		cp ${DISTFILES.jawiki} ${DISTFILES.personal_names} \
 		${DISTFILES.place_names} ${DISTFILES.sudachidict} \
@@ -104,8 +93,6 @@ post-patch:
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
 		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
 		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt && \
-		mkdir -p ${BAZEL_DISTDIR_ALT} && \
-		cp ${FULLDISTDIR}/material_icon_tool_svg.svg ${BAZEL_DISTDIR_ALT}/24px.svg && \
 		cd ${WRKDIST}/bazel-central-registry && \
 		mkdir modules/abseil-cpp/20260107.1/patches && \
 		cp ${FILESDIR}/enolink.patch \
@@ -114,11 +101,10 @@ post-patch:
 do-build:
 	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 \
 		${BAZEL_STARTUP_FLAGS} build ${BAZEL_BUILD_FLAGS} \
-		--distdir=${BAZEL_DISTDIR_ALT} \
 		--copt=-I/usr/X11R6/include \
 		--linkopt=-L/usr/local/lib \
 		--host_linkopt=-L/usr/local/lib \
-		--action_env=LC_ALL=C.UTF-8 \
+		--action_env=LC_CTYPE=C.UTF-8 \
 		server:mozc_server gui/tool:mozc_tool
 
 do-install:
