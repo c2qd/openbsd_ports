@@ -2,10 +2,10 @@ COMMENT =						Japanese Input Method Editor
 
 GH_ACCOUNT =					google
 GH_PROJECT =					mozc
-GH_COMMIT =						0651fbcae495ff98f6ae17bb59e2bee0e3a79661
+GH_COMMIT =						416af15bc4045567e7538c4692ba554ea74f7afe
 
 VERSION =						3.34.6239
-REVISION =						1
+REVISION =						2
 DISTNAME =						mozc-${VERSION}
 PKGNAME =						mozc-${VERSION}
 
@@ -19,7 +19,7 @@ UT_PERSONAL_NAMES_COMMIT =		5896ebef5f39d5772f4575fa05eb24436ce5a5f1
 UT_PLACE_NAMES_COMMIT =			6f9d9bda14f0bd2c10c1563d2aed9150ea95095c
 UT_NEOLOGD_COMMIT =				e33ac4ce808fa4253c6c97bf5178e229a4bfb50f
 UT_SUDACHIDICT_COMMIT =			7def3da408b1854801bd5b559273f9fb8001ef5b
-JAWIKI_DATE =					20260601
+JAWIKI_DATE =					20260701
 
 DISTFILES.merge_script =		merge_dictionaries.py
 SITES.merge_script =			https://raw.githubusercontent.com/utuhiro78/merge-ut-dictionaries/${UT_COMMIT}/src/merge/
@@ -99,7 +99,7 @@ post-patch:
 		modules/abseil-cpp/20260107.1/patches
 
 do-build:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 \
+	cd ${WRKSRC}/src && ${PROXY_ENV} ${LOCALBASE}/bin/bazel9 \
 		${BAZEL_STARTUP_FLAGS} build ${BAZEL_BUILD_FLAGS} \
 		--copt=-I/usr/X11R6/include \
 		--linkopt=-L/usr/local/lib \

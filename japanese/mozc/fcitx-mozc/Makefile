@@ -2,9 +2,10 @@ COMMENT =						Fcitx5 input method module for Mozc
 
 GH_ACCOUNT =					fcitx
 GH_PROJECT =					mozc
-GH_COMMIT =						35898ee6c4f7424ae73000bbd754510d7ab772d0
+GH_COMMIT =						102eb176a3153e53bcc7f01fb5e803f9568985a0
 
-VERSION =						3.34.6239.${GH_COMMIT}
+VERSION =						3.34.6239
+REVISION =						2
 DISTNAME =						fcitx-mozc-${VERSION}
 PKGNAME =						fcitx-mozc-${VERSION}
 
@@ -13,7 +14,7 @@ CATEGORIES=						japanese
 MAINTAINER =					c2qd
 
 EXTRACT_ONLY =					fcitx-mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
-								bazelbuild-bazel-central-registry-${BCR_COMMIT_HASH}.tar.gz
+								bazelbuild-bazel-central-registry-${BCR_COMMIT}.tar.gz
 
 BUILD_DEPENDS +=				devel/gettext,-tools shells/bash
 LIB_DEPENDS +=					inputmethods/fcitx
@@ -32,8 +33,16 @@ PERMIT_PACKAGE =				No
 post-extract:
 	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
 
+pre-patch:
+	cp ${FILESDIR}/pyinterpreter_fallback.patch \
+		${WRKDIST}/bazel-central-registry/modules/rules_python/1.9.0/patches
+
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS} && \
+		cd ${WRKSRC} && \
+		PYIF_HASH=$$(sha256 -bq bazel-central-registry/modules/rules_python/1.9.0/patches/pyinterpreter_fallback.patch); \
+		${SUBST_CMD} \
+		-DPYIF_HASH=$${PYIF_HASH} ${SUBST_TARGETS_EX}
 		cd ${WRKDIST}/bazel-central-registry && \
 		mkdir modules/abseil-cpp/20260107.1/patches && \
 		cp ${FILESDIR}/enolink.patch \

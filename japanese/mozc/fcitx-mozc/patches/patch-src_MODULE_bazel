@@ -1,19 +1,35 @@
 Index: src/MODULE.bazel
 --- src/MODULE.bazel.orig
 +++ src/MODULE.bazel
-@@ -123,9 +123,9 @@ cc_configure = use_extension(
+@@ -144,10 +144,7 @@ cc_configure = use_extension(
      "@rules_cc//cc:extensions.bzl",
      "cc_configure_extension",
  )
 -use_repo(cc_configure, "local_config_cc")
-+#use_repo(cc_configure, "local_config_cc")
  
 -register_toolchains("@local_config_cc//:all")
-+#register_toolchains("@local_config_cc//:all")
- 
+-
  # rules_go: 0.60.0 2026-02-09
  # https://github.com/bazel-contrib/rules_go
-@@ -342,6 +342,33 @@ http_archive(
+ # This is not a direct dependency of mozc, but is added to override the
+@@ -238,6 +235,7 @@ new_local_repository(
+ # Fcitx 5
+ pkg_config_repository(
+     name = "fcitx5",
++    exec_os = ["linux", "openbsd"],
+     packages = [
+         "Fcitx5Core",
+         "Fcitx5Module",
+@@ -247,7 +245,7 @@ pkg_config_repository(
+ # Qt for Linux
+ pkg_config_repository(
+     name = "qt_linux",
+-    exec_os = ["linux"],
++    exec_os = ["linux", "openbsd"],
+     packages = [
+         "Qt6Core",
+         "Qt6Gui",
+@@ -382,6 +380,33 @@ http_archive(
          "https://github.com/google/google-toolbox-for-mac/archive/%s.zip" % GTM_GIT_SHA,
      ],
  )

@@ -112,11 +112,10 @@ SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
 								${WRKSRC}/src/base/system_util.cc \
 								${WRKSRC}/src/base/process.cc \
 								${WRKSRC}/src/cc_toolchain_config.bzl \
-								${WRKSRC}/bazel-central-registry/modules/rules_python/1.9.0/patches/pyinterpreter_fallback.patch
+								${WRKSRC}/bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/patches/pyinterpreter_fallback.patch
 
-SUBST_TARGETS_EX =				${WRKSRC}/bazel-central-registry/modules/rules_python/1.9.0/source.json
+SUBST_TARGETS_EX =				${WRKSRC}/bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/source.json
 
-PATCHDIR =						${.CURDIR}/../patches
 FILESDIR =						${.CURDIR}/../files
 
 BUILD_DEPENDS +=				devel/bazel/9
@@ -126,7 +125,7 @@ MODJAVA_VER =					21
 
 BAZEL_STARTUP_FLAGS =			--output_base=${WRKOBJDIR}/_bazel_output_base \
 								--output_user_root=${WRKOBJDIR}/_bazel_output_user_root \
-								--server_javabase=${JAVA_HOME} --host_jvm_args=-Djavax.net.ssl.trustStore=/tmp/cacerts --host_jvm_args=-Djavax.net.ssl.trustStorePassword=changeit
+								--server_javabase=${JAVA_HOME}
 
 BAZEL_BUILD_FLAGS +=			--registry=file://${WRKDIST}/bazel-central-registry \
 								--distdir=${BAZEL_DISTDIR_ALT} \
@@ -139,10 +138,19 @@ BAZEL_BUILD_FLAGS +=			--registry=file://${WRKDIST}/bazel-central-registry \
 								--cxxopt=-B${WRKDIR}/bin \
 								--host_cxxopt=-B${WRKDIR}/bin
 
-show-depends:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} \
-		mod graph --registry=file://${WRKDIST}/bazel-central-registry \
-		--output json
+# === for debug; with mitmproxy ===
+.if defined(ENABLE_PROXY) && ${ENABLE_PROXY} == "1"
+BAZEL_STARTUP_FLAGS +=			--host_jvm_args=-Djavax.net.ssl.trustStore=/tmp/cacerts \
+								--host_jvm_args=-Djavax.net.ssl.trustStorePassword=changeit
+PROXY_ENV =						HTTPS_PROXY=http://127.0.0.1:8080
+.endif
+
+proxyconfig:
+	cp ${JAVA_HOME}/lib/security/cacerts /tmp/cacerts && \
+		keytool -importcert -alias mitmproxy \
+		-file ~/.mitmproxy/mitmproxy-ca-cert.pem \
+		-keystore /tmp/cacerts -storepass changeit
+# === end ===
 
 post-build:
 	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} shutdown

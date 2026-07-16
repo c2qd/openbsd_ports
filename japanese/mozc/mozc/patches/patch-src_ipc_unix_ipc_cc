@@ -1,0 +1,88 @@
+In IsPeerValid, the assignment of peer_cred.pid to pid at the end has been removed for the following reason.
+First, keeping this line causes the build to fail; removing it allows the build to succeed.
+This is because *pid is initialized to 0 at the beginning of the function.
+As a result, when the caller subsequently invokes IPCPathManager::IsValidServer,
+the pid == 0 case inside that function is triggered, which immediately returns true.
+
+Even if the correct pid is set, the processing performed in IsValidServer is essentially intended
+to verify the absolute path of the process corresponding to the given pid.
+The Linux implementation achieves this using /proc/<pid>/exe,
+and the FreeBSD unofficial port (gh:kdeguchi/mozc-ports) uses procstat for the same purpose.
+However, I am not aware of a reliable way to implement equivalent behavior on OpenBSD,
+so it has not been implemented.
+As a result, execution ultimately falls through to return false, and the system stops functioning.
+
+Incidentally, Mozc itself appears to anticipate usage where pid is set to 0, as seen in src/ipc/ipc_path_manager.h:
+"To keep backward compatibility and other operating system
+ having no support of getting peer's pid, you can set 0 pid."
+
+Index: src/ipc/unix_ipc.cc
+--- src/ipc/unix_ipc.cc.orig
++++ src/ipc/unix_ipc.cc
+@@ -28,7 +28,7 @@
+ // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
+ // __linux__ only. Note that __ANDROID__/__wasm__ don't reach here.
+-#if defined(__linux__)
++#if defined(__linux__) || defined(__OpenBSD__)
+ 
+ #include <fcntl.h>
+ #include <sys/select.h>
+@@ -121,6 +121,15 @@ bool IsWriteTimeout(int socket, absl::Duration timeout
+ bool IsPeerValid(int socket, pid_t *pid) {
+   *pid = 0;
+ 
++#if defined(__OpenBSD__)
++  struct sockpeercred peer_cred;
++  socklen_t peer_cred_len = sizeof(peer_cred);
++  if (getsockopt(socket, SOL_SOCKET, SO_PEERCRED, &peer_cred,
++              &peer_cred_len) < 0) {
++    LOG(ERROR) << "cannot get peer credential. Not a Unix socket?";
++    return false;
++  }
++#else
+   struct ucred peer_cred;
+   int peer_cred_len = sizeof(peer_cred);
+   if (getsockopt(socket, SOL_SOCKET, SO_PEERCRED, &peer_cred,
+@@ -128,14 +137,12 @@ bool IsPeerValid(int socket, pid_t *pid) {
+     LOG(ERROR) << "cannot get peer credential. Not a Unix socket?";
+     return false;
+   }
+-
++#endif
+   if (peer_cred.uid != ::geteuid()) {
+     LOG(WARNING) << "uid mismatch." << peer_cred.uid << "!=" << ::geteuid();
+     return false;
+   }
+ 
+-  *pid = peer_cred.pid;
+-
+   return true;
+ }
+ 
+@@ -265,7 +272,12 @@ void IPCClient::Init(absl::string_view name,
+     address.sun_family = AF_UNIX;
+     absl::SNPrintF(address.sun_path, sizeof(address.sun_path), "%s",
+                    server_address);
++#if defined(__OpenBSD__)
++    const socklen_t sun_len = SUN_LEN(&address);
++    address.sun_len = sun_len;
++#else
+     const size_t sun_len = sizeof(address.sun_family) + server_address_length;
++#endif
+     pid_t pid = 0;
+     if (::connect(socket_, reinterpret_cast<const sockaddr *>(&address),
+                   sun_len) != 0 ||
+@@ -381,7 +393,12 @@ IPCServer::IPCServer(absl::string_view name, int32_t n
+   int on = 1;
+   ::setsockopt(socket_, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&on),
+                sizeof(on));
++#if defined(__OpenBSD__)
++  const socklen_t sun_len = SUN_LEN(&addr);
++  addr.sun_len = sun_len;
++#else
+   const size_t sun_len = sizeof(addr.sun_family) + server_address_.size();
++#endif
+   if (is_file_socket) {
+     // Linux does not use files for IPC.
+     ::chmod(server_address_.c_str(), 0600);

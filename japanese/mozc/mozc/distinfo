@@ -8,11 +8,11 @@ SHA256 (bazel_features-v1.42.1.tar.gz) = gYm6yaa/nMFVqFTEy+v+v1i5ynotCmdkX30MH4P
 SHA256 (bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = yAoyDhvnhUzMm5G9KIma+AfGPX87+eDRUjCzoeaqttE=
 SHA256 (buildozer-v8.5.1.tar.gz) = vQeG4Pi2rtjDWJi0wG9kuoU9YdfINh7bWo1Dxuo39cY=
 SHA256 (googletest-1.17.0.tar.gz) = Zfq3AdmCnTjLd8FKzcQx0hCL/b+JeeQOuK5Wft8Qsnw=
-SHA256 (jawiki-20260601-pages-articles-multistream-index.txt.bz2) = Q7EQAEQfRCxZgApvwwtIfw0Hk4+bFaoKRq/3mDDT3pY=
+SHA256 (jawiki-20260701-pages-articles-multistream-index.txt.bz2) = FY1nHhu16qh+QFxFLyLV953Yx9067GGMB6B5pHHUQKw=
 SHA256 (jigyosyo.zip) = FL4QMPYHxfgZ8vRaSF6JURkHvdHWLn+xkxtuSKNDHDo=
 SHA256 (ken_all.zip) = OtyX2OGeEWimzcsvznWdDp5hOpo7YwzBgK7P1WroHq8=
 SHA256 (merge_dictionaries.py) = ALDz2KtQR5e5cK0Qjfgt+TseqSKIKcxsz1wq+tssN4k=
-SHA256 (mozc-3.34.6239-0651fbca.tar.gz) = kPsSXL9bKlwNaT2lJ8pvxRqY6sM054WSSfJ4Gdju7KM=
+SHA256 (mozc-3.34.6239-416af15b.tar.gz) = qU6oddlf+Z1lcfNbl9lgsard7YcA9LiwQwZ4MA0Jr3U=
 SHA256 (mozcdic-ut-jawiki.txt.bz2) = QxG5Ba+cqaImqD2dwAFPpIEW8lHnuEMkSOGSREsxw9c=
 SHA256 (mozcdic-ut-neologd.txt.bz2) = IxubXkrRa6o/eWgPTkYV9wYFEaQdpKrCFJeJ6s4/JBE=
 SHA256 (mozcdic-ut-personal-names.txt.bz2) = mMepCe/Gi1LoEDX39uQtP2P1y5GgaMpXB+wBmHYkDes=
@@ -49,11 +49,11 @@ SIZE (bazel_features-v1.42.1.tar.gz) = 18078
 SIZE (bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = 9417311
 SIZE (buildozer-v8.5.1.tar.gz) = 8300
 SIZE (googletest-1.17.0.tar.gz) = 885595
-SIZE (jawiki-20260601-pages-articles-multistream-index.txt.bz2) = 31096507
+SIZE (jawiki-20260701-pages-articles-multistream-index.txt.bz2) = 31198189
 SIZE (jigyosyo.zip) = 774660
 SIZE (ken_all.zip) = 1694719
 SIZE (merge_dictionaries.py) = 9061
-SIZE (mozc-3.34.6239-0651fbca.tar.gz) = 29081044
+SIZE (mozc-3.34.6239-416af15b.tar.gz) = 29086617
 SIZE (mozcdic-ut-jawiki.txt.bz2) = 12080614
 SIZE (mozcdic-ut-neologd.txt.bz2) = 15715076
 SIZE (mozcdic-ut-personal-names.txt.bz2) = 715140
