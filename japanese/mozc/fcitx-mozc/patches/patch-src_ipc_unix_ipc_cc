@@ -16,6 +16,9 @@ Incidentally, Mozc itself appears to anticipate usage where pid is set to 0, as 
 "To keep backward compatibility and other operating system
  having no support of getting peer's pid, you can set 0 pid."
 
+...What? You mean you can get the PID on OpenBSD, right?
+...Ah, well... um... What I was trying to point out was that there are cases where setting the PID to 0 is expected to be used, not that OpenBSD is a system where the PID cannot be obtained... haha...
+
 Index: src/ipc/unix_ipc.cc
 --- src/ipc/unix_ipc.cc.orig
 +++ src/ipc/unix_ipc.cc
