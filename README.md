@@ -9,7 +9,11 @@ Also, for convenience, there may be ports that establish network connections dur
 
 ## Info
 
-None of the ports have been tested on anything other than x86_64.
+None of the ports have been tested on anything other than x86_64.  
+Before building Fcitx5, please run the following command. This workaround would not be necessary if the fix proposed at ['devel/llvm: fix clang linking with -fexperimental-library' - MARC](https://marc.info/?l=openbsd-ports&m=178196468149108) were accepted, but unfortunately I have not received any response...
+```sh
+$ doas ln -s /usr/local/llvm22/lib/libec++experimental.a /usr/local/llvm22/lib/libc++experimental.a
+```
 
 ## How to use
 
