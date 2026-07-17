@@ -5,7 +5,7 @@ GH_PROJECT =					mozc
 GH_COMMIT =						416af15bc4045567e7538c4692ba554ea74f7afe
 
 VERSION =						3.34.6239
-REVISION =						2
+REVISION =						3
 DISTNAME =						mozc-${VERSION}
 PKGNAME =						mozc-${VERSION}
 
@@ -14,25 +14,26 @@ CATEGORIES=						japanese
 MAINTAINER =					c2qd
 
 UT_COMMIT =						15c1c64502b43e31d328012860376c03c3eaf633
-UT_JAWIKI_COMMIT =				b50cabaecaf32c03d102db55fc5d0b98e334ec9e
-UT_PERSONAL_NAMES_COMMIT =		5896ebef5f39d5772f4575fa05eb24436ce5a5f1
-UT_PLACE_NAMES_COMMIT =			6f9d9bda14f0bd2c10c1563d2aed9150ea95095c
+UT_JAWIKI_COMMIT =				4d32dfc2e3a3644d6b4ab848fb129ca2cd52a619
+UT_PERSONAL_NAMES_COMMIT =		159e01bf4af61a3fa9367ae2578fd42c464a0ea7
+UT_PLACE_NAMES_COMMIT =			9951ef87972c1d2c3803e2106b86083d14a242f9
 UT_NEOLOGD_COMMIT =				e33ac4ce808fa4253c6c97bf5178e229a4bfb50f
 UT_SUDACHIDICT_COMMIT =			7def3da408b1854801bd5b559273f9fb8001ef5b
 JAWIKI_DATE =					20260701
 
-DISTFILES.merge_script =		merge_dictionaries.py
+DISTFILES.merge_script =		merge_dictionaries-${UT_COMMIT}{merge_dictionaries}.py
 SITES.merge_script =			https://raw.githubusercontent.com/utuhiro78/merge-ut-dictionaries/${UT_COMMIT}/src/merge/
-DISTFILES.jawiki =				mozcdic-ut-jawiki.txt.bz2
+MERGE_SCRIPT =					${DISTFILES.merge_script:C/-[0-9a-fA-F]{40}//:C/\{[^}]*\}//}
+DISTFILES.jawiki =				mozcdic-ut-jawiki-${UT_JAWIKI_COMMIT}{mozcdic-ut-jawiki}.txt.bz2
 SITES.jawiki =					https://github.com/utuhiro78/mozcdic-ut-jawiki/raw/${UT_JAWIKI_COMMIT}/
-DISTFILES.personal_names =		mozcdic-ut-personal-names.txt.bz2
+DISTFILES.personal_names =		mozcdic-ut-personal-names-${UT_PERSONAL_NAMES_COMMIT}{mozcdic-ut-personal-names}.txt.bz2
 SITES.personal_names =			https://github.com/utuhiro78/mozcdic-ut-personal-names/raw/${UT_PERSONAL_NAMES_COMMIT}/
-DISTFILES.place_names =			mozcdic-ut-place-names.txt.bz2
+DISTFILES.place_names =			mozcdic-ut-place-names-${UT_PLACE_NAMES_COMMIT}{mozcdic-ut-place-names}.txt.bz2
 SITES.place_names =				https://github.com/utuhiro78/mozcdic-ut-place-names/raw/${UT_PLACE_NAMES_COMMIT}/
-DISTFILES.sudachidict =			mozcdic-ut-sudachidict.txt.bz2
-SITES.sudachidict =				https://github.com/utuhiro78/mozcdic-ut-sudachidict/raw/${UT_SUDACHIDICT_COMMIT}/
-DISTFILES.neologd =				mozcdic-ut-neologd.txt.bz2
+DISTFILES.neologd =				mozcdic-ut-neologd-${UT_NEOLOGD_COMMIT}{mozcdic-ut-neologd}.txt.bz2
 SITES.neologd =					https://github.com/utuhiro78/mozcdic-ut-neologd/raw/${UT_NEOLOGD_COMMIT}/
+DISTFILES.sudachidict =			mozcdic-ut-sudachidict-${UT_SUDACHIDICT_COMMIT}{mozcdic-ut-sudachidict}.txt.bz2
+SITES.sudachidict =				https://github.com/utuhiro78/mozcdic-ut-sudachidict/raw/${UT_SUDACHIDICT_COMMIT}/
 DISTFILES.jawiki_index =		jawiki-${JAWIKI_DATE}-pages-articles-multistream-index.txt.bz2
 SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_DATE}/
 
@@ -72,7 +73,7 @@ COMPILER =						base-clang
 PERMIT_PACKAGE =				No
 
 post-extract:
-	cp ${FULLDISTDIR}/${DISTFILES.merge_script} ${WRKSRC}/ && \
+	cp ${FULLDISTDIR}/${MERGE_SCRIPT} ${WRKSRC}/ && \
 		cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
 
 pre-patch:
@@ -86,12 +87,10 @@ post-patch:
 		${SUBST_CMD} \
 		-DPYIF_HASH=$${PYIF_HASH} ${SUBST_TARGETS_EX} && \
 		cd ${FULLDISTDIR} && \
-		cp ${DISTFILES.jawiki} ${DISTFILES.personal_names} \
-		${DISTFILES.place_names} ${DISTFILES.sudachidict} \
-		${DISTFILES.neologd} ${DISTFILES.jawiki_index} ${WRKSRC} && \
-		cd ${WRKSRC} && bzip2 -d mozcdic-*.txt.bz2 && \
+		cp ${FULLDISTDIR}/mozcdic-ut-*.txt.bz2 ${DISTFILES.jawiki_index} ${WRKSRC} && \
+		cd ${WRKSRC} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
-		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
+		${MODPY_BIN} ${MERGE_SCRIPT} mozcdic-ut.txt && \
 		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt && \
 		cd ${WRKDIST}/bazel-central-registry && \
 		mkdir modules/abseil-cpp/20260107.1/patches && \

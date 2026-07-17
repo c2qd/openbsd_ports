@@ -43,6 +43,8 @@ DISTFILES.bazel_features =		bazel_features-v${BAZEL_FEATURES_VERSION}.tar.gz
 SITES.bazel_features =			https://github.com/bazel-contrib/bazel_features/releases/download/v${BAZEL_FEATURES_VERSION}/
 DISTFILES.buildozer =			buildozer-v${BUILDOZER_VERSION}.tar.gz
 SITES.buildozer =				https://github.com/fmeum/buildozer/releases/download/v${BUILDOZER_VERSION}/
+DISTFILES.go_versions =			versions.json{?mode=json&include=all&file=versions.json}
+SITES.go_versions =				https://go.dev/dl/
 DISTFILES.googletest =			googletest-${GOOGLETEST_VERSION}.tar.gz
 SITES.googletest =				https://github.com/google/googletest/releases/download/v${GOOGLETEST_VERSION}/
 DISTFILES.platforms =			platforms-${PLATFORMS_VERSION}.tar.gz
@@ -130,7 +132,6 @@ BAZEL_STARTUP_FLAGS =			--output_base=${WRKDIST}/bazel_output_base \
 
 BAZEL_BUILD_FLAGS +=			--tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 								--registry=file://${WRKDIST}/bazel-central-registry \
-								--distdir=${BAZEL_DISTDIR_ALT} \
 								--distdir=${FULLDISTDIR}\
 								--config oss_linux \
 								--config release_build \
@@ -142,8 +143,11 @@ BAZEL_BUILD_FLAGS +=			--tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 
 # === for debug; with mitmproxy ===
 .if defined(ENABLE_PROXY) && ${ENABLE_PROXY} == "1"
+BUILD_DEPENDS +=				security/mitmproxy
+
 BAZEL_STARTUP_FLAGS +=			--host_jvm_args=-Djavax.net.ssl.trustStore=/tmp/cacerts \
 								--host_jvm_args=-Djavax.net.ssl.trustStorePassword=changeit
+
 BAZEL_ENVS +=					HTTPS_PROXY=http://127.0.0.1:8080
 .endif
 
@@ -155,4 +159,4 @@ proxyconfig:
 # === end ===
 
 post-build:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} shutdown
+	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} shutdown
