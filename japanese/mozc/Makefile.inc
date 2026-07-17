@@ -123,11 +123,13 @@ BUILD_DEPENDS +=				devel/bazel/9
 MODULES +=						java
 MODJAVA_VER =					21
 
-BAZEL_STARTUP_FLAGS =			--output_base=${WRKOBJDIR}/_bazel_output_base \
-								--output_user_root=${WRKOBJDIR}/_bazel_output_user_root \
-								--server_javabase=${JAVA_HOME}
+BAZEL_ENVS +=					JAVA_HOME=${JAVA_HOME}
 
-BAZEL_BUILD_FLAGS +=			--registry=file://${WRKDIST}/bazel-central-registry \
+BAZEL_STARTUP_FLAGS =			--output_base=${WRKDIST}/bazel_output_base \
+								--output_user_root=${WRKDIST}/bazel_output_user_root
+
+BAZEL_BUILD_FLAGS +=			--tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
+								--registry=file://${WRKDIST}/bazel-central-registry \
 								--distdir=${BAZEL_DISTDIR_ALT} \
 								--distdir=${FULLDISTDIR}\
 								--config oss_linux \
@@ -142,7 +144,7 @@ BAZEL_BUILD_FLAGS +=			--registry=file://${WRKDIST}/bazel-central-registry \
 .if defined(ENABLE_PROXY) && ${ENABLE_PROXY} == "1"
 BAZEL_STARTUP_FLAGS +=			--host_jvm_args=-Djavax.net.ssl.trustStore=/tmp/cacerts \
 								--host_jvm_args=-Djavax.net.ssl.trustStorePassword=changeit
-PROXY_ENV =						HTTPS_PROXY=http://127.0.0.1:8080
+BAZEL_ENVS +=					HTTPS_PROXY=http://127.0.0.1:8080
 .endif
 
 proxyconfig:

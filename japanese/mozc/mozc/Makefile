@@ -99,7 +99,7 @@ post-patch:
 		modules/abseil-cpp/20260107.1/patches
 
 do-build:
-	cd ${WRKSRC}/src && ${PROXY_ENV} ${LOCALBASE}/bin/bazel9 \
+	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 \
 		${BAZEL_STARTUP_FLAGS} build ${BAZEL_BUILD_FLAGS} \
 		--copt=-I/usr/X11R6/include \
 		--linkopt=-L/usr/local/lib \

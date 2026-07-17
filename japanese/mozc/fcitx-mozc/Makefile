@@ -49,7 +49,8 @@ post-patch:
 		modules/abseil-cpp/20260107.1/patches/
 
 do-build:
-	cd ${WRKSRC}/src && ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} build \
+	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 \
+		${BAZEL_STARTUP_FLAGS} build \
 		${BAZEL_BUILD_FLAGS} unix/fcitx5:fcitx5-mozc.so
 
 do-install:
