@@ -11,7 +11,7 @@ CATEGORIES =			inputmethods chinese japanese korean
 
 HOMEPAGE =				https://fcitx-im.org/
 
-MAINTAINER =			c2qd (https://codeberg.org/c2qd/openbsd_ports/issues)
+MAINTAINER =			c2qd
 
 # LGPLv2.1+
 PERMIT_PACKAGE=			Yes
@@ -19,10 +19,10 @@ PERMIT_PACKAGE=			Yes
 WANTLIB +=				${COMPILER_LIBCXX} c cairo dbus-1 enchant-2
 WANTLIB +=				execinfo expat gdk_pixbuf-2.0 gio-2.0 glib-2.0
 WANTLIB +=				gobject-2.0 harfbuzz intl kvm m pango-1.0
-WANTLIB +=				pangocairo-1.0 uuid xcb xcb-ewmh xcb-icccm
-WANTLIB +=				xcb-imdkit xcb-keysyms xcb-randr xcb-render
-WANTLIB +=				xcb-shape xcb-util xcb-xfixes xcb-xinerama xcb-xkb
-WANTLIB +=				xkbcommon xkbcommon-x11 xkbfile z uv
+WANTLIB +=				pangocairo-1.0 uuid uv wayland-client wayland-cursor
+WANTLIB +=				xcb xcb-ewmh xcb-icccm xcb-imdkit xcb-keysyms
+WANTLIB +=				xcb-randr xcb-render xcb-shape xcb-util xcb-xfixes
+WANTLIB +=				xcb-xinerama xcb-xkb xkbcommon xkbcommon-x11 xkbfile z
 
 SITES =					https://download.fcitx-im.org/fcitx5/fcitx5/
 SITES.data =			https://download.fcitx-im.org/data/
@@ -35,7 +35,8 @@ MODULES =				devel/cmake
 BUILD_DEPENDS =         devel/kf6/extra-cmake-modules \
 						devel/gettext,-tools \
                         devel/iso-codes \
-						textproc/nlohmann-json
+						textproc/nlohmann-json \
+						wayland/wayland
 
 # bash: for fcitx5-diagnose.sh
 RUN_DEPENDS =           devel/desktop-file-utils \
@@ -50,11 +51,13 @@ LIB_DEPENDS =           devel/harfbuzz,-main \
                         inputmethods/xcb-imdkit \
                         sysutils/e2fsprogs \
                         textproc/enchant2 \
+						wayland/plasma-wayland-protocols \
+						wayland/wayland \
+						wayland/wayland-protocols \
                         x11/dbus \
                         x11/xkbcommon
 
-CONFIGURE_ARGS =        -DENABLE_WAYLAND=OFF \
-                        -DCMAKE_INSTALL_SYSCONFDIR=${PREFIX}/share/examples
+CONFIGURE_ARGS =        -DCMAKE_INSTALL_SYSCONFDIR=${PREFIX}/share/examples
 
 COMPILER =				ports-clang
 MODCLANG_VERSION =		22

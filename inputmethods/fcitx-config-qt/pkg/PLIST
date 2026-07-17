@@ -3,7 +3,10 @@
 @bin bin/fcitx5-plasma-theme-generator
 @bin bin/kbd-layout-viewer5
 @lib lib/libFcitx5Migrator.so.${LIBFcitx5Migrator_VERSION}
-@so lib/qt5/plugins/plasma/kcms/systemsettings/kcm_fcitx5.so
+lib/qt6/plugins/plasma/
+lib/qt6/plugins/plasma/kcms/
+lib/qt6/plugins/plasma/kcms/systemsettings/
+@so lib/qt6/plugins/plasma/kcms/systemsettings/kcm_fcitx5.so
 share/applications/kbd-layout-viewer5.desktop
 share/applications/kcm_fcitx5.desktop
 share/applications/org.fcitx.fcitx5-config-qt.desktop
@@ -22,6 +25,7 @@ share/locale/he/LC_MESSAGES/kcm_fcitx5.mo
 share/locale/ja/LC_MESSAGES/fcitx5-configtool.mo
 share/locale/ja/LC_MESSAGES/kcm_fcitx5.mo
 share/locale/ka/LC_MESSAGES/fcitx5-configtool.mo
+share/locale/ka/LC_MESSAGES/kcm_fcitx5.mo
 share/locale/ko/LC_MESSAGES/fcitx5-configtool.mo
 share/locale/ko/LC_MESSAGES/kcm_fcitx5.mo
 share/locale/ru/LC_MESSAGES/fcitx5-configtool.mo

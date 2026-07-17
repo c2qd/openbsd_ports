@@ -68,6 +68,8 @@ include/Fcitx5/Module/fcitx-module/testim/
 include/Fcitx5/Module/fcitx-module/testim/testim_public.h
 include/Fcitx5/Module/fcitx-module/unicode/
 include/Fcitx5/Module/fcitx-module/unicode/unicode_public.h
+include/Fcitx5/Module/fcitx-module/wayland/
+include/Fcitx5/Module/fcitx-module/wayland/wayland_public.h
 include/Fcitx5/Module/fcitx-module/xcb/
 include/Fcitx5/Module/fcitx-module/xcb/xcb_public.h
 include/Fcitx5/Utils/
@@ -165,6 +167,9 @@ lib/cmake/Fcitx5ModuleTestIM/Fcitx5ModuleTestIMConfigVersion.cmake
 lib/cmake/Fcitx5ModuleUnicode/
 lib/cmake/Fcitx5ModuleUnicode/Fcitx5ModuleUnicodeConfig.cmake
 lib/cmake/Fcitx5ModuleUnicode/Fcitx5ModuleUnicodeConfigVersion.cmake
+lib/cmake/Fcitx5ModuleWayland/
+lib/cmake/Fcitx5ModuleWayland/Fcitx5ModuleWaylandConfig.cmake
+lib/cmake/Fcitx5ModuleWayland/Fcitx5ModuleWaylandConfigVersion.cmake
 lib/cmake/Fcitx5ModuleXCB/
 lib/cmake/Fcitx5ModuleXCB/Fcitx5ModuleXCBConfig.cmake
 lib/cmake/Fcitx5ModuleXCB/Fcitx5ModuleXCBConfigVersion.cmake
@@ -198,6 +203,8 @@ lib/fcitx5/libexec/
 @so lib/fcitx5/libtestui.so
 @so lib/fcitx5/libunicode.so
 @so lib/fcitx5/libvirtualkeyboard.so
+@so lib/fcitx5/libwayland.so
+@so lib/fcitx5/libwaylandim.so
 @so lib/fcitx5/libxcb.so
 @so lib/fcitx5/libxim.so
 @lib lib/libFcitx5Config.so.${LIBFcitx5Config_VERSION}
@@ -207,12 +214,16 @@ lib/pkgconfig/Fcitx5Config.pc
 lib/pkgconfig/Fcitx5Core.pc
 lib/pkgconfig/Fcitx5Module.pc
 lib/pkgconfig/Fcitx5Utils.pc
+@bin libexec/fcitx5-wayland-launcher
 share/applications/fcitx5-configtool.desktop
+share/applications/fcitx5-wayland-launcher.desktop
 share/applications/org.fcitx.Fcitx5.desktop
 share/dbus-1/services/org.fcitx.Fcitx5.service
 share/doc/pkg-readmes/${PKGSTEM}
 share/examples/xdg/
 @sample ${SYSCONFDIR}/xdg/
+share/examples/xdg/Xwayland-session.d/
+share/examples/xdg/Xwayland-session.d/20-fcitx-x11
 share/examples/xdg/autostart/
 @sample ${SYSCONFDIR}/xdg/autostart/
 share/examples/xdg/autostart/org.fcitx.Fcitx5.desktop
@@ -235,6 +246,8 @@ share/fcitx5/addon/quickphrase.conf
 share/fcitx5/addon/spell.conf
 share/fcitx5/addon/unicode.conf
 share/fcitx5/addon/virtualkeyboard.conf
+share/fcitx5/addon/wayland.conf
+share/fcitx5/addon/waylandim.conf
 share/fcitx5/addon/xcb.conf
 share/fcitx5/addon/xim.conf
 share/fcitx5/data/
