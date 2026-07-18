@@ -1,5 +1,7 @@
 COMMENT =						Fcitx5 input method module for Mozc
 
+HOMEPAGE =						https://github.com/fcitx/mozc
+
 GH_ACCOUNT =					fcitx
 GH_PROJECT =					mozc
 GH_COMMIT =						102eb176a3153e53bcc7f01fb5e803f9568985a0

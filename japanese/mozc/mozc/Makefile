@@ -1,5 +1,7 @@
 COMMENT =						Japanese Input Method Editor
 
+HOMEPAGE =						https://github.com/google/mozc
+
 GH_ACCOUNT =					google
 GH_PROJECT =					mozc
 GH_COMMIT =						416af15bc4045567e7538c4692ba554ea74f7afe
