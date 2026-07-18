@@ -1,5 +1,6 @@
 ABSEIL_VERSION =				20260107.1
 APPLE_SUPPORT_VERSION =			2.4.0
+BATS_CORE_VERSION =				1.10.0
 BAZEL_LIB_VERSION_V2 =			2.22.5
 BAZEL_LIB_VERSION_V3 =			3.0.0
 BAZEL_SKYLIB_VERSION =			1.9.0
@@ -33,6 +34,8 @@ DISTFILES.abseil =				abseil-cpp-${ABSEIL_VERSION}.tar.gz
 SITES.abseil =					https://github.com/abseil/abseil-cpp/releases/download/${ABSEIL_VERSION}/
 DISTFILES.apple_support =		apple_support.${APPLE_SUPPORT_VERSION}.tar.gz
 SITES.apple_support =			https://github.com/bazelbuild/apple_support/releases/download/${APPLE_SUPPORT_VERSION}/
+DISTFILES.bats_core =			v${BATS_CORE_VERSION}.tar.gz
+SITES.bats_core =				https://github.com/bats-core/bats-core/archive/
 DISTFILES.bazel_lib_v2 =		bazel-lib-v${BAZEL_LIB_VERSION_V2}.tar.gz
 SITES.bazel_lib_v2 =			https://github.com/bazel-contrib/bazel-lib/releases/download/v${BAZEL_LIB_VERSION_V2}/
 DISTFILES.bazel_lib_v3 =		bazel-lib-v${BAZEL_LIB_VERSION_V3}.tar.gz
@@ -158,5 +161,9 @@ proxyconfig:
 		-keystore /tmp/cacerts -storepass changeit
 # === end ===
 
-post-build:
+do-test:
+	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} test ... \
+		${BAZEL_BUILD_FLAGS} --build_tests_only
+
+post-test:
 	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} shutdown
