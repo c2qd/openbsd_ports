@@ -46,8 +46,6 @@ DISTFILES.bazel_features =		bazel_features-v${BAZEL_FEATURES_VERSION}.tar.gz
 SITES.bazel_features =			https://github.com/bazel-contrib/bazel_features/releases/download/v${BAZEL_FEATURES_VERSION}/
 DISTFILES.buildozer =			buildozer-v${BUILDOZER_VERSION}.tar.gz
 SITES.buildozer =				https://github.com/fmeum/buildozer/releases/download/v${BUILDOZER_VERSION}/
-DISTFILES.go_versions =			versions.json{?mode=json&include=all&file=versions.json}
-SITES.go_versions =				https://go.dev/dl/
 DISTFILES.googletest =			googletest-${GOOGLETEST_VERSION}.tar.gz
 SITES.googletest =				https://github.com/google/googletest/releases/download/v${GOOGLETEST_VERSION}/
 DISTFILES.platforms =			platforms-${PLATFORMS_VERSION}.tar.gz

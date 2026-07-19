@@ -37,7 +37,9 @@ post-extract:
 
 pre-patch:
 	cp ${FILESDIR}/pyinterpreter_fallback.patch \
-		${WRKDIST}/bazel-central-registry/modules/rules_python/1.9.0/patches
+		${WRKDIST}/bazel-central-registry/modules/rules_python/1.9.0/patches  && \
+		cp ${FILESDIR}/versions_json.patch \
+		${WRKDIST}/bazel-central-registry/modules/rules_go/0.60.0/patches
 
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS} && \
