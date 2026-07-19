@@ -126,7 +126,7 @@ BUILD_DEPENDS +=				devel/bazel/9
 MODULES +=						java
 MODJAVA_VER =					21
 
-BAZEL_ENVS +=					JAVA_HOME=${JAVA_HOME}
+BAZEL_ENVS +=					JAVA_HOME=${JAVA_HOME} HTTPS_PROXY=http://127.0.0.1:1
 
 BAZEL_STARTUP_FLAGS =			--output_base=${WRKDIST}/bazel_output_base \
 								--output_user_root=${WRKDIST}/bazel_output_user_root
