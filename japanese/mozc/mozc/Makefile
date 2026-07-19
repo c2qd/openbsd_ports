@@ -4,10 +4,10 @@ HOMEPAGE =						https://github.com/google/mozc
 
 GH_ACCOUNT =					google
 GH_PROJECT =					mozc
-GH_COMMIT =						416af15bc4045567e7538c4692ba554ea74f7afe
+GH_COMMIT =						3f235b4eb6fcff7d14ef5f0fb8ee56de7ee4c732
 
 VERSION =						3.34.6239
-REVISION =						3
+REVISION =						4
 DISTNAME =						mozc-${VERSION}
 PKGNAME =						mozc-${VERSION}
 
