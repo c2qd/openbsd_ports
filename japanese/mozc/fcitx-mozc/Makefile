@@ -80,9 +80,9 @@ do-install:
 	${INSTALL_DATA} "${WRKSRC}/src/unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml" \
 		"${PREFIX}/share/metainfo/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml"
 .for lang in ${L10N_LANGS}
-	${INSTALL_DATA_DIR} ${PREFIX}/share/locale/${lang}/LC_MESSAGES
-	${INSTALL_DATA} ${WRKSRC}/src/unix/fcitx5/po/${lang}.mo \
-		${PREFIX}/share/locale/${lang}/LC_MESSAGES/fcitx5-mozc.mo
+	${INSTALL_DATA_DIR} "${PREFIX}/share/locale/${lang}/LC_MESSAGES"
+	${INSTALL_DATA} "${WRKSRC}/src/unix/fcitx5/po/${lang}.mo" \
+		"${PREFIX}/share/locale/${lang}/LC_MESSAGES/fcitx5-mozc.mo"
 .endfor
 	${INSTALL_DATA_DIR} "${PREFIX}/share/icons/hicolor/128x128/apps"
 	${INSTALL_DATA_DIR} "${PREFIX}/share/icons/hicolor/32x32/apps"
@@ -91,11 +91,15 @@ do-install:
 		"${PREFIX}/share/icons/hicolor/128x128/apps/org.fcitx.Fcitx5.fcitx_mozc.png"
 	${INSTALL_DATA} "${WRKSRC}/src/data/images/unix/ime_product_icon_opensource-32.png" \
 		"${PREFIX}/share/icons/hicolor/32x32/apps/org.fcitx.Fcitx5.fcitx_mozc.png"
+	ln -sf org.fcitx.Fcitx5.fcitx_mozc.png \
+		"${PREFIX}/share/icons/hicolor/128x128/apps/fcitx_mozc.png"
+	ln -sf org.fcitx.Fcitx5.fcitx_mozc.png \
+		"${PREFIX}/share/icons/hicolor/32x32/apps/fcitx_mozc.png"
 .for icon in ${ICONS}
-	${INSTALL_DATA} ${WRKSRC}/scripts/icons/${icon}.png \
-		${PREFIX}/share/icons/hicolor/48x48/apps/org.fcitx.Fcitx5.fcitx_mozc_${icon:S/ui-//}.png
-	ln -sf org.fcitx.Fcitx5.fcitx_mozc_${icon:S/ui-//}.png \
-		${PREFIX}/share/icons/hicolor/48x48/apps/fcitx_mozc_${icon:S/ui-//}.png
+	${INSTALL_DATA} "${WRKSRC}/scripts/icons/${icon}.png" \
+		"${PREFIX}/share/icons/hicolor/48x48/apps/org.fcitx.Fcitx5.fcitx_mozc_${icon:S/ui-//}.png"
+	ln -sf "org.fcitx.Fcitx5.fcitx_mozc_${icon:S/ui-//}.png" \
+		"${PREFIX}/share/icons/hicolor/48x48/apps/fcitx_mozc_${icon:S/ui-//}.png"
 .endfor
 
 post-install:
