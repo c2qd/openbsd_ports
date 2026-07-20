@@ -72,7 +72,7 @@ def _impl(ctx):
         ctx = ctx,
         features = features,
         cxx_builtin_include_directories = [
-            ${CLANG_RESOURCE_DIR},
+            "${CLANG_RESOURCE_DIR}",
             "${LOCALBASE}/include",
             "/usr/include",
             "${X11BASE}/include",
