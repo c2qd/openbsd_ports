@@ -31,7 +31,7 @@ COMPILER =						base-clang
 #          Please determine whether to set PERMIT_PACKAGE to Y/n.
 PERMIT_PACKAGE =				No
 
-MOFILES =						ca da de fr he ja ka ko ru tr vi zh_CN zh_TW
+L10N_LANGS =					ca da de fr he ja ka ko ru tr vi zh_CN zh_TW
 
 ICONS =							ui-alpha_full ui-alpha_half ui-direct ui-hiragana \
 								ui-katakana_full ui-katakana_half ui-dictionary \
@@ -79,7 +79,7 @@ do-install:
 	${INSTALL_DATA_DIR} "${PREFIX}/share/metainfo"
 	${INSTALL_DATA} "${WRKSRC}/src/unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml" \
 		"${PREFIX}/share/metainfo/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml"
-.for lang in ${MOFILES}
+.for lang in ${L10N_LANGS}
 	${INSTALL_DATA_DIR} ${PREFIX}/share/locale/${lang}/LC_MESSAGES
 	${INSTALL_DATA} ${WRKSRC}/src/unix/fcitx5/po/${lang}.mo \
 		${PREFIX}/share/locale/${lang}/LC_MESSAGES/fcitx5-mozc.mo
