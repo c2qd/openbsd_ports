@@ -94,7 +94,7 @@ do-install:
 .for icon in ${ICONS}
 	${INSTALL_DATA} ${WRKSRC}/scripts/icons/${icon}.png \
 		${PREFIX}/share/icons/hicolor/48x48/apps/org.fcitx.Fcitx5.fcitx_mozc_${icon:S/ui-//}.png
-	${LN} -sf org.fcitx.Fcitx5.fcitx_mozc_${icon:S/ui-//}.png \
+	ln -sf org.fcitx.Fcitx5.fcitx_mozc_${icon:S/ui-//}.png \
 		${PREFIX}/share/icons/hicolor/48x48/apps/fcitx_mozc_${icon:S/ui-//}.png
 .endfor
 
