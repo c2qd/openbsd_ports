@@ -96,9 +96,9 @@ post-patch:
 		${MODPY_BIN} ${MERGE_SCRIPT} mozcdic-ut.txt && \
 		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt && \
 		cd ${WRKDIST}/bazel-central-registry && \
-		mkdir modules/abseil-cpp/20260107.1/patches && \
+		mkdir modules/abseil-cpp/${ABSEIL_VERSION}/patches && \
 		cp ${FILESDIR}/enolink.patch \
-		modules/abseil-cpp/20260107.1/patches
+		modules/abseil-cpp/${ABSEIL_VERSION}/patches
 
 do-build:
 	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 \

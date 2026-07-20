@@ -42,20 +42,20 @@ post-extract:
 
 pre-patch:
 	cp ${FILESDIR}/pyinterpreter_fallback.patch \
-		${WRKDIST}/bazel-central-registry/modules/rules_python/1.9.0/patches  && \
+		${WRKDIST}/bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/patches  && \
 		cp ${FILESDIR}/versions_json.patch \
-		${WRKDIST}/bazel-central-registry/modules/rules_go/0.60.0/patches
+		${WRKDIST}/bazel-central-registry/modules/rules_go/${RULES_GO_VERSION}/patches
 
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS} && ${SUBST_CMD} ${SUBST_VARS_bazel_conf} \
 		${SUBST_TARGETS_bazel_conf} && cd ${WRKSRC} && \
-		PYIF_HASH=$$(sha256 -bq bazel-central-registry/modules/rules_python/1.9.0/patches/pyinterpreter_fallback.patch); \
+		PYIF_HASH=$$(sha256 -bq bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/patches/pyinterpreter_fallback.patch); \
 		${SUBST_CMD} \
 		-DPYIF_HASH=$${PYIF_HASH} ${SUBST_TARGETS_EX}
 		cd ${WRKDIST}/bazel-central-registry && \
-		mkdir modules/abseil-cpp/20260107.1/patches && \
+		mkdir modules/abseil-cpp/${ABSEIL_VERSION}/patches && \
 		cp ${FILESDIR}/enolink.patch \
-		modules/abseil-cpp/20260107.1/patches/
+		modules/abseil-cpp/${ABSEIL_VERSION}/patches/
 
 do-build:
 	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 \
