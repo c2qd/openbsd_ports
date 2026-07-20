@@ -18,31 +18,31 @@ def _impl(ctx):
     tool_paths = [
         tool_path(
             name = "gcc",
-            path = "${CC_SUBST}"
+            path = "${CC}"
         ),
         tool_path(
             name = "cpp",
-            path = "${CPP}"
+            path = "/usr/bin/cpp"
         ),
         tool_path(
             name = "ld",
-            path = "${LD_SUBST}"
+            path = "${LD}"
         ),
         tool_path(
             name = "ar",
-            path = "${AR}"
+            path = "/usr/bin/ar"
         ),
         tool_path(
             name = "nm",
-            path = "${NM}"
+            path = "/usr/bin/nm"
         ),
         tool_path(
             name = "objdump",
-            path = "${OBJDUMP}"
+            path = "/usr/bin/objdump"
         ),
         tool_path(
             name = "strip",
-            path = "${STRIP}"
+            path = "/usr/bin/strip"
         ),
     ]
 

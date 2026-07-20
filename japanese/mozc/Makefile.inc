@@ -98,26 +98,22 @@ DIST_TUPLE +=					github bazelbuild bazel-central-registry ${BCR_COMMIT} \
 # links ${WRKDIR}/bin/ld
 USE_WXNEEDED =					Yes
 
-CC_SUBST =						${WRKDIR}/bin/${CC}
-LD_SUBST =						${WRKDIR}/bin/${LD}
-NM =							nm
-OBJDUMP =						objdump
-
-CLANG_RESOURCE_DIR!=			printf '""%s""' \
-								`clang -print-resource-dir`/include
-
-SUBST_VARS +=					LOCALBASE X11BASE PREFIX MODPY_BIN \
-								CC_SUBST LD_SUBST CPP AR STRIP \
-								NM OBJDUMP CLANG_RESOURCE_DIR PYIF_HASH
+SUBST_VARS +=					LOCALBASE X11BASE PREFIX MODPY_BIN
 
 SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
 								${WRKSRC}/src/MODULE.bazel \
 								${WRKSRC}/src/base/system_util.cc \
 								${WRKSRC}/src/base/process.cc \
-								${WRKSRC}/src/cc_toolchain_config.bzl \
 								${WRKSRC}/bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/patches/pyinterpreter_fallback.patch
 
-SUBST_TARGETS_EX =				${WRKSRC}/bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/source.json
+CLANG_RESOURCE_DIR!=			printf '""%s""' \
+								`clang -print-resource-dir`/include
+
+SUBST_VARS_bazel_conf +=		-DCC=${CC} -DLD=${LD} -DCLANG_RESOURCE_DIR=${CLANG_RESOURCE_DIR}
+
+SUBST_TARGETS_bazel_conf +=		${WRKSRC}/src/cc_toolchain_config.bzl
+
+SUBST_TARGETS_rules_python +=	${WRKSRC}/bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/source.json
 
 FILESDIR =						${.CURDIR}/../files
 
