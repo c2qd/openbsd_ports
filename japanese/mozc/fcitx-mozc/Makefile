@@ -63,7 +63,13 @@ do-build:
 		${BAZEL_BUILD_FLAGS} unix/fcitx5:fcitx5-mozc.so
 
 pre-install:
-	cd ${WRKSRC}/src && ../scripts/install_fcitx5_data
+	cd ${WRKSRC}/src && msgfmt --xml -d unix/fcitx5/po/ \
+		--template unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml.in \
+		-o unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml
+.for lang in ${L10N_LANGS}
+	msgfmt ${WRKSRC}/src/unix/fcitx5/po/${lang}.po \
+		-o ${WRKSRC}/src/unix/fcitx5/po/${lang}.mo
+.endfor
 
 do-install:
 	${INSTALL_PROGRAM_DIR} "${PREFIX}/lib/fcitx5"
