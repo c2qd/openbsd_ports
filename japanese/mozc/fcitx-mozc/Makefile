@@ -6,8 +6,7 @@ GH_ACCOUNT =					fcitx
 GH_PROJECT =					mozc
 GH_COMMIT =						3f9b1bd6d089cef2e1e8814d7de25291e730274b
 
-VERSION =						3.34.6239.20260719.git${GH_COMMIT:C/^(.{8}).*/\1/}
-REVISION =						1
+VERSION =						3.34.6239.20260719.git${GH_COMMIT:C/^(.{10}).*/\1/}
 DISTNAME =						fcitx-mozc-${VERSION}
 PKGNAME =						fcitx-mozc-${VERSION}
 
