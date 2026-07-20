@@ -18,7 +18,7 @@ MAINTAINER =					c2qd
 EXTRACT_ONLY =					fcitx-mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 								bazelbuild-bazel-central-registry-${BCR_COMMIT}.tar.gz
 
-BUILD_DEPENDS +=				devel/gettext,-tools shells/bash
+BUILD_DEPENDS +=				devel/gettext,-tools
 LIB_DEPENDS +=					inputmethods/fcitx
 RUN_DEPENDS +=					japanese/mozc/mozc
 
