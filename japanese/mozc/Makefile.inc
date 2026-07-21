@@ -106,7 +106,7 @@ SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
 								${WRKSRC}/src/base/process.cc \
 								${WRKSRC}/bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/patches/pyinterpreter_fallback.patch
 
-CLANG_RESOURCE_DIR !=			clang -print-resource-dir
+CLANG_RESOURCE_DIR !=			/usr/bin/${CC} -print-resource-dir
 CLANG_RESOURCE_DIR :=			${CLANG_RESOURCE_DIR}/include
 
 SUBST_VARS_bazel_conf +=		-DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
