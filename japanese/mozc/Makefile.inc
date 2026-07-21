@@ -109,7 +109,8 @@ SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
 CLANG_RESOURCE_DIR !=			clang -print-resource-dir
 CLANG_RESOURCE_DIR :=			${CLANG_RESOURCE_DIR}/include
 
-SUBST_VARS_bazel_conf +=		-DCC=${CC} -DLD=${LD} -DCLANG_RESOURCE_DIR=${CLANG_RESOURCE_DIR}
+SUBST_VARS_bazel_conf +=		-DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
+								-DCLANG_RESOURCE_DIR=${CLANG_RESOURCE_DIR}
 
 SUBST_TARGETS_bazel_conf +=		${WRKSRC}/src/cc_toolchain_config.bzl
 
@@ -132,11 +133,7 @@ BAZEL_BUILD_FLAGS +=			--tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 								--distdir=${FULLDISTDIR}\
 								--config oss_linux \
 								--config release_build \
-								--platforms=//:openbsd-ex \
-								--copt=-B${WRKDIR}/bin \
-								--host_copt=-B${WRKDIR}/bin \
-								--cxxopt=-B${WRKDIR}/bin \
-								--host_cxxopt=-B${WRKDIR}/bin
+								--platforms=//:openbsd-ex
 
 # === for debug; with mitmproxy ===
 .if defined(ENABLE_PROXY) && ${ENABLE_PROXY} == "1"

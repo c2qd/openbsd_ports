@@ -18,7 +18,7 @@ def _impl(ctx):
     tool_paths = [
         tool_path(
             name = "gcc",
-            path = "${CC}"
+            path = "${WRKDIR}/bin/${CC}"
         ),
         tool_path(
             name = "cpp",
@@ -26,7 +26,7 @@ def _impl(ctx):
         ),
         tool_path(
             name = "ld",
-            path = "${LD}"
+            path = "${WRKDIR}/bin/${LD}"
         ),
         tool_path(
             name = "ar",
