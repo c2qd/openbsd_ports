@@ -17,7 +17,7 @@ SHA256 (mozcdic-ut-jawiki-4d32dfc2e3a3644d6b4ab848fb129ca2cd52a619.txt.bz2) = FO
 SHA256 (mozcdic-ut-neologd-e33ac4ce808fa4253c6c97bf5178e229a4bfb50f.txt.bz2) = IxubXkrRa6o/eWgPTkYV9wYFEaQdpKrCFJeJ6s4/JBE=
 SHA256 (mozcdic-ut-personal-names-159e01bf4af61a3fa9367ae2578fd42c464a0ea7.txt.bz2) = 56AXo0Ivq9rpyIGkIsGCVBbR2WUxsF7KeyqHgFikh1E=
 SHA256 (mozcdic-ut-place-names-9951ef87972c1d2c3803e2106b86083d14a242f9.txt.bz2) = /CfUDzLpnxiElzDNwLFN3PHdbJzkm0w6xloLF+ZJn84=
-SHA256 (mozcdic-ut-sudachidict-7def3da408b1854801bd5b559273f9fb8001ef5b.txt.bz2) = aW50W39+niAkl0Ic7gSN4FjYW3nMee3DHE+Jt7M2ddk=
+SHA256 (mozcdic-ut-sudachidict-c686771bada1d59e9b105c81b29e6ac1a239cb54.txt.bz2) = 0stLKxbVE+JX0m0cM2c+vaJUodWqDDwMm8lPkyYZ+9w=
 SHA256 (platforms-1.0.0.tar.gz) = M4TrHDB2JwT7445EAgThFBVAhsj8iowuPihEECjAGag=
 SHA256 (protobuf-34.1.bazel.tar.gz) = nwkzrRKrsKiVeztkrvw0d0zL5X93+JDGbLQGdRm7g8E=
 SHA256 (pybind11_bazel-2.13.6.tar.gz) = yuaAZwv6boJwPAPyo8mVQIzcv0NhbXvdGY70XTwydzE=
@@ -59,7 +59,7 @@ SIZE (mozcdic-ut-jawiki-4d32dfc2e3a3644d6b4ab848fb129ca2cd52a619.txt.bz2) = 1212
 SIZE (mozcdic-ut-neologd-e33ac4ce808fa4253c6c97bf5178e229a4bfb50f.txt.bz2) = 15715076
 SIZE (mozcdic-ut-personal-names-159e01bf4af61a3fa9367ae2578fd42c464a0ea7.txt.bz2) = 718915
 SIZE (mozcdic-ut-place-names-9951ef87972c1d2c3803e2106b86083d14a242f9.txt.bz2) = 1742321
-SIZE (mozcdic-ut-sudachidict-7def3da408b1854801bd5b559273f9fb8001ef5b.txt.bz2) = 11472365
+SIZE (mozcdic-ut-sudachidict-c686771bada1d59e9b105c81b29e6ac1a239cb54.txt.bz2) = 11472867
 SIZE (platforms-1.0.0.tar.gz) = 7879
 SIZE (protobuf-34.1.bazel.tar.gz) = 7038508
 SIZE (pybind11_bazel-2.13.6.tar.gz) = 6156
