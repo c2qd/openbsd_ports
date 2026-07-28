@@ -43,6 +43,8 @@ MAINTAINER =			c2qd
 
 BUILD_DEPENDS =			devel/ninja
 
+RUN_DEPENDS +=			shells/bash
+
 WANTLIB +=				${COMPILER_LIBCXX} c
 
 MODULES =				devel/cmake
