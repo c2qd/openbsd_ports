@@ -55,6 +55,7 @@ CONFIGURE_ARGS =		-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate \
 # MIT
 PERMIT_PACKAGE =		Yes
 
+COMPILER_LANGS =		c c++
 COMPILER =				base-clang
 
 .include <bsd.port.mk>

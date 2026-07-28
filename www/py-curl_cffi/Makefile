@@ -24,6 +24,9 @@ MODPY_PYBUILD =			setuptools
 # MIT
 PERMIT_PACKAGE =		Yes
 
+COMPILER_LANGS =		c
+COMPILER =				base-clang ports-gcc
+
 # for 0.16
 # ToDo: rm libdir from patch-libs_json (when upd to 0.16)
 # MAKE_ENV +=				IMPERSONATE_BUILD_DIR=${LOCALBASE}/lib \
