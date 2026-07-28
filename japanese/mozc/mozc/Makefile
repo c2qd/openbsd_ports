@@ -25,17 +25,22 @@ JAWIKI_DATE =					20260701
 
 DISTFILES.merge_script =		merge_dictionaries-${UT_COMMIT}{merge_dictionaries}.py
 SITES.merge_script =			https://raw.githubusercontent.com/utuhiro78/merge-ut-dictionaries/${UT_COMMIT}/src/merge/
-MERGE_SCRIPT =					${DISTFILES.merge_script:C/-[0-9a-fA-F]{40}//:C/\{[^}]*\}//}
+MERGE_SCRIPT =					merge_dictionaries.py
 DISTFILES.jawiki =				mozcdic-ut-jawiki-${UT_JAWIKI_COMMIT}{mozcdic-ut-jawiki}.txt.bz2
 SITES.jawiki =					https://github.com/utuhiro78/mozcdic-ut-jawiki/raw/${UT_JAWIKI_COMMIT}/
+UT_JAWIKI =						mozcdic-ut-jawiki-${UT_JAWIKI_COMMIT}.tar.bz2
 DISTFILES.personal_names =		mozcdic-ut-personal-names-${UT_PERSONAL_NAMES_COMMIT}{mozcdic-ut-personal-names}.txt.bz2
 SITES.personal_names =			https://github.com/utuhiro78/mozcdic-ut-personal-names/raw/${UT_PERSONAL_NAMES_COMMIT}/
+UT_PERSONAL_NAMES =				mozcdic-ut-personal-names-${UT_PERSONAL_NAMES_COMMIT}.tar.bz2
 DISTFILES.place_names =			mozcdic-ut-place-names-${UT_PLACE_NAMES_COMMIT}{mozcdic-ut-place-names}.txt.bz2
 SITES.place_names =				https://github.com/utuhiro78/mozcdic-ut-place-names/raw/${UT_PLACE_NAMES_COMMIT}/
+UT_PLACE_NAMES =				mozcdic-ut-place-names-${UT_PLACE_NAMES_COMMIT}.tar.bz2
 DISTFILES.neologd =				mozcdic-ut-neologd-${UT_NEOLOGD_COMMIT}{mozcdic-ut-neologd}.txt.bz2
 SITES.neologd =					https://github.com/utuhiro78/mozcdic-ut-neologd/raw/${UT_NEOLOGD_COMMIT}/
+UT_NEOLOGD =					mozcdic-ut-neologd-${UT_NEOLOGD_COMMIT}.tar.bz2
 DISTFILES.sudachidict =			mozcdic-ut-sudachidict-${UT_SUDACHIDICT_COMMIT}{mozcdic-ut-sudachidict}.txt.bz2
 SITES.sudachidict =				https://github.com/utuhiro78/mozcdic-ut-sudachidict/raw/${UT_SUDACHIDICT_COMMIT}/
+UT_SUDACHIDICT =				mozcdic-ut-sudachidict-${UT_SUDACHIDICT_COMMIT}.tar.bz2
 DISTFILES.jawiki_index =		jawiki-${JAWIKI_DATE}-pages-articles-multistream-index.txt.bz2
 SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_DATE}/
 
@@ -90,8 +95,12 @@ post-patch:
 		PYIF_HASH=$$(sha256 -bq bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/patches/pyinterpreter_fallback.patch); \
 		${SUBST_CMD} \
 		-DPYIF_HASH=$${PYIF_HASH} ${SUBST_TARGETS_rules_python} && \
-		cd ${FULLDISTDIR} && \
-		cp ${FULLDISTDIR}/mozcdic-ut-*.txt.bz2 ${DISTFILES.jawiki_index} ${WRKSRC} && \
+		cp ${FULLDISTDIR}/${UT_JAWIKI} ${WRKSRC} && \
+		cp ${FULLDISTDIR}/${UT_PERSONAL_NAMES} ${WRKSRC} && \
+		cp ${FULLDISTDIR}/${UT_PLACE_NAMES} ${WRKSRC} && \
+		cp ${FULLDISTDIR}/${UT_NEOLOGD} ${WRKSRC} && \
+		cp ${FULLDISTDIR}/${UT_SUDACHIDICT} ${WRKSRC} && \
+		cp ${FULLDISTDIR}/${DISTFILES.jawiki_index} ${WRKSRC} && \
 		cd ${WRKSRC} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
 		${MODPY_BIN} ${MERGE_SCRIPT} mozcdic-ut.txt && \
