@@ -1,0 +1,13 @@
+https://github.com/lexiforest/curl-impersonate/issues/287
+Index: patches/curl.patch
+--- patches/curl.patch.orig
++++ patches/curl.patch
+@@ -10087,7 +10087,7 @@ index 9820c3e4bd..fd125d35d4 100644
+ +#define WS_TARGET_AVX2 __attribute__((target("avx2")))
+ +#if defined(__clang__) && \
+ +    ((defined(__apple_build_version__) && __clang_major__ >= 16) || \
+-+     (!defined(__apple_build_version__) && __clang_major__ >= 18))
+++     (!defined(__apple_build_version__) && __clang_major__ >= 18 && __clang_major__ < 22))
+ +#define WS_TARGET_AVX512 \
+ +  __attribute__((target("avx512f,evex512")))
+ +#else
