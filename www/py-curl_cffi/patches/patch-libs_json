@@ -1,0 +1,19 @@
+Index: libs.json
+--- libs.json.orig
++++ libs.json
+@@ -146,5 +146,15 @@
+         "libc": "gnu",
+         "obj_name": "libcurl-impersonate.a",
+         "arch": "loongarch64"
++    },
++    {
++        "system": "OpenBSD",
++        "machine": "amd64",
++        "pointer_size": 64,
++        "sysname": "openbsd",
++        "link_type": "dynamic",
++        "obj_name": "libcurl-impersonate.so",
++        "libdir": "${LOCALBASE}/lib",
++        "arch": "x86_64"
+     }
+ ]
