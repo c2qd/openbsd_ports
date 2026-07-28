@@ -95,6 +95,8 @@ BCR_COMMIT =					2459648091f2c5b8e21a46613cf39bffb6fba298
 DIST_TUPLE +=					github bazelbuild bazel-central-registry ${BCR_COMMIT} \
 								bazel-central-registry
 
+DIST_SUBDIR =					mozc
+
 # links ${WRKDIR}/bin/ld
 USE_WXNEEDED =					Yes
 
