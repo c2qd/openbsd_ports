@@ -1,6 +1,6 @@
 # openbsd_ports
 
-"unstable."
+for me.
 
 ## WARNING
 
@@ -30,7 +30,8 @@ PORTSDIR_PATH=/path/to/c2qd_ports:${PORTSDIR}:${PORTSDIR}/mystuff
 
 ## Credits
 
-ref?  
+References.  
+A reference is just a reference.  
 [kdeguchi/mozc-ports: Latest version mozc ports for FreeBSD](https://github.com/kdeguchi/mozc-ports)  
 [OpenBSD 7.5でBazelをビルドする #OpenBSD7.0 - Qiita](https://qiita.com/asuka1975/items/c162ef0295dea6cef639)  
 
