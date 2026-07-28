@@ -10,6 +10,7 @@ Also, for convenience, there may be ports that establish network connections dur
 ## Info
 
 None of the ports have been tested on anything other than x86_64.  
+I usually build only with the base-clang compiler (ports-clang for inputmethods/fcitx), and that there are some ad hoc patches that assume clang (or libc++).  
 The Mozc port is patched without *any consideration* for IBus. Please use fcitx5 instead.  
 Also, the Mozc icons are not built, as I use dwm (and occasionally dwl), and building them would make the DISTFILES handling more complicated.  
 Before building Fcitx5, please run the following command. This workaround would not be necessary if the fix proposed at ['devel/llvm: fix clang linking with -fexperimental-library' - MARC](https://marc.info/?l=openbsd-ports&m=178196468149108) were accepted, but unfortunately I have not received any response...
