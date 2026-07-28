@@ -33,7 +33,6 @@ COMPILER =				base-clang ports-gcc
 # 						IMPERSONATE_LINK_TYPE=dynamic
 
 CFLAGS +=				-I${LOCALBASE}/include/curl-impersonate
-LDFLAGS +=				-L${LOCALBASE}/lib -lcurl-impersonate -Wl,-rpath=/usr/local/lib
 
 SUBST_VARS =			LOCALBASE
 SUBST_TARGETS =			${WRKSRC}/libs.json
