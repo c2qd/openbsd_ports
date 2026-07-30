@@ -50,14 +50,5 @@ include/curl-impersonate/curl/system.h
 include/curl-impersonate/curl/typecheck-gcc.h
 include/curl-impersonate/curl/urlapi.h
 include/curl-impersonate/curl/websockets.h
-lib/CMakeFiles/
-lib/CMakeFiles/curlu.dir/
-lib/CMakeFiles/curlu.dir/Unity/
-lib/CMakeFiles/libcurl_shared.dir/
-lib/CMakeFiles/libcurl_shared.dir/curlx/
-lib/CMakeFiles/libcurl_shared.dir/vauth/
-lib/CMakeFiles/libcurl_shared.dir/vquic/
-lib/CMakeFiles/libcurl_shared.dir/vssh/
-lib/CMakeFiles/libcurl_shared.dir/vtls/
 @so lib/libcurl-impersonate.so
 @lib lib/libcurl-impersonate.so.${LIBcurl-impersonate_VERSION}
