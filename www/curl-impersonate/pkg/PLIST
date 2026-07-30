@@ -59,12 +59,5 @@ lib/CMakeFiles/libcurl_shared.dir/vauth/
 lib/CMakeFiles/libcurl_shared.dir/vquic/
 lib/CMakeFiles/libcurl_shared.dir/vssh/
 lib/CMakeFiles/libcurl_shared.dir/vtls/
-lib/CMakeFiles/libcurl_static.dir/
-lib/CMakeFiles/libcurl_static.dir/curlx/
-lib/CMakeFiles/libcurl_static.dir/vauth/
-lib/CMakeFiles/libcurl_static.dir/vquic/
-lib/CMakeFiles/libcurl_static.dir/vssh/
-lib/CMakeFiles/libcurl_static.dir/vtls/
-@static-lib lib/libcurl-impersonate.a
 @so lib/libcurl-impersonate.so
 @lib lib/libcurl-impersonate.so.${LIBcurl-impersonate_VERSION}

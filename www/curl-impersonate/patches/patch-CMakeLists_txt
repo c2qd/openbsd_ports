@@ -47,6 +47,17 @@ Index: CMakeLists.txt
  set(CURL_CA_BUNDLE "" CACHE STRING "CA bundle for curl ('auto', 'none', or full path)")
  set(CURL_CA_PATH "" CACHE STRING "CA directory for curl ('auto', 'none', or full path)")
  
+@@ -419,8 +431,8 @@ endif()
+ # Single curl build mode: produce shared+static libcurl and static curl binary.
+ set(_curl_build_flags
+   -DBUILD_SHARED_LIBS=ON
+-  -DBUILD_STATIC_LIBS=ON
+-  -DBUILD_STATIC_CURL=ON
++  -DBUILD_STATIC_LIBS=OFF
++  -DBUILD_STATIC_CURL=OFF
+   -DBUILD_CURL_EXE=ON
+ )
+ 
 @@ -503,13 +515,17 @@ endif()
  if(CMAKE_MSVC_RUNTIME_LIBRARY)
    list(APPEND _curl_platform_flags "-DCMAKE_MSVC_RUNTIME_LIBRARY=${CMAKE_MSVC_RUNTIME_LIBRARY}")
