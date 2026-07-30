@@ -4,7 +4,7 @@ VERSION =               2.0.0rc5
 DISTNAME =              curl-impersonate-${VERSION}
 CATEGORIES =            net www
 
-SHARED_LIBS =			curl-impersonate                0.0 # 0.0
+SHARED_LIBS +=			curl-impersonate                0.0 # 0.0
 
 GH_ACCOUNT =            lexiforest
 GH_PROJECT =            curl-impersonate
@@ -20,6 +20,7 @@ NGHTTP2_VERSION =		1.63.0
 NGTCP2_VERSION =		1.20.0
 NGHTTP3_VERSION =		1.15.0
 CURL_VERSION =			curl-8_21_0
+
 DISTFILES.zlib =		zlib-${ZLIB_VERSION}.tar.gz
 SITES.zlib =			https://github.com/madler/zlib/releases/download/v${ZLIB_VERSION}/
 DISTFILES.zstd =		zstd-${ZSTD_VERSION}.tar.gz
@@ -51,6 +52,7 @@ MODULES =				devel/cmake
 
 CONFIGURE_ARGS =		-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate \
 						-DFULLDISTDIR=${FULLDISTDIR}
+
 # MIT
 PERMIT_PACKAGE =		Yes
 
