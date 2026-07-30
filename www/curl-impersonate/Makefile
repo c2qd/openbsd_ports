@@ -51,12 +51,18 @@ WANTLIB +=				${COMPILER_LIBCXX} c
 
 MODULES =				devel/cmake
 
-CONFIGURE_ARGS =		-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate \
-						-DFULLDISTDIR=${FULLDISTDIR}
+CONFIGURE_ARGS =		-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate
 
 # MIT
 PERMIT_PACKAGE =		Yes
 
 COMPILER =				base-clang ports-gcc
+
+SUBST_VARS +=			FULLDISTDIR
+
+SUBST_TARGETS +=		${WRKSRC}/CMakeLists.txt
+
+post-patch:
+	${SUBST_CMD} ${SUBST_TARGETS}
 
 .include <bsd.port.mk>
