@@ -82,6 +82,10 @@ post-extract:
 		cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
 
 pre-patch:
+	@if [ $$(ulimit -Sd) -lt $$((3*1024*1024)) ]; then \
+		echo "datasize limit is too low. Build needs approximately 3GiB."; \
+		exit 1; \
+	fi
 	cp ${FILESDIR}/pyinterpreter_fallback.patch \
 		${WRKDIST}/bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/patches && \
 		cp ${FILESDIR}/versions_json.patch \
