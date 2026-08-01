@@ -70,12 +70,10 @@ LIB_DEPENDS +=					x11/qt6/qtbase
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
-# BSD-3-Clause + NAIST-2003(IPADic) + Public Domain(Okinawa dictionary) +
+# BSD-3-Clause + NAIST-2003(IPADic) +
+# Public Domain(Okinawa dictionary / Zip code data / place-names) +
 # BSD-2-Clause(Japanese usage dictionary) +
-# Copyright non-assertion(Zip code data / place-names) +
-# CC BY-SA(jawiki) + Apache 2.0(personal-names / Neologd / SudachiDict)
-# Warning: I don't know anything about licenses~
-#          Please determine whether to set PERMIT_PACKAGE to Y/n.
+# CC-BY-SA-4.0(jawiki) + Apache 2.0(abseil-cpp / personal-names / Neologd / SudachiDict)
 PERMIT_PACKAGE =				No
 
 post-extract:

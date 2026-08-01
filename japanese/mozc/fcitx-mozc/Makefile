@@ -27,8 +27,6 @@ COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
 # BSD-3-Clause + LGPL-2.1 or later(Part of the code in src/unix/fcitx5)
-# Warning: I don't know anything about licenses~
-#          Please determine whether to set PERMIT_PACKAGE to Y/n.
 PERMIT_PACKAGE =				No
 
 L10N_LANGS =					ca da de fr he ja ka ko ru tr vi zh_CN zh_TW
