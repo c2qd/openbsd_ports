@@ -129,7 +129,7 @@ HTTPS_PROXY ?=					http://127.0.0.1:1
 
 BAZEL_ENVS +=					JAVA_HOME=${JAVA_HOME} HTTPS_PROXY=${HTTPS_PROXY}
 
-BAZEL_STARTUP_FLAGS =			--output_base=${WRKDIST}/bazel_output_base \
+BAZEL_STARTUP_FLAGS =			--batch --output_base=${WRKDIST}/bazel_output_base \
 								--output_user_root=${WRKDIST}/bazel_output_user_root
 
 BAZEL_BUILD_FLAGS +=			--tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
@@ -159,6 +159,3 @@ proxyconfig:
 do-test:
 	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} test ... \
 		${BAZEL_BUILD_FLAGS} --build_tests_only
-
-post-test:
-	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} shutdown
