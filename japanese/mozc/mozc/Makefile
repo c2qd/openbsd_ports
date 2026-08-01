@@ -25,7 +25,6 @@ JAWIKI_DATE =					20260701
 
 DISTFILES.merge_script =		merge_dictionaries-${UT_COMMIT}{merge_dictionaries}.py
 SITES.merge_script =			https://raw.githubusercontent.com/utuhiro78/merge-ut-dictionaries/${UT_COMMIT}/src/merge/
-MERGE_SCRIPT =					merge_dictionaries.py
 DISTFILES.jawiki =				mozcdic-ut-jawiki-${UT_JAWIKI_COMMIT}{mozcdic-ut-jawiki}.txt.bz2
 SITES.jawiki =					https://github.com/utuhiro78/mozcdic-ut-jawiki/raw/${UT_JAWIKI_COMMIT}/
 UT_JAWIKI =						mozcdic-ut-jawiki-${UT_JAWIKI_COMMIT}.tar.bz2
@@ -80,7 +79,8 @@ COMPILER =						base-clang
 PERMIT_PACKAGE =				No
 
 post-extract:
-	cp ${FULLDISTDIR}/${MERGE_SCRIPT} ${WRKSRC}/ && \
+	cp ${FULLDISTDIR}/merge_dictionaries-${UT_COMMIT}.py \
+		${WRKSRC}/merge_dictionaries.py && \
 		cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
 
 pre-patch:
@@ -103,7 +103,7 @@ post-patch:
 		cp ${FULLDISTDIR}/${DISTFILES.jawiki_index} ${WRKSRC} && \
 		cd ${WRKSRC} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
-		${MODPY_BIN} ${MERGE_SCRIPT} mozcdic-ut.txt && \
+		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
 		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt && \
 		cd ${WRKDIST}/bazel-central-registry && \
 		mkdir modules/abseil-cpp/${ABSEIL_VERSION}/patches && \
