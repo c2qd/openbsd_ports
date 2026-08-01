@@ -35,6 +35,16 @@ BUILD_DEPENDS =		archivers/zip shells/bash
 # stripping the binary removes this zip file, breaking the binary.
 INSTALL_STRIP =
 
+pre-build:
+	@if [ $$(ulimit -Sd) -lt $$((2*1024*1024)) ]; then \
+		echo "datasize limit is too low. Build needs approximately 2GiB."; \
+		exit 1; \
+	fi
+	@if [ $$(ulimit -Sn) -lt 2048 ]; then \
+		echo "openfiles limit is too low. Build needs approximately 2048 files."; \
+		exit 1; \
+	fi
+
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
         EMBED_LABEL="${VERSION}" \
