@@ -22,7 +22,7 @@ example
 ```sh
 cd /usr/ports
 git clone https://codeberg.org/c2qd/openbsd_ports.git c2qd_ports
-doas sh -c 'echo "PORTSDIR_PATH=\${PORTSDIR}/c2qd_ports:\${PORTSDIR}/mystuff:\${PORTSDIR}" > /etc/mk.conf'
+doas sh -c 'echo "PORTSDIR_PATH=\${PORTSDIR}/c2qd_ports:\${PORTSDIR}/mystuff:\${PORTSDIR}" >> /etc/mk.conf'
 ```
 
 ## Credits
