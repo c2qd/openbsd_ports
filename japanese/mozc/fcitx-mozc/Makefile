@@ -50,7 +50,7 @@ post-patch:
 		${SUBST_TARGETS_bazel_conf} && cd ${WRKSRC} && \
 		PYIF_HASH=$$(sha256 -bq bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/patches/pyinterpreter_fallback.patch); \
 		${SUBST_CMD} \
-		-DPYIF_HASH=$${PYIF_HASH} ${SUBST_TARGETS_EX}
+		-DPYIF_HASH=$${PYIF_HASH} ${SUBST_TARGETS_rules_python}
 		cd ${WRKDIST}/bazel-central-registry && \
 		mkdir modules/abseil-cpp/${ABSEIL_VERSION}/patches && \
 		cp ${FILESDIR}/enolink.patch \
