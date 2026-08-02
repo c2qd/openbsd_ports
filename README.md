@@ -46,4 +46,11 @@ Other files are licensed under [The Unlicense](UNLICENSE)
 
 ## Contact
 
-Do NOT contact me in any way.
+Do NOT contact me in any way.  
+
+---
+
+Please don't trust me at all.  
+I'm the kind of person who makes even security-critical changes without realizing the risks (e.g. 5e55a85f0feff54c93e30f1e969710c87ad8a11d , fix: 01c5703afdc6ef46f528646a0a6252999cb3221f).  
+Above all, there is something strange about the way I think.  
+...Ahahahahahahaahahahah
