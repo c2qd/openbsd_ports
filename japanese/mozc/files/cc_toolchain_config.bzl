@@ -26,7 +26,7 @@ def _impl(ctx):
         ),
         tool_path(
             name = "ld",
-            path = "${WRKDIR}/bin/${LD}"
+            path = "/usr/bin/${LD}"
         ),
         tool_path(
             name = "ar",

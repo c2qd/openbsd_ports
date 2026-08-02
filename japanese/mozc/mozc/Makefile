@@ -6,8 +6,8 @@ GH_ACCOUNT =					google
 GH_PROJECT =					mozc
 GH_COMMIT =						3f235b4eb6fcff7d14ef5f0fb8ee56de7ee4c732
 
-VERSION =						3.34.6239.20260717.git${GH_COMMIT:C/^(.{10}).*/\1/}
-REVISION =						0
+VERSION =						3.34.6239.20260717
+REVISION =						1
 DISTNAME =						mozc-${VERSION}
 PKGNAME =						mozc-${VERSION}
 

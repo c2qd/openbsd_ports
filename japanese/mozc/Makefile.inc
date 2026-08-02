@@ -97,9 +97,6 @@ DIST_TUPLE +=					github bazelbuild bazel-central-registry ${BCR_COMMIT} \
 
 DIST_SUBDIR =					mozc
 
-# links ${WRKDIR}/bin/ld
-USE_WXNEEDED =					Yes
-
 SUBST_VARS +=					LOCALBASE X11BASE PREFIX MODPY_BIN
 
 SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
