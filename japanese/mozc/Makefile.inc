@@ -97,13 +97,10 @@ DIST_TUPLE +=					github bazelbuild bazel-central-registry ${BCR_COMMIT} \
 
 DIST_SUBDIR =					mozc
 
-SUBST_VARS +=					LOCALBASE X11BASE PREFIX MODPY_BIN
-
 SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
 								${WRKSRC}/src/MODULE.bazel \
 								${WRKSRC}/src/base/system_util.cc \
-								${WRKSRC}/src/base/process.cc \
-								${WRKSRC}/bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/patches/pyinterpreter_fallback.patch
+								${WRKSRC}/src/base/process.cc
 
 CLANG_RESOURCE_DIR !=			/usr/bin/${CC} -print-resource-dir
 CLANG_RESOURCE_DIR :=			${CLANG_RESOURCE_DIR}/include
@@ -119,8 +116,11 @@ FILESDIR =						${.CURDIR}/../files
 
 BUILD_DEPENDS +=				devel/bazel/9
 
-MODULES +=						java
+MODULES +=						java lang/python
+
 MODJAVA_VER =					21
+
+MODPY_RUNDEP =					No
 
 HTTPS_PROXY ?=					http://127.0.0.1:1
 

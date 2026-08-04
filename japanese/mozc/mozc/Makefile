@@ -58,9 +58,6 @@ EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 
 BUILD_DEPENDS +=				archivers/bzip2
 
-MODULES +=						lang/python
-
-MODPY_RUNDEP =                  No
 MODPY_ADJ_FILES +=              ${WRKSRC}/merge_dictionaries.py
 
 WANTLIB +=						${COMPILER_LIBCXX} Qt6Core Qt6Gui Qt6Widgets
@@ -86,17 +83,12 @@ pre-patch:
 		echo "datasize limit is too low. Build needs approximately 3GiB."; \
 		exit 1; \
 	fi
-	cp ${FILESDIR}/pyinterpreter_fallback.patch \
-		${WRKDIST}/bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/patches && \
-		cp ${FILESDIR}/versions_json.patch \
+	cp ${FILESDIR}/versions_json.patch \
 		${WRKDIST}/bazel-central-registry/modules/rules_go/${RULES_GO_VERSION}/patches
 
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS} && ${SUBST_CMD} ${SUBST_VARS_bazel_conf} \
-		${SUBST_TARGETS_bazel_conf} && cd ${WRKSRC} && \
-		PYIF_HASH=$$(sha256 -bq bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/patches/pyinterpreter_fallback.patch); \
-		${SUBST_CMD} \
-		-DPYIF_HASH=$${PYIF_HASH} ${SUBST_TARGETS_rules_python} && \
+		${SUBST_TARGETS_bazel_conf} && \
 		cp ${FULLDISTDIR}/${UT_JAWIKI} ${WRKSRC} && \
 		cp ${FULLDISTDIR}/${UT_PERSONAL_NAMES} ${WRKSRC} && \
 		cp ${FULLDISTDIR}/${UT_PLACE_NAMES} ${WRKSRC} && \
