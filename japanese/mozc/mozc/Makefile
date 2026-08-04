@@ -7,7 +7,7 @@ GH_PROJECT =					mozc
 GH_COMMIT =						3f235b4eb6fcff7d14ef5f0fb8ee56de7ee4c732
 
 VERSION =						3.34.6239.20260717
-REVISION =						1
+REVISION =						2
 DISTNAME =						mozc-${VERSION}
 PKGNAME =						mozc-${VERSION}
 
@@ -119,6 +119,9 @@ do-install:
 		"${PREFIX}/libexec/mozc/mozc_server"
 	${INSTALL_PROGRAM} "${WRKSRC}/src/bazel-bin/gui/tool/mozc_tool" \
 		"${PREFIX}/libexec/mozc/mozc_tool"
+	${INSTALL_DATA_DIR} "${PREFIX}/share/doc/mozc"
+	${INSTALL_DATA} "${WRKSRC}/src/data/installer/credits_en.html" \
+		"${PREFIX}/share/doc/mozc/credits_en.html"
 
 .include <bsd.port.mk>
 
