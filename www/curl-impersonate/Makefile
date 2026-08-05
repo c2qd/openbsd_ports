@@ -1,7 +1,6 @@
 COMMENT =               Special curl build that can impersonate major browsers
 
-VERSION =               2.0.0rc5
-REVISION =				0
+VERSION =               2.0.0
 DISTNAME =              curl-impersonate-${VERSION}
 CATEGORIES =            net www
 
