@@ -7,7 +7,7 @@ Index: bazel-central-registry/modules/rules_go/0.60.0/source.json
      "patches": {
 -        "module_dot_bazel_version.patch": "sha256-++iUtDRCPf10ZKmSysJe3HE1FRvKBQuxgwH4v/58m/w="
 +        "module_dot_bazel_version.patch": "sha256-++iUtDRCPf10ZKmSysJe3HE1FRvKBQuxgwH4v/58m/w=",
-+        "versions_json.patch": "sha256-i2XoHqQfncSqxS6NlBineCqBQmv+7YneC3m92mFfXg4="
++        "versions_json.patch": "sha256-ShrxgY7NLs5qVtaoaQj+5CJJU9QHQT4E6ijqQhzwt+o="
      },
      "patch_strip": 1
  }
