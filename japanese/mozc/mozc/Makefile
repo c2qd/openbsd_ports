@@ -7,7 +7,7 @@ GH_PROJECT =					mozc
 GH_COMMIT =						3f235b4eb6fcff7d14ef5f0fb8ee56de7ee4c732
 
 VERSION =						3.34.6239.20260717
-REVISION =						2
+REVISION =						3
 DISTNAME =						mozc-${VERSION}
 PKGNAME =						mozc-${VERSION}
 
@@ -21,7 +21,7 @@ UT_PERSONAL_NAMES_COMMIT =		159e01bf4af61a3fa9367ae2578fd42c464a0ea7
 UT_PLACE_NAMES_COMMIT =			9951ef87972c1d2c3803e2106b86083d14a242f9
 UT_NEOLOGD_COMMIT =				e33ac4ce808fa4253c6c97bf5178e229a4bfb50f
 UT_SUDACHIDICT_COMMIT =			c686771bada1d59e9b105c81b29e6ac1a239cb54
-JAWIKI_DATE =					20260701
+JAWIKI_DATE =					20260801
 
 DISTFILES.merge_script =		merge_dictionaries-${UT_COMMIT}{merge_dictionaries}.py
 SITES.merge_script =			https://raw.githubusercontent.com/utuhiro78/merge-ut-dictionaries/${UT_COMMIT}/src/merge/

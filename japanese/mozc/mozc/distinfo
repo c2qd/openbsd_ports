@@ -8,7 +8,7 @@ SHA256 (mozc/bazel_features-v1.42.1.tar.gz) = gYm6yaa/nMFVqFTEy+v+v1i5ynotCmdkX3
 SHA256 (mozc/bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = yAoyDhvnhUzMm5G9KIma+AfGPX87+eDRUjCzoeaqttE=
 SHA256 (mozc/buildozer-v8.5.1.tar.gz) = vQeG4Pi2rtjDWJi0wG9kuoU9YdfINh7bWo1Dxuo39cY=
 SHA256 (mozc/googletest-1.17.0.tar.gz) = Zfq3AdmCnTjLd8FKzcQx0hCL/b+JeeQOuK5Wft8Qsnw=
-SHA256 (mozc/jawiki-20260701-pages-articles-multistream-index.txt.bz2) = FY1nHhu16qh+QFxFLyLV953Yx9067GGMB6B5pHHUQKw=
+SHA256 (mozc/jawiki-20260801-pages-articles-multistream-index.txt.bz2) = 68kh+4m9N2E0golS+9vHzYpZuxEUxbf9Gh+Fk2wqmNY=
 SHA256 (mozc/jigyosyo.zip) = FL4QMPYHxfgZ8vRaSF6JURkHvdHWLn+xkxtuSKNDHDo=
 SHA256 (mozc/ken_all.zip) = OtyX2OGeEWimzcsvznWdDp5hOpo7YwzBgK7P1WroHq8=
 SHA256 (mozc/merge_dictionaries-15c1c64502b43e31d328012860376c03c3eaf633.py) = ALDz2KtQR5e5cK0Qjfgt+TseqSKIKcxsz1wq+tssN4k=
@@ -50,7 +50,7 @@ SIZE (mozc/bazel_features-v1.42.1.tar.gz) = 18078
 SIZE (mozc/bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = 9417311
 SIZE (mozc/buildozer-v8.5.1.tar.gz) = 8300
 SIZE (mozc/googletest-1.17.0.tar.gz) = 885595
-SIZE (mozc/jawiki-20260701-pages-articles-multistream-index.txt.bz2) = 31198189
+SIZE (mozc/jawiki-20260801-pages-articles-multistream-index.txt.bz2) = 31277924
 SIZE (mozc/jigyosyo.zip) = 774660
 SIZE (mozc/ken_all.zip) = 1694719
 SIZE (mozc/merge_dictionaries-15c1c64502b43e31d328012860376c03c3eaf633.py) = 9061
