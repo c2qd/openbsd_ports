@@ -88,7 +88,8 @@ pre-patch:
 
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS} && ${SUBST_CMD} ${SUBST_VARS_bazel_conf} \
-		${SUBST_TARGETS_bazel_conf} && \
+		${SUBST_TARGETS_bazel_conf}
+.if !defined(NO_UTDIC)
 		cp ${FULLDISTDIR}/${UT_JAWIKI} ${WRKSRC} && \
 		cp ${FULLDISTDIR}/${UT_PERSONAL_NAMES} ${WRKSRC} && \
 		cp ${FULLDISTDIR}/${UT_PLACE_NAMES} ${WRKSRC} && \
@@ -98,8 +99,9 @@ post-patch:
 		cd ${WRKSRC} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
 		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
-		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt && \
-		cd ${WRKDIST}/bazel-central-registry && \
+		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt
+.endif
+	cd ${WRKDIST}/bazel-central-registry && \
 		mkdir modules/abseil-cpp/${ABSEIL_VERSION}/patches && \
 		cp ${FILESDIR}/enolink.patch \
 		modules/abseil-cpp/${ABSEIL_VERSION}/patches
