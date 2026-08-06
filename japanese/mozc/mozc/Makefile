@@ -7,7 +7,7 @@ GH_PROJECT =					mozc
 GH_COMMIT =						3f235b4eb6fcff7d14ef5f0fb8ee56de7ee4c732
 
 VERSION =						3.34.6239.20260717
-REVISION =						3
+REVISION =						4
 DISTNAME =						mozc-${VERSION}
 PKGNAME =						mozc-${VERSION}
 
