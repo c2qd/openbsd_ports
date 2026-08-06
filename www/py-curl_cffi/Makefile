@@ -1,6 +1,7 @@
 COMMENT =				Python binding for curl-impersonate
 
 VERSION =				0.15.0
+REVISION =				0
 DISTNAME =				curl_cffi-${VERSION}
 PKGNAME =				py-${DISTNAME}
 CATEGORIES =			www

@@ -1,0 +1,14 @@
+Index: scripts/build.py
+--- scripts/build.py.orig
++++ scripts/build.py
+@@ -157,8 +157,8 @@ if is_static:
+             f"-Wl,-force_load,{static_libs[0]}",
+             "-lc++",
+         ]
+-    elif system in ("Linux", "Android"):
+-        cxx_lib = "-lc++" if is_android else "-lstdc++"
++    elif system in ("Linux", "Android", "OpenBSD"):
++        cxx_lib = "-lc++" if is_android or system == "OpenBSD" else "-lestdc++"
+         extra_link_args = [
+             "-Wl,--whole-archive",
+             static_libs[0],
