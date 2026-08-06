@@ -22,7 +22,8 @@ WANTLIB +=				curl-impersonate
 MODULES =				lang/python
 MODPY_PYBUILD =			setuptools
 
-# MIT
+# MIT + Zlib(zlib) + BSD-3-Clause(zstd) +
+# MIT(brotli, nghttp2, ngtcp2, nghttp3) + Apache-2.0(boringssl) + curl(curl)
 PERMIT_PACKAGE =		Yes
 
 COMPILER_LANGS =		c

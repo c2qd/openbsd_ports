@@ -53,7 +53,8 @@ MODULES =				devel/cmake
 
 CONFIGURE_ARGS =		-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate
 
-# MIT
+# MIT + Zlib(zlib) + BSD-3-Clause(zstd) +
+# MIT(brotli, nghttp2, ngtcp2, nghttp3) + Apache-2.0(boringssl) + curl(curl)
 PERMIT_PACKAGE =		Yes
 
 COMPILER =				base-clang ports-gcc
