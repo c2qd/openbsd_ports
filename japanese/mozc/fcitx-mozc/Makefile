@@ -27,7 +27,8 @@ WANTLIB +=						c m
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
-# BSD-3-Clause + LGPL-2.1 or later(Part of the code in src/unix/fcitx5)
+# BSD-3-Clause + Zlib(zlib) + BSD-3-Clause(protobuf) + Apache-2.0(abseil-cpp)
+# LGPL-2.1 or later(Part of the code in src/unix/fcitx5)
 PERMIT_PACKAGE =				No
 
 L10N_LANGS =					ca da de fr he ja ka ko ru tr vi zh_CN zh_TW

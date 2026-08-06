@@ -21,6 +21,7 @@ UT_PERSONAL_NAMES_COMMIT =		159e01bf4af61a3fa9367ae2578fd42c464a0ea7
 UT_PLACE_NAMES_COMMIT =			9951ef87972c1d2c3803e2106b86083d14a242f9
 UT_NEOLOGD_COMMIT =				e33ac4ce808fa4253c6c97bf5178e229a4bfb50f
 UT_SUDACHIDICT_COMMIT =			c686771bada1d59e9b105c81b29e6ac1a239cb54
+UT_EDICT2_COMMIT =				8fe8f7918baf513c3d7e243807dfcda2d5c30139
 JAWIKI_DATE =					20260801
 
 DISTFILES.merge_script =		merge_dictionaries-${UT_COMMIT}{merge_dictionaries}.py
@@ -40,6 +41,9 @@ UT_NEOLOGD =					mozcdic-ut-neologd-${UT_NEOLOGD_COMMIT}.txt.bz2
 DISTFILES.sudachidict =			mozcdic-ut-sudachidict-${UT_SUDACHIDICT_COMMIT}{mozcdic-ut-sudachidict}.txt.bz2
 SITES.sudachidict =				https://github.com/utuhiro78/mozcdic-ut-sudachidict/raw/${UT_SUDACHIDICT_COMMIT}/
 UT_SUDACHIDICT =				mozcdic-ut-sudachidict-${UT_SUDACHIDICT_COMMIT}.txt.bz2
+DISTFILES.edict2 =				mozcdic-ut-edict2-${UT_EDICT2_COMMIT}{mozcdic-ut-edict2}.txt.bz2
+SITES.edict2 =					https://github.com/utuhiro78/mozcdic-ut-edict2/raw/${UT_EDICT2_COMMIT}/
+UT_EDICT2 =						mozcdic-ut-edict2-${UT_EDICT2_COMMIT}.txt.bz2
 DISTFILES.jawiki_index =		jawiki-${JAWIKI_DATE}-pages-articles-multistream-index.txt.bz2
 SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_DATE}/
 
@@ -67,10 +71,10 @@ LIB_DEPENDS +=					x11/qt6/qtbase
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
-# BSD-3-Clause + NAIST-2003(IPADic) +
-# Public Domain(Okinawa dictionary / Zip code data / place-names) +
-# BSD-2-Clause(Japanese usage dictionary) +
-# CC-BY-SA-4.0(jawiki) + Apache 2.0(abseil-cpp / personal-names / Neologd / SudachiDict)
+# BSD-3-Clause + NAIST-2003(IPADic) + Zlib(zlib) +
+# Public Domain(Okinawa dictionary, Zip code data, place-names) +
+# BSD-2-Clause(Japanese usage dictionary) + BSD-3-Clause(protobuf) +
+# CC-BY-SA-4.0(jawiki, edict2) + Apache-2.0(abseil-cpp, personal-names, Neologd, SudachiDict)
 PERMIT_PACKAGE =				No
 
 post-extract:
@@ -95,6 +99,7 @@ post-patch:
 		cp ${FULLDISTDIR}/${UT_PLACE_NAMES} ${WRKSRC} && \
 		cp ${FULLDISTDIR}/${UT_NEOLOGD} ${WRKSRC} && \
 		cp ${FULLDISTDIR}/${UT_SUDACHIDICT} ${WRKSRC} && \
+		cp ${FULLDISTDIR}/${UT_EDICT2} ${WRKSRC} && \
 		cp ${FULLDISTDIR}/${DISTFILES.jawiki_index} ${WRKSRC} && \
 		cd ${WRKSRC} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \

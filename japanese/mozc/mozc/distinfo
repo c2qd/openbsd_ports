@@ -13,6 +13,7 @@ SHA256 (mozc/jigyosyo.zip) = FL4QMPYHxfgZ8vRaSF6JURkHvdHWLn+xkxtuSKNDHDo=
 SHA256 (mozc/ken_all.zip) = OtyX2OGeEWimzcsvznWdDp5hOpo7YwzBgK7P1WroHq8=
 SHA256 (mozc/merge_dictionaries-15c1c64502b43e31d328012860376c03c3eaf633.py) = ALDz2KtQR5e5cK0Qjfgt+TseqSKIKcxsz1wq+tssN4k=
 SHA256 (mozc/mozc-3.34.6239.20260717-3f235b4e.tar.gz) = 1fYdKuCDz4Z2urb+WwCCzDKivXhzuEACndlj04NIqEc=
+SHA256 (mozc/mozcdic-ut-edict2-8fe8f7918baf513c3d7e243807dfcda2d5c30139.txt.bz2) = HmLLSAEBy8xahLqYGzcJCen0OXPBt8YGPAShLszXJTA=
 SHA256 (mozc/mozcdic-ut-jawiki-4d32dfc2e3a3644d6b4ab848fb129ca2cd52a619.txt.bz2) = FO26NQSakEXEX/78WQC58GDTEUEkO8wb/zHMTQEoSco=
 SHA256 (mozc/mozcdic-ut-neologd-e33ac4ce808fa4253c6c97bf5178e229a4bfb50f.txt.bz2) = IxubXkrRa6o/eWgPTkYV9wYFEaQdpKrCFJeJ6s4/JBE=
 SHA256 (mozc/mozcdic-ut-personal-names-159e01bf4af61a3fa9367ae2578fd42c464a0ea7.txt.bz2) = 56AXo0Ivq9rpyIGkIsGCVBbR2WUxsF7KeyqHgFikh1E=
@@ -55,6 +56,7 @@ SIZE (mozc/jigyosyo.zip) = 774660
 SIZE (mozc/ken_all.zip) = 1694719
 SIZE (mozc/merge_dictionaries-15c1c64502b43e31d328012860376c03c3eaf633.py) = 9061
 SIZE (mozc/mozc-3.34.6239.20260717-3f235b4e.tar.gz) = 29086846
+SIZE (mozc/mozcdic-ut-edict2-8fe8f7918baf513c3d7e243807dfcda2d5c30139.txt.bz2) = 1420412
 SIZE (mozc/mozcdic-ut-jawiki-4d32dfc2e3a3644d6b4ab848fb129ca2cd52a619.txt.bz2) = 12125961
 SIZE (mozc/mozcdic-ut-neologd-e33ac4ce808fa4253c6c97bf5178e229a4bfb50f.txt.bz2) = 15715076
 SIZE (mozc/mozcdic-ut-personal-names-159e01bf4af61a3fa9367ae2578fd42c464a0ea7.txt.bz2) = 718915
