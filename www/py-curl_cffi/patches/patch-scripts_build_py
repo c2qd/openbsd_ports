@@ -8,7 +8,7 @@ Index: scripts/build.py
 -    elif system in ("Linux", "Android"):
 -        cxx_lib = "-lc++" if is_android else "-lstdc++"
 +    elif system in ("Linux", "Android", "OpenBSD"):
-+        cxx_lib = "-lc++" if is_android or system == "OpenBSD" else "-lestdc++"
++        cxx_lib = "-lc++" if is_android or system == "OpenBSD" else "-lstdc++"
          extra_link_args = [
              "-Wl,--whole-archive",
              static_libs[0],

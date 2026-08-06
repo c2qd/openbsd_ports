@@ -26,7 +26,7 @@ MODPY_PYBUILD =			setuptools
 PERMIT_PACKAGE =		Yes
 
 COMPILER_LANGS =		c
-COMPILER =				base-clang ports-gcc
+COMPILER =				base-clang
 
 # for 0.16
 # ToDo: rm libdir from patch-libs_json (when upd to 0.16)
