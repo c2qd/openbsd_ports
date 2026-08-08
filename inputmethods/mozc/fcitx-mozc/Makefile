@@ -11,7 +11,7 @@ REVISION =						0
 DISTNAME =						fcitx-mozc-${VERSION}
 PKGNAME =						fcitx-mozc-${VERSION}
 
-CATEGORIES=						japanese
+CATEGORIES=						inputmethods japanese
 
 MAINTAINER =					c2qd
 

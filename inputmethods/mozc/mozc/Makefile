@@ -11,7 +11,7 @@ REVISION =						4
 DISTNAME =						mozc-${VERSION}
 PKGNAME =						mozc-${VERSION}
 
-CATEGORIES=						japanese
+CATEGORIES=						inputmethods japanese
 
 MAINTAINER =					c2qd
 
