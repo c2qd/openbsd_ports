@@ -1,7 +1,7 @@
 Index: libs.json
 --- libs.json.orig
 +++ libs.json
-@@ -146,5 +146,15 @@
+@@ -146,5 +146,14 @@
          "libc": "gnu",
          "obj_name": "libcurl-impersonate.a",
          "arch": "loongarch64"
@@ -13,7 +13,6 @@ Index: libs.json
 +        "sysname": "openbsd",
 +        "link_type": "static",
 +        "obj_name": "libcurl-impersonate.a",
-+        "libdir": "${LOCALBASE}/lib",
 +        "arch": "x86_64"
      }
  ]
