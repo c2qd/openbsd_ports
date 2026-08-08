@@ -67,10 +67,10 @@ post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS}
 
 post-build:
-	@if [ -f "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.orig.a" ] && \
+	@if [ -f "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.a.orig" ] && \
 		[ "$$(stat -f %z "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.a")" -gt \
 		  "$$(( $$(stat -f %z \
-		  "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.orig.a") * 2 ))" ]; then \
+		  "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.a.orig") * 2 ))" ]; then \
 		  echo "Bundle: already generated, skipping."; \
 		  exit 0; \
 	else \
