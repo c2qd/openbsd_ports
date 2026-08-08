@@ -54,8 +54,8 @@ post-patch:
 
 do-build:
 	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 \
-		${BAZEL_STARTUP_FLAGS} build \
-		${BAZEL_BUILD_FLAGS} unix/fcitx5:fcitx5-mozc.so
+		${BAZEL_STARTUP_FLAGS} build ${BAZEL_BUILD_FLAGS} \
+		unix/fcitx5:fcitx5-mozc.so
 
 pre-install:
 	cd ${WRKSRC}/src && msgfmt --xml -d unix/fcitx5/po/ \

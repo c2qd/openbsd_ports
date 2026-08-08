@@ -77,6 +77,11 @@ COMPILER =						base-clang
 # CC-BY-SA-4.0(jawiki, edict2) + Apache-2.0(abseil-cpp, personal-names, Neologd, SudachiDict)
 PERMIT_PACKAGE =				No
 
+BAZEL_BUILD_FLAGS +=			--copt=-I${X11BASE}/include \
+								--linkopt=-L${LOCALBASE}/lib \
+								--host_linkopt=-L${LOCALBASE}/lib \
+								--action_env=LC_CTYPE=C.UTF-8
+
 post-extract:
 	cp ${FULLDISTDIR}/merge_dictionaries-${UT_COMMIT}.py \
 		${WRKSRC}/merge_dictionaries.py && \
@@ -92,32 +97,24 @@ pre-patch:
 
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS} && ${SUBST_CMD} ${SUBST_VARS_bazel_conf} \
-		${SUBST_TARGETS_bazel_conf}
+		${SUBST_TARGETS_bazel_conf} && 	cd ${WRKDIST}/bazel-central-registry && \
+		mkdir modules/abseil-cpp/${ABSEIL_VERSION}/patches && \
+		cp ${FILESDIR}/enolink.patch \
+		modules/abseil-cpp/${ABSEIL_VERSION}/patches
 .if !defined(NO_UTDIC)
-		cp ${FULLDISTDIR}/${UT_JAWIKI} ${WRKSRC} && \
-		cp ${FULLDISTDIR}/${UT_PERSONAL_NAMES} ${WRKSRC} && \
-		cp ${FULLDISTDIR}/${UT_PLACE_NAMES} ${WRKSRC} && \
-		cp ${FULLDISTDIR}/${UT_NEOLOGD} ${WRKSRC} && \
-		cp ${FULLDISTDIR}/${UT_SUDACHIDICT} ${WRKSRC} && \
-		cp ${FULLDISTDIR}/${UT_EDICT2} ${WRKSRC} && \
-		cp ${FULLDISTDIR}/${DISTFILES.jawiki_index} ${WRKSRC} && \
+	cd ${FULLDISTDIR} && rm -f ${WRKSRC}/mozcdic-ut-*.txt* && \
+		cp ${UT_JAWIKI} ${UT_PERSONAL_NAMES} ${UT_PLACE_NAMES} \
+		${UT_NEOLOGD} ${UT_SUDACHIDICT} ${UT_EDICT2} ${DISTFILES.jawiki_index} \
+		${WRKSRC} && \
 		cd ${WRKSRC} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
 		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
 		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt
 .endif
-	cd ${WRKDIST}/bazel-central-registry && \
-		mkdir modules/abseil-cpp/${ABSEIL_VERSION}/patches && \
-		cp ${FILESDIR}/enolink.patch \
-		modules/abseil-cpp/${ABSEIL_VERSION}/patches
 
 do-build:
 	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 \
 		${BAZEL_STARTUP_FLAGS} build ${BAZEL_BUILD_FLAGS} \
-		--copt=-I/usr/X11R6/include \
-		--linkopt=-L/usr/local/lib \
-		--host_linkopt=-L/usr/local/lib \
-		--action_env=LC_CTYPE=C.UTF-8 \
 		server:mozc_server gui/tool:mozc_tool
 
 do-install:

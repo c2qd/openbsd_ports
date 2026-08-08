@@ -137,20 +137,20 @@ BAZEL_BUILD_FLAGS +=			--tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 								--platforms=//:openbsd-ex
 
 # === for debug; with mitmproxy ===
-.if defined(ENABLE_PROXY) && ${ENABLE_PROXY} == "1"
+.if defined(ENABLE_PROXY)
 BUILD_DEPENDS +=				security/mitmproxy
 
-BAZEL_STARTUP_FLAGS +=			--host_jvm_args=-Djavax.net.ssl.trustStore=/tmp/cacerts \
-								--host_jvm_args=-Djavax.net.ssl.trustStorePassword=changeit
+BAZEL_STARTUP_FLAGS +=			--host_jvm_args=-Djavax.net.ssl.trustStore=${WRKDIR}/cacerts \
+								--host_jvm_args=-Djavax.net.ssl.trustStorePassword=password
 
 BAZEL_ENVS +=					HTTPS_PROXY=http://127.0.0.1:8080
 .endif
 
 proxyconfig:
-	cp ${JAVA_HOME}/lib/security/cacerts /tmp/cacerts && \
-		keytool -importcert -alias mitmproxy \
+	cp ${JAVA_HOME}/lib/security/cacerts ${WRKDIR}/cacerts && \
+		keytool -importcert -noprompt -alias mitmproxy \
 		-file ~/.mitmproxy/mitmproxy-ca-cert.pem \
-		-keystore /tmp/cacerts -storepass changeit
+		-keystore ${WRKDIR}/cacerts -storepass password
 # === end ===
 
 do-test:
