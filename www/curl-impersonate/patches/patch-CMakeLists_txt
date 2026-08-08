@@ -74,19 +74,3 @@ Index: CMakeLists.txt
        # XXX: psl should be enabled in the future:
        # https://daniel.haxx.se/blog/2024/01/10/psl-in-curl/
        -DCURL_USE_LIBPSL=OFF
-@@ -636,9 +653,14 @@ else()
-     DIRECTORY "${DEPS_BUILD_DIR}/curl/lib/"
-     DESTINATION ${CMAKE_INSTALL_LIBDIR}
-     FILES_MATCHING
--      PATTERN "libcurl-impersonate*.a"
-       PATTERN "libcurl-impersonate*.so*"
-       PATTERN "libcurl-impersonate*.dylib*"
-+      PATTERN "CMakeFiles" EXCLUDE
-+  )
-+  install(
-+    FILES "${DEPS_BUILD_DIR}/curl/lib/libcurl-impersonate.bundle.a"
-+    DESTINATION ${CMAKE_INSTALL_LIBDIR}
-+    RENAME libcurl-impersonate.a
-   )
- endif()
- install(

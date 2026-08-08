@@ -67,23 +67,25 @@ post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS}
 
 post-build:
-	cp "${WRKBUILD}/deps/install/lib/libz.a" "${WRKBUILD}/deps/build/curl/lib/libz.a" && \
-		cp "${WRKBUILD}/deps/install/lib/libzstd.a" "${WRKBUILD}/deps/build/curl/lib/libzstd.a" && \
-		cp "${WRKBUILD}/deps/install/lib/libbrotlidec.a" "${WRKBUILD}/deps/build/curl/lib/libbrotlidec.a" && \
-		cp "${WRKBUILD}/deps/install/lib/libbrotlicommon.a" "${WRKBUILD}/deps/build/curl/lib/libbrotlicommon.a" && \
-		cp "${WRKBUILD}/deps/install/lib/libbrotlienc.a" "${WRKBUILD}/deps/build/curl/lib/libbrotlienc.a" && \
-		cp "${WRKBUILD}/deps/install/lib/libnghttp2.a" "${WRKBUILD}/deps/build/curl/lib/libnghttp2.a" && \
-		cp "${WRKBUILD}/deps/install/lib/libnghttp3.a" "${WRKBUILD}/deps/build/curl/lib/libnghttp3.a" && \
-		cp "${WRKBUILD}/deps/install/lib/libngtcp2.a" "${WRKBUILD}/deps/build/curl/lib/libngtcp2.a" && \
-		cp "${WRKBUILD}/deps/install/lib/libngtcp2_crypto_boringssl.a" "${WRKBUILD}/deps/build/curl/lib/libngtcp2_crypto_boringssl.a" && \
-		cp "${WRKBUILD}/deps/install/lib/libssl.a" "${WRKBUILD}/deps/build/curl/lib/libssl.a" && \
-		cp "${WRKBUILD}/deps/install/lib/libcrypto.a" "${WRKBUILD}/deps/build/curl/lib/libcrypto.a" && \
+	@if [ -f "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.orig.a" ] && \
+		[ "$$(stat -f %z "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.a")" -gt \
+		  "$$(( $$(stat -f %z \
+		  "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.orig.a") * 2 ))" ]; then \
+		  echo "Bundle: already generated, skipping."; \
+		  exit 0; \
+	else \
+		cd ${WRKBUILD}/deps/install/lib && \
+		cp libz.a libzstd.a libbrotlidec.a libbrotlicommon.a libbrotlienc.a libnghttp2.a \
+		libnghttp3.a libngtcp2.a libngtcp2_crypto_boringssl.a libssl.a libcrypto.a \
+		"${WRKBUILD}/deps/build/curl/lib" && \
 		cd "${WRKBUILD}/deps/build/curl/lib" && \
+		mv libcurl-impersonate.a libcurl-impersonate.orig.a && \
 		${CC} -r -o libcurl-impersonate.full.o -Wl,--whole-archive \
-		libcurl-impersonate.a libz.a libzstd.a libbrotlidec.a \
+		libcurl-impersonate.orig.a libz.a libzstd.a libbrotlidec.a \
 		libbrotlicommon.a libbrotlienc.a libnghttp2.a libnghttp3.a \
 		libngtcp2.a libngtcp2_crypto_boringssl.a libssl.a libcrypto.a \
 		-Wl,--no-whole-archive && \
-		ar rcs libcurl-impersonate.bundle.a libcurl-impersonate.full.o
+		ar rcs libcurl-impersonate.a libcurl-impersonate.full.o; \
+	fi
 
 .include <bsd.port.mk>
