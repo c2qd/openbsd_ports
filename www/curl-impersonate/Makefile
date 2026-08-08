@@ -1,6 +1,6 @@
 COMMENT =               Special curl build that can impersonate major browsers
 
-VERSION =               2.0.0
+VERSION =               2.1.0
 REVISION =				0
 DISTNAME =              curl-impersonate-${VERSION}
 CATEGORIES =            net www
@@ -79,9 +79,9 @@ post-build:
 		libnghttp3.a libngtcp2.a libngtcp2_crypto_boringssl.a libssl.a libcrypto.a \
 		"${WRKBUILD}/deps/build/curl/lib" && \
 		cd "${WRKBUILD}/deps/build/curl/lib" && \
-		mv libcurl-impersonate.a libcurl-impersonate.orig.a && \
+		mv libcurl-impersonate.a libcurl-impersonate.a.orig && \
 		${CC} -r -o libcurl-impersonate.full.o -Wl,--whole-archive \
-		libcurl-impersonate.orig.a libz.a libzstd.a libbrotlidec.a \
+		libcurl-impersonate.a.orig libz.a libzstd.a libbrotlidec.a \
 		libbrotlicommon.a libbrotlienc.a libnghttp2.a libnghttp3.a \
 		libngtcp2.a libngtcp2_crypto_boringssl.a libssl.a libcrypto.a \
 		-Wl,--no-whole-archive && \
