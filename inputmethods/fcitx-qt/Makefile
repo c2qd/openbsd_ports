@@ -18,13 +18,13 @@ MAINTAINER =		c2qd (https://codeberg.org/c2qd/openbsd_ports/issues)
 # LGPL2.1+ for other files
 PERMIT_PACKAGE=		Yes
 
+SITES =				https://download.fcitx-im.org/fcitx5/fcitx5-qt/
+EXTRACT_SUFX =		.tar.zst
+
 WANTLIB +=			${COMPILER_LIBCXX} Fcitx5Utils GL Qt5Concurrent Qt5Core
 WANTLIB +=			Qt5DBus Qt5Gui Qt5Widgets Qt6Concurrent Qt6Core Qt6DBus
 WANTLIB +=			Qt6Gui Qt6WaylandClient Qt6Widgets c m wayland-client
 WANTLIB +=			wayland-cursor xcb xkbcommon
-
-SITES =				https://download.fcitx-im.org/fcitx5/fcitx5-qt/
-EXTRACT_SUFX =		.tar.zst
 
 MODULES =			devel/kf5 \
 					x11/qt6

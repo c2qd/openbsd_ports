@@ -15,6 +15,10 @@ CATEGORIES=						inputmethods japanese
 
 MAINTAINER =					c2qd
 
+# BSD-3-Clause + Zlib(zlib) + BSD-3-Clause(protobuf) + Apache-2.0(abseil-cpp)
+# LGPL-2.1 or later(Part of the code in src/unix/fcitx5)
+PERMIT_PACKAGE =				No
+
 EXTRACT_ONLY =					fcitx-mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 								bazelbuild-bazel-central-registry-${BCR_COMMIT}.tar.gz
 
@@ -26,10 +30,6 @@ WANTLIB +=						${COMPILER_LIBCXX} Fcitx5Config Fcitx5Core Fcitx5Utils
 WANTLIB +=						c m
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
-
-# BSD-3-Clause + Zlib(zlib) + BSD-3-Clause(protobuf) + Apache-2.0(abseil-cpp)
-# LGPL-2.1 or later(Part of the code in src/unix/fcitx5)
-PERMIT_PACKAGE =				No
 
 L10N_LANGS =					ca da de fr he ja ka ko ru tr vi zh_CN zh_TW
 

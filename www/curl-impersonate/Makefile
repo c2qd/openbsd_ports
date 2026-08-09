@@ -11,6 +11,12 @@ GH_ACCOUNT =            lexiforest
 GH_PROJECT =            curl-impersonate
 GH_TAGNAME =            v${VERSION}
 
+MAINTAINER =			c2qd
+
+# MIT + Zlib(zlib) + BSD-3-Clause(zstd) +
+# MIT(brotli, nghttp2, ngtcp2, nghttp3) + Apache-2.0(boringssl) + curl(curl)
+PERMIT_PACKAGE =		No
+
 DIST_SUBDIR =			curl-impersonate
 
 ZLIB_VERSION =			1.3.1
@@ -41,8 +47,6 @@ SITES.curl =			https://github.com/curl/curl/archive/
 
 EXTRACT_ONLY =			${GH_PROJECT}-${VERSION}.tar.gz
 
-MAINTAINER =			c2qd
-
 BUILD_DEPENDS =			devel/ninja
 
 RUN_DEPENDS +=			shells/bash
@@ -52,10 +56,6 @@ WANTLIB +=				${COMPILER_LIBCXX} c
 MODULES =				devel/cmake
 
 CONFIGURE_ARGS =		-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate
-
-# MIT + Zlib(zlib) + BSD-3-Clause(zstd) +
-# MIT(brotli, nghttp2, ngtcp2, nghttp3) + Apache-2.0(boringssl) + curl(curl)
-PERMIT_PACKAGE =		No
 
 COMPILER =				base-clang ports-gcc
 

@@ -14,13 +14,13 @@ MAINTAINER =		c2qd (https://codeberg.org/c2qd/openbsd_ports/issues)
 # LGPLv2.1+
 PERMIT_PACKAGE =	Yes
 
+SITES =				https://download.fcitx-im.org/fcitx5/fcitx5-gtk/
+EXTRACT_SUFX =		.tar.zst
+
 WANTLIB +=			${COMPILER_LIBCXX} X11 atk-1.0 c cairo cairo-gobject
 WANTLIB +=			gdk-3 gdk_pixbuf-2.0 gio-2.0 glib-2.0 gobject-2.0 graphene-1.0
 WANTLIB +=			gtk-3 gtk-4 harfbuzz intl m pango-1.0 pangocairo-1.0
 WANTLIB +=			vulkan xkbcommon
-
-SITES =				https://download.fcitx-im.org/fcitx5/fcitx5-gtk/
-EXTRACT_SUFX =		.tar.zst
 
 MODULES =			devel/kf5
 MODQT5_DEPS =		No

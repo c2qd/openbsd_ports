@@ -14,15 +14,15 @@ HOMEPAGE =			https://github.com/fcitx/fcitx5-configtool
 # GPLv2.0+
 PERMIT_PACKAGE=		Yes
 
+SITES =				https://download.fcitx-im.org/fcitx5/fcitx5-configtool/
+EXTRACT_SUFX =		.tar.zst
+
 WANTLIB +=			${COMPILER_LIBCXX} Fcitx5Config Fcitx5Core Fcitx5Qt6DBusAddons
 WANTLIB +=			Fcitx5Qt6WidgetsAddons Fcitx5Utils KF6ConfigCore KF6DBusAddons
 WANTLIB +=			KF6I18n KF6ItemViews KF6WidgetsAddons KF6WindowSystem
 WANTLIB +=			KirigamiPlatform Qt6Concurrent Qt6Core Qt6DBus Qt6Gui Qt6Network
 WANTLIB +=			Qt6OpenGL Qt6Qml Qt6Quick Qt6Widgets
 WANTLIB +=			GL X11 c m xkbcommon xkbfile
-
-SITES =				https://download.fcitx-im.org/fcitx5/fcitx5-configtool/
-EXTRACT_SUFX =		.tar.zst
 
 MODULES =			devel/cmake devel/kf6
 

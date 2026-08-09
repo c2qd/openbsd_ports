@@ -15,6 +15,12 @@ CATEGORIES=						inputmethods japanese
 
 MAINTAINER =					c2qd
 
+# BSD-3-Clause + NAIST-2003(IPADic) + Zlib(zlib) +
+# Public Domain(Okinawa dictionary, Zip code data, place-names) +
+# BSD-2-Clause(Japanese usage dictionary) + BSD-3-Clause(protobuf) +
+# CC-BY-SA-4.0(jawiki, edict2) + Apache-2.0(abseil-cpp, personal-names, Neologd, SudachiDict)
+PERMIT_PACKAGE =				No
+
 UT_COMMIT =						15c1c64502b43e31d328012860376c03c3eaf633
 UT_JAWIKI_COMMIT =				4d32dfc2e3a3644d6b4ab848fb129ca2cd52a619
 UT_PERSONAL_NAMES_COMMIT =		159e01bf4af61a3fa9367ae2578fd42c464a0ea7
@@ -70,12 +76,6 @@ LIB_DEPENDS +=					x11/qt6/qtbase
 
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
-
-# BSD-3-Clause + NAIST-2003(IPADic) + Zlib(zlib) +
-# Public Domain(Okinawa dictionary, Zip code data, place-names) +
-# BSD-2-Clause(Japanese usage dictionary) + BSD-3-Clause(protobuf) +
-# CC-BY-SA-4.0(jawiki, edict2) + Apache-2.0(abseil-cpp, personal-names, Neologd, SudachiDict)
-PERMIT_PACKAGE =				No
 
 BAZEL_BUILD_FLAGS +=			--copt=-I${X11BASE}/include \
 								--linkopt=-L${LOCALBASE}/lib \

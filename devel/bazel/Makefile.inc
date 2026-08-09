@@ -1,12 +1,15 @@
-COMMENT ?=		    polyglot build tool
+COMMENT =		    Polyglot build tool
 DISTNAME =		    bazel-${VERSION}
 PKGNAME	=			bazel${VERSION:C/\..*//}-${VERSION}
 CATEGORIES =	    devel
 SITES =			    https://github.com/bazelbuild/bazel/releases/download/${VERSION}/
 
-HOMEPAGE ?=		    https://bazel.build/
+HOMEPAGE =		    https://bazel.build/
 
 MAINTAINER =		c2qd
+
+# Apache 2.0
+PERMIT_PACKAGE =	Yes
 
 SUFFIX ?=		    -${VERSION}
 SUBST_VARS +=		SUFFIX
@@ -19,9 +22,6 @@ DIST_TUPLE +=		github bazelbuild bazel-central-registry ${BCR_COMMIT} \
 
 EXTRA_BAZEL_ARGS += --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
                     --registry=file://${WRKDIST}/bazel-central-registry
-
-# Apache 2.0
-PERMIT_PACKAGE =	Yes
 
 WANTLIB +=		    ${COMPILER_LIBCXX} c m
 COMPILER_LANGS =	c++

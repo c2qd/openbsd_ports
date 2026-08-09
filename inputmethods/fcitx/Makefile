@@ -16,6 +16,12 @@ MAINTAINER =			c2qd
 # LGPLv2.1+
 PERMIT_PACKAGE=			Yes
 
+SITES =					https://download.fcitx-im.org/fcitx5/fcitx5/
+SITES.data =			https://download.fcitx-im.org/data/
+DISTFILES.data=			en_dict-20121020.tar.gz
+
+EXTRACT_SUFX =			.tar.zst
+
 WANTLIB +=				${COMPILER_LIBCXX} c cairo dbus-1 enchant-2
 WANTLIB +=				execinfo expat gdk_pixbuf-2.0 gio-2.0 glib-2.0
 WANTLIB +=				gobject-2.0 harfbuzz intl kvm m pango-1.0
@@ -23,12 +29,6 @@ WANTLIB +=				pangocairo-1.0 uuid uv wayland-client wayland-cursor
 WANTLIB +=				xcb xcb-ewmh xcb-icccm xcb-imdkit xcb-keysyms
 WANTLIB +=				xcb-randr xcb-render xcb-shape xcb-util xcb-xfixes
 WANTLIB +=				xcb-xinerama xcb-xkb xkbcommon xkbcommon-x11 xkbfile z
-
-SITES =					https://download.fcitx-im.org/fcitx5/fcitx5/
-SITES.data =			https://download.fcitx-im.org/data/
-DISTFILES.data=			en_dict-20121020.tar.gz
-
-EXTRACT_SUFX =			.tar.zst
 
 MODULES =				devel/cmake
 

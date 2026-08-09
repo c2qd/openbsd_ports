@@ -7,6 +7,10 @@ CATEGORIES =			www
 
 ONLY_FOR_ARCHS =		amd64
 
+# MIT + Zlib(zlib) + BSD-3-Clause(zstd) +
+# MIT(brotli, nghttp2, ngtcp2, nghttp3) + Apache-2.0(boringssl) + curl(curl)
+PERMIT_PACKAGE =		No
+
 DISTFILES =				${DISTNAME}${EXTRACT_SUFX}
 
 SITES =					https://github.com/lexiforest/curl_cffi/releases/download/v${VERSION}/
@@ -20,10 +24,6 @@ WANTLIB +=				curl-impersonate
 
 MODULES =				lang/python
 MODPY_PYBUILD =			setuptools
-
-# MIT + Zlib(zlib) + BSD-3-Clause(zstd) +
-# MIT(brotli, nghttp2, ngtcp2, nghttp3) + Apache-2.0(boringssl) + curl(curl)
-PERMIT_PACKAGE =		No
 
 COMPILER_LANGS =		c
 COMPILER =				base-clang
