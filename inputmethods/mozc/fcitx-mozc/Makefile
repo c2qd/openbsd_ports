@@ -4,10 +4,9 @@ HOMEPAGE =						https://github.com/fcitx/mozc
 
 GH_ACCOUNT =					fcitx
 GH_PROJECT =					mozc
-GH_COMMIT =						3f9b1bd6d089cef2e1e8814d7de25291e730274b
+GH_COMMIT =						3f8dea4bdf72c6af200ecdbe3d456871fb1d5e03
 
-VERSION =						3.34.6239.20260719
-REVISION =						0
+VERSION =						3.34.6239.20260814
 DISTNAME =						fcitx-mozc-${VERSION}
 PKGNAME =						fcitx-mozc-${VERSION}
 
