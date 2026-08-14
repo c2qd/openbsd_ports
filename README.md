@@ -12,7 +12,7 @@ See the license disclaimer.
 - The Mozc icons are not built.  
 - Before building Fcitx5, please run the following command. Related: ['devel/llvm: fix clang linking with -fexperimental-library' - MARC](https://marc.info/?l=openbsd-ports&m=178196468149108)
 - ```sh
-  doas ln -s /usr/local/llvm22/lib/libec++experimental.a /usr/local/llvm22/lib/libc++experimental.a
+  doas ln -s libec++experimental.a /usr/local/llvm22/lib/libc++experimental.a
   ```
 
 ## How to use
