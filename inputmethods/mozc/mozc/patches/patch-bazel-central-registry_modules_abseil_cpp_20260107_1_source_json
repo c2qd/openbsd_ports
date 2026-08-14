@@ -1,3 +1,4 @@
+Index: bazel-central-registry/modules/abseil-cpp/20260107.1/source.json
 --- bazel-central-registry/modules/abseil-cpp/20260107.1/source.json.orig
 +++ bazel-central-registry/modules/abseil-cpp/20260107.1/source.json
 @@ -1,5 +1,9 @@
