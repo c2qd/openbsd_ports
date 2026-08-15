@@ -85,6 +85,8 @@ WANTLIB +=						${COMPILER_LIBCXX} Qt6Core Qt6Gui Qt6Widgets
 WANTLIB +=						c m execinfo z X11
 LIB_DEPENDS +=					x11/qt6/qtbase
 
+RUN_DEPENDS +=					devel/xdg-utils
+
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
