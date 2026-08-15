@@ -23,7 +23,7 @@ EXTRACT_ONLY =					fcitx-mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 
 BUILD_DEPENDS +=				devel/gettext,-tools
 LIB_DEPENDS +=					inputmethods/fcitx
-RUN_DEPENDS +=					japanese/mozc/mozc
+RUN_DEPENDS +=					inputmethods/mozc/mozc
 
 WANTLIB +=						${COMPILER_LIBCXX} Fcitx5Config Fcitx5Core Fcitx5Utils
 WANTLIB +=						c m
