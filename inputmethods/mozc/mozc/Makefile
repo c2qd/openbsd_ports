@@ -23,7 +23,6 @@ MAINTAINER =					c2qd
 # BSD-2-Clause(Japanese usage dictionary) + BSD-3-Clause(protobuf) +
 # CC-BY-SA-4.0(jawiki, edict2) + Apache-2.0(abseil-cpp, personal-names, Neologd, SudachiDict)
 PERMIT_PACKAGE =				No # Hmm...?
-MODPY_ADJ_FILES +=              ${WRKSRC}/merge_dictionaries.py
 PATCH_LIST =					patch_ut-* patch-*
 .else
 # Question: Is it okay to change PERMIT_PACKAGE depending on the flavor?
@@ -111,9 +110,11 @@ pre-patch:
 		${WRKDIST}/bazel-central-registry/modules/rules_go/${RULES_GO_VERSION}/patches
 
 generate-ut:
-	cd ${FULLDISTDIR} && rm -f ${WRKSRC}/mozcdic-ut-*.txt* && \
+	${SUBST_CMD} -DJAWIKI_INDEX_FILE=${SUPDISTFILES.jawiki_index} \
+		${WRKSRC}/merge_dictionaries.py && \
+		cd ${FULLDISTDIR} && rm -f ${WRKSRC}/mozcdic-ut-*.txt* && \
 		cp ${UT_JAWIKI} ${UT_PERSONAL_NAMES} ${UT_PLACE_NAMES} \
-		${UT_NEOLOGD} ${UT_SUDACHIDICT} ${UT_EDICT2} ${DISTFILES.jawiki_index} \
+		${UT_NEOLOGD} ${UT_SUDACHIDICT} ${UT_EDICT2} ${SUPDISTFILES.jawiki_index} \
 		${WRKSRC} && \
 		cd ${WRKSRC} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
