@@ -31,30 +31,21 @@ Index: src/ipc/unix_ipc.cc
  
  #include <fcntl.h>
  #include <sys/select.h>
-@@ -121,6 +121,15 @@ bool IsWriteTimeout(int socket, absl::Duration timeout
+@@ -121,10 +121,10 @@ bool IsWriteTimeout(int socket, absl::Duration timeout
  bool IsPeerValid(int socket, pid_t *pid) {
    *pid = 0;
  
-+#if defined(__OpenBSD__)
+-  struct ucred peer_cred;
+-  int peer_cred_len = sizeof(peer_cred);
 +  struct sockpeercred peer_cred;
 +  socklen_t peer_cred_len = sizeof(peer_cred);
-+  if (getsockopt(socket, SOL_SOCKET, SO_PEERCRED, &peer_cred,
-+              &peer_cred_len) < 0) {
-+    LOG(ERROR) << "cannot get peer credential. Not a Unix socket?";
-+    return false;
-+  }
-+#else
-   struct ucred peer_cred;
-   int peer_cred_len = sizeof(peer_cred);
    if (getsockopt(socket, SOL_SOCKET, SO_PEERCRED, &peer_cred,
-@@ -128,14 +137,12 @@ bool IsPeerValid(int socket, pid_t *pid) {
+-                 reinterpret_cast<socklen_t *>(&peer_cred_len)) < 0) {
++              &peer_cred_len) < 0) {
      LOG(ERROR) << "cannot get peer credential. Not a Unix socket?";
      return false;
    }
--
-+#endif
-   if (peer_cred.uid != ::geteuid()) {
-     LOG(WARNING) << "uid mismatch." << peer_cred.uid << "!=" << ::geteuid();
+@@ -134,8 +134,6 @@ bool IsPeerValid(int socket, pid_t *pid) {
      return false;
    }
  
@@ -63,29 +54,23 @@ Index: src/ipc/unix_ipc.cc
    return true;
  }
  
-@@ -265,7 +272,12 @@ void IPCClient::Init(absl::string_view name,
+@@ -265,7 +263,8 @@ void IPCClient::Init(absl::string_view name,
      address.sun_family = AF_UNIX;
      absl::SNPrintF(address.sun_path, sizeof(address.sun_path), "%s",
                     server_address);
-+#if defined(__OpenBSD__)
+-    const size_t sun_len = sizeof(address.sun_family) + server_address_length;
 +    const socklen_t sun_len = SUN_LEN(&address);
 +    address.sun_len = sun_len;
-+#else
-     const size_t sun_len = sizeof(address.sun_family) + server_address_length;
-+#endif
      pid_t pid = 0;
      if (::connect(socket_, reinterpret_cast<const sockaddr *>(&address),
                    sun_len) != 0 ||
-@@ -381,7 +393,12 @@ IPCServer::IPCServer(absl::string_view name, int32_t n
+@@ -381,7 +380,8 @@ IPCServer::IPCServer(absl::string_view name, int32_t n
    int on = 1;
    ::setsockopt(socket_, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&on),
                 sizeof(on));
-+#if defined(__OpenBSD__)
+-  const size_t sun_len = sizeof(addr.sun_family) + server_address_.size();
 +  const socklen_t sun_len = SUN_LEN(&addr);
 +  addr.sun_len = sun_len;
-+#else
-   const size_t sun_len = sizeof(addr.sun_family) + server_address_.size();
-+#endif
    if (is_file_socket) {
      // Linux does not use files for IPC.
      ::chmod(server_address_.c_str(), 0600);
