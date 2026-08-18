@@ -1,6 +1,7 @@
 COMMENT =				flexible input method framework
 
 DISTNAME =				fcitx5-5.1.21
+REVISION =				0
 PKGNAME =				${DISTNAME:S/fcitx5/fcitx/}
 
 SHARED_LIBS +=			Fcitx5Config                    0.0 # 0.0
@@ -59,9 +60,8 @@ LIB_DEPENDS =           devel/harfbuzz,-main \
 
 CONFIGURE_ARGS =        -DCMAKE_INSTALL_SYSCONFDIR=${PREFIX}/share/examples
 
-COMPILER =				ports-clang
-MODCLANG_VERSION =		22
-MODCLANG_LANGS =		c++
+COMPILER =				base-clang ports-gcc
+COMPILER_LANGS =		c++
 
 CFLAGS +=				-I${LOCALBASE}/include -I${X11BASE}/include
 CXXFLAGS +=				-I${LOCALBASE}/include -I${X11BASE}/include

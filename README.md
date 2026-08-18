@@ -7,13 +7,9 @@ See the license disclaimer.
 ## Notes
 
 - None of the ports have been tested on anything other than x86_64.  
-- I usually build only with the base-clang compiler (ports-clang for inputmethods/fcitx), and that there are some ad hoc patches that assume clang (or libc++).  
+- I usually build only with the base-clang compiler, and that there are some ad hoc patches that assume clang (or libc++).  
 - The Mozc port is patched without *any consideration* for IBus. Please use fcitx5 instead.  
 - The Mozc icons are not built.  
-- Before building Fcitx5, please run the following command. Related: ['devel/llvm: fix clang linking with -fexperimental-library' - MARC](https://marc.info/?l=openbsd-ports&m=178196468149108)
-- ```sh
-  doas ln -s libec++experimental.a /usr/local/llvm22/lib/libc++experimental.a
-  ```
 
 ## How to use
 
@@ -40,6 +36,11 @@ The following files are distributed under their original licenses:
 - [www/yt-dlp](www/yt-dlp) is derived from [openbsd/ports/www/yt-dlp](https://codeberg.org/openbsd/ports/src/branch/master/www/yt-dlp)
 
 Other files are licensed under [The Unlicense](UNLICENSE).
+
+---
+
+- [inputmethods/fcitx/patches/patch-src_lib_fcitx-utils_log_cpp] is *inspired* by [fcitx/fcitx5-macos/patches/osyncstream.patch](https://github.com/fcitx/fcitx5-macos/blob/55148e6e60f48cf1d65aac5a6beba14a43442b43/patches/osyncstream.patch)
+
 
 ## Contact
 
