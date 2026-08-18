@@ -30,6 +30,8 @@ WANTLIB +=						c m
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
+NO_TEST =						Yes
+
 L10N_LANGS =					ca da de fr he ja ka ko ru tr vi zh_CN zh_TW
 
 ICONS =							ui-alpha_full ui-alpha_half ui-direct ui-hiragana \

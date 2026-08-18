@@ -6,7 +6,6 @@ BAZEL_LIB_VERSION_V3 =			3.0.0
 BAZEL_SKYLIB_VERSION =			1.9.0
 BAZEL_FEATURES_VERSION =		1.42.1
 BUILDOZER_VERSION =				8.5.1
-GOOGLETEST_VERSION =			1.17.0
 PLATFORMS_VERSION =				1.0.0
 PROTOBUF_VERSION =				34.1
 PYBIND11_VERSION =				2.13.6
@@ -46,8 +45,6 @@ DISTFILES.bazel_features =		bazel_features-v${BAZEL_FEATURES_VERSION}.tar.gz
 SITES.bazel_features =			https://github.com/bazel-contrib/bazel_features/releases/download/v${BAZEL_FEATURES_VERSION}/
 DISTFILES.buildozer =			buildozer-v${BUILDOZER_VERSION}.tar.gz
 SITES.buildozer =				https://github.com/fmeum/buildozer/releases/download/v${BUILDOZER_VERSION}/
-DISTFILES.googletest =			googletest-${GOOGLETEST_VERSION}.tar.gz
-SITES.googletest =				https://github.com/google/googletest/releases/download/v${GOOGLETEST_VERSION}/
 DISTFILES.platforms =			platforms-${PLATFORMS_VERSION}.tar.gz
 SITES.platforms =				https://github.com/bazelbuild/platforms/releases/download/${PLATFORMS_VERSION}/
 DISTFILES.protobuf =			protobuf-${PROTOBUF_VERSION}.bazel.tar.gz
@@ -152,7 +149,3 @@ proxyconfig:
 		-file ~/.mitmproxy/mitmproxy-ca-cert.pem \
 		-keystore ${WRKDIR}/cacerts -storepass password
 # === end ===
-
-do-test:
-	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} test ... \
-		${BAZEL_BUILD_FLAGS} --build_tests_only

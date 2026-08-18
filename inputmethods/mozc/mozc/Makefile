@@ -65,6 +65,14 @@ UT_EDICT2 =						mozcdic-ut-edict2-${UT_EDICT2_COMMIT}.txt.bz2
 SUPDISTFILES.jawiki_index =		jawiki-${JAWIKI_DATE}-pages-articles-multistream-index.txt.bz2
 SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_DATE}/
 
+GOOGLEBENCHMARK_VERSION =		1.9.5
+GOOGLETEST_VERSION =			1.17.0
+
+DISTFILES.googlebenchmark =		v${GOOGLEBENCHMARK_VERSION}.tar.gz
+SITES.googlebenchmark =			https://github.com/google/benchmark/archive/refs/tags/
+DISTFILES.googletest =			googletest-${GOOGLETEST_VERSION}.tar.gz
+SITES.googletest =				https://github.com/google/googletest/releases/download/v${GOOGLETEST_VERSION}/
+
 JA_USAGE_DICT_VERSION =			2025-01-25
 ZIP_CODE_COMMIT =				621d059fbcbfae17bfca15b439692bae934268c3
 
@@ -136,6 +144,10 @@ do-build:
 	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 \
 		${BAZEL_STARTUP_FLAGS} build ${BAZEL_BUILD_FLAGS} \
 		server:mozc_server gui/tool:mozc_tool
+
+do-test:
+	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} test ... \
+		${BAZEL_BUILD_FLAGS} --build_tests_only
 
 do-install:
 	${INSTALL_PROGRAM_DIR} "${PREFIX}/libexec/mozc"
