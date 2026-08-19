@@ -1,20 +1,12 @@
 Index: src/ui/classic/buffer.cpp
 --- src/ui/classic/buffer.cpp.orig
 +++ src/ui/classic/buffer.cpp
-@@ -125,10 +125,15 @@ Buffer::Buffer(WlShm *shm, uint32_t width, uint32_t he
-     if (!fd.isValid()) {
+@@ -126,7 +126,7 @@ Buffer::Buffer(WlShm *shm, uint32_t width, uint32_t he
          return;
      }
--
-+#if defined(__OpenBSD__)
-+    if (ftruncate(fd.fd(), alloc) != 0) {
-+        return;
-+    }
-+#else
-     if (posix_fallocate(fd.fd(), 0, alloc) != 0) {
-         return;
-     }
-+#endif
-     uint8_t *data = (uint8_t *)mmap(nullptr, alloc, PROT_READ | PROT_WRITE,
-                                     MAP_SHARED, fd.fd(), 0);
  
+-    if (posix_fallocate(fd.fd(), 0, alloc) != 0) {
++    if (ftruncate(fd.fd(), alloc) != 0) {
+         return;
+     }
+     uint8_t *data = (uint8_t *)mmap(nullptr, alloc, PROT_READ | PROT_WRITE,
