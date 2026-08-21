@@ -29,6 +29,7 @@ PORTSDIR_PATH=<clone destination>:${PORTSDIR}/mystuff:${PORTSDIR}
 
 The following files are distributed under their original licenses:  
 - [enolink.patch](japanese/mozc/files/enolink.patch) = [openbsd/ports/devel/abseil-cpp/patches/patch-absl_status_status_cc](https://codeberg.org/openbsd/ports/src/branch/master/devel/abseil-cpp/patches/patch-absl_status_status_cc)  
+- [games/liblcf](games/liblcf) is derived from [openbsd/ports/games/liblcf](https://codeberg.org/openbsd/ports/src/branch/master/games/liblcf)  
 - [inputmethods/fcitx/Makefile](inputmethods/fcitx/Makefile) is derived from [openbsd/ports/inputmethods/fcitx/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx/Makefile)  
 - [inputmethods/fcitx/patches/patch-src_lib_fcitx-utils_misc_cpp](inputmethods/fcitx/patches/patch-src_lib_fcitx-utils_misc_cpp) = [openbsd/ports/inputmethods/patches/patch-src_lib_fcitx-utils_misc_cpp](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx/patches/patch-src_lib_fcitx-utils_misc_cpp)  
 - [inputmethods/fcitx-config-qt/Makefile](inputmethods/fcitx-config-qt/Makefile) is derived from [openbsd/ports/inputmethods/fcitx-config-qt/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx-config-qt/Makefile)  
