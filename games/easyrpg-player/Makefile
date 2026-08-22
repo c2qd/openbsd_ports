@@ -1,6 +1,7 @@
 COMMENT =			Free interpreter for RPG Maker 2000/2003 and EasyRPG games
 
 VERSION =			0.8.1.1
+REVISION =			0
 DISTNAME =			easyrpg-player-${VERSION}
 DISTFILES =			${DISTNAME}${EXTRACT_SUFX}
 SITES =				https://easyrpg.org/downloads/player/${VERSION}/
@@ -12,9 +13,9 @@ HOMEPAGE =			https://easyrpg.org/
 # GPLv3+
 PERMIT_PACKAGE =	Yes
 
-WANTLIB +=			${COMPILER_LIBCXX} SDL3 c expat fmt freetype harfbuzz
-WANTLIB +=			icudata icui18n icuuc inih lcf m mpg123 ogg opus
-WANTLIB +=			opusfile pixman-1 png sndfile speexdsp
+WANTLIB +=			${COMPILER_LIBCXX} SDL3 WildMidi c expat fmt fluidsynth
+WANTLIB +=			freetype harfbuzz icudata icui18n icuuc inih lcf lhasa
+WANTLIB +=			m mpg123 ogg opus opusfile pixman-1 png sndfile speexdsp
 WANTLIB +=			vorbis vorbisfile xmp z
 
 COMPILER =			base-clang ports-gcc
@@ -23,10 +24,10 @@ MODULES +=			devel/cmake
 
 BUILD_DEPENDS +=	textproc/asciidoctor textproc/nlohmann-json
 
-LIB_DEPENDS +=		audio/libsndfile audio/libxmp audio/mpg123 \
-					audio/opusfile audio/speexdsp devel/fmt \
-					devel/harfbuzz devel/sdl3 games/liblcf \
-					graphics/png textproc/libinih
+LIB_DEPENDS +=		archivers/lhasa audio/fluidsynth audio/libsndfile \
+					audio/libxmp audio/mpg123 audio/opusfile audio/speexdsp \
+					audio/wildmidi devel/fmt devel/harfbuzz devel/sdl3 \
+					games/liblcf graphics/png textproc/libinih
 
 RUN_DEPENDS +=		devel/desktop-file-utils x11/gtk+4,-guic
 
