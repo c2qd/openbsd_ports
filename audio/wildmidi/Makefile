@@ -1,4 +1,4 @@
-COMMENT =			Simple software midi player
+COMMENT =			Simple software midi synthesis library
 
 VERSION =			0.5.0
 DISTNAME =			wildmidi-${VERSION}
