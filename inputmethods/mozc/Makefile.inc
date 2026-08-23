@@ -88,16 +88,14 @@ SITES.tar_bzl =					https://github.com/bazel-contrib/tar.bzl/releases/download/v
 DISTFILES.zlib =	            zlib-${ZLIB_VERSION}.tar.gz
 SITES.zlib =					https://github.com/madler/zlib/releases/download/v${ZLIB_VERSION}/
 
-BCR_COMMIT =					2459648091f2c5b8e21a46613cf39bffb6fba298
-DIST_TUPLE +=					github bazelbuild bazel-central-registry ${BCR_COMMIT} \
-								bazel-central-registry
+WRKSRC =						${WRKDIST}/src
 
 DIST_SUBDIR =					mozc
 
-SUBST_TARGETS +=				${WRKSRC}/src/config.bzl \
-								${WRKSRC}/src/MODULE.bazel \
-								${WRKSRC}/src/base/system_util.cc \
-								${WRKSRC}/src/base/process.cc
+SUBST_TARGETS +=				${WRKSRC}/config.bzl \
+								${WRKSRC}/MODULE.bazel \
+								${WRKSRC}/base/system_util.cc \
+								${WRKSRC}/base/process.cc
 
 CLANG_RESOURCE_DIR !=			/usr/bin/${CC} -print-resource-dir
 CLANG_RESOURCE_DIR :=			${CLANG_RESOURCE_DIR}/include
@@ -105,30 +103,20 @@ CLANG_RESOURCE_DIR :=			${CLANG_RESOURCE_DIR}/include
 SUBST_VARS_bazel_conf +=		-DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
 								-DCLANG_RESOURCE_DIR=${CLANG_RESOURCE_DIR}
 
-SUBST_TARGETS_bazel_conf +=		${WRKSRC}/src/cc_toolchain_config.bzl
+SUBST_TARGETS_bazel_conf +=		${WRKSRC}/cc_toolchain_config.bzl
 
-SUBST_TARGETS_rules_python +=	${WRKSRC}/bazel-central-registry/modules/rules_python/${RULES_PYTHON_VERSION}/source.json
+SUBST_TARGETS_rules_python +=	${MODBAZEL_BCR_DIR}/modules/rules_python/${RULES_PYTHON_VERSION}/source.json
 
 FILESDIR =						${.CURDIR}/../files
 
-BUILD_DEPENDS +=				devel/bazel/9
+MODULES +=						devel/bazel lang/python
 
-MODULES +=						java lang/python
+MODBAZEL_VERSION =				9
 
-MODJAVA_VER =					21
+MODBAZEL_BCR_COMMIT_ID =		2459648091f2c5b8e21a46613cf39bffb6fba298
 
 MODPY_RUNDEP =					No
 
-HTTPS_PROXY ?=					http://127.0.0.1:1
+MODBAZEL_CONFIGS =				oss_linux release_build
 
-BAZEL_ENVS +=					JAVA_HOME=${JAVA_HOME} HTTPS_PROXY=${HTTPS_PROXY}
-
-BAZEL_STARTUP_FLAGS =			--batch --output_base=${WRKDIST}/bazel_output_base \
-								--output_user_root=${WRKDIST}/bazel_output_user_root
-
-BAZEL_BUILD_FLAGS +=			--tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
-								--registry=file://${WRKDIST}/bazel-central-registry \
-								--distdir=${FULLDISTDIR}\
-								--config oss_linux \
-								--config release_build \
-								--platforms=//:openbsd-ex
+MODBAZEL_FLAGS +=				--platforms=//:openbsd-ex

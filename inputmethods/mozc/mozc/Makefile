@@ -8,7 +8,6 @@ GH_COMMIT =						851c3fe33060d2a6090363e4d7ec44fafde2c03d
 
 VERSION =						3.34.6239.20260814
 DISTNAME =						mozc-${VERSION}
-PKGNAME =						mozc-${VERSION}
 
 FLAVORS =						ut
 FLAVOR ?=
@@ -84,7 +83,7 @@ DISTFILES.zip_code_ken_all =	ken_all.zip
 SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT}/
 
 EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
-								bazelbuild-bazel-central-registry-${BCR_COMMIT}.tar.gz
+								${MODBAZEL_BCR_DISTFILE}
 
 BUILD_DEPENDS +=				archivers/bzip2
 
@@ -97,16 +96,22 @@ RUN_DEPENDS +=					devel/xdg-utils
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
-BAZEL_BUILD_FLAGS +=			--copt=-I${X11BASE}/include \
+ALL_TARGET =					server:mozc_server gui/tool:mozc_tool
+
+CFLAGS +=						-I${X11BASE}/include
+LDFLAGS +=						-L${LOCALBASE}/lib
+
+MAKE_ENV +=						LC_CTYPE=C.UTF-8
+
+TEST_FLAGS =					--copt=-I${X11BASE}/include \
 								--linkopt=-L${LOCALBASE}/lib \
-								--host_linkopt=-L${LOCALBASE}/lib \
-								--action_env=LC_CTYPE=C.UTF-8
+								--host_linkopt=-L${LOCALBASE}/lib
 
 post-extract:
-	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}/src/
+	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}
 .if ${FLAVOR:Mut}
 	cp ${FULLDISTDIR}/merge_dictionaries-${UT_COMMIT}.py \
-		${WRKSRC}/merge_dictionaries.py
+		${WRKDIST}/merge_dictionaries.py
 .endif
 
 pre-patch:
@@ -115,19 +120,19 @@ pre-patch:
 		exit 1; \
 	fi
 	cp ${FILESDIR}/versions_json.patch \
-		${WRKDIST}/bazel-central-registry/modules/rules_go/${RULES_GO_VERSION}/patches
+		${MODBAZEL_BCR_DIR}/modules/rules_go/${RULES_GO_VERSION}/patches
 
 generate-ut:
 	${SUBST_CMD} -DJAWIKI_INDEX_FILE=${SUPDISTFILES.jawiki_index} \
-		${WRKSRC}/merge_dictionaries.py && \
-		cd ${FULLDISTDIR} && rm -f ${WRKSRC}/mozcdic-ut-*.txt* && \
+		${WRKDIST}/merge_dictionaries.py && \
+		cd ${FULLDISTDIR} && rm -f ${WRKDIST}/mozcdic-ut-*.txt* && \
 		cp ${UT_JAWIKI} ${UT_PERSONAL_NAMES} ${UT_PLACE_NAMES} \
 		${UT_NEOLOGD} ${UT_SUDACHIDICT} ${UT_EDICT2} ${SUPDISTFILES.jawiki_index} \
-		${WRKSRC} && \
-		cd ${WRKSRC} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
+		${WRKDIST} && \
+		cd ${WRKDIST} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
 		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
-		cat mozcdic-ut.txt >> src/data/dictionary_oss/dictionary00.txt
+		cat mozcdic-ut.txt >> ${WRKSRC}/data/dictionary_oss/dictionary00.txt
 
 .if ${FLAVOR:Mut}
 post-patch: generate-ut
@@ -135,28 +140,19 @@ post-patch: generate-ut
 
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS} && ${SUBST_CMD} ${SUBST_VARS_bazel_conf} \
-		${SUBST_TARGETS_bazel_conf} && 	cd ${WRKDIST}/bazel-central-registry && \
+		${SUBST_TARGETS_bazel_conf} && 	cd ${MODBAZEL_BCR_DIR} && \
 		mkdir modules/abseil-cpp/${ABSEIL_VERSION}/patches && \
 		cp ${FILESDIR}/enolink.patch \
 		modules/abseil-cpp/${ABSEIL_VERSION}/patches
 
-do-build:
-	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 \
-		${BAZEL_STARTUP_FLAGS} build ${BAZEL_BUILD_FLAGS} \
-		server:mozc_server gui/tool:mozc_tool
-
-do-test:
-	cd ${WRKSRC}/src && ${BAZEL_ENVS} ${LOCALBASE}/bin/bazel9 ${BAZEL_STARTUP_FLAGS} test ... \
-		${BAZEL_BUILD_FLAGS} --build_tests_only
-
 do-install:
 	${INSTALL_PROGRAM_DIR} "${PREFIX}/libexec/mozc"
-	${INSTALL_PROGRAM} "${WRKSRC}/src/bazel-bin/server/mozc_server" \
+	${INSTALL_PROGRAM} "${WRKSRC}/bazel-bin/server/mozc_server" \
 		"${PREFIX}/libexec/mozc/mozc_server"
-	${INSTALL_PROGRAM} "${WRKSRC}/src/bazel-bin/gui/tool/mozc_tool" \
+	${INSTALL_PROGRAM} "${WRKSRC}/bazel-bin/gui/tool/mozc_tool" \
 		"${PREFIX}/libexec/mozc/mozc_tool"
 	${INSTALL_DATA_DIR} "${PREFIX}/share/doc/mozc"
-	${INSTALL_DATA} "${WRKSRC}/src/data/installer/credits_en.html" \
+	${INSTALL_DATA} "${WRKSRC}/data/installer/credits_en.html" \
 		"${PREFIX}/share/doc/mozc/credits_en.html"
 
 .include <bsd.port.mk>
