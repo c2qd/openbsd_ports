@@ -103,10 +103,6 @@ LDFLAGS +=						-L${LOCALBASE}/lib
 
 MAKE_ENV +=						LC_CTYPE=C.UTF-8
 
-TEST_FLAGS =					--copt=-I${X11BASE}/include \
-								--linkopt=-L${LOCALBASE}/lib \
-								--host_linkopt=-L${LOCALBASE}/lib
-
 post-extract:
 	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}
 .if ${FLAVOR:Mut}
