@@ -40,12 +40,12 @@ USE_LIBTOOL = No
 ALL_TARGET ?= //...
 TEST_TARGET ?= //...
 
-MODBAZEL_FLAGS += ${MAKE_ENV:S/^/--action_env=/} \
+MODBAZEL_FLAGS += ${MAKE_ENV:S/^/--action_env=/} ${MAKE_ENV:S/^/--host_action_env=/} \
 				  ${CFLAGS:S/^/--copt=/} ${CFLAGS:S/^/--host_copt=/} \
 				  ${CXXFLAGS:S/^/--cxxopt=/} ${CXXFLAGS:S/^/--host_cxxopt=/} \
 				  ${LDFLAGS:S/^/--linkopt=/} ${LDFLAGS:S/^/--host_linkopt=/}
 
-TEST_FLAGS += ${MAKE_ENV:S/^/--action_env=/} \
+TEST_FLAGS += ${MAKE_ENV:S/^/--action_env=/} ${MAKE_ENV:S/^/--host_action_env=/} \
 			  ${CFLAGS:S/^/--copt=/} ${CFLAGS:S/^/--host_copt=/} \
 			  ${CXXFLAGS:S/^/--cxxopt=/} ${CXXFLAGS:S/^/--host_cxxopt=/} \
 			  ${LDFLAGS:S/^/--linkopt=/} ${LDFLAGS:S/^/--host_linkopt=/}
