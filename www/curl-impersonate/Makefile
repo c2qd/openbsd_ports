@@ -48,8 +48,6 @@ SITES.curl =			https://github.com/curl/curl/archive/
 
 EXTRACT_ONLY =			${GH_PROJECT}-${VERSION}.tar.gz
 
-BUILD_DEPENDS =			devel/ninja
-
 RUN_DEPENDS +=			shells/bash
 
 WANTLIB +=				${COMPILER_LIBCXX} c
