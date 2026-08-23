@@ -45,6 +45,11 @@ MODBAZEL_FLAGS += ${MAKE_ENV:S/^/--action_env=/} \
 				  ${CXXFLAGS:S/^/--cxxopt=/} ${CXXFLAGS:S/^/--host_cxxopt=/} \
 				  ${LDFLAGS:S/^/--linkopt=/} ${LDFLAGS:S/^/--host_linkopt=/}
 
+TEST_FLAGS += ${MAKE_ENV:S/^/--action_env=/} \
+			  ${CFLAGS:S/^/--copt=/} ${CFLAGS:S/^/--host_copt=/} \
+			  ${CXXFLAGS:S/^/--cxxopt=/} ${CXXFLAGS:S/^/--host_cxxopt=/} \
+			  ${LDFLAGS:S/^/--linkopt=/} ${LDFLAGS:S/^/--host_linkopt=/}
+
 # --config foo --config bar: foo bar
 MODBAZEL_CONFIGS ?=
 
