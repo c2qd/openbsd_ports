@@ -9,6 +9,8 @@ GH_COMMIT =						3f8dea4bdf72c6af200ecdbe3d456871fb1d5e03
 VERSION =						3.34.6239.20260814
 DISTNAME =						fcitx-mozc-${VERSION}
 
+ONLY_FOR_ARCHS =				amd64 arm64
+
 CATEGORIES=						inputmethods japanese
 
 MAINTAINER =					c2qd

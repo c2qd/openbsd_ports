@@ -12,6 +12,8 @@ DISTNAME =						mozc-${VERSION}
 FLAVORS =						ut
 FLAVOR ?=
 
+ONLY_FOR_ARCHS =				amd64 arm64
+
 CATEGORIES=						inputmethods japanese
 
 MAINTAINER =					c2qd
