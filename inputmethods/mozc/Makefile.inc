@@ -112,6 +112,10 @@ MODPY_RUNDEP =					No
 
 MODBAZEL_CONFIGS =				oss_linux release_build
 
+CXXFLAGS +=						-Wno-nullability-completeness \
+								-Wno-unneeded-internal-declaration \
+								-Wno-deprecated-declarations
+
 .if ${MACHINE_ARCH:Mamd64}
 MODBAZEL_FLAGS +=				--platforms=//:openbsd-x86_64
 .elif ${MACHINE_ARCH:Marm64}
