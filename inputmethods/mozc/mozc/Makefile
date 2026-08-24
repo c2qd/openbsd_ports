@@ -121,12 +121,12 @@ pre-patch:
 
 generate-ut:
 	${SUBST_CMD} -DJAWIKI_INDEX_FILE=${SUPDISTFILES.jawiki_index} \
-		${WRKDIST}/merge_dictionaries.py && \
-		cd ${FULLDISTDIR} && rm -f ${WRKDIST}/mozcdic-ut-*.txt* && \
-		cp ${UT_JAWIKI} ${UT_PERSONAL_NAMES} ${UT_PLACE_NAMES} \
-		${UT_NEOLOGD} ${UT_SUDACHIDICT} ${UT_EDICT2} ${SUPDISTFILES.jawiki_index} \
-		${WRKDIST} && \
-		cd ${WRKDIST} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
+		${WRKDIST}/merge_dictionaries.py
+	rm -f ${WRKDIST}/mozcdic-ut*.txt*
+	cp ${UT_JAWIKI} ${UT_PERSONAL_NAMES} ${UT_PLACE_NAMES} \
+		${UT_NEOLOGD} ${UT_SUDACHIDICT} ${UT_EDICT2} \
+		${SUPDISTFILES.jawiki_index} ${WRKDIST}
+	cd ${WRKDIST} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
 		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
 		cat mozcdic-ut.txt >> ${WRKSRC}/data/dictionary_oss/dictionary00.txt
@@ -136,8 +136,8 @@ post-patch: generate-ut
 .endif
 
 post-patch:
-	${SUBST_CMD} ${SUBST_TARGETS} && \
-		${SUBST_CMD} -DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
+	${SUBST_CMD} ${SUBST_TARGETS}
+	${SUBST_CMD} -DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
 		${WRKSRC}/bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch
 
 do-install:

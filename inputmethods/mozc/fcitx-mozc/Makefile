@@ -46,8 +46,8 @@ post-extract:
 		${WRKSRC}/bazel
 
 post-patch:
-	${SUBST_CMD} ${SUBST_TARGETS} && \
-		${SUBST_CMD} -DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
+	${SUBST_CMD} ${SUBST_TARGETS}
+	${SUBST_CMD} -DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
 		${WRKSRC}/bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch
 
 pre-install:
