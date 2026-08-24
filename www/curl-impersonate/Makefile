@@ -69,7 +69,7 @@ post-patch:
 post-build:
 	@if ! ar t "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.a" | \
 		grep -Fqx "libcurl-impersonate.full.o"; then \
-		set -x; cd ${WRKBUILD}/deps/install/lib && \
+		set -x; cd "${WRKBUILD}/deps/install/lib" && \
 		cp libz.a libzstd.a libbrotlidec.a libbrotlicommon.a libbrotlienc.a libnghttp2.a \
 		libnghttp3.a libngtcp2.a libngtcp2_crypto_boringssl.a libssl.a libcrypto.a \
 		"${WRKBUILD}/deps/build/curl/lib" && \
