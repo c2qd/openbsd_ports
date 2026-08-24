@@ -46,7 +46,7 @@ SITES.nghttp3 =			https://github.com/ngtcp2/nghttp3/releases/download/v${NGHTTP3
 DISTFILES.curl =		${CURL_VERSION}.tar.gz
 SITES.curl =			https://github.com/curl/curl/archive/
 
-EXTRACT_ONLY =			${GH_PROJECT}-${VERSION}.tar.gz
+EXTRACT_ONLY =			${GH_PROJECT}-${VERSION}${EXTRACT_SUFX}
 
 RUN_DEPENDS +=			shells/bash
 
