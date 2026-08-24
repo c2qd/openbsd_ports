@@ -32,7 +32,6 @@ PORTSDIR_PATH=<clone destination>:${PORTSDIR}/mystuff:${PORTSDIR}
 
 The following files are distributed under their original licenses:  
 - [devel/bazel/Makefile.inc](devel/bazel/Makefile.inc) is derived from [openbsd/ports/devel/bazel/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/devel/bazel/Makefile)  
-- [enolink.patch](inputmethods/mozc/files/enolink.patch) = [openbsd/ports/devel/abseil-cpp/patches/patch-absl_status_status_cc](https://codeberg.org/openbsd/ports/src/branch/master/devel/abseil-cpp/patches/patch-absl_status_status_cc)  
 - [games/easyrpg-player](games/easyrpg-player) is derived from [openbsd/ports/games/easyrpg](https://codeberg.org/openbsd/ports/src/branch/master/games/easyrpg)  
 - [games/liblcf](games/liblcf) is derived from [openbsd/ports/games/liblcf](https://codeberg.org/openbsd/ports/src/branch/master/games/liblcf)  
 - [inputmethods/fcitx/Makefile](inputmethods/fcitx/Makefile) is derived from [openbsd/ports/inputmethods/fcitx/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx/Makefile)  
@@ -40,7 +39,8 @@ The following files are distributed under their original licenses:
 - [inputmethods/fcitx-config-qt/Makefile](inputmethods/fcitx-config-qt/Makefile) is derived from [openbsd/ports/inputmethods/fcitx-config-qt/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx-config-qt/Makefile)  
 - [inputmethods/fcitx-gtk/Makefile](inputmethods/fcitx-gtk/Makefile) is derived from [openbsd/ports/inputmethods/fcitx-gtk/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx-gtk/Makefile)  
 - [inputmethods/fcitx-qt/Makefile](inputmethods/fcitx-qt/Makefile) is derived from [openbsd/ports/inputmethods/fcitx-qt/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx-qt/Makefile)  
-- [www/yt-dlp](www/yt-dlp) is derived from [openbsd/ports/www/yt-dlp](https://codeberg.org/openbsd/ports/src/branch/master/www/yt-dlp)
+-- [inputmethods/mozc/files/abseil_cpp_absl_status_status.cc.patch](inputmethods/mozc/files/abseil_cpp_absl_status_status.cc.patch) = [openbsd/ports/devel/abseil-cpp/patches/patch-absl_status_status_cc](https://codeberg.org/openbsd/ports/src/branch/master/devel/abseil-cpp/patches/patch-absl_status_status_cc)  
+ [www/yt-dlp](www/yt-dlp) is derived from [openbsd/ports/www/yt-dlp](https://codeberg.org/openbsd/ports/src/branch/master/www/yt-dlp)
 
 Other files are licensed under [The Unlicense](UNLICENSE).
 

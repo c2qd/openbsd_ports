@@ -104,7 +104,10 @@ LDFLAGS +=						-L${LOCALBASE}/lib
 MAKE_ENV +=						LC_CTYPE=C.UTF-8
 
 post-extract:
-	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}
+	cp ${FILESDIR}/abseil_cpp_absl_status_status.cc.patch \
+		${FILESDIR}/rules_cc_bsd_cc_toolchain_config.bzl.patch \
+		${FILESDIR}/rules_go_go_private_sdk.bzl.patch \
+		${WRKSRC}/bazel
 .if ${FLAVOR:Mut}
 	cp ${FULLDISTDIR}/merge_dictionaries-${UT_COMMIT}.py \
 		${WRKDIST}/merge_dictionaries.py
@@ -115,8 +118,6 @@ pre-patch:
 		echo "datasize limit is too low. Build needs approximately 3GiB."; \
 		exit 1; \
 	fi
-	cp ${FILESDIR}/versions_json.patch \
-		${MODBAZEL_BCR_DIR}/modules/rules_go/${RULES_GO_VERSION}/patches
 
 generate-ut:
 	${SUBST_CMD} -DJAWIKI_INDEX_FILE=${SUPDISTFILES.jawiki_index} \
@@ -135,11 +136,9 @@ post-patch: generate-ut
 .endif
 
 post-patch:
-	${SUBST_CMD} ${SUBST_TARGETS} && ${SUBST_CMD} ${SUBST_VARS_bazel_conf} \
-		${SUBST_TARGETS_bazel_conf} && 	cd ${MODBAZEL_BCR_DIR} && \
-		mkdir modules/abseil-cpp/${ABSEIL_VERSION}/patches && \
-		cp ${FILESDIR}/enolink.patch \
-		modules/abseil-cpp/${ABSEIL_VERSION}/patches
+	${SUBST_CMD} ${SUBST_TARGETS} && \
+		${SUBST_CMD} -DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
+		${WRKSRC}/bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch
 
 do-install:
 	${INSTALL_PROGRAM_DIR} "${PREFIX}/libexec/mozc"

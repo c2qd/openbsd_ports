@@ -95,15 +95,8 @@ DIST_SUBDIR =					mozc
 SUBST_TARGETS +=				${WRKSRC}/config.bzl \
 								${WRKSRC}/MODULE.bazel \
 								${WRKSRC}/base/system_util.cc \
-								${WRKSRC}/base/process.cc
-
-CLANG_RESOURCE_DIR !=			/usr/bin/${CC} -print-resource-dir
-CLANG_RESOURCE_DIR :=			${CLANG_RESOURCE_DIR}/include
-
-SUBST_VARS_bazel_conf +=		-DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
-								-DCLANG_RESOURCE_DIR=${CLANG_RESOURCE_DIR}
-
-SUBST_TARGETS_bazel_conf +=		${WRKSRC}/cc_toolchain_config.bzl
+								${WRKSRC}/base/process.cc \
+								${WRKSRC}/bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch
 
 SUBST_TARGETS_rules_python +=	${MODBAZEL_BCR_DIR}/modules/rules_python/${RULES_PYTHON_VERSION}/source.json
 
@@ -119,4 +112,8 @@ MODPY_RUNDEP =					No
 
 MODBAZEL_CONFIGS =				oss_linux release_build
 
-MODBAZEL_FLAGS +=				--platforms=//:openbsd-ex
+.if ${MACHINE_ARCH:Mamd64}
+MODBAZEL_FLAGS +=				--platforms=//:openbsd-x86_64
+.elif ${MACHINE_ARCH:Marm64}
+MODBAZEL_FLAGS +=				--platforms=//:openbsd-arm64
+.endif

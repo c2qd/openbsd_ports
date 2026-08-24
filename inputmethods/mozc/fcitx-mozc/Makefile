@@ -40,19 +40,15 @@ ICONS =							ui-alpha_full ui-alpha_half ui-direct ui-hiragana \
 								ui-properties ui-tool
 
 post-extract:
-	cp ${FILESDIR}/cc_toolchain_config.bzl ${WRKSRC}
-
-pre-patch:
-	cp ${FILESDIR}/versions_json.patch \
-		${MODBAZEL_BCR_DIR}/modules/rules_go/${RULES_GO_VERSION}/patches
+	cp ${FILESDIR}/abseil_cpp_absl_status_status.cc.patch \
+		${FILESDIR}/rules_cc_bsd_cc_toolchain_config.bzl.patch \
+		${FILESDIR}/rules_go_go_private_sdk.bzl.patch \
+		${WRKSRC}/bazel
 
 post-patch:
-	${SUBST_CMD} ${SUBST_TARGETS} && ${SUBST_CMD} ${SUBST_VARS_bazel_conf} \
-		${SUBST_TARGETS_bazel_conf} && \
-		cd ${MODBAZEL_BCR_DIR} && \
-		mkdir modules/abseil-cpp/${ABSEIL_VERSION}/patches && \
-		cp ${FILESDIR}/enolink.patch \
-		modules/abseil-cpp/${ABSEIL_VERSION}/patches/
+	${SUBST_CMD} ${SUBST_TARGETS} && \
+		${SUBST_CMD} -DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
+		${WRKSRC}/bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch
 
 pre-install:
 	cd ${WRKSRC} && msgfmt --xml -d unix/fcitx5/po/ \

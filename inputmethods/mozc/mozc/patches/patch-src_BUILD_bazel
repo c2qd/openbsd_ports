@@ -1,13 +1,22 @@
 Index: src/BUILD.bazel
 --- src/BUILD.bazel.orig
 +++ src/BUILD.bazel
-@@ -164,6 +164,13 @@ platform(
+@@ -164,6 +164,22 @@ platform(
      ],
  )
  
 +platform(
-+    name = "openbsd-ex",
++    name = "openbsd-x86_64",
 +    constraint_values = [
++        "@platforms//cpu:x86_64",
++        "@platforms//os:openbsd",
++    ],
++)
++
++platform(
++    name = "openbsd-arm64",
++    constraint_values = [
++        "@platforms//cpu:arm64",
 +        "@platforms//os:openbsd",
 +    ],
 +)
@@ -15,43 +24,3 @@ Index: src/BUILD.bazel
  # Special target so as to define special macros for each platforms.
  # Don't depend on this directly. Use mozc_cc_(library|binary|test) rule instead.
  cc_library(
-@@ -321,6 +328,39 @@ selects.config_setting_group(
-         "//bazel/cc_target_os:windows",
-         "//bazel/cc_target_os:oss_windows",
-         "//bazel/cc_target_os:prod_windows",
-+    ],
-+)
-+
-+load("@rules_cc//cc:defs.bzl", "cc_toolchain", "cc_toolchain_suite")
-+load(":cc_toolchain_config.bzl", "cc_toolchain_config")
-+load("@rules_python//python:defs.bzl", "py_runtime", "py_runtime_pair")
-+
-+cc_toolchain_config(name = "openbsd_ex_toolchain_config")
-+
-+filegroup(name = "empty")
-+
-+cc_toolchain(
-+    name = "openbsd_ex_toolchain",
-+    toolchain_identifier = "openbsd_ex_toolchain",
-+    toolchain_config = ":openbsd_ex_toolchain_config",
-+    all_files = ":empty",
-+    compiler_files = ":empty",
-+    dwp_files = ":empty",
-+    linker_files = ":empty",
-+    objcopy_files = ":empty",
-+    strip_files = ":empty",
-+    supports_param_files = 0,
-+)
-+
-+toolchain(
-+    name = "cc_toolchain_for_openbsd_ex",
-+    toolchain = ":openbsd_ex_toolchain",
-+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
-+    exec_compatible_with = [
-+        "@platforms//os:openbsd",
-+    ],
-+    target_compatible_with = [
-+        "@platforms//os:openbsd",
-     ],
- )
- 

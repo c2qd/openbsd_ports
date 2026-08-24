@@ -1,5 +1,4 @@
-Index: absl/status/status.cc
---- absl/status/status.cc.orig
+--- absl/status/status.cc
 +++ absl/status/status.cc
 @@ -380,7 +380,9 @@ StatusCode ErrnoToStatusCode(int error_number) {
      case ENETRESET:     // Connection aborted by network

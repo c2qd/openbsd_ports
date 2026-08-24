@@ -1,5 +1,5 @@
---- a/go/private/sdk.bzl
-+++ b/go/private/sdk.bzl
+--- go/private/sdk.bzl
++++ go/private/sdk.bzl
 @@ -575,6 +575,7 @@ def _parse_versions_json(data):
      }
 
