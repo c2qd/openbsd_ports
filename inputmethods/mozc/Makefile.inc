@@ -98,8 +98,6 @@ SUBST_TARGETS +=				${WRKSRC}/config.bzl \
 								${WRKSRC}/base/process.cc \
 								${WRKSRC}/bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch
 
-SUBST_TARGETS_rules_python +=	${MODBAZEL_BCR_DIR}/modules/rules_python/${RULES_PYTHON_VERSION}/source.json
-
 FILESDIR =						${.CURDIR}/../files
 
 MODULES +=						devel/bazel lang/python
