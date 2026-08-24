@@ -58,7 +58,7 @@ MODBAZEL_STARTUP_FLAGS += --batch --output_base=${WRKDIST}/modbazel_output_base 
 
 MODBAZEL_BUILD_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 						${LOCALBASE}/bin/bazel${MODBAZEL_VERSION} \
-						${MODBAZEL_STARTUP_ARGS} build \
+						${MODBAZEL_STARTUP_FLAGS} build \
 						--tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 						--distdir=${FULLDISTDIR} \
 						${MODBAZEL_CONFIGS:S/^/--config /} \
@@ -67,7 +67,7 @@ MODBAZEL_BUILD_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 
 MODBAZEL_TEST_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 					   ${LOCALBASE}/bin/bazel${MODBAZEL_VERSION} \
-					   ${MODBAZEL_STARTUP_ARGS} test --build_tests_only \
+					   ${MODBAZEL_STARTUP_FLAGS} test --build_tests_only \
 					   --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 					   --distdir=${FULLDISTDIR} \
 					   ${MODBAZEL_CONFIGS:S/^/--config /} \
