@@ -19,7 +19,7 @@ MAKE_ENV +=	JAVA_HOME=${JAVA_HOME}
 # Suppress network connections (Not ideal)
 MAKE_ENV += HTTP_PROXY=http://127.0.0.1:1 HTTPS_PROXY=http://127.0.0.1:1
 
-MODBAZEL_USE_BCR ?= yes
+MODBAZEL_USE_BCR ?= Yes
 
 .if ${MODBAZEL_USE_BCR:L} == "yes"
 .if empty(MODBAZEL_BCR_COMMIT_ID)
@@ -53,26 +53,26 @@ TEST_FLAGS += ${MAKE_ENV:S/^/--action_env=/} ${MAKE_ENV:S/^/--host_action_env=/}
 # --config foo --config bar: foo bar
 MODBAZEL_CONFIGS ?=
 
-MODBAZEL_STARTUP_ARGS += --batch --output_base=${WRKDIST}/modbazel_output_base \
+MODBAZEL_STARTUP_FLAGS += --batch --output_base=${WRKDIST}/modbazel_output_base \
 						 --output_user_root=${WRKDIST}/modbazel_output_user_root
-
-MODBAZEL_FLAGS += --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
-				  --distdir=${FULLDISTDIR} \
-				  ${MODBAZEL_CONFIGS:S/^/--config /}
 
 MODBAZEL_BUILD_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 						${LOCALBASE}/bin/bazel${MODBAZEL_VERSION} \
-						${MODBAZEL_STARTUP_ARGS} build ${MODBAZEL_FLAGS} \
-						${_MODBAZEL_VERBOSE} --jobs=${MAKE_JOBS} ${ALL_TARGET}
-
-TEST_FLAGS += --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
-			  --distdir=${FULLDISTDIR} --build_tests_only \
-			  ${MODBAZEL_CONFIGS:S/^/--config /}
+						${MODBAZEL_STARTUP_ARGS} build \
+						--tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
+						--distdir=${FULLDISTDIR} \
+						${MODBAZEL_CONFIGS:S/^/--config /} \
+						${_MODBAZEL_VERBOSE} --jobs=${MAKE_JOBS} \
+						${MODBAZEL_FLAGS} ${ALL_TARGET}
 
 MODBAZEL_TEST_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 					   ${LOCALBASE}/bin/bazel${MODBAZEL_VERSION} \
-					   ${MODBAZEL_STARTUP_ARGS} test ${TEST_FLAGS} \
-					   ${_MODBAZEL_VERBOSE} --jobs=${MAKE_JOBS} ${TEST_TARGET}
+					   ${MODBAZEL_STARTUP_ARGS} test --build_tests_only \
+					   --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
+					   --distdir=${FULLDISTDIR} \
+					   ${MODBAZEL_CONFIGS:S/^/--config /} \
+					   ${_MODBAZEL_VERBOSE} --jobs=${MAKE_JOBS} \
+					   ${TEST_FLAGS} ${TEST_TARGET}
 
 .if !target(do-build)
 do-build:
