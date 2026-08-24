@@ -63,7 +63,7 @@ MODBAZEL_FLAGS += --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 MODBAZEL_BUILD_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 						${LOCALBASE}/bin/bazel${MODBAZEL_VERSION} \
 						${MODBAZEL_STARTUP_ARGS} build ${MODBAZEL_FLAGS} \
-						${_MODBAZEL_VERBOSE} ${ALL_TARGET}
+						${_MODBAZEL_VERBOSE} --jobs=${MAKE_JOBS} ${ALL_TARGET}
 
 TEST_FLAGS += --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 			  --distdir=${FULLDISTDIR} --build_tests_only \
@@ -72,7 +72,7 @@ TEST_FLAGS += --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 MODBAZEL_TEST_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 					   ${LOCALBASE}/bin/bazel${MODBAZEL_VERSION} \
 					   ${MODBAZEL_STARTUP_ARGS} test ${TEST_FLAGS} \
-					   ${_MODBAZEL_VERBOSE} ${TEST_TARGET}
+					   ${_MODBAZEL_VERBOSE} --jobs=${MAKE_JOBS} ${TEST_TARGET}
 
 .if !target(do-build)
 do-build:
