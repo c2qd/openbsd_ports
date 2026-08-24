@@ -65,21 +65,17 @@ SUBST_TARGETS +=		${WRKSRC}/CMakeLists.txt
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS}
 
+# cf. https://github.com/lexiforest/curl-impersonate/blob/86e5f1f822566827cc413de843acdac60057a37c/.github/workflows/build.yml#L441-L451
 post-build:
-	@if [ -f "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.a.orig" ] && \
-		[ "$$(stat -f %z "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.a")" -gt \
-		  "$$(( $$(stat -f %z \
-		  "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.a.orig") * 2 ))" ]; then \
-		  echo "Bundle: already generated, skipping."; \
-		  exit 0; \
-	else \
-		cd ${WRKBUILD}/deps/install/lib && \
+	@if ! ar t "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.a" | \
+		grep -Fqx "libcurl-impersonate.full.o"; then \
+		set -x; cd ${WRKBUILD}/deps/install/lib && \
 		cp libz.a libzstd.a libbrotlidec.a libbrotlicommon.a libbrotlienc.a libnghttp2.a \
 		libnghttp3.a libngtcp2.a libngtcp2_crypto_boringssl.a libssl.a libcrypto.a \
 		"${WRKBUILD}/deps/build/curl/lib" && \
 		cd "${WRKBUILD}/deps/build/curl/lib" && \
 		mv libcurl-impersonate.a libcurl-impersonate.a.orig && \
-		${CC} -r -o libcurl-impersonate.full.o -Wl,--whole-archive \
+		${WRKDIR}/bin/${CC} -r -o libcurl-impersonate.full.o -Wl,--whole-archive \
 		libcurl-impersonate.a.orig libz.a libzstd.a libbrotlidec.a \
 		libbrotlicommon.a libbrotlienc.a libnghttp2.a libnghttp3.a \
 		libngtcp2.a libngtcp2_crypto_boringssl.a libssl.a libcrypto.a \
