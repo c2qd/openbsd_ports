@@ -114,7 +114,7 @@ post-extract:
 .endif
 
 pre-patch:
-	@if [ $$(ulimit -Sd) -lt $$((3*1024*1024)) ]; then \
+	@if [ $$(ulimit -Sd) != "unlimited" ] && [ $$(ulimit -Sd) -lt $$((3*1024*1024)) ]; then \
 		echo "datasize limit is too low. Build needs approximately 3GiB."; \
 		exit 1; \
 	fi
