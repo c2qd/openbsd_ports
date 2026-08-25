@@ -2,7 +2,7 @@ COMMENT =				Python binding for curl-impersonate
 
 HOMEPAGE =				https://curl-cffi.readthedocs.io/
 
-VERSION =				0.16.1
+VERSION =				0.16.2
 DISTNAME =				curl_cffi-${VERSION}
 PKGNAME =				py-${DISTNAME}
 CATEGORIES =			www
