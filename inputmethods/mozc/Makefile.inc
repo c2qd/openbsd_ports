@@ -92,13 +92,13 @@ WRKSRC =						${WRKDIST}/src
 
 DIST_SUBDIR =					mozc
 
+FILESDIR =						${.CURDIR}/../files
+
 SUBST_TARGETS +=				${WRKSRC}/config.bzl \
 								${WRKSRC}/MODULE.bazel \
 								${WRKSRC}/base/system_util.cc \
 								${WRKSRC}/base/process.cc \
 								${WRKSRC}/bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch
-
-FILESDIR =						${.CURDIR}/../files
 
 MODULES +=						devel/bazel lang/python
 
@@ -106,16 +106,16 @@ MODBAZEL_VERSION =				9
 
 MODBAZEL_BCR_COMMIT_ID =		2459648091f2c5b8e21a46613cf39bffb6fba298
 
-MODPY_RUNDEP =					No
-
 MODBAZEL_CONFIGS =				oss_linux release_build
+
+.if ${MACHINE_ARCH} == "amd64"
+MODBAZEL_FLAGS +=				--platforms=//:openbsd-x86_64
+.elif ${MACHINE_ARCH} == "arm64"
+MODBAZEL_FLAGS +=				--platforms=//:openbsd-arm64
+.endif
 
 CXXFLAGS +=						-Wno-nullability-completeness \
 								-Wno-unneeded-internal-declaration \
 								-Wno-deprecated-declarations
 
-.if ${MACHINE_ARCH:Mamd64}
-MODBAZEL_FLAGS +=				--platforms=//:openbsd-x86_64
-.elif ${MACHINE_ARCH:Marm64}
-MODBAZEL_FLAGS +=				--platforms=//:openbsd-arm64
-.endif
+MODPY_RUNDEP =					No
