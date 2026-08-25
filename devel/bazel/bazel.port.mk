@@ -14,8 +14,6 @@ BUILD_DEPENDS += devel/bazel/9
 MODJAVA_VER = 21
 .endif
 
-MAKE_ENV +=	JAVA_HOME=${JAVA_HOME}
-
 # Suppress network connections (Not ideal)
 MAKE_ENV += HTTP_PROXY=http://127.0.0.1:1 HTTPS_PROXY=http://127.0.0.1:1
 
@@ -70,7 +68,7 @@ MODBAZEL_TEST_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 					   ${MODBAZEL_STARTUP_FLAGS} test --build_tests_only \
 					   --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 					   --distdir=${FULLDISTDIR} \
-					   ${MODBAZEL_CONFIGS:S/^/--config /} \
+					   ${MODBAZEL_CONFIGS:S/^/--config=/} \
 					   ${_MODBAZEL_VERBOSE} --jobs=${MAKE_JOBS} \
 					   ${TEST_FLAGS} ${TEST_TARGET}
 
