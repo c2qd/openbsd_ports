@@ -1,0 +1,19 @@
+Index: src/dictionary/gen_pos_cost_map.py
+--- src/dictionary/gen_pos_cost_map.py.orig
++++ src/dictionary/gen_pos_cost_map.py
+@@ -30,14 +30,13 @@
+ 
+ """A script to generate a C++ header file for kPosTypeStringTable."""
+ 
+-import codecs
+ import optparse
+ 
+ from build_tools import code_generator_util
+ 
+ 
+ def ParseUserPos(user_pos_file):
+-  with codecs.open(user_pos_file, 'r', encoding='utf8') as stream:
++  with open(user_pos_file, 'r', encoding='utf8') as stream:
+     stream = code_generator_util.SkipLineComment(stream)
+     stream = code_generator_util.ParseColumnStream(stream, num_column=5)
+     return [
