@@ -7,6 +7,7 @@ GH_PROJECT =					mozc
 GH_COMMIT =						851c3fe33060d2a6090363e4d7ec44fafde2c03d
 
 VERSION =						3.34.6239.20260814
+REVISION =						0
 DISTNAME =						mozc-${VERSION}
 
 FLAVORS =						ut
