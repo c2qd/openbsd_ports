@@ -19,6 +19,9 @@ SITES =					https://github.com/lexiforest/curl_cffi/releases/download/v${VERSION
 
 MAINTAINER =			c2qd
 
+WANTLIB +=				${COMPILER_LIBCXX} curl-impersonate
+
+BUILD_DEPENDS =			devel/py-cffi>=2.0.0
 LIB_DEPENDS =			www/curl-impersonate
 RUN_DEPENDS =   		devel/py-cffi>=2.0.0 devel/py-certifi>=2024.2.2
 
@@ -27,7 +30,6 @@ WANTLIB +=				curl-impersonate
 MODULES =				lang/python
 MODPY_PYBUILD =			setuptools
 
-COMPILER_LANGS =		c
 COMPILER =				base-clang
 
 MAKE_ENV +=				IMPERSONATE_BUILD_DIR=${LOCALBASE}/lib
