@@ -107,6 +107,7 @@ LDFLAGS +=						-L${LOCALBASE}/lib
 MAKE_ENV +=						LC_CTYPE=C.UTF-8
 
 post-extract:
+	mkdir -p ${WRKDIR}/home
 	cp ${FILESDIR}/abseil_cpp_absl_status_status.cc.patch \
 		${FILESDIR}/rules_cc_bsd_cc_toolchain_config.bzl.patch \
 		${FILESDIR}/rules_go_go_private_sdk.bzl.patch \
