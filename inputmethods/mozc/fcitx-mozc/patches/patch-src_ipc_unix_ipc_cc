@@ -54,7 +54,17 @@ Index: src/ipc/unix_ipc.cc
    return true;
  }
  
-@@ -265,7 +263,8 @@ void IPCClient::Init(absl::string_view name,
+@@ -250,9 +248,6 @@ void IPCClient::Init(absl::string_view name,
+       continue;
+     }
+     sockaddr_un address = {};
+-    const size_t server_address_length =
+-        (server_address.size() >= UNIX_PATH_MAX) ? UNIX_PATH_MAX - 1
+-                                                 : server_address.size();
+     if (server_address.size() >= UNIX_PATH_MAX) {
+       LOG(WARNING) << "too long path: " << server_address;
+     }
+@@ -265,7 +260,8 @@ void IPCClient::Init(absl::string_view name,
      address.sun_family = AF_UNIX;
      absl::SNPrintF(address.sun_path, sizeof(address.sun_path), "%s",
                     server_address);
@@ -64,7 +74,7 @@ Index: src/ipc/unix_ipc.cc
      pid_t pid = 0;
      if (::connect(socket_, reinterpret_cast<const sockaddr *>(&address),
                    sun_len) != 0 ||
-@@ -381,7 +380,8 @@ IPCServer::IPCServer(absl::string_view name, int32_t n
+@@ -381,7 +377,8 @@ IPCServer::IPCServer(absl::string_view name, int32_t n
    int on = 1;
    ::setsockopt(socket_, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&on),
                 sizeof(on));
