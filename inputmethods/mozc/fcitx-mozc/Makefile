@@ -4,9 +4,9 @@ HOMEPAGE =						https://github.com/fcitx/mozc
 
 GH_ACCOUNT =					fcitx
 GH_PROJECT =					mozc
-GH_COMMIT =						3f8dea4bdf72c6af200ecdbe3d456871fb1d5e03
+GH_COMMIT =						4d5f74412c30bf82325730c77c87d9ee2d4807bb
 
-VERSION =						3.34.6239.20260814
+VERSION =						3.34.6239.20260826
 DISTNAME =						fcitx-mozc-${VERSION}
 
 ONLY_FOR_ARCHS =				amd64 arm64

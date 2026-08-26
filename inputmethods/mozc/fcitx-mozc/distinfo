@@ -6,7 +6,7 @@ SHA256 (mozc/bazel-skylib-1.9.0.tar.gz) = O1tJAGGB9fj/Ym743c6qlem7itKU97XXsR6p99
 SHA256 (mozc/bazel_features-v1.42.1.tar.gz) = gYm6yaa/nMFVqFTEy+v+v1i5ynotCmdkX30MH4PFI6w=
 SHA256 (mozc/bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = yAoyDhvnhUzMm5G9KIma+AfGPX87+eDRUjCzoeaqttE=
 SHA256 (mozc/buildozer-v8.5.1.tar.gz) = vQeG4Pi2rtjDWJi0wG9kuoU9YdfINh7bWo1Dxuo39cY=
-SHA256 (mozc/fcitx-mozc-3.34.6239.20260814-3f8dea4b.tar.gz) = XGPOFJ9ph5GKpUnQ4mI0NhtuQNnhPuH3mkfHUIT5fd0=
+SHA256 (mozc/fcitx-mozc-3.34.6239.20260826-4d5f7441.tar.gz) = o8EBwZ6dyv54mrkp+/pXFgv8Qz5qsMeOo7SqSnljB2Y=
 SHA256 (mozc/platforms-1.0.0.tar.gz) = M4TrHDB2JwT7445EAgThFBVAhsj8iowuPihEECjAGag=
 SHA256 (mozc/protobuf-34.1.bazel.tar.gz) = nwkzrRKrsKiVeztkrvw0d0zL5X93+JDGbLQGdRm7g8E=
 SHA256 (mozc/pybind11_bazel-2.13.6.tar.gz) = yuaAZwv6boJwPAPyo8mVQIzcv0NhbXvdGY70XTwydzE=
@@ -28,6 +28,7 @@ SHA256 (mozc/rules_swift.3.5.0.tar.gz) = yY8gG8IX0s4o4Br8eLQQ0FxnuEbASnCV5OcBs3Q
 SHA256 (mozc/stardoc-0.7.2.tar.gz) = Dh7UqY8m5xh3a9ZNBT0CuzTZhXLM0D1ro1URKhIFcGs=
 SHA256 (mozc/tar.bzl-v0.5.1.tar.gz) = tH48g6DBRAzjNaoa4YdT2m63zVUdSUb6MD3iq94H4gs=
 SHA256 (mozc/v1.10.0.tar.gz) = oan3h1qktqlIDKOE1YZfHM8bCx+urWtHqkfXlwmlxf0=
+SHA256 (mozc/v2.1.0.tar.gz) = ij0IMOTrT2bE+pB8Bu32zhxxnO2BGhLibZ0xYvhHF1g=
 SHA256 (mozc/zlib-1.3.1.tar.gz) = mpOyt9/ax3zrpaVYpYDnRmfdb+3kWFuR7vtg8Dty3yM=
 SIZE (mozc/abseil-cpp-20260107.1.tar.gz) = 2301097
 SIZE (mozc/apple_support.2.4.0.tar.gz) = 115899
@@ -37,7 +38,7 @@ SIZE (mozc/bazel-skylib-1.9.0.tar.gz) = 44790
 SIZE (mozc/bazel_features-v1.42.1.tar.gz) = 18078
 SIZE (mozc/bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = 9417311
 SIZE (mozc/buildozer-v8.5.1.tar.gz) = 8300
-SIZE (mozc/fcitx-mozc-3.34.6239.20260814-3f8dea4b.tar.gz) = 29199154
+SIZE (mozc/fcitx-mozc-3.34.6239.20260826-4d5f7441.tar.gz) = 29202601
 SIZE (mozc/platforms-1.0.0.tar.gz) = 7879
 SIZE (mozc/protobuf-34.1.bazel.tar.gz) = 7038508
 SIZE (mozc/pybind11_bazel-2.13.6.tar.gz) = 6156
@@ -59,4 +60,5 @@ SIZE (mozc/rules_swift.3.5.0.tar.gz) = 333115
 SIZE (mozc/stardoc-0.7.2.tar.gz) = 34769
 SIZE (mozc/tar.bzl-v0.5.1.tar.gz) = 103758
 SIZE (mozc/v1.10.0.tar.gz) = 159353
+SIZE (mozc/v2.1.0.tar.gz) = 235261
 SIZE (mozc/zlib-1.3.1.tar.gz) = 1512791
