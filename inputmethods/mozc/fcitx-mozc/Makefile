@@ -42,7 +42,6 @@ ICONS =							ui-alpha_full ui-alpha_half ui-direct ui-hiragana \
 								ui-properties ui-tool
 
 post-extract:
-	mkdir -p ${WRKDIR}/home
 	cp ${FILESDIR}/abseil_cpp_absl_status_status.cc.patch \
 		${FILESDIR}/rules_cc_bsd_cc_toolchain_config.bzl.patch \
 		${FILESDIR}/rules_go_go_private_sdk.bzl.patch \

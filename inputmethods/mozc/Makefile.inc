@@ -122,5 +122,3 @@ CXXFLAGS +=						-Wno-nullability-completeness \
 								-Wno-deprecated-declarations
 
 MODPY_RUNDEP =					No
-
-MAKE_ENV +=						HOME=${WRKDIR}/home
