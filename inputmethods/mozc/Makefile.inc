@@ -117,14 +117,4 @@ MODBAZEL_FLAGS +=				--platforms=//:openbsd-x86_64
 MODBAZEL_FLAGS +=				--platforms=//:openbsd-arm64
 .endif
 
-CXXFLAGS +=						-Wno-nullability-completeness \
-								-Wno-unneeded-internal-declaration \
-								-Wno-deprecated-declarations \
-								-Wno-defaulted-function-deleted \
-								-Wno-character-conversion \
-								-Wno-unused-private-field \
-								-Wno-inconsistent-missing-override \
-								-Wno-unused-const-variable \
-								-Wno-ignored-attributes
-
 MODPY_RUNDEP =					No
