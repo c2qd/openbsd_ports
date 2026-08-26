@@ -121,7 +121,7 @@ CXXFLAGS +=						-Wno-nullability-completeness \
 								-Wno-unneeded-internal-declaration \
 								-Wno-deprecated-declarations \
 								-Wno-defaulted-function-deleted \
-								-Wno-chaacter-conversion \
+								-Wno-character-conversion \
 								-Wno-unused-private-field \
 								-Wno-inconsistent-missing-override \
 								-Wno-unused-const-variable \
