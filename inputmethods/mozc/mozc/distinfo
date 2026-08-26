@@ -12,7 +12,7 @@ SHA256 (mozc/jawiki-20260801-pages-articles-multistream-index.txt.bz2) = 68kh+4m
 SHA256 (mozc/jigyosyo.zip) = FL4QMPYHxfgZ8vRaSF6JURkHvdHWLn+xkxtuSKNDHDo=
 SHA256 (mozc/ken_all.zip) = OtyX2OGeEWimzcsvznWdDp5hOpo7YwzBgK7P1WroHq8=
 SHA256 (mozc/merge_dictionaries-15c1c64502b43e31d328012860376c03c3eaf633.py) = ALDz2KtQR5e5cK0Qjfgt+TseqSKIKcxsz1wq+tssN4k=
-SHA256 (mozc/mozc-3.34.6239.20260814-851c3fe3.tar.gz) = BLIRK6ICzMvZVTu7rxCe8KsbQ4pMTGd9NI3Wl1tlmOM=
+SHA256 (mozc/mozc-3.34.6239.20260826-802b34c7.tar.gz) = 7lDQI5LfEZBzhGfoiRWoP2TmrxS+thfj7S6pt8FKZS0=
 SHA256 (mozc/mozcdic-ut-edict2-8fe8f7918baf513c3d7e243807dfcda2d5c30139.txt.bz2) = HmLLSAEBy8xahLqYGzcJCen0OXPBt8YGPAShLszXJTA=
 SHA256 (mozc/mozcdic-ut-jawiki-88dddd9d7bc5657861aff3820fd2abc7d5186851.txt.bz2) = mxIAhVTdxjr41R9Qi5RNP0gDlHFOz41UFMvvNk55aG4=
 SHA256 (mozc/mozcdic-ut-neologd-e33ac4ce808fa4253c6c97bf5178e229a4bfb50f.txt.bz2) = IxubXkrRa6o/eWgPTkYV9wYFEaQdpKrCFJeJ6s4/JBE=
@@ -41,6 +41,7 @@ SHA256 (mozc/stardoc-0.7.2.tar.gz) = Dh7UqY8m5xh3a9ZNBT0CuzTZhXLM0D1ro1URKhIFcGs
 SHA256 (mozc/tar.bzl-v0.5.1.tar.gz) = tH48g6DBRAzjNaoa4YdT2m63zVUdSUb6MD3iq94H4gs=
 SHA256 (mozc/v1.10.0.tar.gz) = oan3h1qktqlIDKOE1YZfHM8bCx+urWtHqkfXlwmlxf0=
 SHA256 (mozc/v1.9.5.tar.gz) = ljE0HIK6xKKIvvlR+LJrQfaQIXlBhOzpafhHOXfqo0A=
+SHA256 (mozc/v2.1.0.tar.gz) = ij0IMOTrT2bE+pB8Bu32zhxxnO2BGhLibZ0xYvhHF1g=
 SHA256 (mozc/zlib-1.3.1.tar.gz) = mpOyt9/ax3zrpaVYpYDnRmfdb+3kWFuR7vtg8Dty3yM=
 SIZE (mozc/2025-01-25.zip) = 72776
 SIZE (mozc/abseil-cpp-20260107.1.tar.gz) = 2301097
@@ -56,7 +57,7 @@ SIZE (mozc/jawiki-20260801-pages-articles-multistream-index.txt.bz2) = 31277924
 SIZE (mozc/jigyosyo.zip) = 774660
 SIZE (mozc/ken_all.zip) = 1694719
 SIZE (mozc/merge_dictionaries-15c1c64502b43e31d328012860376c03c3eaf633.py) = 9061
-SIZE (mozc/mozc-3.34.6239.20260814-851c3fe3.tar.gz) = 29115923
+SIZE (mozc/mozc-3.34.6239.20260826-802b34c7.tar.gz) = 29118329
 SIZE (mozc/mozcdic-ut-edict2-8fe8f7918baf513c3d7e243807dfcda2d5c30139.txt.bz2) = 1420412
 SIZE (mozc/mozcdic-ut-jawiki-88dddd9d7bc5657861aff3820fd2abc7d5186851.txt.bz2) = 12150737
 SIZE (mozc/mozcdic-ut-neologd-e33ac4ce808fa4253c6c97bf5178e229a4bfb50f.txt.bz2) = 15715076
@@ -85,4 +86,5 @@ SIZE (mozc/stardoc-0.7.2.tar.gz) = 34769
 SIZE (mozc/tar.bzl-v0.5.1.tar.gz) = 103758
 SIZE (mozc/v1.10.0.tar.gz) = 159353
 SIZE (mozc/v1.9.5.tar.gz) = 267155
+SIZE (mozc/v2.1.0.tar.gz) = 235261
 SIZE (mozc/zlib-1.3.1.tar.gz) = 1512791

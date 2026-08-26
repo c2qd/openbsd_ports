@@ -4,10 +4,9 @@ HOMEPAGE =						https://github.com/google/mozc
 
 GH_ACCOUNT =					google
 GH_PROJECT =					mozc
-GH_COMMIT =						851c3fe33060d2a6090363e4d7ec44fafde2c03d
+GH_COMMIT =						802b34c7eba43c47ed7cd282d19ba68af2eb2a10
 
-VERSION =						3.34.6239.20260814
-REVISION =						0
+VERSION =						3.34.6239.20260826
 DISTNAME =						mozc-${VERSION}
 
 FLAVORS =						ut

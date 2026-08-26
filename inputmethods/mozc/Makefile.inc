@@ -1,4 +1,5 @@
 ABSEIL_VERSION =				20260107.1
+ABSEIL_PY_VERSION =				2.1.0
 APPLE_SUPPORT_VERSION =			2.4.0
 BATS_CORE_VERSION =				1.10.0
 BAZEL_LIB_VERSION_V2 =			2.22.5
@@ -31,6 +32,8 @@ ZLIB_VERSION =					1.3.1
 
 DISTFILES.abseil =				abseil-cpp-${ABSEIL_VERSION}.tar.gz
 SITES.abseil =					https://github.com/abseil/abseil-cpp/releases/download/${ABSEIL_VERSION}/
+DISTFILES.abseil_py =			v${ABSEIL_PY_VERSION}.tar.gz
+SITES.abseil_py =				https://github.com/abseil/abseil-py/archive/refs/tags/
 DISTFILES.apple_support =		apple_support.${APPLE_SUPPORT_VERSION}.tar.gz
 SITES.apple_support =			https://github.com/bazelbuild/apple_support/releases/download/${APPLE_SUPPORT_VERSION}/
 DISTFILES.bats_core =			v${BATS_CORE_VERSION}.tar.gz
