@@ -127,7 +127,7 @@ generate-ut:
 	${SUBST_CMD} -DJAWIKI_INDEX_FILE=${SUPDISTFILES.jawiki_index} \
 		${WRKDIST}/merge_dictionaries.py
 	rm -f ${WRKDIST}/mozcdic-ut*.txt*
-	cp ${UT_JAWIKI} ${UT_PERSONAL_NAMES} ${UT_PLACE_NAMES} \
+	cd ${FULLDISTDIR} && cp ${UT_JAWIKI} ${UT_PERSONAL_NAMES} ${UT_PLACE_NAMES} \
 		${UT_NEOLOGD} ${UT_SUDACHIDICT} ${UT_EDICT2} \
 		${SUPDISTFILES.jawiki_index} ${WRKDIST}
 	cd ${WRKDIST} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
