@@ -48,8 +48,8 @@ TEST_FLAGS += ${MAKE_ENV:S/^/--action_env=/} ${MAKE_ENV:S/^/--host_action_env=/}
 # --config foo --config bar: foo bar
 MODBAZEL_CONFIGS ?=
 
-MODBAZEL_STARTUP_FLAGS += --batch --output_base=${WRKDIST}/modbazel_output_base \
-						 --output_user_root=${WRKDIST}/modbazel_output_user_root
+MODBAZEL_STARTUP_FLAGS += --batch --output_base=${WRKDIR}/modbazel_output_base \
+						 --output_user_root=${WRKDIR}/modbazel_output_user_root
 
 MODBAZEL_BUILD_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 						${LOCALBASE}/bin/bazel${MODBAZEL_VERSION} \
