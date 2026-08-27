@@ -1,0 +1,20 @@
+Index: src/rewriter/gen_a11y_description_rewriter_data.py
+--- src/rewriter/gen_a11y_description_rewriter_data.py.orig
++++ src/rewriter/gen_a11y_description_rewriter_data.py
+@@ -38,7 +38,6 @@ gen_a11y_description_rewriter_data.py
+ """
+ 
+ import argparse
+-import codecs
+ import struct
+ from typing import List
+ 
+@@ -49,7 +48,7 @@ KeyValuePair = List[str]
+ 
+ 
+ def ReadJapanesePhoneticReading(file: str) -> List[KeyValuePair]:
+-  with codecs.open(file, 'r', encoding='utf-8') as f:
++  with open(file, 'r', encoding='utf-8') as f:
+     f = code_generator_util.SkipLineComment(f)
+     f = code_generator_util.ParseColumnStream(f, num_column=2, delimiter='\t')
+     outputs = list(f)
