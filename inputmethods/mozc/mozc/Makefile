@@ -41,7 +41,7 @@ UT_PLACE_NAMES_COMMIT =			ebb123f12adde4ead5323a8113c5d4cfc91de08c
 UT_NEOLOGD_COMMIT =				e33ac4ce808fa4253c6c97bf5178e229a4bfb50f
 UT_SUDACHIDICT_COMMIT =			c686771bada1d59e9b105c81b29e6ac1a239cb54
 UT_EDICT2_COMMIT =				8fe8f7918baf513c3d7e243807dfcda2d5c30139
-JAWIKI_DATE =					20260801
+JAWIKI_VERSION =				20260801
 
 SUPDISTFILES.merge_script =		merge_dictionaries-${UT_COMMIT}{merge_dictionaries}.py
 SITES.merge_script =			https://raw.githubusercontent.com/utuhiro78/merge-ut-dictionaries/${UT_COMMIT}/src/merge/
@@ -63,16 +63,13 @@ UT_SUDACHIDICT =				mozcdic-ut-sudachidict-${UT_SUDACHIDICT_COMMIT}.txt.bz2
 SUPDISTFILES.edict2 =			mozcdic-ut-edict2-${UT_EDICT2_COMMIT}{mozcdic-ut-edict2}.txt.bz2
 SITES.edict2 =					https://github.com/utuhiro78/mozcdic-ut-edict2/raw/${UT_EDICT2_COMMIT}/
 UT_EDICT2 =						mozcdic-ut-edict2-${UT_EDICT2_COMMIT}.txt.bz2
-SUPDISTFILES.jawiki_index =		jawiki-${JAWIKI_DATE}-pages-articles-multistream-index.txt.bz2
-SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_DATE}/
+SUPDISTFILES.jawiki_index =		jawiki-${JAWIKI_VERSION}-pages-articles-multistream-index.txt.bz2
+SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_VERSION}/
 
-GOOGLEBENCHMARK_VERSION =		1.9.5
-GOOGLETEST_VERSION =			1.17.0
-
-DISTFILES.googlebenchmark =		v${GOOGLEBENCHMARK_VERSION}.tar.gz
+DISTFILES.googlebenchmark =		v1.9.5.tar.gz
 SITES.googlebenchmark =			https://github.com/google/benchmark/archive/refs/tags/
-DISTFILES.googletest =			googletest-${GOOGLETEST_VERSION}.tar.gz
-SITES.googletest =				https://github.com/google/googletest/releases/download/v${GOOGLETEST_VERSION}/
+DISTFILES.googletest =			googletest-1.17.0.tar.gz
+SITES.googletest =				https://github.com/google/googletest/releases/download/v1.17.0/
 
 JA_USAGE_DICT_VERSION =			2025-01-25
 ZIP_CODE_COMMIT =				621d059fbcbfae17bfca15b439692bae934268c3
