@@ -14,9 +14,6 @@ BUILD_DEPENDS += devel/bazel/9
 MODJAVA_VER = 21
 .endif
 
-# Suppress network connections (Not ideal)
-MAKE_ENV += HTTP_PROXY=http://127.0.0.1:1 HTTPS_PROXY=http://127.0.0.1:1
-
 MODBAZEL_USE_BCR ?= Yes
 
 .if ${MODBAZEL_USE_BCR:L} == "yes"
