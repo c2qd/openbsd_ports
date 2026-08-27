@@ -33,7 +33,7 @@ MODBAZEL_FLAGS += --registry=file://${MODBAZEL_BCR_DIR}
 TEST_FLAGS += --registry=file://${MODBAZEL_BCR_DIR}
 .endif
 
-USE_LIBTOOL = No
+USE_LIBTOOL ?= No
 
 ALL_TARGET ?= //...
 TEST_TARGET ?= //...
@@ -57,7 +57,6 @@ MODBAZEL_STARTUP_FLAGS += --batch --output_base=${WRKDIST}/modbazel_output_base 
 MODBAZEL_BUILD_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 						${LOCALBASE}/bin/bazel${MODBAZEL_VERSION} \
 						${MODBAZEL_STARTUP_FLAGS} build \
-						--tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 						--distdir=${FULLDISTDIR} \
 						${MODBAZEL_CONFIGS:S/^/--config /} \
 						${_MODBAZEL_VERBOSE} --jobs=${MAKE_JOBS} \
@@ -66,7 +65,6 @@ MODBAZEL_BUILD_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 MODBAZEL_TEST_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 					   ${LOCALBASE}/bin/bazel${MODBAZEL_VERSION} \
 					   ${MODBAZEL_STARTUP_FLAGS} test --build_tests_only \
-					   --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
 					   --distdir=${FULLDISTDIR} \
 					   ${MODBAZEL_CONFIGS:S/^/--config=/} \
 					   ${_MODBAZEL_VERBOSE} --jobs=${MAKE_JOBS} \
