@@ -27,7 +27,7 @@ LIB_DEPENDS +=					inputmethods/fcitx
 RUN_DEPENDS +=					inputmethods/mozc/mozc
 
 WANTLIB +=						${COMPILER_LIBCXX} Fcitx5Config Fcitx5Core Fcitx5Utils
-WANTLIB +=						c m
+WANTLIB +=						m
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
