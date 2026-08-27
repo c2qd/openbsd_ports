@@ -17,7 +17,7 @@ MAINTAINER =					c2qd
 
 # BSD-3-Clause + Zlib(zlib) + BSD-3-Clause(protobuf) + Apache-2.0(abseil-cpp)
 # LGPL-2.1 or later(Part of the code in src/unix/fcitx5)
-PERMIT_PACKAGE =				No
+PERMIT_PACKAGE =				Yes
 
 EXTRACT_ONLY =					fcitx-mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 								${MODBAZEL_BCR_DISTFILE}
