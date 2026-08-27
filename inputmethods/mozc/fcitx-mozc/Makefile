@@ -23,11 +23,14 @@ EXTRACT_ONLY =					fcitx-mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 								${MODBAZEL_BCR_DISTFILE}
 
 BUILD_DEPENDS +=				devel/gettext,-tools
+
 LIB_DEPENDS +=					inputmethods/fcitx
+
 RUN_DEPENDS +=					inputmethods/mozc/mozc
 
 WANTLIB +=						${COMPILER_LIBCXX} Fcitx5Config Fcitx5Core Fcitx5Utils
 WANTLIB +=						m
+
 COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
@@ -35,13 +38,9 @@ ALL_TARGET =					unix/fcitx5:fcitx5-mozc.so
 
 LDFLAGS +=						-L${LOCALBASE}/lib
 
-NO_TEST =						Yes
+NO_TEST =						Yes								
 
 L10N_LANGS =					ca da de fr he ja ka ko ru tr vi zh_CN zh_TW
-
-ICONS =							ui-alpha_full ui-alpha_half ui-direct ui-hiragana \
-								ui-katakana_full ui-katakana_half ui-dictionary \
-								ui-properties ui-tool
 
 post-extract:
 	cp ${FILESDIR}/abseil_cpp_absl_status_status.cc.patch \
@@ -93,7 +92,9 @@ do-install:
 		"${PREFIX}/share/icons/hicolor/128x128/apps/fcitx_mozc.png"
 	ln -sf org.fcitx.Fcitx5.fcitx_mozc.png \
 		"${PREFIX}/share/icons/hicolor/32x32/apps/fcitx_mozc.png"
-.for icon in ${ICONS}
+.for icon in \
+	ui-alpha_full ui-alpha_half ui-direct ui-hiragana ui-katakana_full \
+	ui-katakana_half ui-dictionary ui-properties ui-tool
 	${INSTALL_DATA} "${WRKDIST}/scripts/icons/${icon}.png" \
 		"${PREFIX}/share/icons/hicolor/48x48/apps/org.fcitx.Fcitx5.fcitx_mozc_${icon:S/ui-//}.png"
 	ln -sf "org.fcitx.Fcitx5.fcitx_mozc_${icon:S/ui-//}.png" \
