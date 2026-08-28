@@ -17,6 +17,9 @@ generate abseil-cpp so list:
 ```sh
 ls /usr/local/lib/libabsl* | sed 's,^/usr/local/lib/lib,-l,; s/\.so.*//; s/^/        "/; s/$/",/'
 ```
+gen abseil-cpp build.bazel:
+in abseil-cpp.x/absl/
+
 </details>
 
 ## How to use
