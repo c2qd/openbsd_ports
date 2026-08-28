@@ -1,0 +1,32 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "bits",
+    deps = [
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:endian",
+    ],
+)
+cc_library(
+    name = "int128",
+    linkopts = [
+        "-labsl_int128",
+    ],
+    deps = [
+        ":bits",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/types:compare",
+    ],
+)
+cc_library(
+    name = "representation",
+    deps = [
+        "//absl/base:config",
+    ],
+)

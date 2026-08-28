@@ -1,0 +1,36 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "time",
+    linkopts = [
+        "-labsl_time",
+    ],
+    deps = [
+        "//absl/base",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:raw_logging_internal",
+        "//absl/numeric:int128",
+        "//absl/strings",
+        "//absl/strings:string_view",
+        "//absl/time/internal/cctz:civil_time",
+        "//absl/time/internal/cctz:time_zone",
+        "//absl/types:optional",
+    ],
+)
+cc_library(
+    name = "test_util",
+    linkopts = [
+        "-labsl_time_internal_test_util",
+    ],
+    visibility = ["//visibility:private"],
+    deps = [
+        ":time",
+        "//absl/base:config",
+        "//absl/base:raw_logging_internal",
+    ],
+)

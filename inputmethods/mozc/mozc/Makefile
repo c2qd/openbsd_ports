@@ -7,6 +7,7 @@ GH_PROJECT =					mozc
 GH_COMMIT =						802b34c7eba43c47ed7cd282d19ba68af2eb2a10
 
 VERSION =						3.34.6239.20260826
+REVISION =						0
 DISTNAME =						mozc-${VERSION}
 
 FLAVORS =						ut
@@ -19,18 +20,17 @@ CATEGORIES=						inputmethods japanese
 MAINTAINER =					c2qd
 
 .if ${FLAVOR:Mut}
-# BSD-3-Clause + NAIST-2003(IPADic) + Zlib(zlib) +
+# BSD-3-Clause + NAIST-2003(IPADic) +
 # Public Domain(Okinawa dictionary, Zip code data, place-names) +
-# BSD-2-Clause(Japanese usage dictionary) + BSD-3-Clause(protobuf) +
-# CC-BY-SA-4.0(jawiki, edict2) + Apache-2.0(abseil-cpp, personal-names, Neologd, SudachiDict)
-PERMIT_PACKAGE =				No # Hmm...?
+# BSD-2-Clause(Japanese usage dictionary) + CC-BY-SA-4.0(jawiki, edict2) +
+# Apache-2.0(personal-names, Neologd, SudachiDict)
+PERMIT_PACKAGE =				No # ?
 PATCH_LIST =					patch_ut-* patch-*
 .else
 # Question: Is it okay to change PERMIT_PACKAGE depending on the flavor?
 # BSD-3-Clause + NAIST-2003(IPADic) + Zlib(zlib) +
 # Public Domain(Okinawa dictionary, Zip code data) +
-# BSD-2-Clause(Japanese usage dictionary) + BSD-3-Clause(protobuf) +
-# Apache-2.0(abseil-cpp)
+# BSD-2-Clause(Japanese usage dictionary)
 PERMIT_PACKAGE =				Yes # Maybe.
 .endif
 
@@ -68,8 +68,6 @@ SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_VERSION}/
 
 DISTFILES.googlebenchmark =		v1.9.5.tar.gz
 SITES.googlebenchmark =			https://github.com/google/benchmark/archive/refs/tags/
-DISTFILES.googletest =			googletest-1.17.0.tar.gz
-SITES.googletest =				https://github.com/google/googletest/releases/download/v1.17.0/
 
 JA_USAGE_DICT_VERSION =			2025-01-25
 ZIP_CODE_COMMIT =				621d059fbcbfae17bfca15b439692bae934268c3
@@ -84,29 +82,60 @@ SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/
 EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 								${MODBAZEL_BCR_DISTFILE}
 
-BUILD_DEPENDS +=				archivers/bzip2
+BUILD_DEPENDS +=				archivers/bzip2 devel/protobuf
 
 WANTLIB +=						${COMPILER_LIBCXX} Qt6Core Qt6Gui Qt6Widgets
-WANTLIB +=						c m execinfo z X11
-LIB_DEPENDS +=					x11/qt6/qtbase
+WANTLIB +=						absl_base absl_borrowed_fixup_buffer absl_city absl_civil_time
+WANTLIB +=						absl_cord absl_cord_internal absl_cordz_functions absl_cordz_handle
+WANTLIB +=						absl_cordz_info absl_crc32c absl_crc_cord_state absl_crc_cpu_detect
+WANTLIB +=						absl_crc_internal absl_debugging_internal absl_decode_rust_punycode
+WANTLIB +=						absl_demangle_internal absl_demangle_rust absl_examine_stack
+WANTLIB +=						absl_exponential_biased absl_flags_commandlineflag
+WANTLIB +=						absl_flags_commandlineflag_internal absl_flags_config
+WANTLIB +=						absl_flags_internal absl_flags_marshalling absl_flags_parse
+WANTLIB +=						absl_flags_private_handle_accessor absl_flags_program_name
+WANTLIB +=						absl_flags_reflection absl_flags_usage absl_flags_usage_internal
+WANTLIB +=						absl_graphcycles_internal absl_hash absl_hashtablez_sampler
+WANTLIB +=						absl_int128 absl_kernel_timeout_internal absl_leak_check
+WANTLIB +=						absl_log_entry absl_log_flags absl_log_globals absl_log_initialize
+WANTLIB +=						absl_log_internal_check_op absl_log_internal_conditions
+WANTLIB +=						absl_log_internal_fnmatch absl_log_internal_format
+WANTLIB +=						absl_log_internal_globals absl_log_internal_log_sink_set
+WANTLIB +=						absl_log_internal_message absl_log_internal_nullguard
+WANTLIB +=						absl_log_internal_proto absl_log_internal_structured_proto
+WANTLIB +=						absl_log_severity absl_log_sink absl_malloc_internal
+WANTLIB +=						absl_random_distributions absl_random_internal_entropy_pool
+WANTLIB +=						absl_random_internal_platform absl_random_internal_randen
+WANTLIB +=						absl_random_internal_randen_hwaes absl_random_internal_randen_hwaes_impl
+WANTLIB +=						absl_random_internal_randen_slow absl_random_internal_seed_material
+WANTLIB +=						absl_random_seed_gen_exception absl_random_seed_sequences
+WANTLIB +=						absl_raw_hash_set absl_raw_logging_internal absl_spinlock_wait
+WANTLIB +=						absl_stacktrace absl_status absl_statusor absl_str_format_internal
+WANTLIB +=						absl_strerror absl_strings absl_strings_internal absl_symbolize
+WANTLIB +=						absl_synchronization absl_throw_delegate absl_time
+WANTLIB +=						absl_time_zone absl_tracing_internal absl_utf8_for_code_point
+WANTLIB +=						absl_vlog_config_internal c m protobuf
+
+LIB_DEPENDS +=					devel/abseil-cpp devel/protobuf x11/qt6/qtbase
+
+TEST_DEPENDS +=					devel/gtest
 
 RUN_DEPENDS +=					devel/xdg-utils
 
-COMPILER_LANGS =				c++
 COMPILER =						base-clang
 
 ALL_TARGET =					server:mozc_server gui/tool:mozc_tool
 
 CFLAGS +=						-I${X11BASE}/include
-LDFLAGS +=						-L${LOCALBASE}/lib
 
 MAKE_ENV +=						LC_CTYPE=C.UTF-8
 
 post-extract:
-	cp ${FILESDIR}/abseil_cpp_absl_status_status.cc.patch \
-		${FILESDIR}/rules_cc_bsd_cc_toolchain_config.bzl.patch \
+	cp ${FILESDIR}/rules_cc_bsd_cc_toolchain_config.bzl.patch \
+		${FILESDIR}/rules_cc_unix_cc_toolchain_config.bzl.patch \
 		${FILESDIR}/rules_go_go_private_sdk.bzl.patch \
 		${WRKSRC}/bazel
+	cp -Rp ${FILESDIR}/third_party ${WRKSRC}
 .if ${FLAVOR:Mut}
 	cp ${FULLDISTDIR}/merge_dictionaries-${UT_COMMIT}.py \
 		${WRKDIST}/merge_dictionaries.py

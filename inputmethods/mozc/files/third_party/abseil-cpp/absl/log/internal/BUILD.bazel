@@ -1,0 +1,370 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+package_group(
+    name = "internal_users",
+    packages = [
+        "//absl/log",
+    ],
+)
+
+package_group(
+    name = "structured_proto_users",
+    packages = [
+        "//absl/log/...",
+    ],
+)
+
+cc_library(
+    name = "check_impl",
+    deps = [
+        ":check_op",
+        ":conditions",
+        ":strip",
+        "//absl/base:core_headers",
+    ],
+)
+cc_library(
+    name = "check_op",
+    linkopts = [
+        "-labsl_log_internal_check_op",
+    ],
+    visibility = ["//absl/log:__pkg__"],
+    deps = [
+        ":nullguard",
+        ":nullstream",
+        ":strip",
+        "//absl/base",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:nullability",
+        "//absl/debugging:leak_check",
+        "//absl/strings",
+        "//absl/strings:has_ostream_operator",
+    ],
+)
+cc_library(
+    name = "conditions",
+    linkopts = [
+        "-labsl_log_internal_conditions",
+    ],
+    deps = [
+        ":voidify",
+        "//absl/base",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+    ],
+)
+cc_library(
+    name = "config",
+    visibility = [
+        "//absl/log:__pkg__",
+    ],
+    deps = [
+        "//absl/base:config",
+        "//absl/base:core_headers",
+    ],
+)
+cc_library(
+    name = "flags",
+    deps = [
+        "//absl/flags:flag",
+    ],
+)
+cc_library(
+    name = "format",
+    linkopts = [
+        "-labsl_log_internal_format",
+    ],
+    deps = [
+        ":append_truncated",
+        ":config",
+        ":globals",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:log_severity",
+        "//absl/strings",
+        "//absl/strings:str_format",
+        "//absl/time",
+        "//absl/types:span",
+    ],
+)
+cc_library(
+    name = "globals",
+    linkopts = [
+        "-labsl_log_internal_globals",
+    ],
+    visibility = [
+        "//absl/log:__pkg__",
+    ],
+    deps = [
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:log_severity",
+        "//absl/base:raw_logging_internal",
+        "//absl/strings",
+        "//absl/time",
+    ],
+)
+cc_library(
+    name = "log_impl",
+    deps = [
+        ":conditions",
+        ":log_message",
+        ":strip",
+        "//absl/log:absl_vlog_is_on",
+    ],
+)
+cc_library(
+    name = "log_message",
+    linkopts = [
+        "-labsl_log_internal_message",
+    ],
+    visibility = [
+        "//absl/log:__pkg__",
+    ],
+    deps = [
+        ":append_truncated",
+        ":format",
+        ":globals",
+        ":log_sink_set",
+        ":nullguard",
+        ":proto",
+        ":structured_proto",
+        "//absl/base",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:errno_saver",
+        "//absl/base:log_severity",
+        "//absl/base:nullability",
+        "//absl/base:raw_logging_internal",
+        "//absl/base:strerror",
+        "//absl/container:inlined_vector",
+        "//absl/debugging:examine_stack",
+        "//absl/log:globals",
+        "//absl/log:log_entry",
+        "//absl/log:log_sink",
+        "//absl/log:log_sink_registry",
+        "//absl/memory",
+        "//absl/strings",
+        "//absl/strings:internal",
+        "//absl/time",
+        "//absl/types:span",
+    ],
+)
+cc_library(
+    name = "append_truncated",
+    deps = [
+        "//absl/base:config",
+        "//absl/strings",
+        "//absl/strings:internal",
+        "//absl/types:span",
+    ],
+)
+cc_library(
+    name = "log_sink_set",
+    linkopts = [
+        "-labsl_log_internal_log_sink_set",
+    ],
+    deps = [
+        ":config",
+        ":globals",
+        "//absl/base",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:log_severity",
+        "//absl/base:no_destructor",
+        "//absl/base:raw_logging_internal",
+        "//absl/cleanup",
+        "//absl/log:globals",
+        "//absl/log:log_entry",
+        "//absl/log:log_sink",
+        "//absl/strings",
+        "//absl/synchronization",
+        "//absl/types:span",
+    ],
+)
+cc_library(
+    name = "nullguard",
+    linkopts = [
+        "-labsl_log_internal_nullguard",
+    ],
+    deps = [
+        "//absl/base:config",
+        "//absl/base:core_headers",
+    ],
+)
+cc_library(
+    name = "nullstream",
+    deps = [
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:log_severity",
+        "//absl/strings",
+    ],
+)
+cc_library(
+    name = "strip",
+    deps = [
+        ":log_message",
+        ":nullstream",
+        "//absl/base:core_headers",
+        "//absl/base:log_severity",
+    ],
+)
+cc_library(
+    name = "structured",
+    visibility = [
+        ":internal_users",
+        ":structured_proto_users",
+    ],
+    deps = [
+        ":log_message",
+        ":structured_proto",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/functional:any_invocable",
+        "//absl/strings",
+    ],
+)
+cc_library(
+    name = "structured_proto",
+    linkopts = [
+        "-labsl_log_internal_structured_proto",
+    ],
+    visibility = [
+        ":structured_proto_users",
+    ],
+    deps = [
+        ":proto",
+        "//absl/base:config",
+        "//absl/strings",
+        "//absl/types:span",
+        "//absl/types:variant",
+    ],
+)
+cc_library(
+    name = "test_actions",
+    linkopts = [
+        "-labsl_log_internal_test_actions",
+    ],
+    deps = [
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:log_severity",
+        "//absl/log:log_entry",
+        "//absl/strings",
+        "//absl/time",
+    ] + select({
+        "@rules_cc//cc/compiler:msvc-cl": [],
+        "//conditions:default": [
+        ],
+    }),
+)
+cc_library(
+    name = "test_helpers",
+    linkopts = [
+        "-labsl_log_internal_test_helpers",
+    ],
+    visibility = [
+        ":internal_users",
+        ":structured_proto_users",
+    ],
+    deps = [
+        ":globals",
+        "//absl/base:config",
+        "//absl/base:log_severity",
+        "//absl/log:globals",
+        "//absl/log:initialize",
+        "@googletest//:gtest",
+    ],
+)
+cc_library(
+    name = "test_matchers",
+    linkopts = [
+        "-labsl_log_internal_test_matchers",
+    ],
+    visibility = [
+        ":internal_users",
+        ":structured_proto_users",
+    ],
+    deps = [
+        ":test_helpers",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:log_severity",
+        "//absl/log:log_entry",
+        "//absl/strings",
+        "//absl/time",
+        "@googletest//:gtest",
+    ] + select({
+        "@rules_cc//cc/compiler:msvc-cl": [],
+        "//conditions:default": [
+        ],
+    }),
+)
+cc_library(
+    name = "voidify",
+    deps = [
+        "//absl/base:config",
+        "//absl/base:core_headers",
+    ],
+)
+cc_library(
+    name = "proto",
+    linkopts = [
+        "-labsl_log_internal_proto",
+    ],
+    deps = [
+        "//absl/base",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/strings",
+        "//absl/types:span",
+    ],
+)
+cc_library(
+    name = "fnmatch",
+    linkopts = [
+        "-labsl_log_internal_fnmatch",
+    ],
+    deps = [
+        "//absl/base:config",
+        "//absl/strings",
+    ],
+)
+cc_library(
+    name = "vlog_config",
+    linkopts = [
+        "-labsl_vlog_config_internal",
+    ],
+    visibility = [
+        "//absl/log:__subpackages__",
+    ],
+    deps = [
+        ":fnmatch",
+        "//absl/base",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:no_destructor",
+        "//absl/base:nullability",
+        "//absl/memory",
+        "//absl/strings",
+        "//absl/synchronization",
+        "//absl/types:optional",
+    ],
+)
+cc_library(
+    name = "container",
+    visibility = [
+        "//absl:__subpackages__",
+    ],
+    deps = [
+        "//absl/base:config",
+        "//absl/meta:requires",
+        "//absl/strings",
+    ],
+)

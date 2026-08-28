@@ -1,29 +1,16 @@
 Index: src/MODULE.bazel
 --- src/MODULE.bazel.orig
 +++ src/MODULE.bazel
-@@ -36,6 +36,13 @@ bazel_dep(
-     version = "20260107.1",
-     repo_name = "com_google_absl",
- )
-+single_version_override(
-+    module_name = "abseil-cpp",
-+    patches = [
-+        "bazel/abseil_cpp_absl_status_status.cc.patch",
-+    ],
-+    version = "20260107.1",
-+)
- 
- # abseil-py: 2.1.0 2024-01-17
- # https://github.com/abseil/abseil-py
-@@ -136,6 +143,7 @@ single_version_override(
+@@ -136,6 +136,8 @@ single_version_override(
          "bazel/rules_cc_BUILD.windows.tpl.patch",
          "bazel/rules_cc_windows_cc_configure.bzl.patch",
          "bazel/rules_cc_windows_cc_toolchain_config.bzl.patch",
 +        "bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch",
++        "bazel/rules_cc_unix_cc_toolchain_config.bzl.patch",
      ],
      version = "0.2.17",
  )
-@@ -158,6 +166,13 @@ bazel_dep(
+@@ -158,6 +160,13 @@ bazel_dep(
      version = "0.60.0",
      repo_name = "io_bazel_rules_go",
  )
@@ -37,7 +24,7 @@ Index: src/MODULE.bazel
  
  # gazelle: 0.48.0 2026-03-26
  # https://github.com/bazel-contrib/bazel-gazelle
-@@ -230,7 +245,7 @@ pkg_config_repository(
+@@ -230,7 +239,7 @@ pkg_config_repository(
  # Qt for Linux
  pkg_config_repository(
      name = "qt_linux",
@@ -46,7 +33,7 @@ Index: src/MODULE.bazel
      packages = [
          "Qt6Core",
          "Qt6Gui",
-@@ -365,6 +380,31 @@ http_archive(
+@@ -365,6 +374,31 @@ http_archive(
          "https://github.com/google/google-toolbox-for-mac/archive/%s.zip" % GTM_GIT_SHA,
      ],
  )

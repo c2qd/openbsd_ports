@@ -1,0 +1,100 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "graphcycles_internal",
+    linkopts = [
+        "-labsl_graphcycles_internal",
+    ],
+    deps = [
+        "//absl/base",
+        "//absl/base:base_internal",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:malloc_internal",
+        "//absl/base:raw_logging_internal",
+    ],
+)
+cc_library(
+    name = "kernel_timeout_internal",
+    linkopts = [
+        "-labsl_kernel_timeout_internal",
+    ],
+    deps = [
+        "//absl/base",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:raw_logging_internal",
+        "//absl/time",
+    ],
+)
+cc_library(
+    name = "synchronization",
+    linkopts = [
+        "-labsl_synchronization",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":graphcycles_internal",
+        ":kernel_timeout_internal",
+        "//absl/base",
+        "//absl/base:atomic_hook",
+        "//absl/base:base_internal",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:dynamic_annotations",
+        "//absl/base:malloc_internal",
+        "//absl/base:nullability",
+        "//absl/base:raw_logging_internal",
+        "//absl/base:tracing_internal",
+        "//absl/debugging:stacktrace",
+        "//absl/debugging:symbolize",
+        "//absl/meta:type_traits",
+        "//absl/time",
+    ] + select({
+        "//conditions:default": [],
+    }),
+)
+cc_library(
+    name = "thread_pool",
+    visibility = [
+        "//absl:__subpackages__",
+    ],
+    deps = [
+        ":synchronization",
+        "//absl/base:core_headers",
+        "//absl/functional:any_invocable",
+    ],
+)
+cc_library(
+    name = "mutex_benchmark_common",
+    visibility = [
+    ],
+    deps = [
+        ":synchronization",
+        ":thread_pool",
+        "//absl/base",
+        "//absl/base:config",
+        "//absl/base:no_destructor",
+        "@google_benchmark//:benchmark_main",
+    ],
+)
+cc_library(
+    name = "per_thread_sem_test_common",
+    linkopts = [
+        "-labsl_per_thread_sem_test_common",
+    ],
+    visibility = [
+    ],
+    deps = [
+        ":synchronization",
+        "//absl/base",
+        "//absl/base:config",
+        "//absl/strings",
+        "//absl/time",
+        "@googletest//:gtest",
+    ],
+)

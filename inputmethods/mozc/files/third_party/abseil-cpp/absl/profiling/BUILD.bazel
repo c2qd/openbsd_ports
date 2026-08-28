@@ -1,0 +1,83 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "sample_recorder",
+    visibility = [
+        "//absl:__subpackages__",
+    ],
+    deps = [
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/synchronization",
+        "//absl/time",
+    ],
+)
+cc_library(
+    name = "exponential_biased",
+    linkopts = [
+        "-labsl_exponential_biased",
+    ],
+    visibility = [
+        "//absl:__subpackages__",
+    ],
+    deps = [
+        "//absl/base:config",
+        "//absl/base:core_headers",
+    ],
+)
+cc_library(
+    name = "periodic_sampler",
+    linkopts = [
+        "-labsl_periodic_sampler",
+    ],
+    visibility = [
+        # TODO(b/304670045): remove after periodic_sampler moves to //spanner/common.
+        "//absl:__subpackages__",
+    ],
+    deps = [
+        ":exponential_biased",
+        "//absl/base:core_headers",
+    ],
+)
+cc_library(
+    name = "profile_builder",
+    linkopts = [
+        "-labsl_profile_builder",
+    ],
+    visibility = [
+        "//absl:__subpackages__",
+    ],
+    deps = [
+        "//absl/base",
+        "//absl/base:config",
+        "//absl/base:raw_logging_internal",
+        "//absl/container:btree",
+        "//absl/container:flat_hash_map",
+        "//absl/strings",
+        "//absl/strings:str_format",
+        "//absl/types:span",
+    ],
+)
+cc_library(
+    name = "hashtable",
+    linkopts = [
+        "-labsl_hashtable_profiler",
+    ],
+    visibility = [
+        "//absl:__subpackages__",
+    ],
+    deps = [
+        ":profile_builder",
+        "//absl/base:config",
+        "//absl/container:hashtablez_sampler",
+        "//absl/status:statusor",
+        "//absl/strings",
+        "//absl/strings:string_view",
+        "//absl/time",
+        "//absl/types:span",
+    ],
+)

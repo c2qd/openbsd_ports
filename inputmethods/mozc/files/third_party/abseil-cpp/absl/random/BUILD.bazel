@@ -1,0 +1,99 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "random",
+    deps = [
+        ":distributions",
+        ":seed_sequences",
+        "//absl/base:config",
+        "//absl/random/internal:nonsecure_base",
+        "//absl/random/internal:pcg_engine",
+        "//absl/random/internal:randen_engine",
+    ],
+)
+cc_library(
+    name = "distributions",
+    linkopts = [
+        "-labsl_random_distributions",
+    ],
+    deps = [
+        "//absl/base:base_internal",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/meta:type_traits",
+        "//absl/random/internal:distribution_caller",
+        "//absl/random/internal:fast_uniform_bits",
+        "//absl/random/internal:fastmath",
+        "//absl/random/internal:generate_real",
+        "//absl/random/internal:iostream_state_saver",
+        "//absl/random/internal:traits",
+        "//absl/random/internal:uniform_helper",
+        "//absl/random/internal:wide_multiply",
+        "//absl/strings",
+    ],
+)
+cc_library(
+    name = "seed_gen_exception",
+    linkopts = [
+        "-labsl_random_seed_gen_exception",
+    ],
+    deps = [
+        "//absl/base:config",
+        "//absl/base:raw_logging_internal",
+    ],
+)
+cc_library(
+    name = "seed_sequences",
+    linkopts = [
+        "-labsl_random_seed_sequences",
+    ],
+    deps = [
+        ":seed_gen_exception",
+        "//absl/base:config",
+        "//absl/base:nullability",
+        "//absl/random/internal:entropy_pool",
+        "//absl/random/internal:salted_seed_seq",
+        "//absl/random/internal:seed_material",
+        "//absl/strings:string_view",
+        "//absl/types:span",
+    ],
+)
+cc_library(
+    name = "bit_gen_ref",
+    deps = [
+        ":random",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/base:fast_type_id",
+        "//absl/meta:type_traits",
+        "//absl/random/internal:distribution_caller",
+        "//absl/random/internal:fast_uniform_bits",
+    ],
+)
+cc_library(
+    name = "mock_distributions",
+    deps = [
+        ":distributions",
+        ":mocking_bit_gen",
+        "//absl/base:config",
+        "//absl/random/internal:mock_overload_set",
+        "//absl/random/internal:mock_validators",
+    ],
+)
+cc_library(
+    name = "mocking_bit_gen",
+    deps = [
+        ":random",
+        "//absl/base:config",
+        "//absl/base:fast_type_id",
+        "//absl/container:flat_hash_map",
+        "//absl/meta:type_traits",
+        "//absl/random/internal:mock_helpers",
+        "//absl/utility",
+        "@googletest//:gtest",
+    ],
+)

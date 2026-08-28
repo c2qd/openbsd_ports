@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "algorithm",
+    deps = [
+        "//absl/base:config",
+    ],
+)
+cc_library(
+    name = "container",
+    deps = [
+        ":algorithm",
+        "//absl/base:config",
+        "//absl/base:core_headers",
+        "//absl/meta:type_traits",
+    ],
+)
