@@ -3,7 +3,6 @@ SHA256 (mozc/apple_support.2.4.0.tar.gz) = ny7g0jv0axyKyIzqc6sT1BXzQOx3fh5ohB4JF
 SHA256 (mozc/bazel-skylib-1.9.0.tar.gz) = O1tJAGGB9fj/Ym743c6qlem7itKU97XXsR6p992vjFk=
 SHA256 (mozc/bazel_features-v1.42.1.tar.gz) = gYm6yaa/nMFVqFTEy+v+v1i5ynotCmdkX30MH4PFI6w=
 SHA256 (mozc/bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = yAoyDhvnhUzMm5G9KIma+AfGPX87+eDRUjCzoeaqttE=
-SHA256 (mozc/googletest-1.17.0.tar.gz) = Zfq3AdmCnTjLd8FKzcQx0hCL/b+JeeQOuK5Wft8Qsnw=
 SHA256 (mozc/jawiki-20260801-pages-articles-multistream-index.txt.bz2) = 68kh+4m9N2E0golS+9vHzYpZuxEUxbf9Gh+Fk2wqmNY=
 SHA256 (mozc/jigyosyo.zip) = FL4QMPYHxfgZ8vRaSF6JURkHvdHWLn+xkxtuSKNDHDo=
 SHA256 (mozc/ken_all.zip) = OtyX2OGeEWimzcsvznWdDp5hOpo7YwzBgK7P1WroHq8=
@@ -28,7 +27,6 @@ SHA256 (mozc/rules_pkg-1.2.0.tar.gz) = tckYSiO7C8/yQZgf2dniqXY4oTdMmVO7GAiDbOcR+
 SHA256 (mozc/rules_python-1.9.0.tar.gz) = CYuhNXjnlsAMhTohYfOCZH8y65p3CZ4ciLxSmTM9DW4=
 SHA256 (mozc/rules_shell-v0.6.1.tar.gz) = 5rh8ib0LJwOeOvLF2gEUdFLyQPddUF9baICHTzEDYwc=
 SHA256 (mozc/rules_swift.3.5.0.tar.gz) = yY8gG8IX0s4o4Br8eLQQ0FxnuEbASnCV5OcBs3Qi7LI=
-SHA256 (mozc/v1.10.0.tar.gz) = oan3h1qktqlIDKOE1YZfHM8bCx+urWtHqkfXlwmlxf0=
 SHA256 (mozc/v1.9.5.tar.gz) = ljE0HIK6xKKIvvlR+LJrQfaQIXlBhOzpafhHOXfqo0A=
 SHA256 (mozc/v2.1.0.tar.gz) = ij0IMOTrT2bE+pB8Bu32zhxxnO2BGhLibZ0xYvhHF1g=
 SIZE (mozc/2025-01-25.zip) = 72776
@@ -36,7 +34,6 @@ SIZE (mozc/apple_support.2.4.0.tar.gz) = 115899
 SIZE (mozc/bazel-skylib-1.9.0.tar.gz) = 44790
 SIZE (mozc/bazel_features-v1.42.1.tar.gz) = 18078
 SIZE (mozc/bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = 9417311
-SIZE (mozc/googletest-1.17.0.tar.gz) = 885595
 SIZE (mozc/jawiki-20260801-pages-articles-multistream-index.txt.bz2) = 31277924
 SIZE (mozc/jigyosyo.zip) = 774660
 SIZE (mozc/ken_all.zip) = 1694719
@@ -61,6 +58,5 @@ SIZE (mozc/rules_pkg-1.2.0.tar.gz) = 94391
 SIZE (mozc/rules_python-1.9.0.tar.gz) = 1061163
 SIZE (mozc/rules_shell-v0.6.1.tar.gz) = 23916
 SIZE (mozc/rules_swift.3.5.0.tar.gz) = 333115
-SIZE (mozc/v1.10.0.tar.gz) = 159353
 SIZE (mozc/v1.9.5.tar.gz) = 267155
 SIZE (mozc/v2.1.0.tar.gz) = 235261

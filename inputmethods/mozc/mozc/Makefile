@@ -132,7 +132,6 @@ MAKE_ENV +=						LC_CTYPE=C.UTF-8
 
 post-extract:
 	cp ${FILESDIR}/rules_cc_bsd_cc_toolchain_config.bzl.patch \
-		${FILESDIR}/rules_cc_unix_cc_toolchain_config.bzl.patch \
 		${FILESDIR}/rules_go_go_private_sdk.bzl.patch \
 		${WRKSRC}/bazel
 	cp -Rp ${FILESDIR}/third_party ${WRKSRC}

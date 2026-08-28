@@ -70,7 +70,6 @@ L10N_LANGS =					ca da de fr he ja ka ko ru tr vi zh_CN zh_TW
 
 post-extract:
 	cp ${FILESDIR}/rules_cc_bsd_cc_toolchain_config.bzl.patch \
-		${FILESDIR}/rules_cc_unix_cc_toolchain_config.bzl.patch \
 		${FILESDIR}/rules_go_go_private_sdk.bzl.patch \
 		${WRKSRC}/bazel
 	cp -Rp ${FILESDIR}/third_party ${WRKSRC}

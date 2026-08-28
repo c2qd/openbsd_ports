@@ -1,16 +1,15 @@
 Index: src/MODULE.bazel
 --- src/MODULE.bazel.orig
 +++ src/MODULE.bazel
-@@ -136,6 +136,8 @@ single_version_override(
+@@ -136,6 +136,7 @@ single_version_override(
          "bazel/rules_cc_BUILD.windows.tpl.patch",
          "bazel/rules_cc_windows_cc_configure.bzl.patch",
          "bazel/rules_cc_windows_cc_toolchain_config.bzl.patch",
 +        "bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch",
-+        "bazel/rules_cc_unix_cc_toolchain_config.bzl.patch",
      ],
      version = "0.2.17",
  )
-@@ -158,6 +160,13 @@ bazel_dep(
+@@ -158,6 +159,13 @@ bazel_dep(
      version = "0.60.0",
      repo_name = "io_bazel_rules_go",
  )
@@ -24,7 +23,7 @@ Index: src/MODULE.bazel
  
  # gazelle: 0.48.0 2026-03-26
  # https://github.com/bazel-contrib/bazel-gazelle
-@@ -238,6 +247,7 @@ new_local_repository(
+@@ -238,6 +246,7 @@ new_local_repository(
  # Fcitx 5
  pkg_config_repository(
      name = "fcitx5",
@@ -32,7 +31,7 @@ Index: src/MODULE.bazel
      packages = [
          "Fcitx5Core",
          "Fcitx5Module",
-@@ -382,6 +392,31 @@ http_archive(
+@@ -382,6 +391,31 @@ http_archive(
          "https://github.com/google/google-toolbox-for-mac/archive/%s.zip" % GTM_GIT_SHA,
      ],
  )
