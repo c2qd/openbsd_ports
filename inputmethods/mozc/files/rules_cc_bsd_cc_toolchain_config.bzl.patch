@@ -1,4 +1,3 @@
-https://github.com/bazelbuild/rules_cc/issues/854
 --- cc/private/toolchain/bsd_cc_toolchain_config.bzl
 +++ cc/private/toolchain/bsd_cc_toolchain_config.bzl
 @@ -55,6 +55,12 @@
@@ -23,7 +22,7 @@ https://github.com/bazelbuild/rules_cc/issues/854
                              "-Wl,-z,relro,-z,now",
                              "-no-canonical-prefixes",
                          ],
-@@ -98,6 +106,55 @@
+@@ -98,6 +106,36 @@
          ],
      )
  
@@ -56,39 +55,19 @@ https://github.com/bazelbuild/rules_cc/issues/854
 +            ),
 +        ],
 +    )
-+    set_install_name_feature = feature(
-+        name = "set_soname",
-+        flag_sets = [
-+            flag_set(
-+                actions = [
-+                    ACTION_NAMES.cpp_link_dynamic_library,
-+                    ACTION_NAMES.cpp_link_nodeps_dynamic_library,
-+                ],
-+                flag_groups = [
-+                    flag_group(
-+                        flags = [
-+                            "-Wl,-soname,%{runtime_solib_name}",
-+                        ],
-+                        expand_if_available = "runtime_solib_name",
-+                    ),
-+                ],
-+            ),
-+        ],
-+    )
 +
      unfiltered_compile_flags_feature = feature(
          name = "unfiltered_compile_flags",
          enabled = True,
-@@ -231,6 +288,8 @@
+@@ -231,6 +269,7 @@
              default_compile_flags_feature,
              default_link_flags_feature,
              supports_dynamic_linker_feature,
 +            runtime_library_search_directories_feature,
-+            set_install_name_feature,
              supports_pic_feature,
              objcopy_embed_flags_feature,
              opt_feature,
-@@ -243,19 +302,19 @@
+@@ -243,19 +282,19 @@
          features = [supports_dynamic_linker_feature, supports_pic_feature]
  
      if (is_bsd):
