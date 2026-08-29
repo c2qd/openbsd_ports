@@ -1,5 +1,6 @@
---- modules/c-ares/1.15.0/source.json.orig	Sat Feb 28 20:40:05 2026
-+++ modules/c-ares/1.15.0/source.json	Sat Feb 28 20:31:03 2026
+Index: bazel-central-registry/modules/c-ares/1.15.0/source.json
+--- bazel-central-registry/modules/c-ares/1.15.0/source.json.orig
++++ bazel-central-registry/modules/c-ares/1.15.0/source.json
 @@ -3,7 +3,9 @@
      "patch_strip": 0,
      "patches": {
