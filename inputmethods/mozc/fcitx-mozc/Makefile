@@ -64,7 +64,7 @@ COMPILER =						base-clang
 
 ALL_TARGET =					unix/fcitx5:fcitx5-mozc.so
 
-NO_TEST =						Yes								
+NO_TEST =						Yes
 
 L10N_LANGS =					ca da de fr he ja ka ko ru tr vi zh_CN zh_TW
 
