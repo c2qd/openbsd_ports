@@ -21,7 +21,9 @@ DIST_TUPLE +=		github bazelbuild bazel-central-registry ${BCR_COMMIT} \
 					bazel-central-registry
 
 EXTRA_BAZEL_ARGS += --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
-                    --registry=file://${WRKDIST}/bazel-central-registry
+                    --registry=file://${WRKDIST}/bazel-central-registry \
+					--output_base=${WRKDIR}/output_base \
+					--output_user_root=${WRKDIR}/output_user_root
 
 WANTLIB +=		    ${COMPILER_LIBCXX} c m
 COMPILER_LANGS =	c++
@@ -49,9 +51,5 @@ do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
         EMBED_LABEL="${VERSION}" \
         EXTRA_BAZEL_ARGS="${EXTRA_BAZEL_ARGS}" \
-		BAZEL_WRKDIR=${WRKDIR}/tmp \
-		PATH="${LOCALBASE}/bin:${PATH}" \
-		JAVA_HOME=${JAVA_HOME} \
 		SOURCE_DATE_EPOCH="0" \
 		${LOCALBASE}/bin/bash ./compile.sh
-	chmod -R u+w ${WRKDIR}/tmp
