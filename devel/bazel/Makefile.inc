@@ -20,10 +20,11 @@ EXTRACT_CASES ?=	*.zip) ${UNZIP} -Laq ${FULLDISTDIR}/$$archive -d ${WRKSRC};;
 DIST_TUPLE +=		github bazelbuild bazel-central-registry ${BCR_COMMIT} \
 					bazel-central-registry
 
+BAZEL_DIR_STARTUP_OPTIONS += --output_base=${WRKDIR}/output_base \
+							 --output_user_root=${WRKDIR}/output_user_root
+
 EXTRA_BAZEL_ARGS += --tool_java_runtime_version=local_jdk_${MODJAVA_VER} \
                     --registry=file://${WRKDIST}/bazel-central-registry \
-					--output_base=${WRKDIR}/output_base \
-					--output_user_root=${WRKDIR}/output_user_root
 
 WANTLIB +=		    ${COMPILER_LIBCXX} c m
 COMPILER_LANGS =	c++
@@ -50,6 +51,7 @@ pre-build:
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
         EMBED_LABEL="${VERSION}" \
+		BAZEL_DIR_STARTUP_OPTIONS=${BAZEL_DIR_STARTUP_OPTIONS} \
         EXTRA_BAZEL_ARGS="${EXTRA_BAZEL_ARGS}" \
 		SOURCE_DATE_EPOCH="0" \
 		${LOCALBASE}/bin/bash ./compile.sh
