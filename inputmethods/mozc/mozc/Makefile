@@ -128,7 +128,7 @@ ALL_TARGET =					server:mozc_server gui/tool:mozc_tool
 
 CFLAGS +=						-I${X11BASE}/include
 
-MAKE_ENV +=						LC_CTYPE=C.UTF-8
+MODBAZEL_FLAGS +=				--action_env=LC_CTYPE=C.UTF-8
 
 post-extract:
 	cp ${FILESDIR}/rules_cc_bsd_cc_toolchain_config.bzl.patch \
