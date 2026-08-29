@@ -1,0 +1,19 @@
+Index: src/main/java/com/google/devtools/build/lib/analysis/ShToolchain.java
+--- src/main/java/com/google/devtools/build/lib/analysis/ShToolchain.java.orig
++++ src/main/java/com/google/devtools/build/lib/analysis/ShToolchain.java
+@@ -49,9 +49,12 @@ public final class ShToolchain {
+       return shellConfiguration.getOptionsBasedDefault();
+     }
+ 
+-    return Optional.ofNullable(platformInfo)
+-        .map(ConstraintConstants::getOsFromConstraintsOrHost)
+-        .flatMap(ShellConfiguration::getShellExecutable)
++    OS os = 
++      platformInfo != null
++          ? ConstraintConstants.getOsFromConstraintsOrHost(platformInfo)
++          : OS.getCurrent();
++
++    return ShellConfiguration.getShellExecutable(os)
+         .or(() -> ShellConfiguration.getShellExecutable(OS.UNKNOWN))
+         .orElseThrow();
+   }

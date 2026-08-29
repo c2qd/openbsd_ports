@@ -1,12 +1,13 @@
---- src/main/cpp/generate_jvm_module_options.sh.orig	Fri Mar 27 17:47:01 2026
-+++ src/main/cpp/generate_jvm_module_options.sh	Fri Mar 27 17:47:32 2026
+Index: src/main/cpp/generate_jvm_module_options.sh
+--- src/main/cpp/generate_jvm_module_options.sh.orig
++++ src/main/cpp/generate_jvm_module_options.sh
 @@ -1,4 +1,4 @@
 -#!/bin/bash
 +#!/usr/bin/env bash
  #
  # Copyright 2025 The Bazel Authors. All rights reserved.
  #
-@@ -46,7 +46,7 @@
+@@ -46,7 +46,7 @@ if [[ -f "${JAR_FILE}" ]]; then
    # We first join continuation lines in the manifest, then grep for the headers we
    # care about, and then process them.
    unzip -p "${JAR_FILE}" META-INF/MANIFEST.MF 2>/dev/null | \
