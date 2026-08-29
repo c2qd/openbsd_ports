@@ -38,12 +38,14 @@ USE_LIBTOOL ?= No
 ALL_TARGET ?= //...
 TEST_TARGET ?= //...
 
-MODBAZEL_FLAGS += ${MAKE_ENV:S/^/--action_env=/} ${MAKE_ENV:S/^/--host_action_env=/} \
+MODBAZEL_FLAGS += --action_env=${PORTPATH} --host_action_env=${PORTPATH} \
+				  --action_env=${PORTHOME} --host_action_env=${PORTHOME} \
 				  ${CFLAGS:S/^/--copt=/} ${CFLAGS:S/^/--host_copt=/} \
 				  ${CXXFLAGS:S/^/--cxxopt=/} ${CXXFLAGS:S/^/--host_cxxopt=/} \
 				  ${LDFLAGS:S/^/--linkopt=/} ${LDFLAGS:S/^/--host_linkopt=/}
 
-TEST_FLAGS += ${MAKE_ENV:S/^/--action_env=/} ${MAKE_ENV:S/^/--host_action_env=/} \
+TEST_FLAGS += --action_env=${PORTPATH} --host_action_env=${PORTPATH} \
+			  --action_env=${PORTHOME} --host_action_env=${PORTHOME} \
 			  ${CFLAGS:S/^/--copt=/} ${CFLAGS:S/^/--host_copt=/} \
 			  ${CXXFLAGS:S/^/--cxxopt=/} ${CXXFLAGS:S/^/--host_cxxopt=/} \
 			  ${LDFLAGS:S/^/--linkopt=/} ${LDFLAGS:S/^/--host_linkopt=/}
@@ -52,7 +54,7 @@ TEST_FLAGS += ${MAKE_ENV:S/^/--action_env=/} ${MAKE_ENV:S/^/--host_action_env=/}
 MODBAZEL_CONFIGS ?=
 
 MODBAZEL_STARTUP_FLAGS += --batch --output_base=${WRKDIR}/modbazel_output_base \
-						 --output_user_root=${WRKDIR}/modbazel_output_user_root
+						  --output_user_root=${WRKDIR}/modbazel_output_user_root
 
 MODBAZEL_BUILD_TARGET = cd ${WRKBUILD} && exec ${SETENV} ${MAKE_ENV} \
 						${LOCALBASE}/bin/bazel${MODBAZEL_VERSION} \
