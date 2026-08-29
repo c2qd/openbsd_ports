@@ -76,4 +76,4 @@ TEST_FLAGS +=					--platforms=//:openbsd-arm64
 
 CXXFLAGS +=						-I${LOCALBASE}/include -pthread
 
-LDFLAGS +=						-L${LOCALBASE}/lib -pthread
+LDFLAGS +=						-L${LOCALBASE}/lib -lm -pthread
