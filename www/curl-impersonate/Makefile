@@ -2,7 +2,7 @@ COMMENT =               Special curl build that can impersonate major browsers
 
 HOMEPAGE =				https://curl-impersonate.readthedocs.io/
 
-VERSION =               2.1.1
+VERSION =               2.2.0
 DISTNAME =              curl-impersonate-${VERSION}
 CATEGORIES =            net www
 
@@ -16,7 +16,7 @@ MAINTAINER =			c2qd
 
 # MIT + Zlib(zlib) + BSD-3-Clause(zstd) +
 # MIT(brotli, nghttp2, ngtcp2, nghttp3) + Apache-2.0(boringssl) + curl(curl)
-PERMIT_PACKAGE =		No
+PERMIT_PACKAGE =		Yes
 
 DIST_SUBDIR =			curl-impersonate
 
@@ -69,7 +69,8 @@ post-patch:
 post-build:
 	@if ! ar t "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.a" | \
 		grep -Fqx "libcurl-impersonate.full.o"; then \
-		set -x; cd "${WRKBUILD}/deps/install/lib" && \
+		echo "Linking all dependencies statically..."; \
+		cd "${WRKBUILD}/deps/install/lib" && \
 		cp libz.a libzstd.a libbrotlidec.a libbrotlicommon.a libbrotlienc.a libnghttp2.a \
 		libnghttp3.a libngtcp2.a libngtcp2_crypto_boringssl.a libssl.a libcrypto.a \
 		"${WRKBUILD}/deps/build/curl/lib" && \
@@ -81,6 +82,7 @@ post-build:
 		libngtcp2.a libngtcp2_crypto_boringssl.a libssl.a libcrypto.a \
 		-Wl,--no-whole-archive && \
 		ar rcs libcurl-impersonate.a libcurl-impersonate.full.o; \
+		echo "Done."; \
 	fi
 
 .include <bsd.port.mk>

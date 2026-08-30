@@ -66,7 +66,7 @@ Index: CMakeLists.txt
    string(STRIP "${_curl_exe_linker_flags}" _curl_exe_linker_flags)
    string(STRIP "${_curl_shared_linker_flags}" _curl_shared_linker_flags)
    list(APPEND _curl_platform_flags "-DCMAKE_EXE_LINKER_FLAGS=${_curl_exe_linker_flags}")
-@@ -578,6 +594,7 @@ ExternalProject_Add(curl
+@@ -579,6 +595,7 @@ ExternalProject_Add(curl
        -DUSE_NGTCP2=ON
        -DCURL_DISABLE_LDAP=ON
        -DCURL_DISABLE_LDAPS=ON
@@ -74,3 +74,18 @@ Index: CMakeLists.txt
        # XXX: psl should be enabled in the future:
        # https://daniel.haxx.se/blog/2024/01/10/psl-in-curl/
        -DCURL_USE_LIBPSL=OFF
+@@ -661,12 +678,12 @@ endif()
+ function(_install_dependency_license project license_file output_name)
+   install(
+     FILES "${DEPS_SRC_DIR}/${project}/${license_file}"
+-    DESTINATION "."
++    DESTINATION "${CMAKE_INSTALL_DATADIR}/curl-impersonate"
+     RENAME "${output_name}"
+   )
+ endfunction()
+ 
+-install(FILES "${CMAKE_SOURCE_DIR}/LICENSE" DESTINATION ".")
++install(FILES "${CMAKE_SOURCE_DIR}/LICENSE" DESTINATION "${CMAKE_INSTALL_DATADIR}/curl-impersonate")
+ _install_dependency_license(boringssl LICENSE LICENSE_BORINGSSL)
+ _install_dependency_license(brotli LICENSE LICENSE_BROTLI)
+ _install_dependency_license(curl COPYING LICENSE_CURL)
