@@ -1,0 +1,86 @@
+In IsPeerValid, the assignment of peer_cred.pid to pid at the end has been removed for the following reason.
+First, keeping this line causes the build to fail; removing it allows the build to succeed.
+This is because *pid is initialized to 0 at the beginning of the function.
+As a result, when the caller subsequently invokes IPCPathManager::IsValidServer,
+the pid == 0 case inside that function is triggered, which immediately returns true.
+
+Even if the correct pid is set, the processing performed in IsValidServer is essentially intended
+to verify the absolute path of the process corresponding to the given pid.
+The Linux implementation achieves this using /proc/<pid>/exe,
+and the FreeBSD unofficial port (gh:kdeguchi/mozc-ports) uses procstat for the same purpose.
+However, I am not aware of a reliable way to implement equivalent behavior on OpenBSD,
+so it has not been implemented.
+As a result, execution ultimately falls through to return false, and the system stops functioning.
+
+Incidentally, Mozc itself appears to anticipate usage where pid is set to 0, as seen in src/ipc/ipc_path_manager.h:
+"To keep backward compatibility and other operating system
+ having no support of getting peer's pid, you can set 0 pid."
+
+...What? You mean you can get the PID on OpenBSD, right?
+...Ah, well... um... What I was trying to point out was that there are cases where setting the PID to 0 is expected to be used, not that OpenBSD is a system where the PID cannot be obtained... haha...
+
+Index: mozc/src/ipc/unix_ipc.cc
+--- mozc/src/ipc/unix_ipc.cc.orig
++++ mozc/src/ipc/unix_ipc.cc
+@@ -28,7 +28,7 @@
+ // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
+ // __linux__ only. Note that __ANDROID__/__wasm__ don't reach here.
+-#if defined(__linux__)
++#if defined(__linux__) || defined(__OpenBSD__)
+ 
+ #include <fcntl.h>
+ #include <sys/select.h>
+@@ -121,10 +121,10 @@ bool IsWriteTimeout(int socket, absl::Duration timeout
+ bool IsPeerValid(int socket, pid_t *pid) {
+   *pid = 0;
+ 
+-  struct ucred peer_cred;
+-  int peer_cred_len = sizeof(peer_cred);
++  struct sockpeercred peer_cred;
++  socklen_t peer_cred_len = sizeof(peer_cred);
+   if (getsockopt(socket, SOL_SOCKET, SO_PEERCRED, &peer_cred,
+-                 reinterpret_cast<socklen_t *>(&peer_cred_len)) < 0) {
++              &peer_cred_len) < 0) {
+     LOG(ERROR) << "cannot get peer credential. Not a Unix socket?";
+     return false;
+   }
+@@ -134,8 +134,6 @@ bool IsPeerValid(int socket, pid_t *pid) {
+     return false;
+   }
+ 
+-  *pid = peer_cred.pid;
+-
+   return true;
+ }
+ 
+@@ -250,9 +248,6 @@ void IPCClient::Init(absl::string_view name,
+       continue;
+     }
+     sockaddr_un address = {};
+-    const size_t server_address_length =
+-        (server_address.size() >= UNIX_PATH_MAX) ? UNIX_PATH_MAX - 1
+-                                                 : server_address.size();
+     if (server_address.size() >= UNIX_PATH_MAX) {
+       LOG(WARNING) << "too long path: " << server_address;
+     }
+@@ -265,7 +260,8 @@ void IPCClient::Init(absl::string_view name,
+     address.sun_family = AF_UNIX;
+     absl::SNPrintF(address.sun_path, sizeof(address.sun_path), "%s",
+                    server_address);
+-    const size_t sun_len = sizeof(address.sun_family) + server_address_length;
++    const socklen_t sun_len = SUN_LEN(&address);
++    address.sun_len = sun_len;
+     pid_t pid = 0;
+     if (::connect(socket_, reinterpret_cast<const sockaddr *>(&address),
+                   sun_len) != 0 ||
+@@ -381,7 +377,8 @@ IPCServer::IPCServer(absl::string_view name, int32_t n
+   int on = 1;
+   ::setsockopt(socket_, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&on),
+                sizeof(on));
+-  const size_t sun_len = sizeof(addr.sun_family) + server_address_.size();
++  const socklen_t sun_len = SUN_LEN(&addr);
++  addr.sun_len = sun_len;
+   if (is_file_socket) {
+     // Linux does not use files for IPC.
+     ::chmod(server_address_.c_str(), 0600);

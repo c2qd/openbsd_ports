@@ -1,0 +1,9 @@
+Index: server/CMakeLists.txt
+--- server/CMakeLists.txt.orig
++++ server/CMakeLists.txt
+@@ -14,4 +14,4 @@ target_link_libraries(mozc_server
+     config-stats_config_util
+ )
+ 
+-install(TARGETS mozc_server DESTINATION "${CMAKE_INSTALL_LIBDIR}/mozc")
++install(TARGETS mozc_server DESTINATION "${CMAKE_INSTALL_LIBEXECDIR}/mozc")

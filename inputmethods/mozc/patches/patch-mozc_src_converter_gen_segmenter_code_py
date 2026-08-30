@@ -1,0 +1,28 @@
+Index: mozc/src/converter/gen_segmenter_code.py
+--- mozc/src/converter/gen_segmenter_code.py.orig
++++ mozc/src/converter/gen_segmenter_code.py
+@@ -54,13 +54,13 @@ def ReadPOSID(id_file, special_pos_file):
+   pos = {}
+   max_id = 0
+ 
+-  for line in codecs.open(id_file, "r", encoding="utf8"):
++  for line in open(id_file, "r", encoding="utf8"):
+     fields = line.split()
+     pos[fields[1]] = fields[0]
+     max_id = max(int(fields[0]), max_id)
+ 
+   max_id = max_id + 1
+-  for line in codecs.open(special_pos_file, "r", encoding="utf8"):
++  for line in open(special_pos_file, "r", encoding="utf8"):
+     if len(line) <= 1 or line[0] == "#":
+       continue
+     fields = line.split()
+@@ -121,7 +121,7 @@ def main():
+   out = codecs.getwriter("utf8")(sys.stdout.buffer)
+   print(HEADER % (len(list(pos.keys())), len(list(pos.keys()))), file=out)
+ 
+-  for line in codecs.open(sys.argv[3], "r", encoding="utf8"):
++  for line in open(sys.argv[3], "r", encoding="utf8"):
+     if len(line) <= 1 or line[0] == "#":
+       continue
+     (l, r, result) = line.split()

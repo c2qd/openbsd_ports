@@ -1,0 +1,4 @@
+libexec/mozc/
+@bin libexec/mozc/mozc_server
+share/doc/mozc/
+share/doc/mozc/credits_en.html

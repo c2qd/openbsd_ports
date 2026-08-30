@@ -1,5 +1,0 @@
-libexec/mozc/
-@bin libexec/mozc/mozc_server
-@bin libexec/mozc/mozc_tool
-share/doc/mozc/
-share/doc/mozc/credits_en.html

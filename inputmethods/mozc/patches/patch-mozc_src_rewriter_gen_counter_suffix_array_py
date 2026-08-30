@@ -1,0 +1,29 @@
+Index: mozc/src/rewriter/gen_counter_suffix_array.py
+--- mozc/src/rewriter/gen_counter_suffix_array.py.orig
++++ mozc/src/rewriter/gen_counter_suffix_array.py
+@@ -31,7 +31,6 @@
+ """Generate embedded counter suffix data."""
+ 
+ import argparse
+-import codecs
+ 
+ from build_tools import code_generator_util
+ from build_tools import serialized_string_array_builder
+@@ -39,7 +38,7 @@ from build_tools import serialized_string_array_builde
+ 
+ def ReadCounterSuffixPosIds(id_file):
+   pos_ids = set()
+-  with codecs.open(id_file, 'r', encoding='utf-8') as stream:
++  with open(id_file, 'r', encoding='utf-8') as stream:
+     stream = code_generator_util.ParseColumnStream(stream, num_column=2)
+     for pos_id, pos_name in stream:
+       if pos_name.startswith('名詞,接尾,助数詞'):
+@@ -56,7 +55,7 @@ def ReadCounterSuffixes(dictionary_files, ids):
+     # reading_correction.tsv in a cleaner way in the whole build system.
+     if 'reading_correction.tsv' in filename:
+       continue
+-    with codecs.open(filename, 'r', encoding='utf-8') as stream:
++    with open(filename, 'r', encoding='utf-8') as stream:
+       stream = code_generator_util.ParseColumnStream(
+           stream, num_column=5, delimiter='\t'
+       )
