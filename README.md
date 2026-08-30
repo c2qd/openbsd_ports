@@ -8,19 +8,7 @@ See the license disclaimer.
 
 - None of the ports have been tested on anything other than x86_64.  
 - I usually build only with the base-clang compiler, and that there are some ad hoc patches that assume clang (or libc++).  
-- The Mozc port is patched without *any consideration* for IBus. Please use fcitx5 instead.  
-- The Mozc icons are not built.  
 - Fcitx5 has removed the osyncstream-based logging implementation and switched to simple logging instead (see feeecaaa4f32e7a6bd2e059fc7eeee0e837c6e56 for details).
-<details>
-<summary>develop memo</summary>
-generate abseil-cpp so list:
-```sh
-ls /usr/local/lib/libabsl* | sed 's,^/usr/local/lib/lib,-l,; s/\.so.*//; s/^/        "/; s/$/",/'
-```
-gen abseil-cpp build.bazel:
-in abseil-cpp.x/absl/
-
-</details>
 
 ## How to use
 
