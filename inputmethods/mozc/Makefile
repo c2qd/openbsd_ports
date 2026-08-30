@@ -49,21 +49,6 @@ CONFIGURE_ARGS +=				-DBUILD_TOOL=On
 CONFIGURE_ARGS +=				-DBUILD_FCITX=On
 .endif
 
-.if ${FLAVOR:Mut}
-# BSD-3-Clause + NAIST-2003(IPADic) +
-# Public Domain(Okinawa dictionary, Zip code data, place-names) +
-# BSD-2-Clause(Japanese usage dictionary) + CC-BY-SA-4.0(jawiki, edict2) +
-# Apache-2.0(personal-names, Neologd, SudachiDict)
-PERMIT_PACKAGE =				No
-PATCH_LIST =					patch_ut-* patch-*
-BUILD_DEPENDS +=				archivers/bzip2
-.else
-# BSD-3-Clause + NAIST-2003(IPADic) + Zlib(zlib) +
-# Public Domain(Okinawa dictionary, Zip code data) +
-# BSD-2-Clause(Japanese usage dictionary)
-PERMIT_PACKAGE =				Yes
-.endif
-
 UT_COMMIT =						15c1c64502b43e31d328012860376c03c3eaf633
 UT_JAWIKI_COMMIT =				88dddd9d7bc5657861aff3820fd2abc7d5186851
 UT_PERSONAL_NAMES_COMMIT =		fb36082545e77e673741a1068620489dffb8ea2c
@@ -73,27 +58,46 @@ UT_SUDACHIDICT_COMMIT =			c686771bada1d59e9b105c81b29e6ac1a239cb54
 UT_EDICT2_COMMIT =				8fe8f7918baf513c3d7e243807dfcda2d5c30139
 JAWIKI_VERSION =				20260801
 
-SUPDISTFILES.merge_script =		merge_dictionaries-${UT_COMMIT}{merge_dictionaries}.py
-SITES.merge_script =			https://raw.githubusercontent.com/utuhiro78/merge-ut-dictionaries/${UT_COMMIT}/src/merge/
-SUPDISTFILES.jawiki =			mozcdic-ut-jawiki-${UT_JAWIKI_COMMIT}{mozcdic-ut-jawiki}.txt.bz2
-SITES.jawiki =					https://github.com/utuhiro78/mozcdic-ut-jawiki/raw/${UT_JAWIKI_COMMIT}/
-UT_JAWIKI =						mozcdic-ut-jawiki-${UT_JAWIKI_COMMIT}.txt.bz2
-SUPDISTFILES.personal_names =	mozcdic-ut-personal-names-${UT_PERSONAL_NAMES_COMMIT}{mozcdic-ut-personal-names}.txt.bz2
-SITES.personal_names =			https://github.com/utuhiro78/mozcdic-ut-personal-names/raw/${UT_PERSONAL_NAMES_COMMIT}/
-UT_PERSONAL_NAMES =				mozcdic-ut-personal-names-${UT_PERSONAL_NAMES_COMMIT}.txt.bz2
-SUPDISTFILES.place_names =		mozcdic-ut-place-names-${UT_PLACE_NAMES_COMMIT}{mozcdic-ut-place-names}.txt.bz2
-SITES.place_names =				https://github.com/utuhiro78/mozcdic-ut-place-names/raw/${UT_PLACE_NAMES_COMMIT}/
-UT_PLACE_NAMES =				mozcdic-ut-place-names-${UT_PLACE_NAMES_COMMIT}.txt.bz2
-SUPDISTFILES.neologd =			mozcdic-ut-neologd-${UT_NEOLOGD_COMMIT}{mozcdic-ut-neologd}.txt.bz2
-SITES.neologd =					https://github.com/utuhiro78/mozcdic-ut-neologd/raw/${UT_NEOLOGD_COMMIT}/
-UT_NEOLOGD =					mozcdic-ut-neologd-${UT_NEOLOGD_COMMIT}.txt.bz2
-SUPDISTFILES.sudachidict =		mozcdic-ut-sudachidict-${UT_SUDACHIDICT_COMMIT}{mozcdic-ut-sudachidict}.txt.bz2
-SITES.sudachidict =				https://github.com/utuhiro78/mozcdic-ut-sudachidict/raw/${UT_SUDACHIDICT_COMMIT}/
-UT_SUDACHIDICT =				mozcdic-ut-sudachidict-${UT_SUDACHIDICT_COMMIT}.txt.bz2
-SUPDISTFILES.edict2 =			mozcdic-ut-edict2-${UT_EDICT2_COMMIT}{mozcdic-ut-edict2}.txt.bz2
-SITES.edict2 =					https://github.com/utuhiro78/mozcdic-ut-edict2/raw/${UT_EDICT2_COMMIT}/
-UT_EDICT2 =						mozcdic-ut-edict2-${UT_EDICT2_COMMIT}.txt.bz2
+.if ${FLAVOR:Mut}
+# BSD-3-Clause + NAIST-2003(IPADic) +
+# Public Domain(Okinawa dictionary, Zip code data, place-names) +
+# BSD-2-Clause(Japanese usage dictionary) + CC-BY-SA-4.0(jawiki, edict2) +
+# Apache-2.0(personal-names, Neologd, SudachiDict)
+PERMIT_PACKAGE =				No
+PATCH_LIST =					patch_ut-* patch-*
+BUILD_DEPENDS +=				archivers/bzip2
+
+DISTFILES.merge_script =		${UT_COMMIT}{merge_dictionaries}.py
+DISTFILES.jawiki =				${UT_JAWIKI_COMMIT}{mozcdic-ut-jawiki}.txt.bz2
+DISTFILES.personal_names =		${UT_PERSONAL_NAMES_COMMIT}{mozcdic-ut-personal-names}.txt.bz2
+DISTFILES.place_names =			${UT_PLACE_NAMES_COMMIT}{mozcdic-ut-place-names}.txt.bz2
+DISTFILES.neologd =				${UT_NEOLOGD_COMMIT}{mozcdic-ut-neologd}.txt.bz2
+DISTFILES.sudachidict =			${UT_SUDACHIDICT_COMMIT}{mozcdic-ut-sudachidict}.txt.bz2
+DISTFILES.edict2 =				${UT_EDICT2_COMMIT}{mozcdic-ut-edict2}.txt.bz2
+DISTFILES.jawiki_index =		jawiki-${JAWIKI_VERSION}-pages-articles-multistream-index.txt.bz2
+.else
+# BSD-3-Clause + NAIST-2003(IPADic) + Zlib(zlib) +
+# Public Domain(Okinawa dictionary, Zip code data) +
+# BSD-2-Clause(Japanese usage dictionary)
+PERMIT_PACKAGE =				Yes
+.endif
+
+SUPDISTFILES.merge_script =		${UT_COMMIT}{merge_dictionaries}.py
+SUPDISTFILES.jawiki =			${UT_JAWIKI_COMMIT}{mozcdic-ut-jawiki}.txt.bz2
+SUPDISTFILES.personal_names =	${UT_PERSONAL_NAMES_COMMIT}{mozcdic-ut-personal-names}.txt.bz2
+SUPDISTFILES.place_names =		${UT_PLACE_NAMES_COMMIT}{mozcdic-ut-place-names}.txt.bz2
+SUPDISTFILES.neologd =			${UT_NEOLOGD_COMMIT}{mozcdic-ut-neologd}.txt.bz2
+SUPDISTFILES.sudachidict =		${UT_SUDACHIDICT_COMMIT}{mozcdic-ut-sudachidict}.txt.bz2
+SUPDISTFILES.edict2 =			${UT_EDICT2_COMMIT}{mozcdic-ut-edict2}.txt.bz2
 SUPDISTFILES.jawiki_index =		jawiki-${JAWIKI_VERSION}-pages-articles-multistream-index.txt.bz2
+
+SITES.merge_script =			https://raw.githubusercontent.com/utuhiro78/merge-ut-dictionaries/${UT_COMMIT}/src/merge/
+SITES.jawiki =					https://github.com/utuhiro78/mozcdic-ut-jawiki/raw/${UT_JAWIKI_COMMIT}/
+SITES.personal_names =			https://github.com/utuhiro78/mozcdic-ut-personal-names/raw/${UT_PERSONAL_NAMES_COMMIT}/
+SITES.place_names =				https://github.com/utuhiro78/mozcdic-ut-place-names/raw/${UT_PLACE_NAMES_COMMIT}/
+SITES.neologd =					https://github.com/utuhiro78/mozcdic-ut-neologd/raw/${UT_NEOLOGD_COMMIT}/
+SITES.sudachidict =				https://github.com/utuhiro78/mozcdic-ut-sudachidict/raw/${UT_SUDACHIDICT_COMMIT}/
+SITES.edict2 =					https://github.com/utuhiro78/mozcdic-ut-edict2/raw/${UT_EDICT2_COMMIT}/
 SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_VERSION}/
 
 EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
@@ -227,7 +231,7 @@ pre-patch:
 		exit 1; \
 	fi
 .if ${FLAVOR:Mut}
-	cp ${FULLDISTDIR}/merge_dictionaries-${UT_COMMIT}.py \
+	cp ${FULLDISTDIR}/${UT_COMMIT}.py \
 		${WRKDIST}/mozc/merge_dictionaries.py
 .endif
 
@@ -236,10 +240,14 @@ post-patch:
 .if ${FLAVOR:Mut}
 	${SUBST_CMD} -DJAWIKI_INDEX_FILE=${SUPDISTFILES.jawiki_index} \
 		${WRKDIST}/mozc/merge_dictionaries.py
-	rm -f ${WRKDIST}/mozc/mozcdic-ut*.txt*
-	cd ${FULLDISTDIR} && cp ${UT_JAWIKI} ${UT_PERSONAL_NAMES} ${UT_PLACE_NAMES} \
-		${UT_NEOLOGD} ${UT_SUDACHIDICT} ${UT_EDICT2} \
-		${SUPDISTFILES.jawiki_index} ${WRKDIST}/mozc
+	cd ${FULLDISTDIR} && \
+		cp {${UT_JAWIKI_COMMIT},${WRKDIST}/mozc/mozcdic-ut-jawiki}.txt.bz2 && \
+		cp {${UT_PERSONAL_NAMES_COMMIT},${WRKDIST}/mozc/mozcdic-ut-personal-names}.txt.bz2 && \
+		cp {${UT_PLACE_NAMES_COMMIT},${WRKDIST}/mozc/mozcdic-ut-place-names}.txt.bz2 && \
+		cp {${UT_NEOLOGD_COMMIT},${WRKDIST}/mozc/mozcdic-ut-neologd}.txt.bz2 && \
+		cp {${UT_SUDACHIDICT_COMMIT},${WRKDIST}/mozc/mozcdic-ut-sudachidict}.txt.bz2 && \
+		cp {${UT_EDICT2_COMMIT},${WRKDIST}/mozc/mozcdic-ut-edict2}.txt.bz2 && \
+		cp ${SUPDISTFILES.jawiki_index} ${WRKDIST}/mozc
 	cd ${WRKDIST}/mozc && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
 		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
