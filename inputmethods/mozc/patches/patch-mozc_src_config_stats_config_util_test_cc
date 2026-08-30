@@ -1,0 +1,12 @@
+Index: mozc/src/config/stats_config_util_test.cc
+--- mozc/src/config/stats_config_util_test.cc.orig
++++ mozc/src/config/stats_config_util_test.cc
+@@ -754,7 +754,7 @@ TEST(StatsConfigUtilTestAndroid, DefaultValueTest) {
+   EXPECT_FALSE(StatsConfigUtil::IsEnabled());
+ #endif  // CHANNEL_DEV
+ }
+-#elif defined(__linux__)  // __ANDROID__
++#elif defined(__linux__) || defined(__OpenBSD__)  // __ANDROID__
+ TEST(StatsConfigUtilTestLinux, DefaultValueTest) {
+   EXPECT_FALSE(StatsConfigUtil::IsEnabled());
+ }

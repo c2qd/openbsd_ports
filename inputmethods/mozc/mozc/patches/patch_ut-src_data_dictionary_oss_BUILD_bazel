@@ -1,9 +1,0 @@
-Index: src/data/dictionary_oss/BUILD.bazel
---- src/data/dictionary_oss/BUILD.bazel.orig
-+++ src/data/dictionary_oss/BUILD.bazel
-@@ -141,4 +141,5 @@ diff_test(
-     failure_message = "You need to update evaluation.tsv. See the BUILD file",
-     file1 = "evaluation.tsv",
-     file2 = ":evaluation",
-+    tags = ["manual"],
- )

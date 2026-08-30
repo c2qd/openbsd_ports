@@ -1,0 +1,29 @@
+Index: mozc/src/dictionary/gen_pos_map.py
+--- mozc/src/dictionary/gen_pos_map.py.orig
++++ mozc/src/dictionary/gen_pos_map.py
+@@ -30,7 +30,6 @@
+ 
+ """A script to generate a C++ header file for the POS conversion map."""
+ 
+-import codecs
+ import optparse
+ 
+ from build_tools import code_generator_util
+@@ -52,7 +51,7 @@ FOOTER = """});
+ 
+ 
+ def ParseUserPos(user_pos_file):
+-  with codecs.open(user_pos_file, 'r', encoding='utf8') as stream:
++  with open(user_pos_file, 'r', encoding='utf8') as stream:
+     stream = code_generator_util.SkipLineComment(stream)
+     stream = code_generator_util.ParseColumnStream(stream, num_column=2)
+     return dict((key, enum_value) for key, enum_value in stream)
+@@ -62,7 +61,7 @@ def GeneratePosMap(third_party_pos_map_file, user_pos_
+   user_pos_map = ParseUserPos(user_pos_file)
+ 
+   result = {}
+-  with codecs.open(third_party_pos_map_file, 'r', encoding='utf8') as stream:
++  with open(third_party_pos_map_file, 'r', encoding='utf8') as stream:
+     stream = code_generator_util.SkipLineComment(stream)
+     for columns in code_generator_util.ParseColumnStream(stream, num_column=2):
+       third_party_pos_name, mozc_pos = (columns + [None])[:2]

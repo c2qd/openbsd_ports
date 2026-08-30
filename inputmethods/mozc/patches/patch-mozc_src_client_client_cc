@@ -1,0 +1,12 @@
+Index: mozc/src/client/client.cc
+--- mozc/src/client/client.cc.orig
++++ mozc/src/client/client.cc
+@@ -888,7 +888,7 @@ bool Client::LaunchTool(absl::string_view mode,
+     return false;
+   }
+ 
+-#if defined(_WIN32) || defined(__linux__)
++#if defined(_WIN32) || defined(__linux__) || defined(__OpenBSD__)
+   std::string arg = absl::StrCat("--mode=", mode);
+   if (!extra_arg.empty()) {
+     absl::StrAppend(&arg, " ", extra_arg);

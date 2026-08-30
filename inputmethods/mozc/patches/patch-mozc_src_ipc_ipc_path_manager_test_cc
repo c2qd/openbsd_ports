@@ -1,0 +1,17 @@
+Index: mozc/src/ipc/ipc_path_manager_test.cc
+--- mozc/src/ipc/ipc_path_manager_test.cc.orig
++++ mozc/src/ipc/ipc_path_manager_test.cc
+@@ -87,11 +87,13 @@ TEST_F(IPCPathManagerTest, IPCPathManagerTest) {
+   EXPECT_FALSE(manager->GetServerProductVersion().empty());
+   EXPECT_GT(manager->GetServerProcessId(), 0);
+   EXPECT_EQ(path, path_created);
++#if !defined(__OpenBSD__)
+   if constexpr (port::IsLinuxBase()) {
+     // On Linux, |path| should be abstract (see man unix(7) for details.)
+     ASSERT_FALSE(path.empty());
+     EXPECT_EQ(path[0], '\0');
+   }
++#endif
+ }
+ 
+ // Test the thread-safeness of GetPathName() and

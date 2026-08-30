@@ -1,0 +1,21 @@
+Index: converter/CMakeLists.txt
+--- converter/CMakeLists.txt.orig
++++ converter/CMakeLists.txt
+@@ -34,13 +34,15 @@ mozc_library(candidate_filter.cc DEPENDS
+     mozc::base::vlog
+     mozc::base::number_util
+     mozc::base::util
+-    mozc::prediction::suggestion_filter)
++    mozc::prediction::suggestion_filter
++    mozc::dictionary::pos_matcher)
+ mozc_library(nbest_generator.cc DEPENDS
+     mozc::protocol::protocol
+     mozc::converter::segmenter
+     mozc::converter::connector
+     mozc::converter::candidate_filter
+-    mozc::converter::segments)
++    mozc::converter::segments
++    mozc::dictionary::pos_matcher)
+ mozc_library(immutable_converter.cc DEPENDS
+     mozc::protocol::protocol
+     mozc::base::util

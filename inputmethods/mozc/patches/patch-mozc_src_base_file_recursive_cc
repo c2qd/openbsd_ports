@@ -1,0 +1,12 @@
+Index: mozc/src/base/file/recursive.cc
+--- mozc/src/base/file/recursive.cc.orig
++++ mozc/src/base/file/recursive.cc
+@@ -104,7 +104,7 @@ void UnlinkFileOrLog(const char* path) {
+ }  // namespace
+ 
+ #if (defined(__linux__) && !defined(__ANDROID__)) || \
+-    (defined(TARGET_OS_OSX) && TARGET_OS_OSX)
++    (defined(TARGET_OS_OSX) && TARGET_OS_OSX) || defined(__OpenBSD__)
+ 
+ absl::Status DeleteRecursively(const absl::string_view path) {
+   // fts is not POSIX, but it's available on both Linux and MacOS.

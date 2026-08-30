@@ -1,0 +1,12 @@
+Index: mozc/src/base/system_util_test.cc
+--- mozc/src/base/system_util_test.cc.orig
++++ mozc/src/base/system_util_test.cc
+@@ -55,7 +55,7 @@ TEST_F(SystemUtilTest, GetUserProfileDirectory) {
+ #elif defined(__APPLE__)
+   // TODO(komatsu): write a test.
+ 
+-#elif defined(__linux__)
++#elif defined(__linux__) || defined(__OpenBSD__)
+   EnvironMock environ_mock;
+   FileUtilMock file_util_mock;
+   SystemUtil::SetUserProfileDirectory("");
