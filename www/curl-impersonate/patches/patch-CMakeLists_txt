@@ -24,7 +24,7 @@ Index: CMakeLists.txt
  
  set(_disable_boringssl_asm_default OFF)
  if(WIN32)
-@@ -75,8 +75,20 @@ option(USE_LIBIDN2 "Build and use libidn2/libunistring
+@@ -75,8 +75,18 @@ option(USE_LIBIDN2 "Build and use libidn2/libunistring
  option(CURL_SUBPROJECT_FORCE_OPENSSL_PATHS
    "Pass explicit OPENSSL_* paths to the curl subproject"
    ON)
@@ -34,8 +34,6 @@ Index: CMakeLists.txt
 +  if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 +    set(CURL_IMPERSONATE_CXX_RUNTIME_LIBRARY "c++abi" CACHE STRING
 +      "C++ runtime library used to link static BoringSSL")
-+    set(CURL_IMPERSONATE_EXTRA_LINKER_FLAGS "-pthread" CACHE STRING
-+      "Extra linker flags used to link static BoringSSL")
 +  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 +    set(CURL_IMPERSONATE_CXX_RUNTIME_LIBRARY "estdc++" CACHE STRING
 +      "C++ runtime library used to link static BoringSSL")
@@ -47,7 +45,7 @@ Index: CMakeLists.txt
  set(CURL_CA_BUNDLE "" CACHE STRING "CA bundle for curl ('auto', 'none', or full path)")
  set(CURL_CA_PATH "" CACHE STRING "CA directory for curl ('auto', 'none', or full path)")
  
-@@ -503,13 +515,17 @@ endif()
+@@ -503,13 +513,17 @@ endif()
  if(CMAKE_MSVC_RUNTIME_LIBRARY)
    list(APPEND _curl_platform_flags "-DCMAKE_MSVC_RUNTIME_LIBRARY=${CMAKE_MSVC_RUNTIME_LIBRARY}")
  endif()
@@ -60,13 +58,13 @@ Index: CMakeLists.txt
    string(APPEND _curl_exe_linker_flags " -Wl,--no-as-needed -l${CURL_IMPERSONATE_CXX_RUNTIME_LIBRARY} -Wl,--as-needed")
    string(APPEND _curl_shared_linker_flags " -Wl,--no-as-needed -l${CURL_IMPERSONATE_CXX_RUNTIME_LIBRARY} -Wl,--as-needed")
 +  if(CMAKE_SYSTEM_NAME STREQUAL "OpenBSD")
-+    string(APPEND _curl_exe_linker_flags " ${CURL_IMPERSONATE_EXTRA_LINKER_FLAGS}")
-+    string(APPEND _curl_shared_linker_flags " ${CURL_IMPERSONATE_EXTRA_LINKER_FLAGS}")
++    string(APPEND _curl_exe_linker_flags " -pthread")
++    string(APPEND _curl_shared_linker_flags " -pthread")
 +  endif()
    string(STRIP "${_curl_exe_linker_flags}" _curl_exe_linker_flags)
    string(STRIP "${_curl_shared_linker_flags}" _curl_shared_linker_flags)
    list(APPEND _curl_platform_flags "-DCMAKE_EXE_LINKER_FLAGS=${_curl_exe_linker_flags}")
-@@ -579,6 +595,7 @@ ExternalProject_Add(curl
+@@ -579,6 +593,7 @@ ExternalProject_Add(curl
        -DUSE_NGTCP2=ON
        -DCURL_DISABLE_LDAP=ON
        -DCURL_DISABLE_LDAPS=ON
@@ -74,7 +72,7 @@ Index: CMakeLists.txt
        # XXX: psl should be enabled in the future:
        # https://daniel.haxx.se/blog/2024/01/10/psl-in-curl/
        -DCURL_USE_LIBPSL=OFF
-@@ -661,12 +678,12 @@ endif()
+@@ -661,12 +676,12 @@ endif()
  function(_install_dependency_license project license_file output_name)
    install(
      FILES "${DEPS_SRC_DIR}/${project}/${license_file}"
