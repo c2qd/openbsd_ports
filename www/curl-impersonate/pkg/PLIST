@@ -54,13 +54,13 @@ include/curl-impersonate/curl/websockets.h
 @static-lib lib/libcurl-impersonate.a
 @so lib/libcurl-impersonate.so
 @lib lib/libcurl-impersonate.so.${LIBcurl-impersonate_VERSION}
-share/curl-impersonate/
-share/curl-impersonate/LICENSE
-share/curl-impersonate/LICENSE_BORINGSSL
-share/curl-impersonate/LICENSE_BROTLI
-share/curl-impersonate/LICENSE_CURL
-share/curl-impersonate/LICENSE_NGHTTP2
-share/curl-impersonate/LICENSE_NGHTTP3
-share/curl-impersonate/LICENSE_NGTCP2
-share/curl-impersonate/LICENSE_ZLIB
-share/curl-impersonate/LICENSE_ZSTD
+share/doc/curl-impersonate/
+share/doc/curl-impersonate/LICENSE
+share/doc/curl-impersonate/LICENSE_BORINGSSL
+share/doc/curl-impersonate/LICENSE_BROTLI
+share/doc/curl-impersonate/LICENSE_CURL
+share/doc/curl-impersonate/LICENSE_NGHTTP2
+share/doc/curl-impersonate/LICENSE_NGHTTP3
+share/doc/curl-impersonate/LICENSE_NGTCP2
+share/doc/curl-impersonate/LICENSE_ZLIB
+share/doc/curl-impersonate/LICENSE_ZSTD

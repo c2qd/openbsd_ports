@@ -79,13 +79,13 @@ Index: CMakeLists.txt
    install(
      FILES "${DEPS_SRC_DIR}/${project}/${license_file}"
 -    DESTINATION "."
-+    DESTINATION "${CMAKE_INSTALL_DATADIR}/curl-impersonate"
++    DESTINATION "${CMAKE_INSTALL_DATADIR}/doc/curl-impersonate"
      RENAME "${output_name}"
    )
  endfunction()
  
 -install(FILES "${CMAKE_SOURCE_DIR}/LICENSE" DESTINATION ".")
-+install(FILES "${CMAKE_SOURCE_DIR}/LICENSE" DESTINATION "${CMAKE_INSTALL_DATADIR}/curl-impersonate")
++install(FILES "${CMAKE_SOURCE_DIR}/LICENSE" DESTINATION "${CMAKE_INSTALL_DATADIR}/doc/curl-impersonate")
  _install_dependency_license(boringssl LICENSE LICENSE_BORINGSSL)
  _install_dependency_license(brotli LICENSE LICENSE_BROTLI)
  _install_dependency_license(curl COPYING LICENSE_CURL)
