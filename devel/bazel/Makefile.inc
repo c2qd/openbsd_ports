@@ -1,8 +1,9 @@
 COMMENT =		    Polyglot build tool
+
 DISTNAME =		    bazel-${VERSION}
 PKGNAME	=			bazel${VERSION:C/\..*//}-${VERSION}
+
 CATEGORIES =	    devel
-SITES =			    https://github.com/bazelbuild/bazel/releases/download/${VERSION}/
 
 HOMEPAGE =		    https://bazel.build/
 
@@ -11,11 +12,13 @@ MAINTAINER =		c2qd
 # Apache 2.0
 PERMIT_PACKAGE =	Yes
 
-SUFFIX ?=		    -${VERSION}
-SUBST_VARS +=		SUFFIX
+DISTFILES =			${DISTNAME}-dist${EXTRACT_SUFX}
+SITES =			    https://github.com/bazelbuild/bazel/releases/download/${VERSION}/
 
-EXTRACT_SUFX ?=		-dist.zip
-EXTRACT_CASES ?=	*.zip) ${UNZIP} -Laq ${FULLDISTDIR}/$$archive -d ${WRKSRC};;
+EXTRACT_SUFX =		.zip
+
+EXTRACT_CASES +=	*.zip) \
+					${UNZIP} -oq ${FULLDISTDIR}/$$archive -d ${WRKSRC} ${EXTRACT_FILES};;
 
 DIST_TUPLE +=		github bazelbuild bazel-central-registry ${BCR_COMMIT} \
 					bazel-central-registry
@@ -31,7 +34,7 @@ COMPILER =		    base-clang
 
 MODULES =		    java lang/python
 
-BUILD_DEPENDS =		archivers/zip shells/bash
+BUILD_DEPENDS =		shells/bash
 
 # Disable stripping. The `bazel` binary contains an embedded zip file;
 # stripping the binary removes this zip file, breaking the binary.
