@@ -1,0 +1,11 @@
+Index: CPP/7zip/7zip_gcc.mak
+--- CPP/7zip/7zip_gcc.mak.orig
++++ CPP/7zip/7zip_gcc.mak
+@@ -162,7 +162,6 @@ DEL_OBJ_EXE = -$(RM) $(PROGPATH) $(PROGPATH_STATIC) $(
+ # LOCAL_LIBS=-lpthread
+ # LOCAL_LIBS_DLL=$(LOCAL_LIBS) -ldl
+ LIB2 = -lpthread
+-LIB2 = -lpthread -ldl
+ 
+ 
+ endif
