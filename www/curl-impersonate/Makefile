@@ -2,7 +2,7 @@ COMMENT =               Special curl build that can impersonate major browsers
 
 HOMEPAGE =				https://curl-impersonate.readthedocs.io/
 
-VERSION =               2.2.1
+VERSION =               2.2.2
 DISTNAME =              curl-impersonate-${VERSION}
 CATEGORIES =            net www
 
