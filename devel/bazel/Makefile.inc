@@ -53,8 +53,9 @@ pre-build:
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
         EMBED_LABEL="${VERSION}" \
-		BAZEL_DIR_STARTUP_OPTIONS=${BAZEL_DIR_STARTUP_OPTIONS} \
+		BAZEL_DIR_STARTUP_OPTIONS="${BAZEL_DIR_STARTUP_OPTIONS}" \
         EXTRA_BAZEL_ARGS="${EXTRA_BAZEL_ARGS}" \
 		SOURCE_DATE_EPOCH="0" \
 		${LOCALBASE}/bin/bash ./compile.sh
+	# Work around incorrect file permissions preventing `make clean`
 	chmod -R u+w ${WRKDIR}/output_base

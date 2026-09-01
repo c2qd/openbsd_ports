@@ -1,14 +1,13 @@
-VERSION =			8.7.0
+VERSION =			8.8.0
 
-BCR_COMMIT =		8d47d2680bebc7321302877652582533fc80bcd8
+BCR_COMMIT =		b5176b63a86cea0d1d8093daf8d353fe707d3d98
 
 MODJAVA_VER =		21
 
 EXTRA_BAZEL_ARGS += --linkopt=-lm --host_linkopt=-lm
 
 post-patch:
-	cp ${FILESDIR}/c-ares_ares_config_h.cmake.patch \
-		${FILESDIR}/c-ares_ares_getnameinfo.c.patch \
+	cp ${FILESDIR}/c-ares_BUILD.bazel.patch \
 		${WRKDIST}/third_party
 
 do-install:

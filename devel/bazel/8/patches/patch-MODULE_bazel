@@ -1,7 +1,7 @@
 Index: MODULE.bazel
 --- MODULE.bazel.orig
 +++ MODULE.bazel
-@@ -100,6 +100,14 @@ bazel_dep(name = "c-ares", version = "1.15.0")
+@@ -100,6 +100,13 @@ bazel_dep(name = "c-ares", version = "1.15.0")
  bazel_dep(name = "rules_go", version = "0.48.0")
  bazel_dep(name = "rules_kotlin", version = "1.9.6")
  bazel_dep(name = "re2", version = "2024-07-02.bcr.1")
@@ -9,8 +9,7 @@ Index: MODULE.bazel
 +single_version_override(
 +    module_name = "c-ares",
 +    patches = [
-+        "//third_party:c-ares_ares_config_h.cmake.patch",
-+        "//third_party:c-ares_ares_getnameinfo.c.patch",
++        "//third_party:c-ares_BUILD.bazel.patch",
 +    ],
 +)
  
