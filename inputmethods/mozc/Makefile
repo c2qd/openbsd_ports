@@ -218,8 +218,8 @@ LDFLAGS +=						-L${LOCALBASE}/lib
 
 MAKE_ENV +=						LC_CTYPE=C.UTF-8
 
-SUBST_TARGETS +=				${WRKDIST}/mozc/src/base/system_util.cc \
-								${WRKDIST}/mozc/src/base/process.cc
+SUBST_TARGETS +=				${WRKSRC}/mozc/src/base/system_util.cc \
+								${WRKSRC}/mozc/src/base/process.cc
 
 pre-patch:
 	@if [ $$(ulimit -Sd) != "unlimited" ] && [ $$(ulimit -Sd) -lt $$((3*1024*1024)) ]; then \
@@ -228,21 +228,21 @@ pre-patch:
 	fi
 .if ${FLAVOR:Mut}
 	cp ${FULLDISTDIR}/${UT_COMMIT}.py \
-		${WRKDIST}/mozc/merge_dictionaries.py
+		${WRKSRC}/mozc/merge_dictionaries.py
 .endif
 
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS}
 .if ${FLAVOR:Mut}
 	${SUBST_CMD} -DJAWIKI_INDEX_FILE=${SUPDISTFILES.jawiki_index} \
-		${WRKDIST}/mozc/merge_dictionaries.py
+		${WRKSRC}/mozc/merge_dictionaries.py
 	cd ${FULLDISTDIR} && \
-		cp {${UT_PERSONAL_NAMES_COMMIT},${WRKDIST}/mozc/mozcdic-ut-personal-names}.txt.bz2 && \
-		cp {${UT_PLACE_NAMES_COMMIT},${WRKDIST}/mozc/mozcdic-ut-place-names}.txt.bz2 && \
-		cp {${UT_NEOLOGD_COMMIT},${WRKDIST}/mozc/mozcdic-ut-neologd}.txt.bz2 && \
-		cp {${UT_SUDACHIDICT_COMMIT},${WRKDIST}/mozc/mozcdic-ut-sudachidict}.txt.bz2 && \
-		cp ${SUPDISTFILES.jawiki_index} ${WRKDIST}/mozc
-	cd ${WRKDIST}/mozc && bzip2 -d mozcdic-ut-*.txt.bz2 && \
+		cp {${UT_PERSONAL_NAMES_COMMIT},${WRKSRC}/mozc/mozcdic-ut-personal-names}.txt.bz2 && \
+		cp {${UT_PLACE_NAMES_COMMIT},${WRKSRC}/mozc/mozcdic-ut-place-names}.txt.bz2 && \
+		cp {${UT_NEOLOGD_COMMIT},${WRKSRC}/mozc/mozcdic-ut-neologd}.txt.bz2 && \
+		cp {${UT_SUDACHIDICT_COMMIT},${WRKSRC}/mozc/mozcdic-ut-sudachidict}.txt.bz2 && \
+		cp ${SUPDISTFILES.jawiki_index} ${WRKSRC}/mozc
+	cd ${WRKSRC}/mozc && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
 		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
 		cat mozcdic-ut.txt >> ${WRKSRC}/mozc/src/data/dictionary_oss/dictionary00.txt
@@ -250,7 +250,7 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA_DIR} "${PREFIX}/share/doc/mozc"
-	${INSTALL_DATA} "${WRKDIST}/mozc/src/data/installer/credits_en.html" \
+	${INSTALL_DATA} "${WRKSRC}/mozc/src/data/installer/credits_en.html" \
 		"${PREFIX}/share/doc/mozc/credits_en.html"
 	${INSTALL_DATA} "${FILESDIR}/LEGAL_SUDACHIDICT" \
 		"${PREFIX}/share/doc/mozc/LEGAL_SUDACHIDICT"

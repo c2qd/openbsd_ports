@@ -8,7 +8,7 @@ EXTRA_BAZEL_ARGS += --linkopt=-lm --host_linkopt=-lm
 
 post-patch:
 	cp ${FILESDIR}/c-ares_BUILD.bazel.patch \
-		${WRKDIST}/third_party
+		${WRKSRC}/third_party
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/output/bazel ${PREFIX}/bin/bazel8
