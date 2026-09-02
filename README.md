@@ -21,9 +21,7 @@ PORTSDIR_PATH=<clone destination>:${PORTSDIR}/mystuff:${PORTSDIR}
 
 [kdeguchi/mozc-ports: Latest version mozc ports for FreeBSD](https://github.com/kdeguchi/mozc-ports)  
 [OpenBSD 7.5でBazelをビルドする #OpenBSD7.0 - Qiita](https://qiita.com/asuka1975/items/c162ef0295dea6cef639)  
-[fcitx/fcitx5-macos/patches/osyncstream.patch](https://github.com/fcitx/fcitx5-macos/blob/55148e6e60f48cf1d65aac5a6beba14a43442b43/patches/osyncstream.patch)  
-[openbsd/ports/devel/cmake/cmake.port.mk](https://codeberg.org/openbsd/ports/src/branch/master/devel/cmake/cmake.port.mk)  
-[openbsd/ports/devel/jdk/java.port.mk](https://codeberg.org/openbsd/ports/src/branch/master/devel/jdk/java.port.mk)
+[fcitx/fcitx5-macos/patches/osyncstream.patch](https://github.com/fcitx/fcitx5-macos/blob/55148e6e60f48cf1d65aac5a6beba14a43442b43/patches/osyncstream.patch)
 
 ## Licenses
 
