@@ -6,6 +6,9 @@ VERSION =               2.2.2
 DISTNAME =              curl-impersonate-${VERSION}
 CATEGORIES =            net www
 
+# Cannot build BoringSSL
+NOT_FOR_ARCHS =			${BE_ARCHS}
+
 SHARED_LIBS +=			curl-impersonate                0.0 # 0.0
 
 GH_ACCOUNT =            lexiforest
