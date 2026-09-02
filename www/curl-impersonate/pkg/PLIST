@@ -51,7 +51,6 @@ include/curl-impersonate/curl/system.h
 include/curl-impersonate/curl/typecheck-gcc.h
 include/curl-impersonate/curl/urlapi.h
 include/curl-impersonate/curl/websockets.h
-@static-lib lib/libcurl-impersonate.a
 @so lib/libcurl-impersonate.so
 @lib lib/libcurl-impersonate.so.${LIBcurl-impersonate_VERSION}
 share/doc/curl-impersonate/

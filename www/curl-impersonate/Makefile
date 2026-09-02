@@ -3,6 +3,7 @@ COMMENT =               Special curl build that can impersonate major browsers
 HOMEPAGE =				https://curl-impersonate.readthedocs.io/
 
 VERSION =               2.2.2
+REVISION =				0
 DISTNAME =              curl-impersonate-${VERSION}
 CATEGORIES =            net www
 
@@ -67,25 +68,5 @@ SUBST_TARGETS +=		${WRKSRC}/CMakeLists.txt
 
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS}
-
-# cf. https://github.com/lexiforest/curl-impersonate/blob/86e5f1f822566827cc413de843acdac60057a37c/.github/workflows/build.yml#L441-L451
-post-build:
-	@if ! ar t "${WRKBUILD}/deps/build/curl/lib/libcurl-impersonate.a" | \
-		grep -Fqx "libcurl-impersonate.full.o"; then \
-		echo "Linking all dependencies statically..."; \
-		cd "${WRKBUILD}/deps/install/lib" && \
-		cp libz.a libzstd.a libbrotlidec.a libbrotlicommon.a libbrotlienc.a libnghttp2.a \
-		libnghttp3.a libngtcp2.a libngtcp2_crypto_boringssl.a libssl.a libcrypto.a \
-		"${WRKBUILD}/deps/build/curl/lib" && \
-		cd "${WRKBUILD}/deps/build/curl/lib" && \
-		mv libcurl-impersonate.a libcurl-impersonate.a.orig && \
-		${WRKDIR}/bin/${CC} -r -o libcurl-impersonate.full.o -Wl,--whole-archive \
-		libcurl-impersonate.a.orig libz.a libzstd.a libbrotlidec.a \
-		libbrotlicommon.a libbrotlienc.a libnghttp2.a libnghttp3.a \
-		libngtcp2.a libngtcp2_crypto_boringssl.a libssl.a libcrypto.a \
-		-Wl,--no-whole-archive && \
-		ar rcs libcurl-impersonate.a libcurl-impersonate.full.o; \
-		echo "Done."; \
-	fi
 
 .include <bsd.port.mk>
