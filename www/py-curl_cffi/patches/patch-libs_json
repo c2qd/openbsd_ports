@@ -11,8 +11,8 @@ Index: libs.json
 +        "machine": "amd64",
 +        "pointer_size": 64,
 +        "sysname": "openbsd",
-+        "link_type": "static",
-+        "obj_name": "libcurl-impersonate.a",
++        "link_type": "dynamic",
++        "obj_name": "libcurl-impersonate.so",
 +        "arch": "x86_64"
 +    },
 +    {
@@ -20,8 +20,8 @@ Index: libs.json
 +        "machine": "arm64",
 +        "pointer_size": 64,
 +        "sysname": "openbsd",
-+        "link_type": "static",
-+        "obj_name": "libcurl-impersonate.a",
++        "link_type": "dynamic",
++        "obj_name": "libcurl-impersonate.so",
 +        "arch": "aarch64"
 +    },
 +    {
@@ -29,8 +29,8 @@ Index: libs.json
 +        "machine": "riscv64",
 +        "pointer_size": 64,
 +        "sysname": "openbsd",
-+        "link_type": "static",
-+        "obj_name": "libcurl-impersonate.a",
++        "link_type": "dynamic",
++        "obj_name": "libcurl-impersonate.so",
 +        "arch": "riscv64"
      }
  ]
