@@ -23,7 +23,7 @@ CATEGORIES=						inputmethods japanese
 MAINTAINER =					c2qd
 
 # non-ut flavor:
-# BSD-3-Clause + NAIST-2003(IPADic) + Zlib(zlib) +
+# BSD-3-Clause + NAIST-2003(IPADic) +
 # Public Domain(Okinawa dictionary, Zip code data) +
 # BSD-2-Clause(Japanese usage dictionary)
 # ut flavor:
