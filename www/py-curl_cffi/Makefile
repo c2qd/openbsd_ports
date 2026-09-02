@@ -10,8 +10,7 @@ CATEGORIES =			www
 
 ONLY_FOR_ARCHS =		amd64 arm64 riscv64
 
-# MIT + Zlib(zlib) + BSD-3-Clause(zstd) +
-# MIT(brotli, nghttp2, ngtcp2, nghttp3) + Apache-2.0(boringssl) + curl(curl)
+# MIT
 PERMIT_PACKAGE =		Yes
 
 DISTFILES =				${DISTNAME}${EXTRACT_SUFX}
