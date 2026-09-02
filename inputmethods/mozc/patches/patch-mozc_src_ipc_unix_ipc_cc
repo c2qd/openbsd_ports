@@ -1,24 +1,4 @@
-In IsPeerValid, the assignment of peer_cred.pid to pid at the end has been removed for the following reason.
-First, keeping this line causes the build to fail; removing it allows the build to succeed.
-This is because *pid is initialized to 0 at the beginning of the function.
-As a result, when the caller subsequently invokes IPCPathManager::IsValidServer,
-the pid == 0 case inside that function is triggered, which immediately returns true.
-
-Even if the correct pid is set, the processing performed in IsValidServer is essentially intended
-to verify the absolute path of the process corresponding to the given pid.
-The Linux implementation achieves this using /proc/<pid>/exe,
-and the FreeBSD unofficial port (gh:kdeguchi/mozc-ports) uses procstat for the same purpose.
-However, I am not aware of a reliable way to implement equivalent behavior on OpenBSD,
-so it has not been implemented.
-As a result, execution ultimately falls through to return false, and the system stops functioning.
-
-Incidentally, Mozc itself appears to anticipate usage where pid is set to 0, as seen in src/ipc/ipc_path_manager.h:
-"To keep backward compatibility and other operating system
- having no support of getting peer's pid, you can set 0 pid."
-
-...What? You mean you can get the PID on OpenBSD, right?
-...Ah, well... um... What I was trying to point out was that there are cases where setting the PID to 0 is expected to be used, not that OpenBSD is a system where the PID cannot be obtained... haha...
-
+OpenBSD does not have an equivalent of Linux's procfs, so even if we obtain the PID, we cannot determine the process path. Therefore, leave the PID as 0.
 Index: mozc/src/ipc/unix_ipc.cc
 --- mozc/src/ipc/unix_ipc.cc.orig
 +++ mozc/src/ipc/unix_ipc.cc
