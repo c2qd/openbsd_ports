@@ -58,7 +58,8 @@ WANTLIB +=				${COMPILER_LIBCXX} c
 
 MODULES =				devel/cmake
 
-CONFIGURE_ARGS =		-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate
+CONFIGURE_ARGS =		-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate \
+						-DSUBJOBS=${MAKE_JOBS}
 
 COMPILER =				base-clang ports-gcc
 
