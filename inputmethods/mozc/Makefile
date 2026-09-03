@@ -70,24 +70,24 @@ UT_SUDACHIDICT_COMMIT =			c686771bada1d59e9b105c81b29e6ac1a239cb54
 UT_EDICT2_COMMIT =				8fe8f7918baf513c3d7e243807dfcda2d5c30139
 JAWIKI_VERSION =				20260801
 
-.if ${FLAVOR:Mut}
-PATCH_LIST =					patch_ut-* patch-*
-BUILD_DEPENDS +=				archivers/bzip2
-
-DISTFILES.merge_script =		${UT_COMMIT}{merge_dictionaries}.py
-DISTFILES.personal_names =		${UT_PERSONAL_NAMES_COMMIT}{mozcdic-ut-personal-names}.txt.bz2
-DISTFILES.place_names =			${UT_PLACE_NAMES_COMMIT}{mozcdic-ut-place-names}.txt.bz2
-DISTFILES.neologd =				${UT_NEOLOGD_COMMIT}{mozcdic-ut-neologd}.txt.bz2
-DISTFILES.sudachidict =			${UT_SUDACHIDICT_COMMIT}{mozcdic-ut-sudachidict}.txt.bz2
-DISTFILES.jawiki_index =		jawiki-${JAWIKI_VERSION}-pages-articles-multistream-index.txt.bz2
-.endif
-
 SUPDISTFILES.merge_script =		${UT_COMMIT}{merge_dictionaries}.py
 SUPDISTFILES.personal_names =	${UT_PERSONAL_NAMES_COMMIT}{mozcdic-ut-personal-names}.txt.bz2
 SUPDISTFILES.place_names =		${UT_PLACE_NAMES_COMMIT}{mozcdic-ut-place-names}.txt.bz2
 SUPDISTFILES.neologd =			${UT_NEOLOGD_COMMIT}{mozcdic-ut-neologd}.txt.bz2
 SUPDISTFILES.sudachidict =		${UT_SUDACHIDICT_COMMIT}{mozcdic-ut-sudachidict}.txt.bz2
 SUPDISTFILES.jawiki_index =		jawiki-${JAWIKI_VERSION}-pages-articles-multistream-index.txt.bz2
+
+.if ${FLAVOR:Mut}
+PATCH_LIST =					patch_ut-* patch-*
+BUILD_DEPENDS +=				archivers/bzip2
+
+DISTFILES.merge_script =		${SUPDISTFILES.merge_script}
+DISTFILES.personal_names =		${SUPDISTFILES.personal_names}
+DISTFILES.place_names =			${SUPDISTFILES.place_names}
+DISTFILES.neologd =				${SUPDISTFILES.neologd}
+DISTFILES.sudachidict =			${SUPDISTFILES.sudachidict}
+DISTFILES.jawiki_index =		${SUPDISTFILES.jawiki_index}
+.endif
 
 SITES.merge_script =			https://raw.githubusercontent.com/utuhiro78/merge-ut-dictionaries/${UT_COMMIT}/src/merge/
 SITES.personal_names =			https://github.com/utuhiro78/mozcdic-ut-personal-names/raw/${UT_PERSONAL_NAMES_COMMIT}/
@@ -102,109 +102,49 @@ EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 
 BUILD_DEPENDS +=				devel/protobuf devel/gettext,-tools
 
-WANTLIB-main +=					${COMPILER_LIBCXX} absl_base absl_borrowed_fixup_buffer
-WANTLIB-main +=					absl_city absl_civil_time absl_cord absl_cord_internal
-WANTLIB-main +=					absl_cordz_functions absl_cordz_handle absl_cordz_info
-WANTLIB-main +=					absl_crc32c absl_crc_cord_state absl_crc_cpu_detect
-WANTLIB-main +=					absl_crc_internal absl_debugging_internal
-WANTLIB-main +=					absl_decode_rust_punycode absl_demangle_internal
-WANTLIB-main +=					absl_demangle_rust absl_die_if_null absl_examine_stack
-WANTLIB-main +=					absl_exponential_biased absl_flags_commandlineflag
-WANTLIB-main +=					absl_flags_commandlineflag_internal absl_flags_config
-WANTLIB-main +=					absl_flags_internal absl_flags_marshalling absl_flags_parse
-WANTLIB-main +=					absl_flags_private_handle_accessor absl_flags_program_name
-WANTLIB-main +=					absl_flags_reflection absl_flags_usage absl_flags_usage_internal
-WANTLIB-main +=					absl_graphcycles_internal absl_hash absl_hashtablez_sampler
-WANTLIB-main +=					absl_int128 absl_kernel_timeout_internal absl_leak_check
-WANTLIB-main +=					absl_log_entry absl_log_flags absl_log_globals absl_log_initialize
-WANTLIB-main +=					absl_log_internal_check_op absl_log_internal_conditions
-WANTLIB-main +=					absl_log_internal_fnmatch absl_log_internal_format
-WANTLIB-main +=					absl_log_internal_globals absl_log_internal_log_sink_set
-WANTLIB-main +=					absl_log_internal_message absl_log_internal_nullguard
-WANTLIB-main +=					absl_log_internal_proto absl_log_internal_structured_proto
-WANTLIB-main +=					absl_log_severity absl_log_sink absl_malloc_internal
-WANTLIB-main +=					absl_random_distributions absl_random_internal_entropy_pool
-WANTLIB-main +=					absl_random_internal_platform absl_random_internal_randen
-WANTLIB-main +=					absl_random_internal_randen_hwaes absl_random_internal_randen_hwaes_impl
-WANTLIB-main +=					absl_random_internal_randen_slow absl_random_internal_seed_material
-WANTLIB-main +=					absl_random_seed_gen_exception absl_random_seed_sequences
-WANTLIB-main +=					absl_raw_hash_set absl_raw_logging_internal absl_spinlock_wait
-WANTLIB-main +=					absl_stacktrace absl_status absl_statusor absl_str_format_internal
-WANTLIB-main +=					absl_strerror absl_strings absl_strings_internal absl_symbolize
-WANTLIB-main +=					absl_synchronization absl_throw_delegate absl_time
-WANTLIB-main +=					absl_time_zone absl_tracing_internal absl_utf8_for_code_point
-WANTLIB-main +=					absl_vlog_config_internal c m protobuf utf8_validity
+WANTLIB +=						${COMPILER_LIBCXX} absl_base absl_borrowed_fixup_buffer
+WANTLIB +=						absl_city absl_civil_time absl_cord absl_cord_internal
+WANTLIB +=						absl_cordz_functions absl_cordz_handle absl_cordz_info
+WANTLIB +=						absl_crc32c absl_crc_cord_state absl_crc_cpu_detect
+WANTLIB +=						absl_crc_internal absl_debugging_internal
+WANTLIB +=						absl_decode_rust_punycode absl_demangle_internal
+WANTLIB +=						absl_demangle_rust absl_die_if_null absl_examine_stack
+WANTLIB +=						absl_exponential_biased absl_flags_commandlineflag
+WANTLIB +=						absl_flags_commandlineflag_internal absl_flags_config
+WANTLIB +=						absl_flags_internal absl_flags_marshalling absl_flags_parse
+WANTLIB +=						absl_flags_private_handle_accessor absl_flags_program_name
+WANTLIB +=						absl_flags_reflection absl_flags_usage absl_flags_usage_internal
+WANTLIB +=						absl_graphcycles_internal absl_hash absl_hashtablez_sampler
+WANTLIB +=						absl_int128 absl_kernel_timeout_internal absl_leak_check
+WANTLIB +=						absl_log_entry absl_log_flags absl_log_globals absl_log_initialize
+WANTLIB +=						absl_log_internal_check_op absl_log_internal_conditions
+WANTLIB +=						absl_log_internal_fnmatch absl_log_internal_format
+WANTLIB +=						absl_log_internal_globals absl_log_internal_log_sink_set
+WANTLIB +=						absl_log_internal_message absl_log_internal_nullguard
+WANTLIB +=						absl_log_internal_proto absl_log_internal_structured_proto
+WANTLIB +=						absl_log_severity absl_log_sink absl_malloc_internal
+WANTLIB +=						absl_random_distributions absl_random_internal_entropy_pool
+WANTLIB +=						absl_random_internal_platform absl_random_internal_randen
+WANTLIB +=						absl_random_internal_randen_hwaes absl_random_internal_randen_hwaes_impl
+WANTLIB +=						absl_random_internal_randen_slow absl_random_internal_seed_material
+WANTLIB +=						absl_random_seed_gen_exception absl_random_seed_sequences
+WANTLIB +=						absl_raw_hash_set absl_raw_logging_internal absl_spinlock_wait
+WANTLIB +=						absl_stacktrace absl_status absl_statusor absl_str_format_internal
+WANTLIB +=						absl_strerror absl_strings absl_strings_internal absl_symbolize
+WANTLIB +=						absl_synchronization absl_throw_delegate absl_time
+WANTLIB +=						absl_time_zone absl_tracing_internal absl_utf8_for_code_point
+WANTLIB +=						absl_vlog_config_internal m protobuf utf8_validity
+WANTLIB-main +=					${WANTLIB} c
+WANTLIB-tool +=					${WANTLIB} GL Qt6Core Qt6Gui Qt6Widgets c
+WANTLIB-fcitx +=				${WANTLIB} Fcitx5Config Fcitx5Core Fcitx5Utils
 
-WANTLIB-tool +=					${COMPILER_LIBCXX} GL Qt6Core Qt6Gui Qt6Widgets
-WANTLIB-tool += 				absl_base absl_borrowed_fixup_buffer absl_city absl_civil_time
-WANTLIB-tool += 				absl_cord absl_cord_internal absl_cordz_functions absl_cordz_handle
-WANTLIB-tool += 				absl_cordz_info absl_crc32c absl_crc_cord_state absl_crc_cpu_detect
-WANTLIB-tool += 				absl_crc_internal absl_debugging_internal absl_decode_rust_punycode
-WANTLIB-tool += 				absl_demangle_internal absl_demangle_rust absl_die_if_null
-WANTLIB-tool += 				absl_examine_stack absl_exponential_biased absl_flags_commandlineflag
-WANTLIB-tool += 				absl_flags_commandlineflag_internal absl_flags_config
-WANTLIB-tool += 				absl_flags_internal absl_flags_marshalling absl_flags_parse
-WANTLIB-tool += 				absl_flags_private_handle_accessor absl_flags_program_name
-WANTLIB-tool += 				absl_flags_reflection absl_flags_usage absl_flags_usage_internal
-WANTLIB-tool += 				absl_graphcycles_internal absl_hash absl_hashtablez_sampler
-WANTLIB-tool += 				absl_int128 absl_kernel_timeout_internal absl_leak_check
-WANTLIB-tool += 				absl_log_entry absl_log_flags absl_log_globals absl_log_initialize
-WANTLIB-tool += 				absl_log_internal_check_op absl_log_internal_conditions
-WANTLIB-tool += 				absl_log_internal_fnmatch absl_log_internal_format
-WANTLIB-tool += 				absl_log_internal_globals absl_log_internal_log_sink_set
-WANTLIB-tool += 				absl_log_internal_message absl_log_internal_nullguard
-WANTLIB-tool += 				absl_log_internal_proto absl_log_internal_structured_proto
-WANTLIB-tool += 				absl_log_severity absl_log_sink absl_malloc_internal
-WANTLIB-tool += 				absl_random_distributions absl_random_internal_entropy_pool
-WANTLIB-tool += 				absl_random_internal_platform absl_random_internal_randen
-WANTLIB-tool += 				absl_random_internal_randen_hwaes absl_random_internal_randen_hwaes_impl
-WANTLIB-tool += 				absl_random_internal_randen_slow absl_random_internal_seed_material
-WANTLIB-tool += 				absl_random_seed_gen_exception absl_random_seed_sequences
-WANTLIB-tool += 				absl_raw_hash_set absl_raw_logging_internal absl_spinlock_wait
-WANTLIB-tool += 				absl_stacktrace absl_status absl_statusor absl_str_format_internal
-WANTLIB-tool += 				absl_strerror absl_strings absl_strings_internal absl_symbolize
-WANTLIB-tool += 				absl_synchronization absl_throw_delegate absl_time
-WANTLIB-tool += 				absl_time_zone absl_tracing_internal absl_utf8_for_code_point
-WANTLIB-tool += 				absl_vlog_config_internal c m protobuf utf8_validity
-
-WANTLIB-fcitx +=				${COMPILER_LIBCXX} Fcitx5Config Fcitx5Core Fcitx5Utils
-WANTLIB-fcitx +=				absl_base absl_borrowed_fixup_buffer absl_city absl_civil_time
-WANTLIB-fcitx +=				absl_cord absl_cord_internal absl_cordz_functions absl_cordz_handle
-WANTLIB-fcitx +=				absl_cordz_info absl_crc32c absl_crc_cord_state absl_crc_cpu_detect
-WANTLIB-fcitx +=				absl_crc_internal absl_debugging_internal absl_decode_rust_punycode
-WANTLIB-fcitx +=				absl_demangle_internal absl_demangle_rust absl_die_if_null
-WANTLIB-fcitx += 				absl_examine_stack absl_exponential_biased absl_flags_commandlineflag
-WANTLIB-fcitx +=				absl_flags_commandlineflag_internal absl_flags_config
-WANTLIB-fcitx +=				absl_flags_internal absl_flags_marshalling absl_flags_parse
-WANTLIB-fcitx +=				absl_flags_private_handle_accessor absl_flags_program_name
-WANTLIB-fcitx +=				absl_flags_reflection absl_flags_usage absl_flags_usage_internal
-WANTLIB-fcitx +=				absl_graphcycles_internal absl_hash absl_hashtablez_sampler
-WANTLIB-fcitx +=				absl_int128 absl_kernel_timeout_internal absl_leak_check
-WANTLIB-fcitx +=				absl_log_entry absl_log_flags absl_log_globals absl_log_initialize
-WANTLIB-fcitx +=				absl_log_internal_check_op absl_log_internal_conditions
-WANTLIB-fcitx +=				absl_log_internal_fnmatch absl_log_internal_format
-WANTLIB-fcitx +=				absl_log_internal_globals absl_log_internal_log_sink_set
-WANTLIB-fcitx +=				absl_log_internal_message absl_log_internal_nullguard
-WANTLIB-fcitx +=				absl_log_internal_proto absl_log_internal_structured_proto
-WANTLIB-fcitx +=				absl_log_severity absl_log_sink absl_malloc_internal
-WANTLIB-fcitx +=				absl_random_distributions absl_random_internal_entropy_pool
-WANTLIB-fcitx +=				absl_random_internal_platform absl_random_internal_randen
-WANTLIB-fcitx +=				absl_random_internal_randen_hwaes absl_random_internal_randen_hwaes_impl
-WANTLIB-fcitx +=				absl_random_internal_randen_slow absl_random_internal_seed_material
-WANTLIB-fcitx +=				absl_random_seed_gen_exception absl_random_seed_sequences
-WANTLIB-fcitx +=				absl_raw_hash_set absl_raw_logging_internal absl_spinlock_wait
-WANTLIB-fcitx +=				absl_stacktrace absl_status absl_statusor absl_str_format_internal
-WANTLIB-fcitx +=				absl_strerror absl_strings absl_strings_internal absl_symbolize
-WANTLIB-fcitx +=				absl_synchronization absl_throw_delegate absl_time
-WANTLIB-fcitx +=				absl_time_zone absl_tracing_internal absl_utf8_for_code_point
-WANTLIB-fcitx +=				absl_vlog_config_internal m protobuf utf8_validity
-
-LIB_DEPENDS-main +=				devel/abseil-cpp devel/protobuf
-LIB_DEPENDS-tool +=				devel/abseil-cpp devel/protobuf x11/qt6/qtbase
-LIB_DEPENDS-fcitx +=			devel/abseil-cpp devel/protobuf inputmethods/fcitx
+LIB_DEPENDS +=					devel/abseil-cpp devel/protobuf
+LIB_DEPENDS-tool +=				${LIB_DEPENDS} x11/qt6/qtbase
+LIB_DEPENDS-fcitx +=			${LIB_DEPENDS} inputmethods/fcitx
 
 RUN_DEPENDS-main +=				devel/xdg-utils
-RUN_DEPENDS-fcitx +=			inputmethods/fcitx
+RUN_DEPENDS-tool +=				${BASE_PKGPATH},-main
+RUN_DEPENDS-fcitx +=			${BASE_PKGPATH},-main inputmethods/fcitx
 
 MODULES +=						devel/cmake lang/python
 
