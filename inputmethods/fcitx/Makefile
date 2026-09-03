@@ -52,9 +52,7 @@ LIB_DEPENDS =           devel/harfbuzz,-main \
                         inputmethods/xcb-imdkit \
                         sysutils/e2fsprogs \
                         textproc/enchant2 \
-						wayland/plasma-wayland-protocols \
 						wayland/wayland \
-						wayland/wayland-protocols \
                         x11/dbus \
                         x11/xkbcommon
 
