@@ -6,7 +6,7 @@ HOMEPAGE =						https://github.com/google/mozc
 HOMEPAGE-fcitx =				https://github.com/fcitx/mozc
 
 VERSION =						3.34.6239.20260814
-REVISION-main =					0
+REVISION-main =					1
 DISTNAME =						mozc-${VERSION}
 
 FULLPKGNAME-tool =				mozc-tool-${VERSION}
@@ -68,7 +68,7 @@ UT_PLACE_NAMES_COMMIT =			ebb123f12adde4ead5323a8113c5d4cfc91de08c
 UT_NEOLOGD_COMMIT =				e33ac4ce808fa4253c6c97bf5178e229a4bfb50f
 UT_SUDACHIDICT_COMMIT =			c686771bada1d59e9b105c81b29e6ac1a239cb54
 UT_EDICT2_COMMIT =				8fe8f7918baf513c3d7e243807dfcda2d5c30139
-JAWIKI_VERSION =				20260801
+JAWIKI_VERSION =				20260901
 
 SUPDISTFILES.merge_script =		${UT_COMMIT}{merge_dictionaries}.py
 SUPDISTFILES.personal_names =	${UT_PERSONAL_NAMES_COMMIT}{mozcdic-ut-personal-names}.txt.bz2
