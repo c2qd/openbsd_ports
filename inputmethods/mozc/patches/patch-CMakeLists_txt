@@ -1,7 +1,7 @@
 Index: CMakeLists.txt
 --- CMakeLists.txt.orig
 +++ CMakeLists.txt
-@@ -16,20 +16,18 @@ include(GNUInstallDirs)
+@@ -16,8 +16,6 @@ include(GNUInstallDirs)
  set(CMAKE_CXX_STANDARD 20)
  set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
  set(CMAKE_CXX_FLAGS "-funsigned-char ${CMAKE_CXX_FLAGS}")
@@ -10,12 +10,9 @@ Index: CMakeLists.txt
  add_definitions(-DMOZC_BUILD)
  set(MOZC_SOURCE_DIR ${PROJECT_SOURCE_DIR}/mozc/src)
  
- include_directories(mozc/src)
- set(CMAKE_POSITION_INDEPENDENT_CODE ON)
--set(MOZC_LIBRARY_TYPE STATIC)
--# set(MOZC_LIBRARY_TYPE SHARED) # Uncomment to test dependency and missing symbols.
-+# set(MOZC_LIBRARY_TYPE STATIC)
-+set(MOZC_LIBRARY_TYPE SHARED) # Uncomment to test dependency and missing symbols.
+@@ -26,10 +24,10 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+ set(MOZC_LIBRARY_TYPE STATIC)
+ # set(MOZC_LIBRARY_TYPE SHARED) # Uncomment to test dependency and missing symbols.
  
 -option(ENABLE_SERVER "Build Fcitx 5 Mozc with server" On)
 -option(BUILD_SERVER "Build mozc_server" On)
