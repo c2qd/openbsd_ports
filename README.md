@@ -27,6 +27,7 @@ PORTSDIR_PATH=<clone destination>:${PORTSDIR}/mystuff:${PORTSDIR}
 
 The following files are distributed under their original licenses:  
 - [devel/bazel/Makefile.inc](devel/bazel/Makefile.inc) is derived from [openbsd/ports/devel/bazel/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/devel/bazel/Makefile)  
+- [devel/bazel/patches/patch-src_main_java_com_google_devtools_build_lib_analysis_constraints_ConstraintConstants_java](devel/bazel/patches/patch-src_main_java_com_google_devtools_build_lib_analysis_constraints_ConstraintConstants_java) and [devel/bazel/patches/patch-src_main_java_com_google_devtools_build_lib_analysis_ShToolchain_java](devel/bazel/patches/patch-src_main_java_com_google_devtools_build_lib_analysis_ShToolchain_java) is derived from [Fix default --shell_executable on openbsd (bazelbuild/bazel@2b184b8)](https://github.com/bazelbuild/bazel/commit/2b184b8089d3ee10b1a784299563d2d7baf922c3)  
 - [games/easyrpg-player](games/easyrpg-player) is derived from [openbsd/ports/games/easyrpg](https://codeberg.org/openbsd/ports/src/branch/master/games/easyrpg)  
 - [games/liblcf](games/liblcf) is derived from [openbsd/ports/games/liblcf](https://codeberg.org/openbsd/ports/src/branch/master/games/liblcf)  
 - [inputmethods/fcitx/Makefile](inputmethods/fcitx/Makefile) is derived from [openbsd/ports/inputmethods/fcitx/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx/Makefile)  

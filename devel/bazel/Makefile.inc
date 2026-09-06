@@ -57,5 +57,5 @@ do-build:
         EXTRA_BAZEL_ARGS="${EXTRA_BAZEL_ARGS}" \
 		SOURCE_DATE_EPOCH="0" \
 		${LOCALBASE}/bin/bash ./compile.sh
-	# Work around incorrect file permissions preventing `make clean`
+	@# Work around incorrect file permissions preventing `make clean`
 	chmod -R u+w ${WRKDIR}/output_base
