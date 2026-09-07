@@ -1,26 +1,26 @@
-COMMENT =		Python XMPP and Jabber implementation
+COMMENT =			Python XMPP and Jabber implementation
 
 MODPY_DISTV =		7.4.0
-DISTNAME =		nbxmpp-${MODPY_DISTV}
-PKGNAME =		py-${DISTNAME}
+DISTNAME =			nbxmpp-${MODPY_DISTV}
+PKGNAME =			py-${DISTNAME}
 CATEGORIES =		net devel
 
-HOMEPAGE =		https://python-nbxmpp.gajim.org/
+HOMEPAGE =			https://python-nbxmpp.gajim.org/
 
-MAINTAINER =	Florian Viehweger <openbsd@out-of-creativity.de>
+MAINTAINER =		c2qd
 
 # GPLv3
 PERMIT_PACKAGE =	Yes
 
-MODULES =		lang/python
-MODPY_PI =		Yes
+MODULES =			lang/python
+MODPY_PI =			Yes
 MODPY_PYBUILD =		setuptools
 
 RUN_DEPENDS =		devel/glib2>=2.66.0 \
-			devel/libsoup3 \
-			devel/py-gobject3 \
-			net/py-idna \
-			sysutils/py-packaging \
-			textproc/py-precis_i18n
+					devel/libsoup3 \
+					devel/py-gobject3 \
+					net/py-idna \
+					sysutils/py-packaging \
+					textproc/py-precis_i18n
 
 .include <bsd.port.mk>
