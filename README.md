@@ -35,6 +35,7 @@ The following files are distributed under their original licenses:
 - [inputmethods/fcitx-config-qt/Makefile](inputmethods/fcitx-config-qt/Makefile) is derived from [openbsd/ports/inputmethods/fcitx-config-qt/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx-config-qt/Makefile)  
 - [inputmethods/fcitx-gtk/Makefile](inputmethods/fcitx-gtk/Makefile) is derived from [openbsd/ports/inputmethods/fcitx-gtk/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx-gtk/Makefile)  
 - [inputmethods/fcitx-qt/Makefile](inputmethods/fcitx-qt/Makefile) is derived from [openbsd/ports/inputmethods/fcitx-qt/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx-qt/Makefile)  
+- [net/py-nbxmpp](net/py-nbxmpp) is derived from [openbsd/ports/www/yt-dlp](https://codeberg.org/openbsd/ports/src/branch/master/net/py-nbxmpp)  
 - [www/yt-dlp](www/yt-dlp) is derived from [openbsd/ports/www/yt-dlp](https://codeberg.org/openbsd/ports/src/branch/master/www/yt-dlp)
 
 Other files are licensed under [The Unlicense](UNLICENSE).
