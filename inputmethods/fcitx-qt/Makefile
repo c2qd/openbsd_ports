@@ -1,6 +1,6 @@
 COMMENT =			Qt library and IM module for fcitx5
 
-DISTNAME =			fcitx5-qt-5.1.14
+DISTNAME =			fcitx5-qt-5.1.15
 PKGNAME =			${DISTNAME:S/fcitx5/fcitx/}
 
 SHARED_LIBS +=		Fcitx5Qt5WidgetsAddons		1.0 # 0.0
@@ -21,7 +21,7 @@ PERMIT_PACKAGE=		Yes
 SITES =				https://download.fcitx-im.org/fcitx5/fcitx5-qt/
 EXTRACT_SUFX =		.tar.zst
 
-WANTLIB +=			${COMPILER_LIBCXX} Fcitx5Utils GL Qt5Concurrent Qt5Core
+WANTLIB +=			${COMPILER_LIBCXX} Fcitx5Utils GL Qt5Core
 WANTLIB +=			Qt5DBus Qt5Gui Qt5Widgets Qt6Concurrent Qt6Core Qt6DBus
 WANTLIB +=			Qt6Gui Qt6WaylandClient Qt6Widgets c m wayland-client
 WANTLIB +=			wayland-cursor xcb xkbcommon
