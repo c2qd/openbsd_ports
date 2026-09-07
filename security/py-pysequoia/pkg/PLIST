@@ -1,0 +1,15 @@
+lib/python${MODPY_VERSION}/site-packages/pysequoia/
+lib/python${MODPY_VERSION}/site-packages/pysequoia-${MODPY_DISTV}.dist-info/
+lib/python${MODPY_VERSION}/site-packages/pysequoia-${MODPY_DISTV}.dist-info/METADATA
+lib/python${MODPY_VERSION}/site-packages/pysequoia-${MODPY_DISTV}.dist-info/RECORD
+lib/python${MODPY_VERSION}/site-packages/pysequoia-${MODPY_DISTV}.dist-info/WHEEL
+lib/python${MODPY_VERSION}/site-packages/pysequoia-${MODPY_DISTV}.dist-info/licenses/
+lib/python${MODPY_VERSION}/site-packages/pysequoia-${MODPY_DISTV}.dist-info/licenses/LICENSE
+lib/python${MODPY_VERSION}/site-packages/pysequoia/__init__.py
+lib/python${MODPY_VERSION}/site-packages/pysequoia/__init__.pyi
+lib/python${MODPY_VERSION}/site-packages/pysequoia/${MODPY_PYCACHE}/
+lib/python${MODPY_VERSION}/site-packages/pysequoia/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}${MODPY_PYOEXTENSION}
+lib/python${MODPY_VERSION}/site-packages/pysequoia/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/pysequoia/packet.pyi
+lib/python${MODPY_VERSION}/site-packages/pysequoia/py.typed
+@so lib/python${MODPY_VERSION}/site-packages/pysequoia/pysequoia.${MODPY_PYC_MAGIC_TAG}so
