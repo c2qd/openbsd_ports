@@ -20,7 +20,7 @@ BUILD_DEPENDS=	devel/gettext,-tools
 RUN_DEPENDS=	audio/gsound \
 				databases/py-sqlalchemy \
 				devel/desktop-file-utils \
-				devel/glib2>=2.66.0 \
+				devel/glib2>=2.80.0 \
 				devel/libsoup3 \
 				devel/pango>=1.50.0 \
 				devel/py-gobject3 \
@@ -31,12 +31,10 @@ RUN_DEPENDS=	audio/gsound \
 				multimedia/gstreamer1/plugins-good \
 				multimedia/gstreamer1/py-gstreamer \
 				net/py-nbxmpp>=7.4.0 \
-				security/py-cryptodome \
 				security/py-cryptography \
 				security/py-gnupg \
 				security/py-keyring \
-				security/py-omemo-dr>=1.0.0 \
-				security/py-openssl \
+				security/py-omemo-dr>=1.2.0 \
 				sysutils/py-packaging \
 				security/py-pysequoia \
 				security/py-truststore \
