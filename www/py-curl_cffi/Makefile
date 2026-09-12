@@ -1,7 +1,5 @@
 COMMENT =				Python binding for curl-impersonate
 
-HOMEPAGE =				https://curl-cffi.readthedocs.io/
-
 MODPY_DISTV =			0.16.3
 REVISION =				0
 DISTNAME =				curl_cffi-${MODPY_DISTV}
