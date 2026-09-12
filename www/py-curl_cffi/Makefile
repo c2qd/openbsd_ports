@@ -2,9 +2,9 @@ COMMENT =				Python binding for curl-impersonate
 
 HOMEPAGE =				https://curl-cffi.readthedocs.io/
 
-VERSION =				0.16.3
+MODPY_DISTV =			0.16.3
 REVISION =				0
-DISTNAME =				curl_cffi-${VERSION}
+DISTNAME =				curl_cffi-${MODPY_DISTV}
 PKGNAME =				py-${DISTNAME}
 CATEGORIES =			www
 
@@ -12,10 +12,6 @@ ONLY_FOR_ARCHS =		amd64 arm64 riscv64
 
 # MIT
 PERMIT_PACKAGE =		Yes
-
-DISTFILES =				${DISTNAME}${EXTRACT_SUFX}
-
-SITES =					https://github.com/lexiforest/curl_cffi/releases/download/v${VERSION}/
 
 MAINTAINER =			c2qd
 
@@ -26,6 +22,7 @@ LIB_DEPENDS =			www/curl-impersonate
 RUN_DEPENDS =   		devel/py-cffi>=2.0.0 devel/py-certifi>=2024.2.2
 
 MODULES =				lang/python
+MODPY_PI =				Yes
 MODPY_PYBUILD =			setuptools
 
 COMPILER =				base-clang ports-gcc
