@@ -52,17 +52,22 @@ SITES.curl =			https://github.com/curl/curl/archive/
 
 EXTRACT_ONLY =			${GH_PROJECT}-${VERSION}${EXTRACT_SUFX}
 
+# Required by the wrapper scripts
 RUN_DEPENDS +=			shells/bash
 
 WANTLIB +=				${COMPILER_LIBCXX} c
 
 MODULES =				devel/cmake
 
-CONFIGURE_ARGS =		-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate \
+COMPILER =				base-clang ports-gcc
+
+CXX_LIBS_base-clang =	c++abi\;pthread
+CXX_LIBS_ports-gcc =	estdc++
+
+CONFIGURE_ARGS =		-DCURL_IMPERSONATE_CXX_RUNTIME_LIBRARY=${CXX_LIBS_${CHOSEN_COMPILER}} \
+						-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate \
 						-DBUILD_STATIC_LIBS=OFF -DBUILD_STATIC_CURL=OFF \
 						-DSUBJOBS=${MAKE_JOBS}
-
-COMPILER =				base-clang ports-gcc
 
 SUBST_VARS +=			FULLDISTDIR
 
