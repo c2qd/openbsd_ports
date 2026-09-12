@@ -8,7 +8,7 @@ DISTNAME =              curl-impersonate-${VERSION}
 CATEGORIES =            net www
 
 # Cannot build BoringSSL
-NOT_FOR_ARCHS =			${BE_ARCHS}
+NOT_FOR_ARCHS +=		${BE_ARCHS}
 
 SHARED_LIBS +=			curl-impersonate                0.0 # 0.0
 
@@ -57,7 +57,7 @@ RUN_DEPENDS +=			shells/bash
 
 WANTLIB +=				${COMPILER_LIBCXX} c
 
-MODULES =				devel/cmake
+MODULES +=				devel/cmake
 
 COMPILER =				base-clang ports-gcc
 
