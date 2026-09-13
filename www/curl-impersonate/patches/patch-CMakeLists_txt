@@ -25,23 +25,26 @@ Index: CMakeLists.txt
  
  set(_disable_boringssl_asm_default OFF)
  if(WIN32)
-@@ -77,6 +77,9 @@ option(CURL_SUBPROJECT_FORCE_OPENSSL_PATHS
+@@ -77,6 +77,7 @@ option(CURL_SUBPROJECT_FORCE_OPENSSL_PATHS
    ON)
  set(CURL_IMPERSONATE_CXX_RUNTIME_LIBRARY "stdc++" CACHE STRING
    "C++ runtime library used to link static BoringSSL")
-+list(TRANSFORM CURL_IMPERSONATE_CXX_RUNTIME_LIBRARY PREPEND "-l")
-+string(REPLACE ";" " " CURL_IMPERSONATE_CXX_RUNTIME_LIBRARY "${CURL_IMPERSONATE_CXX_RUNTIME_LIBRARY}")
 +
  set(CURL_CA_BUNDLE "" CACHE STRING "CA bundle for curl ('auto', 'none', or full path)")
  set(CURL_CA_PATH "" CACHE STRING "CA directory for curl ('auto', 'none', or full path)")
  
-@@ -506,13 +509,13 @@ endif()
- if(CMAKE_MSVC_RUNTIME_LIBRARY)
-   list(APPEND _curl_platform_flags "-DCMAKE_MSVC_RUNTIME_LIBRARY=${CMAKE_MSVC_RUNTIME_LIBRARY}")
- endif()
--if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-+if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "OpenBSD")
-   # Static BoringSSL is C++. Retain its runtime even when link flags are
+@@ -422,8 +423,8 @@ endif()
+ # Single curl build mode: produce shared+static libcurl and static curl binary.
+ set(_curl_build_flags
+   -DBUILD_SHARED_LIBS=ON
+-  -DBUILD_STATIC_LIBS=ON
+-  -DBUILD_STATIC_CURL=ON
++  -DBUILD_STATIC_LIBS=OFF
++  -DBUILD_STATIC_CURL=OFF
+   -DBUILD_CURL_EXE=ON
+ )
+ 
+@@ -511,8 +512,8 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
    # evaluated before the OpenSSL archives.
    set(_curl_exe_linker_flags "${CMAKE_EXE_LINKER_FLAGS}")
    set(_curl_shared_linker_flags "${CMAKE_SHARED_LINKER_FLAGS}")
@@ -52,7 +55,7 @@ Index: CMakeLists.txt
    string(STRIP "${_curl_exe_linker_flags}" _curl_exe_linker_flags)
    string(STRIP "${_curl_shared_linker_flags}" _curl_shared_linker_flags)
    list(APPEND _curl_platform_flags "-DCMAKE_EXE_LINKER_FLAGS=${_curl_exe_linker_flags}")
-@@ -582,6 +585,7 @@ ExternalProject_Add(curl
+@@ -582,6 +583,7 @@ ExternalProject_Add(curl
        -DUSE_NGTCP2=ON
        -DCURL_DISABLE_LDAP=ON
        -DCURL_DISABLE_LDAPS=ON
@@ -60,7 +63,7 @@ Index: CMakeLists.txt
        # XXX: psl should be enabled in the future:
        # https://daniel.haxx.se/blog/2024/01/10/psl-in-curl/
        -DCURL_USE_LIBPSL=OFF
-@@ -664,12 +668,12 @@ endif()
+@@ -664,12 +666,12 @@ endif()
  function(_install_dependency_license project license_file output_name)
    install(
      FILES "${DEPS_SRC_DIR}/${project}/${license_file}"

@@ -2,7 +2,42 @@ https://github.com/lexiforest/curl-impersonate/issues/287
 Index: patches/curl.patch
 --- patches/curl.patch.orig
 +++ patches/curl.patch
-@@ -10549,7 +10549,7 @@ index 9820c3e4bd..fd125d35d4 100644
+@@ -125,6 +125,15 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
+ index e459b3d076..1bc3795713 100644
+ --- a/CMakeLists.txt
+ +++ b/CMakeLists.txt
++@@ -63,7 +63,7 @@ message(STATUS "curl version=[${_curl_version}]")
++ string(REGEX REPLACE "([0-9]+\.[0-9]+\.[0-9]+).+" "\\1" _curl_version_sem "${_curl_version}")
++ project(CURL
++   VERSION "${_curl_version_sem}"
++-  LANGUAGES C)
+++  LANGUAGES C CXX)
++
++ # CMake does not recognize some targets accurately. Touch up configuration manually as a workaround.
++ if(WINDOWS_STORE AND MINGW)  # MinGW UWP build
+ @@ -153,8 +153,8 @@ if(CURL_PATCHSTAMP)
+    set(CURL_PATCHSTAMP "\"${CURL_PATCHSTAMP}\"")
+  endif()
+@@ -1080,6 +1089,18 @@ index d600c73cdc..86a58c6088 100644
+  
+  /* true if info expects a pointer to struct curl_tlssessioninfo * argument */
+  #define curlcheck_tlssessioninfo_info(info)                             \
++diff --git a/lib/CMakeLists.txt b/lib/CMakeLists.txt
++index 3ef623536e..df24d02812 100644
++--- a/lib/CMakeLists.txt
+++++ b/lib/CMakeLists.txt
++@@ -213,6 +213,7 @@ if(BUILD_SHARED_LIBS)
++     IMPORT_PREFIX "" IMPORT_SUFFIX "${IMPORT_LIB_SUFFIX}${CMAKE_IMPORT_LIBRARY_SUFFIX}"
++     POSITION_INDEPENDENT_CODE ON)
++   set_property(TARGET ${LIB_SHARED} APPEND PROPERTY COMPILE_OPTIONS "${CURL_CFLAGS}")
+++  set_property(TARGET ${LIB_SHARED} APPEND PROPERTY LINKER_LANGUAGE CXX)
++   if(CURL_HIDES_PRIVATE_SYMBOLS)
++     set_property(TARGET ${LIB_SHARED} APPEND PROPERTY COMPILE_OPTIONS "${CURL_CFLAG_SYMBOLS_HIDE}")
++     set_property(TARGET ${LIB_SHARED} APPEND PROPERTY COMPILE_DEFINITIONS "CURL_HIDDEN_SYMBOLS")
+ diff --git a/lib/Makefile.am b/lib/Makefile.am
+ index 8a2bd4e68e..593ed1af15 100644
+ --- a/lib/Makefile.am
+@@ -10549,7 +10570,7 @@ index 9820c3e4bd..fd125d35d4 100644
  +#define WS_TARGET_AVX2 __attribute__((target("avx2")))
  +#if defined(__clang__) && \
  +    ((defined(__apple_build_version__) && __clang_major__ >= 16) || \
@@ -11,3 +46,18 @@ Index: patches/curl.patch
  +#define WS_TARGET_AVX512 \
  +  __attribute__((target("avx512f,evex512")))
  +#else
+@@ -11176,6 +11197,14 @@ index 1f76839009..b5fc35f8a2 100644
+  set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS "${CURL_DEBUG_MACROS}")
+  
+  set(_curl_cfiles_gen "")
++@@ -102,6 +102,7 @@ add_executable(${EXE_NAME} ${CURL_CFILES} ${CURL_HFILES} ${_curl_cfiles_gen} ${_
++ target_compile_definitions(${EXE_NAME} PRIVATE ${_curl_definitions})
++ target_link_libraries(${EXE_NAME} ${LIB_SELECTED_FOR_EXE} ${CURL_LIBS})
++ set_property(TARGET ${EXE_NAME} APPEND PROPERTY COMPILE_OPTIONS "${CURL_CFLAGS}")
+++set_property(TARGET ${EXE_NAME} APPEND PROPERTY LINKER_LANGUAGE CXX)
++ if(WIN32)
++   set_property(TARGET ${EXE_NAME} APPEND PROPERTY SOURCES ${CURL_RCFILES})
++ endif()
+ diff --git a/src/Makefile.am b/src/Makefile.am
+ index 69554ee490..d0052604bd 100644
+ --- a/src/Makefile.am

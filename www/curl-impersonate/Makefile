@@ -3,7 +3,7 @@ COMMENT =               Special curl build that can impersonate major browsers
 HOMEPAGE =				https://curl-impersonate.readthedocs.io/
 
 VERSION =               2.2.2
-REVISION =				0
+REVISION =				1
 DISTNAME =              curl-impersonate-${VERSION}
 CATEGORIES =            net www
 
@@ -55,18 +55,13 @@ EXTRACT_ONLY =			${GH_PROJECT}-${VERSION}${EXTRACT_SUFX}
 # Required by the wrapper scripts
 RUN_DEPENDS +=			shells/bash
 
-WANTLIB +=				${COMPILER_LIBCXX} c
+WANTLIB +=				${COMPILER_LIBCXX} c m
 
 MODULES +=				devel/cmake
 
 COMPILER =				base-clang ports-gcc
 
-CXX_LIBS_base-clang =	c++abi\;pthread
-CXX_LIBS_ports-gcc =	estdc++
-
-CONFIGURE_ARGS =		-DCURL_IMPERSONATE_CXX_RUNTIME_LIBRARY=${CXX_LIBS_${CHOSEN_COMPILER}} \
-						-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate \
-						-DBUILD_STATIC_LIBS=OFF -DBUILD_STATIC_CURL=OFF \
+CONFIGURE_ARGS =		-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate \
 						-DSUBJOBS=${MAKE_JOBS}
 
 SUBST_VARS +=			FULLDISTDIR
