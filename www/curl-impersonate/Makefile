@@ -62,7 +62,8 @@ MODULES +=				devel/cmake
 COMPILER =				base-clang ports-gcc
 
 CONFIGURE_ARGS =		-DCMAKE_INSTALL_INCLUDEDIR=include/curl-impersonate \
-						-DSUBJOBS=${MAKE_JOBS}
+						-DSUBJOBS=${MAKE_JOBS} \
+						-DPATCH_EXE=/usr/bin/patch
 
 SUBST_VARS +=			FULLDISTDIR
 
