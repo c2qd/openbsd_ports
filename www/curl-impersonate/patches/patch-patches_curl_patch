@@ -1,3 +1,5 @@
+https://github.com/lexiforest/curl-impersonate/issues/287
+https://github.com/lexiforest/curl-chrome/pull/27
 Index: patches/curl.patch
 --- patches/curl.patch.orig
 +++ patches/curl.patch
