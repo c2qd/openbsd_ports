@@ -1,22 +1,20 @@
 COMMENT =	CLI program to download videos from YouTube and other sites
 
-VERSION =	2026.08.19
-MODPY_DISTV =	${VERSION:S/.0/./g}
+MODPY_DISTV =	2026.8.19
+VERSION = ${MODPY_DISTV}
 
 DISTNAME =	yt-dlp-${VERSION}
-DISTFILES =	yt-dlp-${VERSION}{yt-dlp}${EXTRACT_SUFX}
+DISTFILES =	yt_dlp-${VERSION}${EXTRACT_SUFX}
+
+WRKDIST = ${WRKDIR}/yt_dlp-${VERSION}
 
 CATEGORIES =	www
-
-HOMEPAGE =	https://github.com/yt-dlp/yt-dlp/
 
 # Public Domain
 PERMIT_PACKAGE =	Yes
 
-SITES =		https://github.com/yt-dlp/yt-dlp/releases/download/${VERSION}/
-
 MODULES =	lang/python
-
+MODPY_PI =	Yes
 MODPY_PYBUILD =	hatchling
 
 # deps are optional, though required for various site extractors
@@ -34,7 +32,5 @@ RUN_DEPENDS =	audio/py-mutagen \
 TEST_DEPENDS +=	devel/flake8 \
 		archivers/py-brotlicffi \
 		net/py-websockets
-
-WRKDIST =	${WRKDIR}/yt-dlp
 
 .include <bsd.port.mk>
