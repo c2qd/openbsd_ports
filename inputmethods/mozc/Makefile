@@ -30,14 +30,14 @@ CATEGORIES=						inputmethods japanese
 MAINTAINER =					c2qd
 
 # non-ut flavor:
-# BSD-3-Clause + NAIST-2003(IPADic) +
-# Public Domain(Okinawa dictionary, Zip code data) +
+# BSD-3-Clause(mozc, protobuf) + Apache-2.0(abseil-cpp) + Zlib(zlib) +
+# NAIST-2003(IPADic) + Public Domain(Okinawa dictionary, Zip code data) +
 # BSD-2-Clause(Japanese usage dictionary)
 # ut flavor:
-# BSD-3-Clause + NAIST-2003(IPADic) +
+# BSD-3-Clause(mozc, protobuf) + Zlib(zlib) + NAIST-2003(IPADic) +
 # Public Domain(Okinawa dictionary, Zip code data, place-names) +
 # BSD-2-Clause(Japanese usage dictionary) +
-# Apache-2.0(personal-names, Neologd, SudachiDict)
+# Apache-2.0(abseil-cpp, personal-names, Neologd, SudachiDict)
 PERMIT_PACKAGE =				Yes
 
 .include "bazel.inc"
