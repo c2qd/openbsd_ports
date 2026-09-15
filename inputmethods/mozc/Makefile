@@ -40,8 +40,6 @@ MAINTAINER =					c2qd
 # Apache-2.0(abseil-cpp, personal-names, Neologd, SudachiDict)
 PERMIT_PACKAGE =				Yes
 
-.include "bazel.inc"
-
 ZIP_CODE_COMMIT =				621d059fbcbfae17bfca15b439692bae934268c3
 DISTFILES.ja_usage_dict =		2025-01-25.zip
 SITES.ja_usage_dict =			https://github.com/hiroyuki-komatsu/japanese-usage-dictionary/archive/refs/tags/
@@ -183,8 +181,8 @@ pre-install:
 .endif
 
 do-install:
-	${INSTALL_PROGRAM_DIR} "${PREFIX}/libexec/mozc"
 .if ${BUILD_PACKAGES:M-main}
+	${INSTALL_PROGRAM_DIR} "${PREFIX}/libexec/mozc"
 	${INSTALL_PROGRAM} "${WRKSRC}/bazel-bin/server/mozc_server" \
 		"${PREFIX}/libexec/mozc/mozc_server"
 	${INSTALL_DATA_DIR} "${PREFIX}/share/doc/mozc"
@@ -249,5 +247,7 @@ post-install:
 .if ${BUILD_PACKAGES:M-fcitx}
 	cd ${WRKSRC} && rm -f unix/fcitx5/po/*.mo
 .endif
+
+.include "bazel.inc"
 
 .include <bsd.port.mk>
