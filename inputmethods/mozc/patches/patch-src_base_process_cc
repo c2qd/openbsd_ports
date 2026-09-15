@@ -1,6 +1,6 @@
-Index: mozc/src/base/process.cc
---- mozc/src/base/process.cc.orig
-+++ mozc/src/base/process.cc
+Index: src/base/process.cc
+--- src/base/process.cc.orig
++++ src/base/process.cc
 @@ -63,7 +63,7 @@
  #include <cerrno>
  #endif  // !_WIN32

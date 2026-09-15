@@ -1,0 +1,26 @@
+Index: src/BUILD.bazel
+--- src/BUILD.bazel.orig
++++ src/BUILD.bazel
+@@ -141,6 +141,22 @@ platform(
+     ],
+ )
+ 
++platform(
++    name = "openbsd-x86_64",
++    constraint_values = [
++        "@platforms//cpu:x86_64",
++        "@platforms//os:openbsd",
++    ],
++)
++
++platform(
++    name = "openbsd-arm64",
++    constraint_values = [
++        "@platforms//cpu:arm64",
++        "@platforms//os:openbsd",
++    ],
++)
++
+ # Special target so as to define special macros for each platforms.
+ # Don't depend on this directly. Use mozc_cc_(library|binary|test) rule instead.
+ cc_library(

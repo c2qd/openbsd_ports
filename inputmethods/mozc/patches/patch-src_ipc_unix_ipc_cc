@@ -1,7 +1,8 @@
-OpenBSD does not have an equivalent of Linux's procfs, so even if we obtain the PID, we cannot determine the process path. Therefore, leave the PID as 0.
-Index: mozc/src/ipc/unix_ipc.cc
---- mozc/src/ipc/unix_ipc.cc.orig
-+++ mozc/src/ipc/unix_ipc.cc
+OpenBSD does not have an equivalent of Linux's procfs, so even if we obtain the PID, we cannot determine the process path.
+Therefore, leave the PID as 0.
+Index: src/ipc/unix_ipc.cc
+--- src/ipc/unix_ipc.cc.orig
++++ src/ipc/unix_ipc.cc
 @@ -28,7 +28,7 @@
  // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  

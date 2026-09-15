@@ -1,6 +1,6 @@
-Index: mozc/src/base/file/recursive.cc
---- mozc/src/base/file/recursive.cc.orig
-+++ mozc/src/base/file/recursive.cc
+Index: src/base/file/recursive.cc
+--- src/base/file/recursive.cc.orig
++++ src/base/file/recursive.cc
 @@ -104,7 +104,7 @@ void UnlinkFileOrLog(const char* path) {
  }  // namespace
  

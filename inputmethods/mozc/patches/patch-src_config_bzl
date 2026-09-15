@@ -1,0 +1,18 @@
+Index: src/config.bzl
+--- src/config.bzl.orig
++++ src/config.bzl
+@@ -37,10 +37,10 @@ BRANDING = "Mozc"
+ 
+ BAZEL_TOOLS_PREFIX = "@bazel_tools"
+ 
+-LINUX_MOZC_BROWSER_COMMAND = "/usr/bin/xdg-open"
+-LINUX_MOZC_ICONS_DIR = "/usr/share/icons/mozc"
+-LINUX_MOZC_SERVER_DIR = "/usr/lib/mozc"
+-LINUX_MOZC_DOCUMENT_DIR = LINUX_MOZC_SERVER_DIR + "/documents"
++LINUX_MOZC_BROWSER_COMMAND = "${LOCALBASE}/bin/xdg-open"
++LINUX_MOZC_ICONS_DIR = "${PREFIX}/share/icons/mozc"
++LINUX_MOZC_SERVER_DIR = "${PREFIX}/libexec/mozc"
++LINUX_MOZC_DOCUMENT_DIR = "${PREFIX}/share/doc/mozc"
+ IBUS_COMPONENT_DIR = "/usr/share/ibus/component"
+ IBUS_MOZC_INSTALL_DIR = "/usr/share/ibus-mozc"
+ IBUS_MOZC_ICON_PATH = IBUS_MOZC_INSTALL_DIR + "/product_icon.png"

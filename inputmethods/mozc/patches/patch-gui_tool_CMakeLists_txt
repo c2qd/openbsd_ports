@@ -1,9 +1,0 @@
-Index: gui/tool/CMakeLists.txt
---- gui/tool/CMakeLists.txt.orig
-+++ gui/tool/CMakeLists.txt
-@@ -14,4 +14,4 @@ target_link_libraries(mozc_tool
-     dictionary_tool
- )
- 
--install(TARGETS mozc_tool DESTINATION "${CMAKE_INSTALL_LIBDIR}/mozc")
-+install(TARGETS mozc_tool DESTINATION "${CMAKE_INSTALL_LIBEXECDIR}/mozc")

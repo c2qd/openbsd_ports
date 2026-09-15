@@ -1,7 +1,7 @@
-Index: mozc/src/session/session_test.cc
---- mozc/src/session/session_test.cc.orig
-+++ mozc/src/session/session_test.cc
-@@ -2128,7 +2128,7 @@ TEST_F(SessionTest, UpdatePreferences) {
+Index: src/session/session_test.cc
+--- src/session/session_test.cc.orig
++++ src/session/session_test.cc
+@@ -2129,7 +2129,7 @@ TEST_F(SessionTest, UpdatePreferences) {
    const size_t cascading_cand_size =
        command.output().candidate_window().candidate_size();
  
@@ -10,7 +10,7 @@ Index: mozc/src/session/session_test.cc
    EXPECT_EQ(cascading_cand_size, no_cascading_cand_size);
  #else   // __linux__ || __wasm__
    EXPECT_GT(no_cascading_cand_size, cascading_cand_size);
-@@ -2309,7 +2309,7 @@ TEST_F(SessionTest, OutputAllCandidateWords) {
+@@ -2310,7 +2310,7 @@ TEST_F(SessionTest, OutputAllCandidateWords) {
  
      EXPECT_EQ(output.all_candidate_words().focused_index(), 0);
      EXPECT_EQ(output.all_candidate_words().category(), commands::CONVERSION);
@@ -19,7 +19,7 @@ Index: mozc/src/session/session_test.cc
      // Cascading window is not supported on Linux, so the size of
      // candidate words is different from other platform.
      // TODO(komatsu): Modify the client for Linux to explicitly change
-@@ -2337,7 +2337,7 @@ TEST_F(SessionTest, OutputAllCandidateWords) {
+@@ -2338,7 +2338,7 @@ TEST_F(SessionTest, OutputAllCandidateWords) {
  
      EXPECT_EQ(output.all_candidate_words().focused_index(), 1);
      EXPECT_EQ(output.all_candidate_words().category(), commands::CONVERSION);

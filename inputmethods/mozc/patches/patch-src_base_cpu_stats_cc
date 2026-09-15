@@ -1,6 +1,6 @@
-Index: mozc/src/base/cpu_stats.cc
---- mozc/src/base/cpu_stats.cc.orig
-+++ mozc/src/base/cpu_stats.cc
+Index: src/base/cpu_stats.cc
+--- src/base/cpu_stats.cc.orig
++++ src/base/cpu_stats.cc
 @@ -116,7 +116,7 @@ float CPUStats::GetSystemCPULoad() {
  
  #endif  // __APPLE__

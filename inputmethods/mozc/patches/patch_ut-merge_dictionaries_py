@@ -1,6 +1,6 @@
 Index: merge_dictionaries.py
---- mozc/merge_dictionaries.py.orig
-+++ mozc/merge_dictionaries.py
+--- merge_dictionaries.py.orig
++++ merge_dictionaries.py
 @@ -7,18 +7,10 @@
  import bz2
  import csv

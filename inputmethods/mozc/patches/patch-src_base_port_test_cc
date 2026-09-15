@@ -1,6 +1,6 @@
-Index: mozc/src/base/port_test.cc
---- mozc/src/base/port_test.cc.orig
-+++ mozc/src/base/port_test.cc
+Index: src/base/port_test.cc
+--- src/base/port_test.cc.orig
++++ src/base/port_test.cc
 @@ -65,7 +65,7 @@ static_assert(port::IsIos());
  #endif  // TARGET_OS_IPHONE
  #endif  // __APPLE__

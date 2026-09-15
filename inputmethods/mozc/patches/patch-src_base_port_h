@@ -1,6 +1,6 @@
-Index: mozc/src/base/port.h
---- mozc/src/base/port.h.orig
-+++ mozc/src/base/port.h
+Index: src/base/port.h
+--- src/base/port.h.orig
++++ src/base/port.h
 @@ -50,7 +50,7 @@ enum class PlatformType {
  };
  

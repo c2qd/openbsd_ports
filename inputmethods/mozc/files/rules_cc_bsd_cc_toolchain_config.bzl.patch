@@ -1,0 +1,39 @@
+--- cc/private/toolchain/bsd_cc_toolchain_config.bzl
++++ cc/private/toolchain/bsd_cc_toolchain_config.bzl
+@@ -84,7 +84,9 @@
+                     flag_group(
+                         flags = [
+                             "-lc++",
+-                            "-Wl,-z,relro,-z,now",
++                            "-lc++abi",
++                            "-lm",
++                            "-Wl,-z,relro,-z,now,-z,origin",
+                             "-no-canonical-prefixes",
+                         ],
+                     ),
+@@ -243,19 +245,19 @@
+         features = [supports_dynamic_linker_feature, supports_pic_feature]
+ 
+     if (is_bsd):
+-        cxx_builtin_include_directories = ["/usr/lib/clang", "/usr/local/include", "/usr/include"]
++        cxx_builtin_include_directories = ["/usr/lib/clang", "${LOCALBASE}/include", "${X11BASE}/include", "/usr/include"]
+     else:
+         cxx_builtin_include_directories = []
+ 
+     if is_bsd:
+         tool_paths = [
+             tool_path(name = "ar", path = "/usr/bin/ar"),
+-            tool_path(name = "compat-ld", path = "/usr/bin/ld"),
++            tool_path(name = "compat-ld", path = "/usr/bin/${LD}"),
+             tool_path(name = "cpp", path = "/usr/bin/cpp"),
+-            tool_path(name = "dwp", path = "/usr/bin/dwp"),
+-            tool_path(name = "gcc", path = "/usr/bin/clang"),
+-            tool_path(name = "gcov", path = "/usr/bin/gcov"),
+-            tool_path(name = "ld", path = "/usr/bin/ld"),
++            tool_path(name = "dwp", path = "/bin/false"),
++            tool_path(name = "gcc", path = "${WRKDIR}/bin/${CC}"),
++            tool_path(name = "gcov", path = "/bin/false"),
++            tool_path(name = "ld", path = "/usr/bin/${LD}"),
+             tool_path(name = "nm", path = "/usr/bin/nm"),
+             tool_path(name = "objcopy", path = "/usr/bin/objcopy"),
+             tool_path(name = "objdump", path = "/usr/bin/objdump"),

@@ -5,10 +5,7 @@ COMMENT-fcitx =					Fcitx5 addon for Mozc
 HOMEPAGE =						https://github.com/google/mozc
 HOMEPAGE-fcitx =				https://github.com/fcitx/mozc
 
-VERSION =						3.34.6239.20260814
-REVISION-main =					3
-REVISION-tool =					0
-REVISION-fcitx =				0
+VERSION =						3.34.6239.20260914.00
 DISTNAME =						mozc-${VERSION}
 
 FULLPKGNAME-tool =				mozc-tool-${VERSION}
@@ -16,7 +13,15 @@ FULLPKGNAME-fcitx =				fcitx-mozc-${VERSION}
 FULLPKGPATH-tool =				${PKGPATH},-tool
 FULLPKGPATH-fcitx =				${PKGPATH},-fcitx
 
-DIST_SUBDIR =					mozc
+GH_ACCOUNT =					fcitx
+GH_PROJECT =					mozc
+GH_COMMIT =						7a7a0e0095efbbe4ab17a1daa4e56253e0063519
+
+MULTI_PACKAGES =				-main -tool -fcitx
+FLAVORS =						ut
+FLAVOR ?=
+
+.include <bsd.port.arch.mk>
 
 ONLY_FOR_ARCHS =				amd64 arm64
 
@@ -35,33 +40,15 @@ MAINTAINER =					c2qd
 # Apache-2.0(personal-names, Neologd, SudachiDict)
 PERMIT_PACKAGE =				Yes
 
-GH_ACCOUNT =					fcitx
-GH_PROJECT =					mozc-cmake
-GH_COMMIT =						35b68cf9c84588590739bca7bbe8ffe24833ef79
+.include "bazel.inc"
 
-FCITX_MOZC_COMMIT =				3f8dea4bdf72c6af200ecdbe3d456871fb1d5e03
-ZIPCODE_COMMIT =				ba167e0bd99ee9705e40a747c7358f425511f78a
-
-DIST_TUPLE +=					github fcitx mozc ${FCITX_MOZC_COMMIT} mozc
-
-DIST_TUPLE +=					github hiroyuki-komatsu japanpost_zipcode \
-								${ZIPCODE_COMMIT} japanpost_zipcode
-
-MULTI_PACKAGES =				-main -tool -fcitx
-FLAVORS =						ut
-FLAVOR ?=
-
-.include <bsd.port.arch.mk>
-
-.if ${BUILD_PACKAGES:M-main}
-CONFIGURE_ARGS +=				-DENABLE_SERVER=On -DBUILD_SERVER=On
-.endif
-.if ${BUILD_PACKAGES:M-tool}
-CONFIGURE_ARGS +=				-DBUILD_TOOL=On
-.endif
-.if ${BUILD_PACKAGES:M-fcitx}
-CONFIGURE_ARGS +=				-DBUILD_FCITX=On
-.endif
+ZIP_CODE_COMMIT =				621d059fbcbfae17bfca15b439692bae934268c3
+DISTFILES.ja_usage_dict =		2025-01-25.zip
+SITES.ja_usage_dict =			https://github.com/hiroyuki-komatsu/japanese-usage-dictionary/archive/refs/tags/
+DISTFILES.zip_code_jigyosyo =	jigyosyo.zip
+SITES.zip_code_jigyosyo =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT}/
+DISTFILES.zip_code_ken_all =	ken_all.zip
+SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT}/
 
 UT_COMMIT =						15c1c64502b43e31d328012860376c03c3eaf633
 UT_PERSONAL_NAMES_COMMIT =		5e0d754f3162c3e1d83568307da2c9d3ea54731f
@@ -97,70 +84,63 @@ SITES.sudachidict =				https://github.com/utuhiro78/mozcdic-ut-sudachidict/raw/$
 SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_VERSION}/
 
 EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
-								fcitx-mozc-${FCITX_MOZC_COMMIT}.tar.gz \
-								hiroyuki-komatsu-japanpost_zipcode-${ZIPCODE_COMMIT}.tar.gz
+								${MODBAZEL_BCR_DISTFILE}
 
-BUILD_DEPENDS +=				devel/protobuf devel/gettext,-tools
+BUILD_DEPENDS +=				devel/gettext,-tools
 
-WANTLIB +=						${COMPILER_LIBCXX} absl_base absl_base_cpu_detect
-WANTLIB +=						absl_city absl_civil_time absl_cord absl_cord_internal
-WANTLIB +=						absl_cordz_functions absl_cordz_handle absl_cordz_info
-WANTLIB +=						absl_crc32c absl_crc_cord_state absl_crc_internal
-WANTLIB +=						absl_debugging_internal absl_decode_rust_punycode
-WANTLIB +=						absl_demangle_internal absl_demangle_rust
-WANTLIB +=						absl_die_if_null absl_examine_stack
-WANTLIB +=						absl_exponential_biased absl_flags_commandlineflag
-WANTLIB +=						absl_flags_commandlineflag_internal absl_flags_config
-WANTLIB +=						absl_flags_internal absl_flags_marshalling
-WANTLIB +=						absl_flags_parse absl_flags_private_handle_accessor
-WANTLIB +=						absl_flags_program_name absl_flags_reflection
-WANTLIB +=						absl_flags_usage absl_flags_usage_internal absl_hardening
-WANTLIB +=						absl_hash absl_graphcycles_internal absl_hashtablez_sampler
-WANTLIB +=						absl_int128 absl_kernel_timeout_internal absl_leak_check
-WANTLIB +=						absl_log_entry absl_log_flags absl_log_globals absl_log_initialize
-WANTLIB +=						absl_log_internal_check_op absl_log_internal_conditions
-WANTLIB +=						absl_log_internal_fnmatch absl_log_internal_format
-WANTLIB +=						absl_log_internal_globals absl_log_internal_log_sink_set
-WANTLIB +=						absl_log_internal_message absl_log_internal_nullguard
-WANTLIB +=						absl_log_internal_proto absl_log_internal_structured_proto
-WANTLIB +=						absl_log_severity absl_log_sink absl_malloc_internal
-WANTLIB +=						absl_random_distributions absl_random_internal_entropy_pool
-WANTLIB +=						absl_random_internal_platform absl_random_internal_randen
-WANTLIB +=						absl_random_internal_randen_hwaes absl_random_internal_randen_hwaes_impl
-WANTLIB +=						absl_random_internal_randen_slow absl_random_internal_seed_material
-WANTLIB +=						absl_random_seed_gen_exception absl_random_seed_sequences
-WANTLIB +=						absl_raw_hash_set absl_raw_logging_internal absl_source_location
-WANTLIB +=						absl_spinlock_wait absl_stacktrace absl_status absl_statusor
-WANTLIB +=						absl_str_format_internal absl_strerror absl_strings
-WANTLIB +=						absl_strings_internal absl_symbolize absl_synchronization
-WANTLIB +=						absl_throw_delegate absl_time absl_time_zone absl_tracing_internal
-WANTLIB +=						absl_utf8_for_code_point absl_vlog_config_internal m protobuf utf8_validity
+WANTLIB +=						${COMPILER_LIBCXX} m
 WANTLIB-main +=					${WANTLIB} c
-WANTLIB-tool +=					${WANTLIB} GL Qt6Core Qt6Gui Qt6Widgets c
+WANTLIB-tool +=					${WANTLIB} Qt6Core Qt6Gui Qt6Widgets c
 WANTLIB-fcitx +=				${WANTLIB} Fcitx5Config Fcitx5Core Fcitx5Utils
 
-LIB_DEPENDS +=					devel/abseil-cpp devel/protobuf
-LIB_DEPENDS-tool +=				${LIB_DEPENDS} x11/qt6/qtbase
-LIB_DEPENDS-fcitx +=			${LIB_DEPENDS} inputmethods/fcitx
+LIB_DEPENDS-tool +=				x11/qt6/qtbase
+LIB_DEPENDS-fcitx +=			inputmethods/fcitx
 
-RUN_DEPENDS-main +=				devel/xdg-utils
-RUN_DEPENDS-tool +=				${BASE_PKGPATH},-main
-RUN_DEPENDS-fcitx +=			${BASE_PKGPATH},-main inputmethods/fcitx
+RUN_DEPENDS-tool +=				devel/xdg-utils ${BASE_PKGPATH},-main
+RUN_DEPENDS-fcitx +=			${BASE_PKGPATH},-main
 
-MODULES +=						devel/cmake lang/python
+COMPILER =						base-clang
+
+WRKSRC =						${WRKDIST}/src
+
+DIST_SUBDIR =					mozc
+
+SUBST_TARGETS +=				${WRKSRC}/config.bzl \
+								${WRKSRC}/MODULE.bazel \
+								${WRKSRC}/base/system_util.cc \
+								${WRKSRC}/base/process.cc \
+								${WRKSRC}/bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch
+
+MODULES +=						devel/bazel lang/python
+
+MODBAZEL_VERSION =				9
+
+MODBAZEL_BCR_COMMIT_ID =		2459648091f2c5b8e21a46613cf39bffb6fba298
+
+MODBAZEL_CONFIGS =				oss_linux release_build
+
+.if ${MACHINE_ARCH} == "amd64"
+MODBAZEL_FLAGS +=				--platforms=//:openbsd-x86_64
+.elif ${MACHINE_ARCH} == "arm64"
+MODBAZEL_FLAGS +=				--platforms=//:openbsd-arm64
+.endif
 
 MODPY_RUNDEP =					No
 
-COMPILER =						base-clang ports-gcc
+ALL_TARGET =					server:mozc_server gui/tool:mozc_tool unix/fcitx5:fcitx5-mozc.so
 
 CFLAGS +=						-I${X11BASE}/include
-CXXFLAGS +=						-I${LOCALBASE}/include
 LDFLAGS +=						-L${LOCALBASE}/lib
 
 MAKE_ENV +=						LC_CTYPE=C.UTF-8
 
-SUBST_TARGETS +=				${WRKSRC}/mozc/src/base/system_util.cc \
-								${WRKSRC}/mozc/src/base/process.cc
+L10N_LANGS =					ca da de fr he ja ka ko ru sv tr vi zh_CN zh_TW
+
+post-extract:
+	cp ${FILESDIR}/abseil_cpp_absl_status_status.cc.patch \
+		${FILESDIR}/rules_cc_bsd_cc_toolchain_config.bzl.patch \
+		${FILESDIR}/rules_go_go_private_sdk.bzl.patch \
+		${WRKSRC}/bazel
 
 pre-patch:
 	@if [ $$(ulimit -Sd) != "unlimited" ] && [ $$(ulimit -Sd) -lt $$((3*1024*1024)) ]; then \
@@ -169,37 +149,105 @@ pre-patch:
 	fi
 .if ${FLAVOR:Mut}
 	cp ${FULLDISTDIR}/${UT_COMMIT}.py \
-		${WRKSRC}/mozc/merge_dictionaries.py
+		${WRKDIST}/merge_dictionaries.py
 .endif
 
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS}
+	${SUBST_CMD} -DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
+		${WRKSRC}/bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch
 .if ${FLAVOR:Mut}
 	${SUBST_CMD} -DJAWIKI_INDEX_FILE=${SUPDISTFILES.jawiki_index} \
-		${WRKSRC}/mozc/merge_dictionaries.py
+		${WRKDIST}/merge_dictionaries.py
 	cd ${FULLDISTDIR} && \
-		cp {${UT_PERSONAL_NAMES_COMMIT},${WRKSRC}/mozc/mozcdic-ut-personal-names}.txt.bz2 && \
-		cp {${UT_PLACE_NAMES_COMMIT},${WRKSRC}/mozc/mozcdic-ut-place-names}.txt.bz2 && \
-		cp {${UT_NEOLOGD_COMMIT},${WRKSRC}/mozc/mozcdic-ut-neologd}.txt.bz2 && \
-		cp {${UT_SUDACHIDICT_COMMIT},${WRKSRC}/mozc/mozcdic-ut-sudachidict}.txt.bz2 && \
-		cp ${SUPDISTFILES.jawiki_index} ${WRKSRC}/mozc
-	cd ${WRKSRC}/mozc && bzip2 -d mozcdic-ut-*.txt.bz2 && \
+		cp {${UT_PERSONAL_NAMES_COMMIT},${WRKDIST}/mozcdic-ut-personal-names}.txt.bz2 && \
+		cp {${UT_PLACE_NAMES_COMMIT},${WRKDIST}/mozcdic-ut-place-names}.txt.bz2 && \
+		cp {${UT_NEOLOGD_COMMIT},${WRKDIST}/mozcdic-ut-neologd}.txt.bz2 && \
+		cp {${UT_SUDACHIDICT_COMMIT},${WRKDIST}/mozcdic-ut-sudachidict}.txt.bz2 && \
+		cp ${SUPDISTFILES.jawiki_index} ${WRKDIST}
+	cd ${WRKDIST} && bzip2 -d mozcdic-ut-*.txt.bz2 && \
 		cat mozcdic-ut-*.txt > mozcdic-ut.txt && \
 		${MODPY_BIN} merge_dictionaries.py mozcdic-ut.txt && \
-		cat mozcdic-ut.txt >> ${WRKSRC}/mozc/src/data/dictionary_oss/dictionary00.txt
+		cat mozcdic-ut.txt >> ${WRKSRC}/data/dictionary_oss/dictionary00.txt
+.endif
+
+pre-install:
+.if ${BUILD_PACKAGES:M-fcitx}
+	cd ${WRKSRC} && msgfmt --xml -d unix/fcitx5/po/ \
+		--template unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml.in \
+		-o unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml
+.for lang in ${L10N_LANGS}
+	msgfmt ${WRKSRC}/unix/fcitx5/po/${lang}.po \
+		-o ${WRKSRC}/unix/fcitx5/po/${lang}.mo
+.endfor
+.endif
+
+do-install:
+	${INSTALL_PROGRAM_DIR} "${PREFIX}/libexec/mozc"
+.if ${BUILD_PACKAGES:M-main}
+	${INSTALL_PROGRAM} "${WRKSRC}/bazel-bin/server/mozc_server" \
+		"${PREFIX}/libexec/mozc/mozc_server"
+	${INSTALL_DATA_DIR} "${PREFIX}/share/doc/mozc"
+	${INSTALL_DATA} "${WRKSRC}/data/installer/credits_en.html" \
+		"${PREFIX}/share/doc/mozc/credits_en.html"
+.	if ${FLAVOR:Mut}
+	${INSTALL_DATA} "${FILESDIR}/LICENSE-2.0.txt" \
+		"${PREFIX}/share/doc/mozc/LICENSE-2.0.txt"
+	${INSTALL_DATA} "${FILESDIR}/LICENSE_NEOLOGD" \
+		"${PREFIX}/share/doc/mozc/LICENSE_NEOLOGD"
+	${INSTALL_DATA} "${FILESDIR}/LICENSE_SUDACHIDICT" \
+		"${PREFIX}/share/doc/mozc/LICENSE_SUDACHIDICT"
+	${INSTALL_DATA} "${FILESDIR}/LEGAL_SUDACHIDICT" \
+		"${PREFIX}/share/doc/mozc/LEGAL_SUDACHIDICT"
+.	endif
+.endif
+.if ${BUILD_PACKAGES:M-tool}
+	${INSTALL_PROGRAM} "${WRKSRC}/bazel-bin/gui/tool/mozc_tool" \
+		"${PREFIX}/libexec/mozc/mozc_tool"
+.endif
+.if ${BUILD_PACKAGES:M-fcitx}
+	${INSTALL_PROGRAM_DIR} "${PREFIX}/lib/fcitx5"
+	${INSTALL_PROGRAM} "${WRKSRC}/bazel-bin/unix/fcitx5/fcitx5-mozc.so" \
+		"${PREFIX}/lib/fcitx5/fcitx5-mozc.so"
+	${INSTALL_DATA_DIR} "${PREFIX}/share/fcitx5"
+	${INSTALL_DATA_DIR} "${PREFIX}/share/fcitx5/addon"
+	${INSTALL_DATA} "${WRKSRC}/unix/fcitx5/mozc-addon.conf" \
+		"${PREFIX}/share/fcitx5/addon/mozc.conf"
+	${INSTALL_DATA_DIR} "${PREFIX}/share/fcitx5/inputmethod"
+	${INSTALL_DATA} "${WRKSRC}/unix/fcitx5/mozc.conf" \
+		"${PREFIX}/share/fcitx5/inputmethod/mozc.conf"
+	${INSTALL_DATA_DIR} "${PREFIX}/share/metainfo"
+	${INSTALL_DATA} "${WRKSRC}/unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml" \
+		"${PREFIX}/share/metainfo/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml"
+.for lang in ${L10N_LANGS}
+	${INSTALL_DATA_DIR} "${PREFIX}/share/locale/${lang}/LC_MESSAGES"
+	${INSTALL_DATA} "${WRKSRC}/unix/fcitx5/po/${lang}.mo" \
+		"${PREFIX}/share/locale/${lang}/LC_MESSAGES/fcitx5-mozc.mo"
+.endfor
+	${INSTALL_DATA_DIR} "${PREFIX}/share/icons/hicolor/128x128/apps"
+	${INSTALL_DATA_DIR} "${PREFIX}/share/icons/hicolor/32x32/apps"
+	${INSTALL_DATA_DIR} "${PREFIX}/share/icons/hicolor/48x48/apps"
+	${INSTALL_DATA} "${WRKSRC}/data/images/product_icon_32bpp-128.png" \
+		"${PREFIX}/share/icons/hicolor/128x128/apps/org.fcitx.Fcitx5.fcitx_mozc.png"
+	${INSTALL_DATA} "${WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png" \
+		"${PREFIX}/share/icons/hicolor/32x32/apps/org.fcitx.Fcitx5.fcitx_mozc.png"
+	ln -sf org.fcitx.Fcitx5.fcitx_mozc.png \
+		"${PREFIX}/share/icons/hicolor/128x128/apps/fcitx_mozc.png"
+	ln -sf org.fcitx.Fcitx5.fcitx_mozc.png \
+		"${PREFIX}/share/icons/hicolor/32x32/apps/fcitx_mozc.png"
+.for icon in \
+	ui-alpha_full ui-alpha_half ui-direct ui-hiragana ui-katakana_full \
+	ui-katakana_half ui-dictionary ui-properties ui-tool
+	${INSTALL_DATA} "${WRKDIST}/scripts/icons/${icon}.png" \
+		"${PREFIX}/share/icons/hicolor/48x48/apps/org.fcitx.Fcitx5.fcitx_mozc_${icon:S/ui-//}.png"
+	ln -sf "org.fcitx.Fcitx5.fcitx_mozc_${icon:S/ui-//}.png" \
+		"${PREFIX}/share/icons/hicolor/48x48/apps/fcitx_mozc_${icon:S/ui-//}.png"
+.endfor
 .endif
 
 post-install:
-	${INSTALL_DATA_DIR} "${PREFIX}/share/doc/mozc"
-	${INSTALL_DATA} "${WRKSRC}/mozc/src/data/installer/credits_en.html" \
-		"${PREFIX}/share/doc/mozc/credits_en.html"
-	${INSTALL_DATA} "${FILESDIR}/LEGAL_SUDACHIDICT" \
-		"${PREFIX}/share/doc/mozc/LEGAL_SUDACHIDICT"
-	${INSTALL_DATA} "${FILESDIR}/LICENSE_SUDACHIDICT" \
-		"${PREFIX}/share/doc/mozc/LICENSE_SUDACHIDICT"
-	${INSTALL_DATA} "${FILESDIR}/LICENSE_NEOLOGD" \
-		"${PREFIX}/share/doc/mozc/LICENSE_NEOLOGD"
-	${INSTALL_DATA} "${FILESDIR}/LICENSE-2.0.txt" \
-		"${PREFIX}/share/doc/mozc/LICENSE-2.0.txt"
+.if ${BUILD_PACKAGES:M-fcitx}
+	cd ${WRKSRC} && rm -f unix/fcitx5/po/*.mo
+.endif
 
 .include <bsd.port.mk>

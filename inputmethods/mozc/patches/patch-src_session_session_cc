@@ -1,6 +1,6 @@
-Index: mozc/src/session/session.cc
---- mozc/src/session/session.cc.orig
-+++ mozc/src/session/session.cc
+Index: src/session/session.cc
+--- src/session/session.cc.orig
++++ src/session/session.cc
 @@ -238,7 +238,7 @@ std::unique_ptr<ImeContext> Session::CreateContext(
    // Tests for session layer (session_handler_scenario_test, etc) can be
    // unstable.
