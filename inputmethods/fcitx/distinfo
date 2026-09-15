@@ -1,4 +1,6 @@
 SHA256 (en_dict-20121020.tar.gz) = xEpdeEeSXuqeTS0EdI1ELNKN2SmaC1cu99kerE9abOs=
 SHA256 (fcitx5-5.1.22.tar.zst) = cnSpA8auqM/ked80Oe4xxyy2nJSJc899iJa+kH8q9q8=
+SHA256 (fcitx5-70488af0ae-osyncstream.patch) = DJqxHTHv1BsCkOpicS/L7C2aAwPqFMkeoJMAgLyLb44=
 SIZE (en_dict-20121020.tar.gz) = 630491
 SIZE (fcitx5-5.1.22.tar.zst) = 9919421
+SIZE (fcitx5-70488af0ae-osyncstream.patch) = 1955
