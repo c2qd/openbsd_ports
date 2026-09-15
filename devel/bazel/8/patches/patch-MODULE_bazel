@@ -1,7 +1,21 @@
 Index: MODULE.bazel
 --- MODULE.bazel.orig
 +++ MODULE.bazel
-@@ -100,6 +100,13 @@ bazel_dep(name = "c-ares", version = "1.15.0")
+@@ -41,6 +41,13 @@ bazel_dep(name = "chicory", version = "1.1.0")
+ bazel_dep(name = "apple_support", version = "1.23.1")
+ bazel_dep(name = "rules_cc", version = "0.1.1")
+ 
++single_version_override(
++    module_name = "rules_cc",
++    patches = [
++        "//third_party:rules_cc_bsd_cc_toolchain_config.bzl.patch",
++    ],
++)
++
+ # repo_name needs to be used, until WORKSPACE mode is to be supported in bazel_tools
+ bazel_dep(name = "protobuf", version = "29.0", repo_name = "com_google_protobuf")
+ 
+@@ -100,6 +107,13 @@ bazel_dep(name = "c-ares", version = "1.15.0")
  bazel_dep(name = "rules_go", version = "0.48.0")
  bazel_dep(name = "rules_kotlin", version = "1.9.6")
  bazel_dep(name = "re2", version = "2024-07-02.bcr.1")

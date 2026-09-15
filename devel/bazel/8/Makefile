@@ -4,11 +4,14 @@ BCR_COMMIT =		b5176b63a86cea0d1d8093daf8d353fe707d3d98
 
 MODJAVA_VER =		21
 
-EXTRA_BAZEL_ARGS += --linkopt=-lm --host_linkopt=-lm
+post-extract:
+	cp ${FILESDIR}/rules_cc_bsd_cc_toolchain_config.bzl.patch \
+		${FILESDIR}/c-ares_BUILD.bazel.patch \
+		${WRKSRC}/third_party
 
 post-patch:
-	cp ${FILESDIR}/c-ares_BUILD.bazel.patch \
-		${WRKSRC}/third_party
+	${SUBST_CMD} -DCC=${CC} -DLD=${LD} -DWRKDIR=${WRKDIR} \
+		${WRKSRC}/third_party/rules_cc_bsd_cc_toolchain_config.bzl.patch
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/output/bazel ${PREFIX}/bin/bazel8
