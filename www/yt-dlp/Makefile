@@ -1,12 +1,12 @@
 COMMENT =	CLI program to download videos from YouTube and other sites
 
 MODPY_DISTV =	2026.8.19
-VERSION = ${MODPY_DISTV}
+VERSION = 2026.08.19
 
 DISTNAME =	yt-dlp-${VERSION}
-DISTFILES =	yt_dlp-${VERSION}${EXTRACT_SUFX}
+DISTFILES =	yt_dlp-${MODPY_DISTV}${EXTRACT_SUFX}
 
-WRKDIST = ${WRKDIR}/yt_dlp-${VERSION}
+WRKDIST = ${WRKDIR}/yt_dlp-${MODPY_DISTV}
 
 CATEGORIES =	www
 
