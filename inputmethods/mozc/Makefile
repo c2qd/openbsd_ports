@@ -113,7 +113,7 @@ MODULES +=						devel/bazel lang/python
 
 MODBAZEL_VERSION =				9
 
-MODBAZEL_BCR_COMMIT_ID =		2459648091f2c5b8e21a46613cf39bffb6fba298
+MODBAZEL_BCR_COMMIT =			2459648091f2c5b8e21a46613cf39bffb6fba298
 
 MODBAZEL_CONFIGS =				oss_linux release_build
 

@@ -20,14 +20,9 @@ MAKE_ENV += HTTP_PROXY=http://127.0.0.1:1 HTTPS_PROXY=http://127.0.0.1:1
 MODBAZEL_USE_BCR ?= Yes
 
 .if ${MODBAZEL_USE_BCR:L} == "yes"
-.if empty(MODBAZEL_BCR_COMMIT_ID)
-ERRORS += "MODBAZEL_BCR_COMMIT_ID must be set to a commit ID of"
-ERRORS += "https://github.com/bazelbuild/bazel-central-registry"
-.endif
-
 DIST_TUPLE += github bazelbuild bazel-central-registry \
-			  ${MODBAZEL_BCR_COMMIT_ID} bazel-central-registry
-MODBAZEL_BCR_DISTFILE = bazelbuild-bazel-central-registry-${MODBAZEL_BCR_COMMIT_ID}.tar.gz
+			  ${MODBAZEL_BCR_COMMIT} bazel-central-registry
+MODBAZEL_BCR_DISTFILE = bazelbuild-bazel-central-registry-${MODBAZEL_BCR_COMMIT}.tar.gz
 MODBAZEL_BCR_DIR = ${WRKDIST}/bazel-central-registry
 MODBAZEL_FLAGS += --registry=file://${MODBAZEL_BCR_DIR}
 TEST_FLAGS += --registry=file://${MODBAZEL_BCR_DIR}
