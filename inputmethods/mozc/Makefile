@@ -117,12 +117,6 @@ MODBAZEL_BCR_COMMIT =			2459648091f2c5b8e21a46613cf39bffb6fba298
 
 MODBAZEL_CONFIGS =				oss_linux release_build
 
-.if ${MACHINE_ARCH} == "amd64"
-MODBAZEL_FLAGS +=				--platforms=//:openbsd-x86_64
-.elif ${MACHINE_ARCH} == "arm64"
-MODBAZEL_FLAGS +=				--platforms=//:openbsd-arm64
-.endif
-
 MODPY_RUNDEP =					No
 
 ALL_TARGET =					server:mozc_server gui/tool:mozc_tool unix/fcitx5:fcitx5-mozc.so
