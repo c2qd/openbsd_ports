@@ -4,7 +4,7 @@ MODPY_DISTV =			0.16.3
 REVISION =				0
 DISTNAME =				curl_cffi-${MODPY_DISTV}
 PKGNAME =				py-${DISTNAME}
-CATEGORIES =			www
+CATEGORIES =			net www
 
 ONLY_FOR_ARCHS =		amd64 arm64 riscv64
 
@@ -16,7 +16,7 @@ MAINTAINER =			c2qd
 WANTLIB +=				curl-impersonate
 
 BUILD_DEPENDS =			devel/py-cffi>=2.0.0
-LIB_DEPENDS =			www/curl-impersonate
+LIB_DEPENDS =			net/curl-impersonate
 RUN_DEPENDS =   		devel/py-cffi>=2.0.0 devel/py-certifi>=2024.2.2
 
 MODULES =				lang/python
