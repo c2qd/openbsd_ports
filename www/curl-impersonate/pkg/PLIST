@@ -57,6 +57,7 @@ share/doc/curl-impersonate/
 share/doc/curl-impersonate/LICENSE
 share/doc/curl-impersonate/LICENSE_BORINGSSL
 share/doc/curl-impersonate/LICENSE_BROTLI
+share/doc/curl-impersonate/LICENSE_CARES
 share/doc/curl-impersonate/LICENSE_CURL
 share/doc/curl-impersonate/LICENSE_NGHTTP2
 share/doc/curl-impersonate/LICENSE_NGHTTP3

@@ -2,8 +2,7 @@ COMMENT =               Special curl build that can impersonate major browsers
 
 HOMEPAGE =				https://curl-impersonate.readthedocs.io/
 
-VERSION =               2.2.2
-REVISION =				2
+VERSION =               2.2.3
 DISTNAME =              curl-impersonate-${VERSION}
 CATEGORIES =            net www
 
@@ -24,30 +23,23 @@ PERMIT_PACKAGE =		Yes
 
 DIST_SUBDIR =			curl-impersonate
 
-ZLIB_VERSION =			1.3.1
-ZSTD_VERSION =			1.5.7
-BROTLI_VERSION =		1.2.0
-BORINGSSL_COMMIT =		156c7b75ae9b8c3b3f847acf264f17594c3859fb
-NGHTTP2_VERSION =		1.63.0
-NGTCP2_VERSION =		1.20.0
-NGHTTP3_VERSION =		1.15.0
-CURL_VERSION =			curl-8_21_0
-
-DISTFILES.zlib =		zlib-${ZLIB_VERSION}.tar.gz
-SITES.zlib =			https://github.com/madler/zlib/releases/download/v${ZLIB_VERSION}/
-DISTFILES.zstd =		zstd-${ZSTD_VERSION}.tar.gz
-SITES.zstd =			https://github.com/facebook/zstd/releases/download/v${ZSTD_VERSION}/
-DISTFILES.brotli =		v${BROTLI_VERSION}.tar.gz
+DISTFILES.zlib =		zlib-1.3.1.tar.gz
+SITES.zlib =			https://github.com/madler/zlib/releases/download/v1.3.1/
+DISTFILES.zstd =		zstd-1.5.7.tar.gz
+SITES.zstd =			https://github.com/facebook/zstd/releases/download/v1.5.7/
+DISTFILES.brotli =		v1.2.0.tar.gz
 SITES.brotli =			https://github.com/google/brotli/archive/refs/tags/
-DISTFILES.boringssl =	${BORINGSSL_COMMIT}.zip
+DISTFILES.boringssl =	156c7b75ae9b8c3b3f847acf264f17594c3859fb.zip
 SITES.boringssl =		https://github.com/google/boringssl/archive/
-DISTFILES.nghttp2 =		nghttp2-${NGHTTP2_VERSION}.tar.bz2
-SITES.nghttp2 =			https://github.com/nghttp2/nghttp2/releases/download/v${NGHTTP2_VERSION}/
-DISTFILES.ngtcp2 =		ngtcp2-${NGTCP2_VERSION}.tar.bz2
-SITES.ngtcp2 =			https://github.com/ngtcp2/ngtcp2/releases/download/v${NGTCP2_VERSION}/
-DISTFILES.nghttp3 =		nghttp3-${NGHTTP3_VERSION}.tar.bz2
-SITES.nghttp3 =			https://github.com/ngtcp2/nghttp3/releases/download/v${NGHTTP3_VERSION}/
-DISTFILES.curl =		${CURL_VERSION}.tar.gz
+DISTFILES.nghttp2 =		nghttp2-1.63.0.tar.bz2
+SITES.nghttp2 =			https://github.com/nghttp2/nghttp2/releases/download/v1.63.0/
+DISTFILES.ngtcp2 =		ngtcp2-1.20.0.tar.bz2
+SITES.ngtcp2 =			https://github.com/ngtcp2/ngtcp2/releases/download/v1.20.0/
+DISTFILES.nghttp3 =		nghttp3-1.15.0.tar.bz2
+SITES.nghttp3 =			https://github.com/ngtcp2/nghttp3/releases/download/v1.15.0/
+DISTFILES.cares =		c-ares-1.34.8.tar.gz
+SITES.cares =			https://github.com/c-ares/c-ares/releases/download/v1.34.8/
+DISTFILES.curl =		curl-8_22_0.tar.gz
 SITES.curl =			https://github.com/curl/curl/archive/
 
 EXTRACT_ONLY =			${GH_PROJECT}-${VERSION}${EXTRACT_SUFX}
@@ -71,5 +63,13 @@ SUBST_TARGETS +=		${WRKSRC}/CMakeLists.txt
 
 post-patch:
 	${SUBST_CMD} ${SUBST_TARGETS}
+
+post-build:
+	cd ${WRKBUILD} && ${LOCALBASE}/bin/cmake -P CollectLicenses.cmake
+
+post-install:
+	${INSTALL_DATA_DIR} "${PREFIX}/share/doc/curl-impersonate"
+	find ${WRKBUILD}/licenses -type f -exec \
+		${INSTALL_DATA} "{}" "${PREFIX}/share/doc/curl-impersonate" \;
 
 .include <bsd.port.mk>
