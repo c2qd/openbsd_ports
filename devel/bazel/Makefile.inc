@@ -34,7 +34,7 @@ COMPILER =		    base-clang
 
 MODULES =		    java lang/python
 
-BUILD_DEPENDS =		shells/bash
+BUILD_DEPENDS =		archivers/unzip shells/bash
 
 # Disable stripping. The `bazel` binary contains an embedded zip file;
 # stripping the binary removes this zip file, breaking the binary.
@@ -53,6 +53,7 @@ pre-build:
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
         EMBED_LABEL="${VERSION}" \
+		TMPDIR="${WRKDIR}/bazel_tmpdir" \
 		BAZEL_DIR_STARTUP_OPTIONS="${BAZEL_DIR_STARTUP_OPTIONS}" \
         EXTRA_BAZEL_ARGS="${EXTRA_BAZEL_ARGS}" \
 		SOURCE_DATE_EPOCH="0" \
