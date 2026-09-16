@@ -42,7 +42,7 @@ SITES.cares =			https://github.com/c-ares/c-ares/releases/download/v1.34.8/
 DISTFILES.curl =		curl-8_22_0.tar.gz
 SITES.curl =			https://github.com/curl/curl/archive/
 
-EXTRACT_ONLY =			${GH_PROJECT}-${VERSION}${EXTRACT_SUFX}
+EXTRACT_ONLY =			${GH_DISTFILE}
 
 # Required by the wrapper scripts
 RUN_DEPENDS +=			shells/bash

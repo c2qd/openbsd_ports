@@ -81,8 +81,7 @@ SITES.neologd =					https://github.com/utuhiro78/mozcdic-ut-neologd/raw/${UT_NEO
 SITES.sudachidict =				https://github.com/utuhiro78/mozcdic-ut-sudachidict/raw/${UT_SUDACHIDICT_COMMIT}/
 SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_VERSION}/
 
-EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
-								${MODBAZEL_BCR_DISTFILE}
+EXTRACT_ONLY =					${GH_DISTFILE} ${MODBAZEL_BCR_DISTFILE}
 
 BUILD_DEPENDS +=				devel/gettext,-tools
 
