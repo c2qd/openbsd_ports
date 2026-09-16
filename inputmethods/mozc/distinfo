@@ -15,7 +15,7 @@ SHA256 (mozc/googletest-1.17.0.tar.gz) = Zfq3AdmCnTjLd8FKzcQx0hCL/b+JeeQOuK5Wft8
 SHA256 (mozc/jawiki-20260901-pages-articles-multistream-index.txt.bz2) = HPQwF33eP6z42BSgUQjXDWFG/ti3+VQ+m6KTHS/fbtI=
 SHA256 (mozc/jigyosyo.zip) = FL4QMPYHxfgZ8vRaSF6JURkHvdHWLn+xkxtuSKNDHDo=
 SHA256 (mozc/ken_all.zip) = OtyX2OGeEWimzcsvznWdDp5hOpo7YwzBgK7P1WroHq8=
-SHA256 (mozc/mozc-3.34.6239.20260914.00-7a7a0e00.tar.gz) = qKQxP819Lqnpr8mA+voGrFAPsXsjv+7Msxj1Wo71t1I=
+SHA256 (mozc/mozc-3.34.6239.20260915.01-07f54452.tar.gz) = tAka4mU6Q9mZXQVSNPsyjoLLn3tucfaOrW8MTTY4A2M=
 SHA256 (mozc/platforms-1.0.0.tar.gz) = M4TrHDB2JwT7445EAgThFBVAhsj8iowuPihEECjAGag=
 SHA256 (mozc/protobuf-34.1.bazel.tar.gz) = nwkzrRKrsKiVeztkrvw0d0zL5X93+JDGbLQGdRm7g8E=
 SHA256 (mozc/rules_android-v0.7.1.tar.gz) = fEW2qqg3+28vI60ROHY4ywD6n4OaBOxWTKrHClQ6nNU=
@@ -52,7 +52,7 @@ SIZE (mozc/googletest-1.17.0.tar.gz) = 885595
 SIZE (mozc/jawiki-20260901-pages-articles-multistream-index.txt.bz2) = 31357252
 SIZE (mozc/jigyosyo.zip) = 774660
 SIZE (mozc/ken_all.zip) = 1694719
-SIZE (mozc/mozc-3.34.6239.20260914.00-7a7a0e00.tar.gz) = 29220770
+SIZE (mozc/mozc-3.34.6239.20260915.01-07f54452.tar.gz) = 29221885
 SIZE (mozc/platforms-1.0.0.tar.gz) = 7879
 SIZE (mozc/protobuf-34.1.bazel.tar.gz) = 7038508
 SIZE (mozc/rules_android-v0.7.1.tar.gz) = 1308711
