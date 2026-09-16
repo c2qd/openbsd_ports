@@ -7,8 +7,6 @@ CATEGORIES =	    devel
 
 HOMEPAGE =		    https://bazel.build/
 
-MAINTAINER =		c2qd
-
 # Apache 2.0
 PERMIT_PACKAGE =	Yes
 

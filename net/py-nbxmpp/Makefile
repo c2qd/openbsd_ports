@@ -7,8 +7,6 @@ CATEGORIES =		net devel
 
 HOMEPAGE =			https://python-nbxmpp.gajim.org/
 
-MAINTAINER =		c2qd
-
 # GPLv3
 PERMIT_PACKAGE =	Yes
 

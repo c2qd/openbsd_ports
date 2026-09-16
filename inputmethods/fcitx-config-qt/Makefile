@@ -7,8 +7,6 @@ SHARED_LIBS +=		Fcitx5Migrator            0.0 # 0.0
 
 CATEGORIES =		inputmethods
 
-MAINTAINER =		c2qd
-
 HOMEPAGE =			https://github.com/fcitx/fcitx5-configtool
 
 # GPLv2.0+

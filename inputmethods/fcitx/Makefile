@@ -12,8 +12,6 @@ CATEGORIES =			inputmethods chinese japanese korean
 
 HOMEPAGE =				https://fcitx-im.org/
 
-MAINTAINER =			c2qd
-
 # LGPLv2.1+
 PERMIT_PACKAGE=			Yes
 

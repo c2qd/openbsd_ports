@@ -15,8 +15,6 @@ GH_ACCOUNT =            lexiforest
 GH_PROJECT =            curl-impersonate
 GH_TAGNAME =            v${VERSION}
 
-MAINTAINER =			c2qd
-
 # MIT + Zlib(zlib) + BSD-3-Clause(zstd) +
 # MIT(brotli, nghttp2, ngtcp2, nghttp3) + Apache-2.0(boringssl) + curl(curl)
 PERMIT_PACKAGE =		Yes

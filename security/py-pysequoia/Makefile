@@ -7,8 +7,6 @@ CATEGORIES =		security devel
 
 HOMEPAGE =			https://github.com/wiktor-k/pysequoia
 
-MAINTAINER =		c2qd
-
 # Apache 2.0
 PERMIT_PACKAGE =	Yes
 

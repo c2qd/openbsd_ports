@@ -7,8 +7,6 @@ GH_TAGNAME =		0.8.1
 
 CATEGORIES =		games x11
 
-MAINTAINER =		c2qd
-
 SHARED_LIBS +=		lcf                       1.0 # 1.0
 
 HOMEPAGE =			https://easyrpg.org/

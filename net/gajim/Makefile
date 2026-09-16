@@ -5,8 +5,6 @@ CATEGORIES=		net x11
 
 HOMEPAGE=		https://www.gajim.org
 
-MAINTAINER =	c2qd
-
 SITES=			${HOMEPAGE}/downloads/${MODPY_DISTV:R}/
 
 # GPLv3 only

@@ -11,8 +11,6 @@ ONLY_FOR_ARCHS =		amd64 arm64 riscv64
 # MIT
 PERMIT_PACKAGE =		Yes
 
-MAINTAINER =			c2qd
-
 WANTLIB +=				curl-impersonate
 
 BUILD_DEPENDS =			devel/py-cffi>=2.0.0

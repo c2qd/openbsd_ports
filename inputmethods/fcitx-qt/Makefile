@@ -12,8 +12,6 @@ CATEGORIES =		inputmethods
 
 HOMEPAGE =			https://fcitx-im.org/
 
-MAINTAINER =		c2qd (https://codeberg.org/c2qd/openbsd_ports/issues)
-
 # BSD for plugins
 # LGPL2.1+ for other files
 PERMIT_PACKAGE=		Yes

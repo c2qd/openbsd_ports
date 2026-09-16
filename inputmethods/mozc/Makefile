@@ -27,8 +27,6 @@ ONLY_FOR_ARCHS =				amd64 arm64
 
 CATEGORIES=						inputmethods japanese
 
-MAINTAINER =					c2qd
-
 # non-ut flavor:
 # BSD-3-Clause(mozc, protobuf) + Apache-2.0(abseil-cpp) + Zlib(zlib) +
 # NAIST-2003(IPADic) + Public Domain(Okinawa dictionary, Zip code data) +
