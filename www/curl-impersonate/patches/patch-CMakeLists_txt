@@ -25,17 +25,6 @@ Index: CMakeLists.txt
  
  set(_disable_boringssl_asm_default OFF)
  if(WIN32)
-@@ -422,8 +422,8 @@ endif()
- # Single curl build mode: produce shared+static libcurl and static curl binary.
- set(_curl_build_flags
-   -DBUILD_SHARED_LIBS=ON
--  -DBUILD_STATIC_LIBS=ON
--  -DBUILD_STATIC_CURL=ON
-+  -DBUILD_STATIC_LIBS=OFF
-+  -DBUILD_STATIC_CURL=OFF
-   -DBUILD_CURL_EXE=ON
- )
- 
 @@ -582,6 +582,7 @@ ExternalProject_Add(curl
        -DUSE_NGTCP2=ON
        -DCURL_DISABLE_LDAP=ON
@@ -44,7 +33,15 @@ Index: CMakeLists.txt
        # XXX: psl should be enabled in the future:
        # https://daniel.haxx.se/blog/2024/01/10/psl-in-curl/
        -DCURL_USE_LIBPSL=OFF
-@@ -664,12 +665,12 @@ endif()
+@@ -642,7 +643,6 @@ else()
+     DESTINATION ${CMAKE_INSTALL_LIBDIR}
+     FILES_MATCHING
+       PATTERN "CMakeFiles" EXCLUDE
+-      PATTERN "libcurl-impersonate*.a"
+       PATTERN "libcurl-impersonate*.so*"
+       PATTERN "libcurl-impersonate*.dylib*"
+   )
+@@ -664,12 +664,12 @@ endif()
  function(_install_dependency_license project license_file output_name)
    install(
      FILES "${DEPS_SRC_DIR}/${project}/${license_file}"
