@@ -16,7 +16,7 @@ GH_PROJECT =            curl-impersonate
 GH_TAGNAME =            v${VERSION}
 
 # MIT + Zlib(zlib) + BSD-3-Clause(zstd) +
-# MIT(brotli, nghttp2, ngtcp2, nghttp3) + Apache-2.0(boringssl) + curl(curl)
+# MIT(brotli, nghttp2, ngtcp2, nghttp3, c-ares) + Apache-2.0(boringssl) + curl(curl)
 PERMIT_PACKAGE =		Yes
 
 DIST_SUBDIR =			curl-impersonate
