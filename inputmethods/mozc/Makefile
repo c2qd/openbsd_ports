@@ -5,7 +5,7 @@ COMMENT-fcitx =					Fcitx5 addon for Mozc
 HOMEPAGE =						https://github.com/google/mozc
 HOMEPAGE-fcitx =				https://github.com/fcitx/mozc
 
-VERSION =						3.34.6239.20260915.01
+VERSION =						3.34.6239.20260919.01
 DISTNAME =						mozc-${VERSION}
 
 FULLPKGNAME-tool =				mozc-tool-${VERSION}
@@ -15,7 +15,7 @@ FULLPKGPATH-fcitx =				${PKGPATH},-fcitx
 
 GH_ACCOUNT =					fcitx
 GH_PROJECT =					mozc
-GH_COMMIT =						07f544528a885c2d267f3e9b2937a1ebbe7edac2
+GH_COMMIT =						91a85938122f4ab8ca855df98daf2acf2cf3cf3c
 
 MULTI_PACKAGES =				-main -tool -fcitx
 FLAVORS =						ut
