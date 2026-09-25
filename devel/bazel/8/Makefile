@@ -1,4 +1,4 @@
-VERSION =			8.8.0
+VERSION =			8.8.1
 
 BCR_COMMIT =		b5176b63a86cea0d1d8093daf8d353fe707d3d98
 
