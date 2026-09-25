@@ -196,7 +196,8 @@ pre-install:
 .endfor
 .endif
 .if ${BUILD_PACKAGES:M-ibus}
-	cd ${WRKSRC}/bazel-bin/unix && ${UNZIP} icons.zip
+	cd ${WRKSRC}/bazel-bin/unix && mkdir -p icons && \
+		${UNZIP} -qo -d icons icons.zip
 .endif
 
 do-install:
@@ -273,10 +274,10 @@ do-install:
 	${INSTALL_DATA_DIR} "${PREFIX}/share/ibus-mozc"
 .for icon in alpha_full alpha_half dictionary direct hiragana \
 	katakana_full katakana_half properties tool
-	${INSTALL_DATA} "${WRKSRC}/bazel-bin/unix/${icon}.png" \
+	${INSTALL_DATA} "${WRKSRC}/bazel-bin/unix/icons/${icon}.png" \
 		"${PREFIX}/share/ibus-mozc/${icon}.png"
 .endfor
-	${INSTALL_DATA} "${WRKSRC}/bazel-bin/unix/mozc.png" \
+	${INSTALL_DATA} "${WRKSRC}/bazel-bin/unix/icons/mozc.png" \
 		"${PREFIX}/share/ibus-mozc/product_icon.png"
 .endif
 
@@ -285,7 +286,7 @@ post-install:
 	cd ${WRKSRC} && rm -f unix/fcitx5/po/*.mo
 .endif
 .if ${BUILD_PACKAGES:M-ibus}
-	cd ${WRKSRC}/bazel-bin/unix && rm -rf *.png *.svg outlined white
+	cd ${WRKSRC}/bazel-bin/unix && rm -rf icons
 .endif
 
 .include "bazel.inc"
