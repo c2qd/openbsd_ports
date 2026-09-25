@@ -16,11 +16,6 @@ Add to `/etc/mk.conf`:
 PORTSDIR_PATH=<clone destination>:${PORTSDIR}/mystuff:${PORTSDIR}
 ```
 
-## References
-
-[kdeguchi/mozc-ports: Latest version mozc ports for FreeBSD](https://github.com/kdeguchi/mozc-ports)  
-[OpenBSD 7.5でBazelをビルドする #OpenBSD7.0 - Qiita](https://qiita.com/asuka1975/items/c162ef0295dea6cef639)
-
 ## Licenses
 
 The following files are distributed under their original licenses:  
