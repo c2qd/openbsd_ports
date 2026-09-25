@@ -6,7 +6,7 @@ COMMENT-ibus =					IBus client and Qt renderer for Mozc
 HOMEPAGE =						https://github.com/google/mozc
 HOMEPAGE-fcitx =				https://github.com/fcitx/mozc
 
-VERSION =						3.34.6239.20260919.01
+VERSION =						3.34.6239.20260925.09
 DISTNAME =						mozc-${VERSION}
 
 FULLPKGNAME-tool =				mozc-tool-${VERSION}
@@ -18,7 +18,7 @@ FULLPKGPATH-ibus =				${PKGPATH},-ibus
 
 GH_ACCOUNT =					fcitx
 GH_PROJECT =					mozc
-GH_COMMIT =						91a85938122f4ab8ca855df98daf2acf2cf3cf3c
+GH_COMMIT =						aebda96174925e463ba7558e5d6f81f607781948
 
 MULTI_PACKAGES =				-main -tool -fcitx -ibus
 FLAVORS =						ut

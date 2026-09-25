@@ -17,7 +17,7 @@ SHA256 (mozc/googletest-1.17.0.tar.gz) = Zfq3AdmCnTjLd8FKzcQx0hCL/b+JeeQOuK5Wft8
 SHA256 (mozc/jawiki-20260901-pages-articles-multistream-index.txt.bz2) = HPQwF33eP6z42BSgUQjXDWFG/ti3+VQ+m6KTHS/fbtI=
 SHA256 (mozc/jigyosyo.zip) = FL4QMPYHxfgZ8vRaSF6JURkHvdHWLn+xkxtuSKNDHDo=
 SHA256 (mozc/ken_all.zip) = OtyX2OGeEWimzcsvznWdDp5hOpo7YwzBgK7P1WroHq8=
-SHA256 (mozc/mozc-3.34.6239.20260919.01-91a85938.tar.gz) = Z8/VX8HNtvGYTI0XakB5dz0KjUvbTv0sQ1dYP0fnPRA=
+SHA256 (mozc/mozc-3.34.6239.20260925.09-aebda961.tar.gz) = QVktRfnTSRvV9d+oRgI4DuGKTC5fg5HzGg0VpDFe9VU=
 SHA256 (mozc/platforms-1.0.0.tar.gz) = M4TrHDB2JwT7445EAgThFBVAhsj8iowuPihEECjAGag=
 SHA256 (mozc/properties.png) = xK6Lt5kvQxV76dAm92pwOa9uDj3g8iCEIgjf2ow4cUo=
 SHA256 (mozc/properties.svg) = mwGxM74cr/xoDxMtOF0OWUJi1s/Sl1mmPEKAULg/5ig=
@@ -60,7 +60,7 @@ SIZE (mozc/googletest-1.17.0.tar.gz) = 885595
 SIZE (mozc/jawiki-20260901-pages-articles-multistream-index.txt.bz2) = 31357252
 SIZE (mozc/jigyosyo.zip) = 774660
 SIZE (mozc/ken_all.zip) = 1694719
-SIZE (mozc/mozc-3.34.6239.20260919.01-91a85938.tar.gz) = 29231798
+SIZE (mozc/mozc-3.34.6239.20260925.09-aebda961.tar.gz) = 29238276
 SIZE (mozc/platforms-1.0.0.tar.gz) = 7879
 SIZE (mozc/properties.png) = 557
 SIZE (mozc/properties.svg) = 812
