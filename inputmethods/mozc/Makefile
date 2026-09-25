@@ -112,9 +112,10 @@ LIB_DEPENDS-tool +=				x11/qt6/qtbase
 LIB_DEPENDS-fcitx +=			inputmethods/fcitx
 LIB_DEPENDS-ibus +=				inputmethods/ibus x11/qt6/qtbase
 
-RUN_DEPENDS-tool +=				devel/xdg-utils ${BASE_PKGPATH},-main
-RUN_DEPENDS-fcitx +=			${BASE_PKGPATH},-main
-RUN_DEPENDS-ibus +=				${BASE_PKGPATH},-main
+RUN_DEPENDS-tool +=				${BASE_PKGPATH},-main devel/xdg-utils
+RUN_DEPENDS-fcitx +=			${BASE_PKGPATH},-main inputmethods/fcitx
+RUN_DEPENDS-ibus +=				${BASE_PKGPATH},-main inputmethods/ibus
+
 COMPILER =						base-clang
 
 WRKSRC =						${WRKDIST}/src
