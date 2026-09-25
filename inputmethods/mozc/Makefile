@@ -139,9 +139,19 @@ MODBAZEL_CONFIGS =				oss_linux release_build
 
 MODPY_RUNDEP =					No
 
-ALL_TARGET =					server:mozc_server gui/tool:mozc_tool renderer/qt:mozc_renderer \
-								unix/fcitx5:fcitx5-mozc.so unix/ibus/ibus_mozc \
+.if ${BUILD_PACKAGES:M-main}
+ALL_TARGET +=					server:mozc_server
+.endif
+.if ${BUILD_PACKAGES:M-tool}
+ALL_TARGET +=					gui/tool:mozc_tool
+.endif
+.if ${BUILD_PACKAGES:M-fcitx}
+ALL_TARGET +=					unix/fcitx5:fcitx5-mozc.so
+.endif
+.if ${BUILD_PACKAGES:M-ibus}
+ALL_TARGET +=					renderer/qt:mozc_renderer unix/ibus/ibus_mozc \
 								unix/ibus:gen_mozc_xml unix:icons
+.endif
 
 CFLAGS +=						-I${X11BASE}/include
 LDFLAGS +=						-L${LOCALBASE}/lib
