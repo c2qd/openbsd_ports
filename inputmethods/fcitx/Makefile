@@ -1,11 +1,10 @@
 COMMENT =				flexible input method framework
 
-DISTNAME =				fcitx5-5.1.22
-REVISION =				0
+DISTNAME =				fcitx5-5.1.23
 PKGNAME =				${DISTNAME:S/fcitx5/fcitx/}
 
 SHARED_LIBS +=			Fcitx5Config                    0.1 # 0.0
-SHARED_LIBS +=			Fcitx5Core                      1.2 # 0.0
+SHARED_LIBS +=			Fcitx5Core                      1.3 # 0.0
 SHARED_LIBS +=			Fcitx5Utils                     2.0 # 0.0
 
 CATEGORIES =			inputmethods chinese japanese korean
@@ -20,12 +19,6 @@ SITES.data =			https://download.fcitx-im.org/data/
 DISTFILES.data=			en_dict-20121020.tar.gz
 
 EXTRACT_SUFX =			.tar.zst
-
-# 5.1.22 only
-PATCHFILES.syncstream =	fcitx5-70488af0ae-osyncstream{70488af0ae335ad896a94e828df6891e6d696418}.patch
-SITES.syncstream =		https://github.com/fcitx/fcitx5/commit/
-
-PATCH_DIST_STRIP =		-p1
 
 WANTLIB +=				${COMPILER_LIBCXX} c cairo dbus-1 enchant-2
 WANTLIB +=				execinfo expat gdk_pixbuf-2.0 gio-2.0 glib-2.0
