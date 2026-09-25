@@ -77,6 +77,7 @@ SUPDISTFILES.sudachidict =		${UT_SUDACHIDICT_COMMIT}{mozcdic-ut-sudachidict}.txt
 SUPDISTFILES.jawiki_index =		jawiki-${JAWIKI_VERSION}-pages-articles-multistream-index.txt.bz2
 
 .if ${FLAVOR:Mut}
+PLIST-main =					${PKGDIR}/PLIST-main-ut
 PATCH_LIST =					patch_ut-* patch-*
 BUILD_DEPENDS +=				archivers/bzip2
 
