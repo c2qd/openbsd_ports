@@ -1,10 +1,8 @@
 COMMENT =			Qt library and IM module for fcitx5
 
-DISTNAME =			fcitx5-qt-5.1.15
+DISTNAME =			fcitx5-qt-5.1.16
 PKGNAME =			${DISTNAME:S/fcitx5/fcitx/}
 
-SHARED_LIBS +=		Fcitx5Qt5WidgetsAddons		1.0 # 0.0
-SHARED_LIBS +=		Fcitx5Qt5DBusAddons		0.1 # 0.0
 SHARED_LIBS +=		Fcitx5Qt6DBusAddons		0.1 # 0.0
 SHARED_LIBS +=		Fcitx5Qt6WidgetsAddons		0.0 # 0.0
 
@@ -19,13 +17,11 @@ PERMIT_PACKAGE=		Yes
 SITES =				https://download.fcitx-im.org/fcitx5/fcitx5-qt/
 EXTRACT_SUFX =		.tar.zst
 
-WANTLIB +=			${COMPILER_LIBCXX} Fcitx5Utils GL Qt5Core
-WANTLIB +=			Qt5DBus Qt5Gui Qt5Widgets Qt6Concurrent Qt6Core Qt6DBus
-WANTLIB +=			Qt6Gui Qt6WaylandClient Qt6Widgets c m wayland-client
-WANTLIB +=			wayland-cursor xcb xkbcommon
+WANTLIB +=			${COMPILER_LIBCXX} Fcitx5Utils GL Qt6Concurrent Qt6Core
+WANTLIB +=			Qt6DBus Qt6Gui Qt6WaylandClient Qt6Widgets c m
+WANTLIB +=			wayland-client wayland-cursor xcb xkbcommon
 
-MODULES =			devel/kf5 \
-					x11/qt6
+MODULES =			devel/cmake x11/qt6
 
 BUILD_DEPENDS =		devel/gettext,-tools \
 					inputmethods/fcitx \
@@ -39,6 +35,7 @@ RUN_DEPENDS =		devel/desktop-file-utils \
 LIB_DEPENDS =		inputmethods/fcitx
 
 CONFIGURE_ARGS =	-DENABLE_QT4=OFF \
+					-DENABLE_QT5=OFF \
 					-DENABLE_QT6=ON
 
 .include <bsd.port.mk>
