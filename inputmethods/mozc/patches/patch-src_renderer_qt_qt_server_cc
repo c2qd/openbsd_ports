@@ -1,0 +1,21 @@
+Index: src/renderer/qt/qt_server.cc
+--- src/renderer/qt/qt_server.cc.orig
++++ src/renderer/qt/qt_server.cc
+@@ -29,7 +29,7 @@
+ 
+ #include "renderer/qt/qt_server.h"
+ 
+-#if defined(__linux__) && !defined(__ANDROID__)
++#if (defined(__linux__) && !defined(__ANDROID__)) || defined(__OpenBSD__)
+ #include <stdlib.h>
+ #endif  // __linux__ && !__ANDROID__
+ 
+@@ -92,7 +92,7 @@ void QtServer::Update(std::string command) {
+ }
+ 
+ int QtServer::StartServer(int argc, char** argv) {
+-#if defined(__linux__) && !defined(__ANDROID__)
++#if (defined(__linux__) && !defined(__ANDROID__)) || defined(__OpenBSD__)
+   // |QWidget::move()| never works with wayland platform backend. Always use
+   // 'xcb' platform backend.  https://github.com/google/mozc/issues/794
+   ::setenv("QT_QPA_PLATFORM", "xcb", 1);

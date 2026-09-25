@@ -1,0 +1,16 @@
+Index: src/renderer/qt/BUILD.bazel
+--- src/renderer/qt/BUILD.bazel.orig
++++ src/renderer/qt/BUILD.bazel
+@@ -145,7 +145,11 @@ mozc_cc_qt_library(
+ 
+ build_test(
+     name = "qt_build_test",
+-    target_compatible_with = ["@platforms//os:linux"],
++    target_compatible_with = select({
++        "@platforms//os:linux": [],
++        "@platforms//os:openbsd": [],
++        "//conditions:default": ["@platforms//:incompatible"],
++    }),
+     targets = [
+         ":qt_ipc_server",
+         ":qt_ipc_thread",

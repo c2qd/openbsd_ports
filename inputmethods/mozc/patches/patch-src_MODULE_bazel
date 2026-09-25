@@ -37,6 +37,15 @@ Index: src/MODULE.bazel
  
  # gazelle: 0.48.0 2026-03-26
  # https://github.com/bazel-contrib/bazel-gazelle
+@@ -219,7 +234,7 @@ pkg_config_repository = use_repo_rule(
+ # iBus
+ pkg_config_repository(
+     name = "ibus",
+-    exec_os = ["linux"],
++    exec_os = ["linux", "openbsd"],
+     packages = [
+         "glib-2.0",
+         "gobject-2.0",
 @@ -238,6 +253,7 @@ new_local_repository(
  # Fcitx 5
  pkg_config_repository(

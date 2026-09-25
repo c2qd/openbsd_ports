@@ -1,6 +1,7 @@
 COMMENT-main =					Japanese Input Method Editor
 COMMENT-tool =					GUI configuration tool for Mozc
 COMMENT-fcitx =					Fcitx5 addon for Mozc
+COMMENT-ibus =					IBus client and Qt renderer for Mozc
 
 HOMEPAGE =						https://github.com/google/mozc
 HOMEPAGE-fcitx =				https://github.com/fcitx/mozc
@@ -10,14 +11,16 @@ DISTNAME =						mozc-${VERSION}
 
 FULLPKGNAME-tool =				mozc-tool-${VERSION}
 FULLPKGNAME-fcitx =				fcitx-mozc-${VERSION}
+FULLPKGNAME-ibus =				ibus-mozc-${VERSION}
 FULLPKGPATH-tool =				${PKGPATH},-tool
 FULLPKGPATH-fcitx =				${PKGPATH},-fcitx
+FULLPKGPATH-ibus =				${PKGPATH},-ibus
 
 GH_ACCOUNT =					fcitx
 GH_PROJECT =					mozc
 GH_COMMIT =						91a85938122f4ab8ca855df98daf2acf2cf3cf3c
 
-MULTI_PACKAGES =				-main -tool -fcitx
+MULTI_PACKAGES =				-main -tool -fcitx -ibus
 FLAVORS =						ut
 FLAVOR ?=
 
@@ -45,6 +48,19 @@ DISTFILES.zip_code_jigyosyo =	jigyosyo.zip
 SITES.zip_code_jigyosyo =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT}/
 DISTFILES.zip_code_ken_all =	ken_all.zip
 SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT}/
+
+DISTFILES.dict_png =			dictionary{outline_chrome_reader_mode_black_48dp}.png
+SITES.dict_png =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/chrome_reader_mode/materialiconsoutlined/48dp/1x/
+DISTFILES.dict_svg =			dictionary{24px}.svg
+SITES.dict_svg =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/src/action/chrome_reader_mode/materialiconsoutlined/
+DISTFILES.prop_png =			properties{round_settings_black_48dp}.png
+SITES.prop_png =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/settings/materialiconsround/48dp/1x/
+DISTFILES.prop_svg =			properties{24px}.svg
+SITES.prop_svg =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/src/action/settings/materialiconsround/
+DISTFILES.tool_png =			tool{baseline_build_black_48dp}.png
+SITES.tool_png =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/build/materialicons/48dp/1x/
+DISTFILES.tool_svg =			tool{24px}.svg
+SITES.tool_svg =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/src/action/build/materialicons/
 
 UT_COMMIT =						15c1c64502b43e31d328012860376c03c3eaf633
 UT_PERSONAL_NAMES_COMMIT =		5e0d754f3162c3e1d83568307da2c9d3ea54731f
@@ -82,19 +98,22 @@ SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_VERSION}/
 EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 								${MODBAZEL_BCR_DISTFILE}
 
-BUILD_DEPENDS +=				devel/gettext,-tools
+BUILD_DEPENDS +=				archivers/unzip devel/gettext,-tools
 
 WANTLIB +=						${COMPILER_LIBCXX} m
 WANTLIB-main +=					${WANTLIB} c
 WANTLIB-tool +=					${WANTLIB} Qt6Core Qt6Gui Qt6Widgets c
 WANTLIB-fcitx +=				${WANTLIB} Fcitx5Config Fcitx5Core Fcitx5Utils
+WANTLIB-ibus +=					${WANTLIB} Qt6Core Qt6Gui Qt6Widgets c gio-2.0
+WANTLIB-ibus +=					glib-2.0 gobject-2.0 ibus-1.0 intl
 
 LIB_DEPENDS-tool +=				x11/qt6/qtbase
 LIB_DEPENDS-fcitx +=			inputmethods/fcitx
+LIB_DEPENDS-ibus +=				inputmethods/ibus x11/qt6/qtbase
 
 RUN_DEPENDS-tool +=				devel/xdg-utils ${BASE_PKGPATH},-main
 RUN_DEPENDS-fcitx +=			${BASE_PKGPATH},-main
-
+RUN_DEPENDS-ibus +=				${BASE_PKGPATH},-main
 COMPILER =						base-clang
 
 WRKSRC =						${WRKDIST}/src
@@ -105,7 +124,8 @@ SUBST_TARGETS +=				${WRKSRC}/config.bzl \
 								${WRKSRC}/MODULE.bazel \
 								${WRKSRC}/base/system_util.cc \
 								${WRKSRC}/base/process.cc \
-								${WRKSRC}/bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch
+								${WRKSRC}/bazel/rules_cc_bsd_cc_toolchain_config.bzl.patch \
+								${WRKSRC}/unix/ibus/ibus_config_test.cc
 
 MODULES +=						devel/bazel lang/python
 
@@ -117,7 +137,9 @@ MODBAZEL_CONFIGS =				oss_linux release_build
 
 MODPY_RUNDEP =					No
 
-ALL_TARGET =					server:mozc_server gui/tool:mozc_tool unix/fcitx5:fcitx5-mozc.so
+ALL_TARGET =					server:mozc_server gui/tool:mozc_tool renderer/qt:mozc_renderer \
+								unix/fcitx5:fcitx5-mozc.so unix/ibus/ibus_mozc \
+								unix/ibus:gen_mozc_xml unix:icons
 
 CFLAGS +=						-I${X11BASE}/include
 LDFLAGS +=						-L${LOCALBASE}/lib
@@ -170,6 +192,9 @@ pre-install:
 	msgfmt ${WRKSRC}/unix/fcitx5/po/${lang}.po \
 		-o ${WRKSRC}/unix/fcitx5/po/${lang}.mo
 .endfor
+.endif
+.if ${BUILD_PACKAGES:M-ibus}
+	cd ${WRKSRC}/bazel-bin/unix && ${UNZIP} icons.zip
 .endif
 
 do-install:
@@ -234,10 +259,31 @@ do-install:
 		"${PREFIX}/share/icons/hicolor/48x48/apps/fcitx_mozc_${icon:S/ui-//}.png"
 .endfor
 .endif
+.if ${BUILD_PACKAGES:M-ibus}
+	${INSTALL_PROGRAM} "${WRKSRC}/bazel-bin/renderer/qt/mozc_renderer" \
+		"${PREFIX}/libexec/mozc/mozc_renderer"
+	${INSTALL_PROGRAM_DIR} "${PREFIX}/libexec/ibus-mozc"
+	${INSTALL_PROGRAM} "${WRKSRC}/bazel-bin/unix/ibus/ibus_mozc" \
+		"${PREFIX}/libexec/ibus-mozc/ibus-engine-mozc"
+	${INSTALL_DATA_DIR} "${PREFIX}/share/ibus/component"
+	${INSTALL_DATA} "${WRKSRC}/bazel-bin/unix/ibus/mozc.xml" \
+		"${PREFIX}/share/ibus/component/mozc.xml"
+	${INSTALL_DATA_DIR} "${PREFIX}/share/ibus-mozc"
+.for icon in alpha_full alpha_half dictionary direct hiragana \
+	katakana_full katakana_half properties tool
+	${INSTALL_DATA} "${WRKSRC}/bazel-bin/unix/${icon}.png" \
+		"${PREFIX}/share/ibus-mozc/${icon}.png"
+.endfor
+	${INSTALL_DATA} "${WRKSRC}/bazel-bin/unix/mozc.png" \
+		"${PREFIX}/share/ibus-mozc/product_icon.png"
+.endif
 
 post-install:
 .if ${BUILD_PACKAGES:M-fcitx}
 	cd ${WRKSRC} && rm -f unix/fcitx5/po/*.mo
+.endif
+.if ${BUILD_PACKAGES:M-ibus}
+	cd ${WRKSRC}/bazel-bin/unix && rm -rf *.png *.svg outlined white
 .endif
 
 .include "bazel.inc"

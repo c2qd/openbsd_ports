@@ -1,0 +1,12 @@
+Index: src/bazel/pkg_config_repository.bzl
+--- src/bazel/pkg_config_repository.bzl.orig
++++ src/bazel/pkg_config_repository.bzl
+@@ -180,7 +180,7 @@ def _pkg_config_repository_impl(repo_ctx):
+     # pkg-config does not output cflags with standard options.
+     if not includes or includes[0] == "":
+         includes = _exec_pkg_config(repo_ctx, ["--cflags-only-I", "--keep-system-cflags"])
+-    includes = [item[len("-I/"):] for item in includes]
++    includes = [item[len("-I/"):] for item in includes if item != "-I/usr/local/include"]
+     _symlinks(repo_ctx, includes)
+     data = {
+         "name": name,
