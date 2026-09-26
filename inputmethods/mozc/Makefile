@@ -4,7 +4,7 @@ COMMENT-fcitx =					Fcitx5 addon for Mozc
 COMMENT-ibus =					IBus client and Qt renderer for Mozc
 
 HOMEPAGE =						https://github.com/google/mozc
-HOMEPAGE-fcitx =				https://github.com/fcitx/mozc
+HOMEPAGE-fcitx =				https://fcitx-im.org/
 
 VERSION =						3.34.6239.20260925.09
 DISTNAME =						mozc-${VERSION}
