@@ -191,11 +191,11 @@ post-patch:
 
 pre-install:
 .if ${BUILD_PACKAGES:M-fcitx}
-	cd ${WRKSRC} && msgfmt --xml -d unix/fcitx5/po/ \
+	cd ${WRKSRC} && ${LOCALBASE}/bin/msgfmt --xml -d unix/fcitx5/po/ \
 		--template unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml.in \
 		-o unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml
 .for lang in ${L10N_LANGS}
-	msgfmt ${WRKSRC}/unix/fcitx5/po/${lang}.po \
+	${LOCALBASE}/bin/msgfmt ${WRKSRC}/unix/fcitx5/po/${lang}.po \
 		-o ${WRKSRC}/unix/fcitx5/po/${lang}.mo
 .endfor
 .endif
