@@ -10,7 +10,6 @@ SHA256 (mozc/bazel_features-v1.42.1.tar.gz) = gYm6yaa/nMFVqFTEy+v+v1i5ynotCmdkX3
 SHA256 (mozc/bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = yAoyDhvnhUzMm5G9KIma+AfGPX87+eDRUjCzoeaqttE=
 SHA256 (mozc/c686771bada1d59e9b105c81b29e6ac1a239cb54.txt.bz2) = 0stLKxbVE+JX0m0cM2c+vaJUodWqDDwMm8lPkyYZ+9w=
 SHA256 (mozc/dictionary.png) = bSrHvvoDjU8y4HE2KTrK9dhkWk2uy20GPzS+L/6lm1U=
-SHA256 (mozc/dictionary.svg) = pMe5v7RCp0l7ctdDWMMQNMT+8asqUGWYNHhFgHUawE0=
 SHA256 (mozc/e33ac4ce808fa4253c6c97bf5178e229a4bfb50f.txt.bz2) = IxubXkrRa6o/eWgPTkYV9wYFEaQdpKrCFJeJ6s4/JBE=
 SHA256 (mozc/ebb123f12adde4ead5323a8113c5d4cfc91de08c.txt.bz2) = CjCLLlPwiUFny0S2mDwYsD2KdbPvldd8BvwNHA4jc8g=
 SHA256 (mozc/googletest-1.17.0.tar.gz) = Zfq3AdmCnTjLd8FKzcQx0hCL/b+JeeQOuK5Wft8Qsnw=
@@ -20,7 +19,6 @@ SHA256 (mozc/ken_all.zip) = OtyX2OGeEWimzcsvznWdDp5hOpo7YwzBgK7P1WroHq8=
 SHA256 (mozc/mozc-3.34.6239.20260925.09-aebda961.tar.gz) = QVktRfnTSRvV9d+oRgI4DuGKTC5fg5HzGg0VpDFe9VU=
 SHA256 (mozc/platforms-1.0.0.tar.gz) = M4TrHDB2JwT7445EAgThFBVAhsj8iowuPihEECjAGag=
 SHA256 (mozc/properties.png) = xK6Lt5kvQxV76dAm92pwOa9uDj3g8iCEIgjf2ow4cUo=
-SHA256 (mozc/properties.svg) = mwGxM74cr/xoDxMtOF0OWUJi1s/Sl1mmPEKAULg/5ig=
 SHA256 (mozc/protobuf-34.1.bazel.tar.gz) = nwkzrRKrsKiVeztkrvw0d0zL5X93+JDGbLQGdRm7g8E=
 SHA256 (mozc/rules_android-v0.7.1.tar.gz) = fEW2qqg3+28vI60ROHY4ywD6n4OaBOxWTKrHClQ6nNU=
 SHA256 (mozc/rules_android_ndk-v0.1.5.tar.gz) = B+eid3ETuz0KQyJl0ceM+qFApbxMgr5MjNmIs0OC7JA=
@@ -36,7 +34,6 @@ SHA256 (mozc/rules_shell-v0.6.1.tar.gz) = 5rh8ib0LJwOeOvLF2gEUdFLyQPddUF9baICHTz
 SHA256 (mozc/rules_swift.3.5.0.tar.gz) = yY8gG8IX0s4o4Br8eLQQ0FxnuEbASnCV5OcBs3Qi7LI=
 SHA256 (mozc/tar.bzl-v0.5.1.tar.gz) = tH48g6DBRAzjNaoa4YdT2m63zVUdSUb6MD3iq94H4gs=
 SHA256 (mozc/tool.png) = JpQzv21pSKk6tqV6c861kwhwIjBGBSz//gHuyjcyfT4=
-SHA256 (mozc/tool.svg) = 3zT7o9CXeNtpUDojtoh2EFHb9ltbzLDXtynGn/YcOAQ=
 SHA256 (mozc/v1.10.0.tar.gz) = oan3h1qktqlIDKOE1YZfHM8bCx+urWtHqkfXlwmlxf0=
 SHA256 (mozc/v1.9.5.tar.gz) = ljE0HIK6xKKIvvlR+LJrQfaQIXlBhOzpafhHOXfqo0A=
 SHA256 (mozc/v2.1.0.tar.gz) = ij0IMOTrT2bE+pB8Bu32zhxxnO2BGhLibZ0xYvhHF1g=
@@ -53,7 +50,6 @@ SIZE (mozc/bazel_features-v1.42.1.tar.gz) = 18078
 SIZE (mozc/bazelbuild-bazel-central-registry-2459648091f2c5b8e21a46613cf39bffb6fba298.tar.gz) = 9417311
 SIZE (mozc/c686771bada1d59e9b105c81b29e6ac1a239cb54.txt.bz2) = 11472867
 SIZE (mozc/dictionary.png) = 205
-SIZE (mozc/dictionary.svg) = 294
 SIZE (mozc/e33ac4ce808fa4253c6c97bf5178e229a4bfb50f.txt.bz2) = 15715076
 SIZE (mozc/ebb123f12adde4ead5323a8113c5d4cfc91de08c.txt.bz2) = 1742421
 SIZE (mozc/googletest-1.17.0.tar.gz) = 885595
@@ -63,7 +59,6 @@ SIZE (mozc/ken_all.zip) = 1694719
 SIZE (mozc/mozc-3.34.6239.20260925.09-aebda961.tar.gz) = 29238276
 SIZE (mozc/platforms-1.0.0.tar.gz) = 7879
 SIZE (mozc/properties.png) = 557
-SIZE (mozc/properties.svg) = 812
 SIZE (mozc/protobuf-34.1.bazel.tar.gz) = 7038508
 SIZE (mozc/rules_android-v0.7.1.tar.gz) = 1308711
 SIZE (mozc/rules_android_ndk-v0.1.5.tar.gz) = 25604
@@ -79,7 +74,6 @@ SIZE (mozc/rules_shell-v0.6.1.tar.gz) = 23916
 SIZE (mozc/rules_swift.3.5.0.tar.gz) = 333115
 SIZE (mozc/tar.bzl-v0.5.1.tar.gz) = 103758
 SIZE (mozc/tool.png) = 360
-SIZE (mozc/tool.svg) = 326
 SIZE (mozc/v1.10.0.tar.gz) = 159353
 SIZE (mozc/v1.9.5.tar.gz) = 267155
 SIZE (mozc/v2.1.0.tar.gz) = 235261

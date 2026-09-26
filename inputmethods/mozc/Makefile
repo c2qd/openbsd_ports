@@ -49,18 +49,12 @@ SITES.zip_code_jigyosyo =		https://github.com/hiroyuki-komatsu/japanpost_zipcode
 DISTFILES.zip_code_ken_all =	ken_all.zip
 SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT}/
 
-DISTFILES.dict_png =			dictionary{outline_chrome_reader_mode_black_48dp}.png
-SITES.dict_png =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/chrome_reader_mode/materialiconsoutlined/48dp/1x/
-DISTFILES.dict_svg =			dictionary{24px}.svg
-SITES.dict_svg =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/src/action/chrome_reader_mode/materialiconsoutlined/
-DISTFILES.prop_png =			properties{round_settings_black_48dp}.png
-SITES.prop_png =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/settings/materialiconsround/48dp/1x/
-DISTFILES.prop_svg =			properties{24px}.svg
-SITES.prop_svg =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/src/action/settings/materialiconsround/
-DISTFILES.tool_png =			tool{baseline_build_black_48dp}.png
-SITES.tool_png =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/build/materialicons/48dp/1x/
-DISTFILES.tool_svg =			tool{24px}.svg
-SITES.tool_svg =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/src/action/build/materialicons/
+DISTFILES.dictionary =			dictionary{outline_chrome_reader_mode_black_48dp}.png
+SITES.dictionary =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/chrome_reader_mode/materialiconsoutlined/48dp/1x/
+DISTFILES.properties =			properties{round_settings_black_48dp}.png
+SITES.properties =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/settings/materialiconsround/48dp/1x/
+DISTFILES.tool =				tool{baseline_build_black_48dp}.png
+SITES.tool =					https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/build/materialicons/48dp/1x/
 
 UT_COMMIT =						15c1c64502b43e31d328012860376c03c3eaf633
 UT_PERSONAL_NAMES_COMMIT =		5e0d754f3162c3e1d83568307da2c9d3ea54731f
@@ -99,7 +93,7 @@ SITES.jawiki_index =			https://dumps.wikimedia.org/jawiki/${JAWIKI_VERSION}/
 EXTRACT_ONLY =					mozc-${VERSION}-${GH_COMMIT:C/^(.{8}).*/\1/}.tar.gz \
 								${MODBAZEL_BCR_DISTFILE}
 
-BUILD_DEPENDS +=				archivers/unzip devel/gettext,-tools
+BUILD_DEPENDS +=				devel/gettext,-tools
 
 WANTLIB +=						${COMPILER_LIBCXX} m
 WANTLIB-main +=					${WANTLIB} c
@@ -150,7 +144,7 @@ ALL_TARGET +=					unix/fcitx5:fcitx5-mozc.so
 .endif
 .if ${BUILD_PACKAGES:M-ibus}
 ALL_TARGET +=					renderer/qt:mozc_renderer unix/ibus/ibus_mozc \
-								unix/ibus:gen_mozc_xml unix:icons
+								unix/ibus:gen_mozc_xml
 .endif
 
 CFLAGS +=						-I${X11BASE}/include
@@ -204,10 +198,6 @@ pre-install:
 	msgfmt ${WRKSRC}/unix/fcitx5/po/${lang}.po \
 		-o ${WRKSRC}/unix/fcitx5/po/${lang}.mo
 .endfor
-.endif
-.if ${BUILD_PACKAGES:M-ibus}
-	cd ${WRKSRC}/bazel-bin/unix && mkdir -p icons && \
-		${UNZIP} -qo -d icons icons.zip
 .endif
 
 do-install:
@@ -282,21 +272,21 @@ do-install:
 	${INSTALL_DATA} "${WRKSRC}/bazel-bin/unix/ibus/mozc.xml" \
 		"${PREFIX}/share/ibus/component/mozc.xml"
 	${INSTALL_DATA_DIR} "${PREFIX}/share/ibus-mozc"
-.for icon in alpha_full alpha_half dictionary direct hiragana \
-	katakana_full katakana_half properties tool
-	${INSTALL_DATA} "${WRKSRC}/bazel-bin/unix/icons/${icon}.png" \
+.for icon in alpha_full alpha_half direct hiragana katakana_full katakana_half
+	${INSTALL_DATA} "${WRKSRC}/data/images/unix/48x48/${icon}.png" \
 		"${PREFIX}/share/ibus-mozc/${icon}.png"
 .endfor
-	${INSTALL_DATA} "${WRKSRC}/bazel-bin/unix/icons/mozc.png" \
+.for icon in dictionary properties tool
+	${INSTALL_DATA} "${FULLDISTDIR}/${icon}.png" \
+		"${PREFIX}/share/ibus-mozc/${icon}.png"
+.endfor
+	${INSTALL_DATA} "${WRKSRC}/data/images/product_icon_32bpp-128.png" \
 		"${PREFIX}/share/ibus-mozc/product_icon.png"
 .endif
 
 post-install:
 .if ${BUILD_PACKAGES:M-fcitx}
 	cd ${WRKSRC} && rm -f unix/fcitx5/po/*.mo
-.endif
-.if ${BUILD_PACKAGES:M-ibus}
-	cd ${WRKSRC}/bazel-bin/unix && rm -rf icons
 .endif
 
 .include "bazel.inc"
