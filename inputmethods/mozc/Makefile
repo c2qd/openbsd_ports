@@ -44,17 +44,23 @@ PERMIT_PACKAGE =				Yes
 ZIP_CODE_COMMIT =				621d059fbcbfae17bfca15b439692bae934268c3
 DISTFILES.ja_usage_dict =		2025-01-25.zip
 SITES.ja_usage_dict =			https://github.com/hiroyuki-komatsu/japanese-usage-dictionary/archive/refs/tags/
-DISTFILES.zip_code_jigyosyo =	jigyosyo.zip
-SITES.zip_code_jigyosyo =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT}/
-DISTFILES.zip_code_ken_all =	ken_all.zip
-SITES.zip_code_ken_all =		https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT}/
+DISTFILES.zipcode =				jigyosyo.zip ken_all.zip
+SITES.zipcode =					https://github.com/hiroyuki-komatsu/japanpost_zipcode/raw/${ZIP_CODE_COMMIT}/
 
-DISTFILES.dictionary =			dictionary{outline_chrome_reader_mode_black_48dp}.png
+SUPDISTFILES.dictionary =		dictionary{outline_chrome_reader_mode_black_48dp}.png
+SUPDISTFILES.properties =		properties{round_settings_black_48dp}.png
+SUPDISTFILES.tool =				tool{baseline_build_black_48dp}.png
+
+.if ${BUILD_PACKAGES:M-ibus}
+DISTFILES.dictionary =			${SUPDISTFILES.dictionary}
+DISTFILES.properties =			${SUPDISTFILES.properties}
+DISTFILES.tool =				${SUPDISTFILES.tool}
+.endif
+
 SITES.dictionary =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/chrome_reader_mode/materialiconsoutlined/48dp/1x/
-DISTFILES.properties =			properties{round_settings_black_48dp}.png
 SITES.properties =				https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/settings/materialiconsround/48dp/1x/
-DISTFILES.tool =				tool{baseline_build_black_48dp}.png
 SITES.tool =					https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/build/materialicons/48dp/1x/
+
 
 UT_COMMIT =						15c1c64502b43e31d328012860376c03c3eaf633
 UT_PERSONAL_NAMES_COMMIT =		5e0d754f3162c3e1d83568307da2c9d3ea54731f
