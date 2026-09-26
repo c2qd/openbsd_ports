@@ -30,15 +30,15 @@ ONLY_FOR_ARCHS =				amd64 arm64
 
 CATEGORIES=						inputmethods japanese
 
-# non-ut flavor:
+# -main, -tool, -ibus:
 # BSD-3-Clause(mozc, protobuf) + Apache-2.0(abseil-cpp) + Zlib(zlib) +
 # NAIST-2003(IPADic) + Public Domain(Okinawa dictionary, Zip code data) +
 # BSD-2-Clause(Japanese usage dictionary)
-# ut flavor:
-# BSD-3-Clause(mozc, protobuf) + Zlib(zlib) + NAIST-2003(IPADic) +
-# Public Domain(Okinawa dictionary, Zip code data, place-names) +
-# BSD-2-Clause(Japanese usage dictionary) +
-# Apache-2.0(abseil-cpp, personal-names, Neologd, SudachiDict)
+# -fcitx:
+# BSD-3-Clause + GPLv2.0+ + LGPLv2.1+
+# Additional licenses of the ut flavor:
+# Public Domain(Zip code data, place-names) +
+# Apache-2.0(personal-names, Neologd, SudachiDict)
 PERMIT_PACKAGE =				Yes
 
 ZIP_CODE_COMMIT =				621d059fbcbfae17bfca15b439692bae934268c3
