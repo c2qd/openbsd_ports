@@ -1,0 +1,4 @@
+@bin bin/dwl
+@man man/man1/dwl.1
+share/wayland-sessions/
+share/wayland-sessions/dwl.desktop
