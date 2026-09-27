@@ -15,9 +15,8 @@ HOMEPAGE =				https://fcitx-im.org/
 # LGPLv2.1+
 PERMIT_PACKAGE=			Yes
 
+DISTFILES =				${DISTNAME}_dict${EXTRACT_SUFX}
 SITES =					https://download.fcitx-im.org/fcitx5/fcitx5/
-SITES.data =			https://download.fcitx-im.org/data/
-DISTFILES.data=			en_dict-20121020.tar.gz
 
 EXTRACT_SUFX =			.tar.zst
 
@@ -62,9 +61,5 @@ COMPILER_LANGS =		c++
 
 CFLAGS +=				-I${LOCALBASE}/include -I${X11BASE}/include
 CXXFLAGS +=				-I${LOCALBASE}/include -I${X11BASE}/include
-
-post-patch:
-		cp ${FULLDISTDIR}/en_dict-20121020.tar.gz \
-			${WRKSRC}/src/modules/spell/
 
 .include <bsd.port.mk>

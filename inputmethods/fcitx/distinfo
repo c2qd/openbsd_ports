@@ -1,4 +1,2 @@
-SHA256 (en_dict-20121020.tar.gz) = xEpdeEeSXuqeTS0EdI1ELNKN2SmaC1cu99kerE9abOs=
-SHA256 (fcitx5-5.1.23.tar.zst) = 0ocRnbncMRO7OisOeM6GcOBkt0TBTTquxpeZN0qtsAs=
-SIZE (en_dict-20121020.tar.gz) = 630491
-SIZE (fcitx5-5.1.23.tar.zst) = 9926123
+SHA256 (fcitx5-5.1.23_dict.tar.zst) = /FpFHGZOGXjkB1Z9fj4KjY0uG3/r4YKqS7OiGQkN19M=
+SIZE (fcitx5-5.1.23_dict.tar.zst) = 10556053
