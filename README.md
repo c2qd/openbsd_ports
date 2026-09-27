@@ -29,7 +29,8 @@ The following files are distributed under their original licenses:
 - [inputmethods/fcitx-gtk/Makefile](inputmethods/fcitx-gtk/Makefile) is derived from [openbsd/ports/inputmethods/fcitx-gtk/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx-gtk/Makefile)  
 - [inputmethods/fcitx-qt/Makefile](inputmethods/fcitx-qt/Makefile) is derived from [openbsd/ports/inputmethods/fcitx-qt/Makefile](https://codeberg.org/openbsd/ports/src/branch/master/inputmethods/fcitx-qt/Makefile)  
 - [net/gajim](net/gajim) is derived from [openbsd/ports/net/gajim](https://codeberg.org/openbsd/ports/src/branch/master/net/gajim)  
-- [net/py-nbxmpp](net/py-nbxmpp) is derived from [openbsd/ports/www/yt-dlp](https://codeberg.org/openbsd/ports/src/branch/master/net/py-nbxmpp)  
+- [net/py-nbxmpp](net/py-nbxmpp) is derived from [openbsd/ports/net/py-nbxmpp](https://codeberg.org/openbsd/ports/src/branch/master/net/py-nbxmpp)  
+- [wayland/libinput-openbsd](wayland/libinput-openbsd) is derived from [openbsd/ports/wayland/libinput-openbsd](https://codeberg.org/openbsd/ports/src/branch/master/wayland/libinput-openbsd)  
 - [www/yt-dlp](www/yt-dlp) is derived from [openbsd/ports/www/yt-dlp](https://codeberg.org/openbsd/ports/src/branch/master/www/yt-dlp)
 
 Other files are licensed under [The Unlicense](UNLICENSE).
