@@ -23,4 +23,6 @@ RUN_DEPENDS =		inputmethods/fcitx \
 
 MODULES =			devel/cmake
 
+COMPILER =			base-clang ports-gcc
+
 .include <bsd.port.mk>
