@@ -1,6 +1,7 @@
 COMMENT =			Tmux plugin to make tmux as a fcitx 5 client
 
 VERSION =			20251230
+REVISION =			0
 DISTNAME =			fcitx5-tmux-${VERSION}
 PKGNAME =			${DISTNAME:S/fcitx5/fcitx/}
 
