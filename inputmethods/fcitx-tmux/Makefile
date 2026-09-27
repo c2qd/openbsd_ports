@@ -6,6 +6,7 @@ PKGNAME =			${DISTNAME:S/fcitx5/fcitx/}
 
 CATEGORIES =		inputmethods
 
+# GPLv2.0+
 PERMIT_PACKAGE =	Yes
 
 GH_ACCOUNT =		wengxt
