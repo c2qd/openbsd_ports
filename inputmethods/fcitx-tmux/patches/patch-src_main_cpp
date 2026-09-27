@@ -1,7 +1,7 @@
 Index: src/main.cpp
 --- src/main.cpp.orig
 +++ src/main.cpp
-@@ -9,7 +9,13 @@
+@@ -9,7 +9,11 @@
  #include <fcitx-utils/dbus/bus.h>
  #include <fcitx-utils/dbus/matchrule.h>
  #include <fcitx-utils/dbus/servicewatcher.h>
@@ -9,13 +9,11 @@ Index: src/main.cpp
  #include <sys/syscall.h>
 +#elif defined(__OpenBSD__)
 +#include <sys/event.h>
-+#include <sys/types.h>
-+#include <errno.h>
 +#endif
  
  using namespace fcitx;
  
-@@ -256,7 +262,22 @@ int main(int argc, char *argv[]) {
+@@ -256,7 +260,22 @@ int main(int argc, char *argv[]) {
      pid_t tmuxPid = 0;
      try {
          tmuxPid = std::stoi(argv[1]);
