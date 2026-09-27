@@ -1,0 +1,40 @@
+Index: src/main.cpp
+--- src/main.cpp.orig
++++ src/main.cpp
+@@ -9,7 +9,13 @@
+ #include <fcitx-utils/dbus/bus.h>
+ #include <fcitx-utils/dbus/matchrule.h>
+ #include <fcitx-utils/dbus/servicewatcher.h>
++#if defined(__linux__)
+ #include <sys/syscall.h>
++#elif defined(__OpenBSD__)
++#include <sys/event.h>
++#include <sys/types.h>
++#include <errno.h>
++#endif
+ 
+ using namespace fcitx;
+ 
+@@ -256,7 +262,22 @@ int main(int argc, char *argv[]) {
+     pid_t tmuxPid = 0;
+     try {
+         tmuxPid = std::stoi(argv[1]);
++#if defined(__linux__)
+         fd = UnixFD::own(syscall(SYS_pidfd_open, tmuxPid, 0));
++#elif defined(__OpenBSD__)
++        int kq = kqueue();
++        if (kq < 0) {
++            return 1;
++        }
++        struct kevent kev;
++        EV_SET(&kev, tmuxPid, EVFILT_PROC, EV_ADD | EV_ENABLE, NOTE_EXIT, 0,
++                nullptr);
++        if (kevent(kq, &kev, 1, nullptr, 0, nullptr) < 0) {
++            close(kq);
++            return 1;
++        }
++        fd = UnixFD::own(kq);
++#endif
+     } catch (...) {
+         return 1;
+     }

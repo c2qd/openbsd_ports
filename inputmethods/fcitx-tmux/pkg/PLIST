@@ -1,0 +1,3 @@
+@bin libexec/fcitx5-tmux
+share/tmux-fcitx5/
+share/tmux-fcitx5/fcitx5.tmux

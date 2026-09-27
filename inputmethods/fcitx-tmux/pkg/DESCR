@@ -1,0 +1,3 @@
+Make tmux a fcitx client.
+It allows you to type with input method without using graphical display server.
+For example, you can type with Fcitx under TTY.
