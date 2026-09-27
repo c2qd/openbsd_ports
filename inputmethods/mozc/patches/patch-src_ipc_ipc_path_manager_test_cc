@@ -1,16 +1,16 @@
 Index: src/ipc/ipc_path_manager_test.cc
 --- src/ipc/ipc_path_manager_test.cc.orig
 +++ src/ipc/ipc_path_manager_test.cc
-@@ -87,11 +87,13 @@ TEST_F(IPCPathManagerTest, IPCPathManagerTest) {
+@@ -87,11 +87,11 @@ TEST_F(IPCPathManagerTest, IPCPathManagerTest) {
    EXPECT_FALSE(manager->GetServerProductVersion().empty());
    EXPECT_GT(manager->GetServerProcessId(), 0);
    EXPECT_EQ(path, path_created);
-+#if !defined(__OpenBSD__)
-   if constexpr (port::IsLinuxBase()) {
+-  if constexpr (port::IsLinuxBase()) {
++#if defined(__linux__)
      // On Linux, |path| should be abstract (see man unix(7) for details.)
      ASSERT_FALSE(path.empty());
      EXPECT_EQ(path[0], '\0');
-   }
+-  }
 +#endif
  }
  
