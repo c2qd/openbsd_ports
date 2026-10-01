@@ -67,7 +67,7 @@ UT_PLACE_NAMES_COMMIT =			ebb123f12adde4ead5323a8113c5d4cfc91de08c
 UT_NEOLOGD_COMMIT =				e33ac4ce808fa4253c6c97bf5178e229a4bfb50f
 UT_SUDACHIDICT_COMMIT =			c686771bada1d59e9b105c81b29e6ac1a239cb54
 # Note: Wikimedia only retains dumps from the past eight months
-JAWIKI_VERSION =				20260901
+JAWIKI_VERSION =				20261001
 
 SUPDISTFILES.merge_script =		${UT_COMMIT}{merge_dictionaries}.py
 SUPDISTFILES.personal_names =	${UT_PERSONAL_NAMES_COMMIT}{mozcdic-ut-personal-names}.txt.bz2
