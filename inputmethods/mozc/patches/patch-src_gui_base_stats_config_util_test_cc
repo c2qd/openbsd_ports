@@ -1,0 +1,12 @@
+Index: src/gui/base/stats_config_util_test.cc
+--- src/gui/base/stats_config_util_test.cc.orig
++++ src/gui/base/stats_config_util_test.cc
+@@ -731,7 +731,7 @@ TEST_F(StatsConfigUtilTestMac, SetEnabledOverwritesPre
+ #endif  // CHANNEL_DEV
+ #endif  // TARGET_OS_OSX
+ 
+-#ifdef __linux__
++#if defined(__linux__) || defined(__OpenBSD__)
+ TEST(StatsConfigUtilTestLinux, DefaultValueTest) {
+   EXPECT_FALSE(StatsConfigUtil::IsEnabled());
+ }
